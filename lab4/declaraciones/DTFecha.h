@@ -10,7 +10,7 @@
 class DTFecha{
     private:
         int hora;
-        int minutos;
+        int minuto;
         int dia;
         int mes;
         int anio;
@@ -18,17 +18,18 @@ class DTFecha{
         //Creadores
         DTFecha();
         DTFecha(int,int,int,int,int);
+        ~DTFecha();
         //Getters
         int getDia();
         int getMes();
         int getAnio();
         int getHora();
-        int getMinutos();
+        int getMinuto();
         //Setters
         void setDia(int);
         void setMes(int);
         void setAnio(int);  
         void setHora(int);
-        void setMinutos(int);   
+        void setMinuto(int);   
 };
 #endif
