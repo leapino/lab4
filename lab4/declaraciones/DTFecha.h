@@ -18,6 +18,7 @@ class DTFecha{
         //Creadores
         DTFecha();
         DTFecha(int,int,int,int,int);
+        //Destructor
         ~DTFecha();
         //Getters
         int getDia();
