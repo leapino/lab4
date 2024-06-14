@@ -10,6 +10,8 @@
 #include <bits/stdc++.h>
 #include "../declaraciones/DTFecha.h"
 #include "../declaraciones/DTUsuario.h"
+#include "../declaraciones/DTCliente.h"
+#include "../declaraciones/DTVendedor.h"
 
 int main() {
 
@@ -18,6 +20,7 @@ int main() {
     while ( i !=0 ){
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cin>>i;
+        std::string aux;
         switch (i){
         case 1:{
             std::cout << "Si es vendedor ingrese 0, si es cliente ingrese 1\n";
@@ -25,30 +28,38 @@ int main() {
             std::cin >>cliente;
             std::cout <<"\n";
             DTUsuario nuevo;
-            nuevo.DTesCliente=cliente;
+            nuevo.setDTesCliente(cliente);
             std::cout <<"Ingrese el nickname del usuario\n";
-            std::cin >>nuevo.DTNickname;
+            std::cin >>aux;
+            nuevo.setDTNickname(aux);
             std::cout <<"\n";
-            std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY";
+            std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
             int dia,mes,anio;
-            std::cout <<"\n";
-            std::cin >> dia >> "/">>mes>> "/" >>anio;
-            nuevo.DTNacimiento=DTFecha(dia,mes,anio,0,0);
-            if (nuevo.DTesCliente){
+            std::cin >> dia>>aux>>mes>>aux>>anio;
+            nuevo.setDTNacimiento(DTFecha(dia,mes,anio,0,0));
+            if (nuevo.getDTesCliente()){
                 DTCliente nuevoCliente;
                 std::cout <<"Ingrese la dirección del Cliente\n";
-                std::cin >>nuevoCliente.DTAdress;
+                std::cin >>aux;
+                nuevoCliente.setDTAdress(aux);
                 std::cout <<"\n";
                 std::cout <<"Ingrese la Ciudad \n";
-                std::cin >>nuevoCliente.DTCiudad;
-                nuevo.pDTCliente=*nuevoCliente;
-                
+                std::cin >>aux;
+                nuevoCliente.setDTCiudad(aux);
+                nuevo.setpDTCliente(&nuevoCliente);
+                }else{
+                DTVendedor nuevoVendedor;
+                std::cout <<"Ingrese el número de RUT";
+                std::cin >>aux;
+                nuevoVendedor.setDTRUT(aux);
+                nuevo.setpDTVendedor(&nuevoVendedor); 
             }
-        }
+            bool Confirmar=ControladorUsuario.altadeUsuario()
+
             break;
         
         default:
-            std::cout<<"\n Ese número no es correcto, Escriba otro número dentro de las opciones\n";
+            std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
             break;
         }
     }
