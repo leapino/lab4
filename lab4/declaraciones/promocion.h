@@ -8,6 +8,7 @@
 #include <map>
 
 #include "DTFecha.h"
+#include "DTProducto.h"
 
 class Promocion {
     private:

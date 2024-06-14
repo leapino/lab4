@@ -12,7 +12,6 @@ class Cliente: public Usuario {
     private:
         std::string direccion;
         std::string ciudad;
-        //notificaciones
         //set de vendedores
         //set de compra
     public:
