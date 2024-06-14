@@ -6,7 +6,7 @@
 // Usuario::Usuario(){
 //     this->nickname = "";
 //     this->password = "";
-//     this->fechaNacimiento = NULL;aa
+//     this->fechaNacimiento = NULL;
 // }
 
 Usuario::Usuario(std::string nick,std::string pass, DTFecha fecha){
