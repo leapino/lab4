@@ -27,13 +27,13 @@ class Producto {
         int getPrecio();
         std::string getNombre();
         std::string getDescripcion();
-        std::string getCategoria();
+        Categoria getCategoria();
         //Setters
         void setCodigo(int);
         void setStock(int);
         void setPrecio(int);
         void setNombre(std::string);
         void setDescripcion(std::string);
-        void setCategoria(std::string);
+        void setCategoria(Categoria);
 };
 #endif
