@@ -6,6 +6,8 @@
 #include <string>
 #include <math.h>
 
+#include "usuario.h"
+
 class Cliente: public Usuario {
     private:
         std::string direccion;
@@ -15,7 +17,7 @@ class Cliente: public Usuario {
         //set de compra
     public:
         Cliente();
-        Cliente(std::string dir, std::string ciud, /*notis*/);
+        Cliente(std::string dir, std::string ciud);
         void crearLinkV(/* puntero a vendedor*/);
         //mostrarNotificaciones()
         void eliminarVendedores();

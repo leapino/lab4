@@ -8,6 +8,7 @@
 #include <map>
 
 #include "usuario.h"
+#include "cliente.h"
 
 class Vendedor: public Usuario {
     private:
@@ -16,7 +17,7 @@ class Vendedor: public Usuario {
         //Creadores
         Vendedor();
         Vendedor(std::string);
-        ~Vendedor()
+        ~Vendedor();
         //Getters
         std::string getRUT();
         //Setters
@@ -24,7 +25,7 @@ class Vendedor: public Usuario {
         //Funciones
         bool estaSuscripto(std::string);
         //void crearLink()
-        void desuscribirse(cliente);
+        void desuscribirse(Cliente);
 
 };
 #endif

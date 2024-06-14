@@ -7,6 +7,8 @@
 #include <math.h>
 
 #include "DTFecha.h"
+#include "DTUsuario.h"
+#include "DTProducto.h"
 
 class Comentario {
     private:

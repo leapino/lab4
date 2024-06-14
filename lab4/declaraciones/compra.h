@@ -7,6 +7,8 @@
 #include <math.h>
 
 #include "DTFecha.h"
+#include "DTCliente.h"
+#include "DTProducto.h"
 
 class Compra {
     private:
@@ -14,7 +16,7 @@ class Compra {
         int monto;
         DTCliente *cliente;
     public:
-        Compra(/*idk*/)
+        Compra(/*idk*/);
         void subirMonto(int precio);
         void agregarProdCompra(DTProducto *prod);
         ~Compra();
