@@ -7,7 +7,7 @@
 #include <string>
 #include <math.h>
 
-class DTFecha{
+struct DTFecha{
     private:
         int hora;
         int minuto;

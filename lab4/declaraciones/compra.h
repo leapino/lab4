@@ -16,7 +16,7 @@ class Compra {
         int monto;
         DTCliente *cliente;
     public:
-        Compra(/*idk*/);
+        Compra();
         void subirMonto(int precio);
         void agregarProdCompra(DTProducto *prod);
         ~Compra();
