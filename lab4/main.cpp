@@ -22,7 +22,7 @@ int main() {
         std::cin>>i;
         std::string aux;
         switch (i){
-        case 1:{
+        case 1:
             std::cout << "Si es vendedor ingrese 0, si es cliente ingrese 1\n";
             int cliente;
             std::cin >>cliente;

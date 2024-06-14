@@ -4,9 +4,9 @@
 #include "declaraciones/DTFecha.h"
 
 DTFecha::DTFecha(){
-    this->dia=0;
-    this->mes=0;
-    this->anio=0;
+    this->dia=1;
+    this->mes=1;
+    this->anio=1900;
     this->hora=0;
     this->minuto=0;
     }
