@@ -13,7 +13,7 @@ class ManejadorProducto {
     private:
         static ManejadorProducto* instancia;
         ManejadorProducto();
-        std::map< int, Producto*> Productos;
+        std::map<int, Producto*> Productos;
     public:
         static ManejadorProducto* getInstancia();
 };

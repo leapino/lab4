@@ -22,12 +22,12 @@ class Promocion {
     //Getters
     std::string getNombre();
     std::string getDescripcion();
-    std::string getFecha();
+    DTFecha getFecha();
     //Setters
     void setNombre(std::string);
     void setDescripcion(std::string);
     void setFecha(DTFecha);
-    void agregarProdProm(DTProducto,int);
+    void agregarProdProm(int,DTProducto);
 };
 
 #endif
