@@ -16,7 +16,7 @@ class Vendedor: public Usuario {
     public:
         //Creadores
         Vendedor();
-        Vendedor(std::string);
+        Vendedor(std::string, std::string, DTFecha,std::string);
         ~Vendedor();
         //Getters
         std::string getRUT();

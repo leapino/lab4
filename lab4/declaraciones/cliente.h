@@ -16,7 +16,7 @@ class Cliente: public Usuario {
         //set de compra
     public:
         Cliente();
-        Cliente(std::string dir, std::string ciud);
+        Cliente(std::string, std::string, DTFecha,std::string dir, std::string ciud);
         void crearLinkV(/* puntero a vendedor*/);
         //mostrarNotificaciones()
         void eliminarVendedores();
