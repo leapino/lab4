@@ -16,5 +16,7 @@ class ManejadorUsuario {
         std::map<std::string, Usuario*> Usuarios;
     public:
         static ManejadorUsuario* getInstancia();
+        void addUsuario(Usuario*);
+        Usuario* getUsuario(std::string);
 };
 #endif
