@@ -8,8 +8,8 @@
 
 class ControladorProducto {
     private:
-        bool enviado;
-        int cantidad;
+        //bool enviado; 
+        //int cantidad; 
         static ControladorProducto *instancia;
         ControladorProducto();
     public:
