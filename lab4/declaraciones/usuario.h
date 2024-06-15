@@ -17,7 +17,7 @@ class Usuario {
     public:
         //Creadores
         Usuario();
-        Usuario(std::string, std::string, DTFecha);
+        Usuario(std::string nick, std::string pass, DTFecha fechnaci);
         //Getters
         std::string getNickname();
         std::string getPassword();
