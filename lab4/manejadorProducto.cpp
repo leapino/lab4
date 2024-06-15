@@ -12,7 +12,7 @@ ManejadorProducto* ManejadorProducto::getInstancia(){
         return instancia;
 }
 
-void ManejadorProducto::addProducto(Producto* p){
+void ManejadorProducto::agregarProducto(Producto* p){
     this->Productos.insert({p->getCodigo(),p});
 }
 

@@ -6,8 +6,10 @@
 #include <string>
 #include <math.h>
 #include <map>
+#include <set>
 
 #include "usuario.h"
+#include "vendedor.h"
 
 class ManejadorUsuario {
     private:
@@ -18,5 +20,6 @@ class ManejadorUsuario {
         static ManejadorUsuario* getInstancia();
         void addUsuario(Usuario*);
         Usuario* getUsuario(std::string);
+        std::set<std::string> listarNicknames();
 };
 #endif

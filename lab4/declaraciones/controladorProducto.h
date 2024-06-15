@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <string>
 #include <math.h>
+#include <set>
+
+#include "manejadorUsuario.h"
 
 class ControladorProducto {
     private:
@@ -15,7 +18,7 @@ class ControladorProducto {
     public:
         static ControladorProducto *getInstancia();
         void ingrDatosPromocion(/*cosas*/);
-        //listarNicknames
+        std::set<std::string> listarNicknames(); //Devuelve un set<std::string> con los nicknames de los vendedores
         //listarProductos
         void agregarProducto(/*producto*/);
         void confirmarAltaPromocion();
