@@ -55,6 +55,7 @@ int main() {
 
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<" 2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
+        std::cout << "6-Consultar Promoción \n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -245,6 +246,11 @@ int main() {
             }
             //CtrlProd.ConfirmarAltaPromocion();
         }
+        case 6:{//Consultar Promocion
+            
+
+        }
+            break;
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
