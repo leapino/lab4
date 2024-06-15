@@ -54,8 +54,8 @@ int main() {
     while ( i !=0 ){
 
         std::cout << "¿Qué operación deseas realizar?\n";
-        std::cout << "1-Creación de Usuario \n"<<" 2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
-        std::cout << "6-Consultar Promoción \n";
+        std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
+        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -247,7 +247,34 @@ int main() {
             //CtrlProd.ConfirmarAltaPromocion();
         }
         case 6:{//Consultar Promocion
+            //Crear COntrolador Producto            
+            /*std::vector<DTPromocion> promos=ctrlProd.ListarPromos();
+            for (int j = 0; j < promos.size(); j++){
+                std::cout <<promos[j]->toString;
+            }
+            */
+
+           std::cout <<"Quieres consultar los productos y el Vendedor de alguna promocion \n"<<"1-Sí\n"<<"2-No\n";
+           int k;
+           std::cin >>k;
+
+           while (k){
+
+                std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
+                std::string nombrePromo;
+                std::cin >>nombrePromo;
+                //Crear Controlador Producto 
+                //std::cout << SelectPromos(nombrePromo)->toString;
+
+                std::cout <<"Quieres consultar de alguna otra promocion? \n"<<"1-Sí\n"<<"2-No\n";
+                std::cin >>k;
+           }
             
+        }
+            break;
+        case 7:{//Realizar Compra
+            //
+
 
         }
             break;
