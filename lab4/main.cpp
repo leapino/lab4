@@ -55,7 +55,7 @@ int main() {
 
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
-        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n";
+        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -273,11 +273,42 @@ int main() {
         }
             break;
         case 7:{//Realizar Compra
-            //
+            //Incializar Controlador Usuario
+            //std::vector <string> clientes=ctrlUsuario.listarClientes();
 
+            std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
+            std::string cliente;
+            std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
+            //ctrlUsuario.selectCliente(cliente);
+            //std::vector <DTProducto> productos=ctrlUsuario.mostrarProductos();
+
+            int i=1;
+            std::cout <<"Desea ingresar producto a la compra\n"<<"0-No\n"<<"1-Sí\n";
+            std::cin >>i;
+
+            while(i){
+
+                std::cout<<"Ingresar codigo del Producto\n";
+                int codigo;
+                std::cin>>codigo;
+                
+                std::cout<<"Ingresar cantidad del producto a comprar \n";
+                int cantidad;
+                std::cin >>cantidad;
+
+                //ctrlUsuario.agregarProductoCompra(codigo,cantidad);
+
+                std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
+                std::cin >> i;
+            }
+            //ctrlUsuario.confirmarCompra();
 
         }
             break;
+        
+        case 8:{//Dejar Comentario
+
+        }
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
