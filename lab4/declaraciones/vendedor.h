@@ -6,6 +6,7 @@
 #include <string>
 #include <math.h>
 #include <map>
+#include <set>
 
 #include "usuario.h"
 #include "cliente.h"
@@ -13,6 +14,7 @@
 class Vendedor: public Usuario {
     private:
         std::string RUT;
+        std::set<int> Productos;
     public:
         //Creadores
         Vendedor();
@@ -26,6 +28,5 @@ class Vendedor: public Usuario {
         bool estaSuscripto(std::string);
         //void crearLink()
         void desuscribirse(Cliente);
-
 };
 #endif

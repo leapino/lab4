@@ -27,9 +27,9 @@ class Usuario {
         void setPassword(std::string);
         void setFecha(DTFecha);
         //Funciones
-        bool esVendedor(Usuario);
-        bool esUsuario(Usuario);
-        bool esCliente(Usuario);
+        virtual bool esVendedor(Usuario);
+        virtual bool esUsuario(Usuario);
+        virtual bool esCliente(Usuario);
 
 };
 #endif

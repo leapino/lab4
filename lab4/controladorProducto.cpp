@@ -12,4 +12,10 @@ ControladorProducto* ControladorProducto::getInstancia(){
         return instancia;
 }
 
+std::set<std::string> ControladorProducto::listarNicknames(){
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->listarNicknames();
+}
+
 #endif

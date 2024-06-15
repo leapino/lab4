@@ -16,7 +16,7 @@ class ManejadorProducto {
         std::map<int, Producto*> Productos;
     public:
         static ManejadorProducto* getInstancia();
-        void addProducto(Producto*);
+        void agregarProducto(Producto*);
         Producto* getProducto(int);
 };
 #endif
