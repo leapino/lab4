@@ -21,5 +21,6 @@ class ManejadorUsuario {
         void addUsuario(Usuario*);
         Usuario* getUsuario(std::string);
         std::set<std::string> listarNicknames();
+        std::set<int> getListaProductos(std::string nombre);
 };
 #endif

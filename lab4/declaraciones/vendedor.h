@@ -22,11 +22,12 @@ class Vendedor: public Usuario {
         ~Vendedor();
         //Getters
         std::string getRUT();
+        std::set<int> getProductos();
         //Setters
         void setRUT(std::string);
         //Funciones
         bool estaSuscripto(std::string);
         //void crearLink()
-        void desuscribirse(Cliente);
+        void desuscribirse(Cliente); 
 };
 #endif

@@ -18,4 +18,13 @@ std::set<std::string> ControladorProducto::listarNicknames(){
     return mu->listarNicknames();
 }
 
+std::set<DT2Producto*> ControladorProducto::listarProductos(std::string nombre){
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    std::set<int> lista = mu->getListaProductos(nombre);
+    return mp->listarProductos(lista);
+}
+
 #endif

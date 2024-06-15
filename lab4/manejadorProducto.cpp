@@ -22,4 +22,14 @@ Producto* ManejadorProducto::getProducto(int c){
     return it->second;
 }
 
+std::set<DT2Producto*> ManejadorProducto::listarProductos(std::set<int> lista){
+    std::map<int, Producto*>::iterator it;
+    std::set<DT2Producto*> dataProductos;
+    for (it = this->Productos.begin(); it != this->Productos.end(); it++){
+        DT2Producto* dProducto = new DT2Producto(it->second->getCodigo(), it->second->getNombre());
+        dataProductos.insert(dProducto);
+    }
+    return dataProductos;
+}
+
 #endif
