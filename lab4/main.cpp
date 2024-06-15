@@ -246,6 +246,7 @@ int main() {
             }
             //CtrlProd.ConfirmarAltaPromocion();
         }
+        break;
         case 6:{//Consultar Promocion
             //Crear COntrolador Producto            
             /*std::vector<DTPromocion> promos=ctrlProd.ListarPromos();
@@ -307,8 +308,55 @@ int main() {
             break;
         
         case 8:{//Dejar Comentario
+            //iniciar controlador Usuario
+            //std::vector <string> nicknames=ctrl.Usuario.listadoDeUsuarios();
+            //imprimir el vector;
+            std::cout <<"Ingrese el nickname que quiere dejar un comentario\n";
+            std::string usuario;
+            std::cin >>usuario;
+            //ctrlUsuario.selectUsuario();
 
+            //iniciar controlador Prod
+
+            std::vector <DTProducto>productos;//=listarProductos();
+            for (int j = 0; j < productos.size(); j++){
+                //std::cout <<productos[j]->toString();
+            }
+            std::cout <<"Ingrese el codigo del producto para dejar el comentario\n";
+            int codProd;
+            std::cin >> codProd;
+            //ctrlProd.selectProducto(codProd);
+
+            std::cout <<"Desea responder a un comentario existente o crear un nuevo comentario\n"<<"0-Nuevo Comentario\n"<<"1-Responder a un comentario existente\n";
+            int alt;
+            std::cin >>alt;
+
+            if (alt){
+                //std::vector <DTComentario> comentarios=ctrlUsuario.listarComProd();
+                std::cout<<"A que comentario quiere responder\n";
+
+                //idea:recorrer el vector y darle un numero como "id" a los comentarios
+                int id;
+                std::cin >>id;
+                //ctrlUsuario.selectComProd(comentarios[id]);
+
+                std::cout <<"Ingrese el comentario\n";
+                std::string comentario;
+                std::cin >>comentario;
+
+                //ctrlUsuario.escribirCom(comentarios[id],comentario)//ver que pide el comentario incial denuevo;
+            }else{
+                std::cout <<"Ingrese el comentario\n";
+                std::string comentario;
+                std::cin >>comentario;
+
+                //ctrlUsuario.escribirComNuevo(comentario);                
+            }
         }
+            break;
+        case 9:{//Eliminar Comentario
+
+        }            
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
