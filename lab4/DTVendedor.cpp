@@ -4,7 +4,7 @@
 DTVendedor::DTVendedor(){
 }
 
-DTVendedor::DTVendedor(std::string rut){
+DTVendedor::DTVendedor(std::string Nickname, DTFecha fecha,std::string rut){
     this->DTRUT=rut;
 }
 

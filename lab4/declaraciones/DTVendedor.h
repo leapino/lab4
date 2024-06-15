@@ -1,13 +1,15 @@
 #ifndef DTVENDEDOR_H
 #define DTVENDEDOR_H
 
+#include "DTUsuario.h"
+
 class DTVendedor: public DTUsuario {
     private:
     std::string DTRUT;
     public:
     //Creadores
     DTVendedor();
-    DTVendedor(std::string rut);
+    DTVendedor(std::string Nickname, DTFecha fecha,std::string rut);
     //Destructor
     ~DTVendedor();
     //Getter

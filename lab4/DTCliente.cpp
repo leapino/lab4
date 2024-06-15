@@ -5,7 +5,7 @@
 DTCliente::DTCliente(){
 }
 
-DTCliente::DTCliente(std::string direc, std::string Ciudad){
+DTCliente::DTCliente(std::string Nickname, DTFecha fecha,std::string direc, std::string Ciudad){
     this->DTAdress=direc;
     this->DTCiudad=Ciudad;
 }

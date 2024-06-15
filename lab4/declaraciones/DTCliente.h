@@ -10,7 +10,7 @@ class DTCliente: public DTUsuario {
     public:
     //Creadores
     DTCliente();
-    DTCliente(std::string direc,std::string Ciudad);
+    DTCliente(std::string Nickname, DTFecha fecha,std::string direc,std::string Ciudad);
     //Destructor
     ~DTCliente();
     //Getters
