@@ -18,15 +18,47 @@
 #include "../declaraciones/usuario.h"
 #include "../declaraciones/cliente.h"
 #include "../declaraciones/vendedor.h"
+#include "../declaraciones/categoria.h"
 
+
+DTFecha leerFecha(){
+    int dia,mes,anio;
+    std::string separador;
+    std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
+    std::cin >> dia>>separador>>mes>>separador>>anio;
+    std::cout <<"\n";
+    return DTFecha(dia,mes,anio,0,0);
+}
+
+void selecVendedor(){
+        //Aca hay que crear instancia de controlador Usuario
+
+        std::cout<< "Ingrese el nickname de uno de los siguientes Vendedores a cargo del producto \n";
+
+        std::vector<std::string> Nicknames;//=ctrlUsuario.listarNicknames Notar qe lista vendedores nomas
+        for (int j = 0; j < Nicknames.size(); j++){
+                //std::cout <<Nicknames[j]->toString();
+        }
+
+        std::string vendedor;
+        std::cin >> vendedor;
+            
+        //ctrlUsuario.selectNick(vendedor);
+}
 
 int main() {
+
     std::cout << "\n";
     int i =-2;
+
     while ( i !=0 ){
+
         std::cout << "¿Qué operación deseas realizar?\n";
-        std::cout << "1-Creación de Usuario \n"<<" 2-Listado de Usuarios \n"<< "3-Alta de Producto";
+        std::cout << "1-Creación de Usuario \n"<<" 2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cin>>i;
+        std::cout <<"\n";
+
+
         switch (i){
 
         case 1:{//Crear Usuario
@@ -45,11 +77,8 @@ int main() {
             std::cout <<"Ingrese la contraseña\n";
             std::cin >>password;
             std::cout <<"\n";
-
-            std::string separador;
-            std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
-            int dia,mes,anio;
-            std::cin >> dia>>separador>>mes>>separador>>anio;
+            
+            DTFecha fecha=leerFecha();
             
             //Aca hay q crear la instancia de Controlador Usuario 
 
@@ -66,7 +95,7 @@ int main() {
                 std::cin >>ciudad;
                 std::cout <<"\n";
 
-                nuevoCliente=Cliente(nickname,password,DTFecha(dia,mes,anio,0,0),direccion,ciudad);
+                nuevoCliente=Cliente(nickname,password,fecha,direccion,ciudad);
                 
                 //Aca hay que hacerle ctrlUsuario.altadeUsuario(nuevoCliente);
 
@@ -78,7 +107,7 @@ int main() {
                 std::cin >>RUT;
                 std::cout <<"\n";
 
-                nuevoVendedor=Vendedor(nickname,password,DTFecha(dia,mes,anio,0,0),RUT);
+                nuevoVendedor=Vendedor(nickname,password,fecha,RUT);
 
                 //aca hay que hacer ctrlUsuario.altaDeUsuario(nuevoVendedor);
             }
@@ -91,6 +120,7 @@ int main() {
                 }
         }
             break;
+
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
 
             //Aca hay q crear la instancia de Controlador Usuario
@@ -101,29 +131,121 @@ int main() {
                 //std::cout <<infousuarios[j]->toString();Falta hacer el toString
         }
             break;
+
         case 3:{//alta de Producto
-        //Aca hay que crear instancia de controlador Usuario
+            
 
-        std::cout<< "Ingrese el nickname de uno de los siguientes Vendedores a cargo del producto \n";
+            std::string nomProd;
+            std::cout << "Nombre del producto a ingresar\n";
+            std::cin >> nomProd;
+            std::cout <<"\n";
 
-        std::vector<std::string> Nicknames;//=ctrlUsuario.listarNicknames Notar qe lista vendedores nomas
-        for (int j = 0; j < Nicknames.size(); j++){
-            //std::cout <<Nicknames[j]->toString();
+            float precio;
+            std::cout <<"Precio del Producto\n";
+            std::cin >>precio;
+            std::cout <<"\n";
+
+            int stock;
+            std::cout <<"Stock\n";
+            std::cin >>stock;
+            std::cout <<"\n";
+
+            std::string descripProd;
+            std::cout <<"Descipción del producto\n";
+            std::cin >>descripProd;
+            std::cout <<"\n";
+
+            Categoria categoria;
+            int j;
+            std::cout <<"Categoria de su producto\n"<<"1-Ropa\n"<<"2-Electrodomestico\n"<<"3-Otro\n";
+            std::cin >>j;
+            
+            //preguntar en caso de q el usuario erre es factible o deberiamos tomar como que no
+
+            switch (j){
+            case 1:
+                categoria=ropa;
+                break;
+            case 2:
+                categoria=electrodomestico;
+                break;
+            case 3:
+                categoria=otro;
+            default:
+                std::cout<<"Numero ingresado no válido";
+                break;
+            }
+
+            //ctrlUsuario.altaDeProducto(nomProd,precio,stock,descripProd,categoria);
+        }
+        break;
+        
+        case 4:{//Consultar Producto
+            std::map<std::string,int> InfoProd;
+            //Crear Controlador Producto
+            //InfoProd=ctrlProd.ListarCodNom();
+            for (std::map<std::string, int>::iterator it = InfoProd.begin(); it != InfoProd.end(); ++it) {
+                std::cout << it->first << "     " << it->second << std::endl;
+            } 
+            std::string eleccion;
+            std::cout <<"Ingresar Nombre o Código del producto\n";
+            std::cin >>eleccion;
+            //DTProducto elegido=SelecCodName(eleccion);
+            //std::cout<<elegido->toString();
+        }
+        break;
+
+        case 5:{//Crear Promocion
+
+            std::string nombreP;
+            std::cout<<"Ingresar el nombre de la promoción\n";
+            std::cin >>nombreP;
+
+            std::string descriP;
+            std::cout<<"Ingresar la descripción de la promoción\n";
+            std::cin >>descriP;
+
+            float descuento;
+            std::cout <<"Ingresar Descuento\n";
+            std::cin >>descuento;
+
+            DTFecha fecha=leerFecha();
+
+            //Crear COntrolador Producto            
+            //ctrlProd.ingrDatosPromocion(nombreP,descriP,decuento,fecha);
+
+            selecVendedor();
+            //vector<DTProducto> ProductosdelVendedor=ctrlProd.listarProductos(sacar vendedor guardado en linea anterior);
+            /*for (int j = 0; i < productosdelVendedor.size(); i++){
+                std::cout<<productosdelVendedor[j]->toString();
+            }*/
+            
+
+            int agregarmasprod=1;
+            while(agregarmasprod){
+
+                int eleccion;
+                std::cout <<"Ingresar Código del producto a agregar a la promoción\n";
+                std::cin >>eleccion;
+                std::cout <<"\n";
+
+                int cantmin;
+                std::cout <<"Ingresar cantidad mínima de compra del Producto para aplicar la promo\n";
+                std::cin >>cantmin;
+                std::cout <<"\n";
+ 
+                /*bool prodAptoparaPromocion=
+                if (prodAptoparaPromocion)
+                    agregarProducto(eleccion,cantmin);
+                else
+                    std::cout <<"Producto no apto para Promoción\n";
+                */
+                std::cout <<"Desea ingresar mar productos\n"<<"0-No\n"<<"1-Si\n";
+                std::cin >>agregarmasprod;
+            }
+            //CtrlProd.ConfirmarAltaPromocion();
         }
 
-        std::string vendedor;
-        std::cin >> vendedor;
-        
-        //ctrlUsuario.selectNick(vendedor);
-
-        std::string nomProd;
-        std::cout << "Nombre del producto a ingresar\n";
-        std::cin >> nomProd;
-
-        //ctrlUsuario.altaDeProducto()
-
-        }
-        
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
             break;
