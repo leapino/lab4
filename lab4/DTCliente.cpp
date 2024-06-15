@@ -1,3 +1,5 @@
+#include <string>
+
 #include "DTCliente.h"
 
 DTCliente::DTCliente(){
