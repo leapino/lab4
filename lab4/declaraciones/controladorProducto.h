@@ -8,6 +8,7 @@
 #include <set>
 
 #include "manejadorUsuario.h"
+#include "manejadorProducto.h"
 
 class ControladorProducto {
     private:
@@ -19,7 +20,7 @@ class ControladorProducto {
         static ControladorProducto *getInstancia();
         void ingrDatosPromocion(/*cosas*/);
         std::set<std::string> listarNicknames(); //Devuelve un set<std::string> con los nicknames de los vendedores
-        //listarProductos
+        std::set<DT2Producto*> listarProductos(std::string);
         void agregarProducto(/*producto*/);
         void confirmarAltaPromocion();
         //getProductosDisp

@@ -26,13 +26,18 @@ std::set<std::string> ManejadorUsuario::listarNicknames(){
     std::map<std::string, Usuario*>::iterator it;
     std::set<std::string> nicknames;
     Vendedor* vendedor;
-    for (it = this->Usuarios.begin(); it != this->Usuarios.end(); ++it){
+    for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
         vendedor = dynamic_cast<Vendedor*>(it->second);
         if (vendedor != NULL){
             nicknames.insert(it->first);
         }
     }
     return nicknames;
+}
+
+std::set<int> ManejadorUsuario::getListaProductos(std::string nombre){
+    Vendedor* vendedor = dynamic_cast<Vendedor*>(this->Usuarios.find(nombre)->second);
+    return vendedor->getProductos();
 }
 
 #endif

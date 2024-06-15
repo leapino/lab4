@@ -6,8 +6,11 @@
 #include <string>
 #include <math.h>
 #include <map>
+#include <set>
 
 #include "producto.h"
+#include "DTProducto.h"
+#include "DT2Producto.h"
 
 class ManejadorProducto {
     private:
@@ -18,5 +21,6 @@ class ManejadorProducto {
         static ManejadorProducto* getInstancia();
         void agregarProducto(Producto*);
         Producto* getProducto(int);
+        std::set<DT2Producto*> listarProductos(std::set<int>);
 };
 #endif

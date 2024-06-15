@@ -6,6 +6,7 @@
 #include <string>
 #include <math.h>
 #include <map>
+#include <set>
 
 #include "categoria.h"
 
@@ -17,6 +18,7 @@ class Producto {
         std::string nombre;
         std::string descripcion;
         Categoria categoria;
+        std::set<std::string> Vendedores;
     public:
         //Creadores
         Producto();
