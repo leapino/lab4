@@ -23,8 +23,8 @@ class Comentario {
         Comentario();
         Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom , std::string comment);
         Comentario guardarCom (Comentario);
-        void eliminarLinkUsuario();//ver si juntarlas
-        void eliminarLinkProducto();
+        void eliminarLinkUsuaProd();
+        
         ~Comentario();
 };
 
