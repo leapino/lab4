@@ -24,6 +24,7 @@ class Cliente: public Usuario {
         Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud);
         void crearLinkV(Vendedor *);
         void eliminarVendedores();
+        std::list <DTNotificacion *> mostrarNotificaciones();
         void notificar();
         std::string getDireccion();
         std::string getCiudad();
