@@ -21,7 +21,7 @@ void Cliente::crearLinkV(Vendedor * vend) {
 }
 
 std::list<DTNotificacion *> Cliente::getDTNotificaciones() {
-
+    return this->Notificaciones;
 }
 
 
@@ -36,12 +36,12 @@ std::string Cliente::getCiudad() {
 
 
 std::list <Vendedor *> Cliente::getVendedores() {
-
+    return this->Vendedores;
 }
 
 
 std::list <Compra *> Cliente::getCompras() {
-
+    return this->Compras;
 }
 
 
@@ -71,23 +71,25 @@ void Cliente::setDTNoti(DTNotificacion *noti) {
 
 
 void Cliente::eliminarVendedores() {
-
+    for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
+        this->Vendedores.erase(it);
+    }
 }
 
 void Cliente::notificar() {
 
 }
 
-//Ni idea si esto funciona
+
 Cliente::~Cliente() {
-    for(Vendedor *ptr : Vendedores) {
-        delete ptr;
+    for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
+        this->Vendedores.erase(it);
     }
-    for(Compra *ptr : Compras) {
-        delete ptr;
+    for (std::list<DTNotificacion*>::iterator it = this->Notificaciones.begin();it != this->Notificaciones.end(); ++it){
+        this->Notificaciones.erase(it);
     }
-    for(DTNotificacion *ptr : Notificaciones) {
-        delete ptr;
+    for (std::list<Compra*>::iterator it = this->Compras.begin();it != this->Compras.end(); ++it){
+        this->Compras.erase(it);
     }
 }
 
