@@ -18,7 +18,7 @@ class Producto {
         std::string nombre;
         std::string descripcion;
         Categoria categoria;
-        std::set<std::string> Vendedores;
+        std::map<int, std::string> Vendedores;
     public:
         //Creadores
         Producto();

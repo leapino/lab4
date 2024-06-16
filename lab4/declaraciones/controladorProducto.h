@@ -20,7 +20,7 @@ class ControladorProducto {
         static ControladorProducto *getInstancia();
         void ingrDatosPromocion(/*cosas*/);
         std::set<std::string> listarNicknames(); //Devuelve un set<std::string> con los nicknames de los vendedores
-        std::set<DT2Producto*> listarProductos(std::string);
+        std::set<DT2Producto*> listarProductos(std::string); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
         void agregarProducto(/*producto*/);
         void confirmarAltaPromocion();
         //getProductosDisp
