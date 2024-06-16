@@ -9,6 +9,7 @@
 #include <set>
 
 #include "categoria.h"
+#include "vendedor.h"
 
 class Producto {
     private:
@@ -18,7 +19,7 @@ class Producto {
         std::string nombre;
         std::string descripcion;
         Categoria categoria;
-        std::map<int, std::string> Vendedores;
+        Vendedor *vendedor;
     public:
         //Creadores
         Producto();
@@ -30,6 +31,7 @@ class Producto {
         std::string getNombre();
         std::string getDescripcion();
         Categoria getCategoria();
+        Vendedor *getVendedor();
         //Setters
         void setCodigo(int);
         void setStock(int);
@@ -37,5 +39,8 @@ class Producto {
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setCategoria(Categoria);
+        void setVendedor(Vendedor*);
+        //Destructor
+        ~Producto();
 };
 #endif

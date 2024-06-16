@@ -16,8 +16,8 @@ struct DTNotificacion {
        DTNotificacion(std::string,std::string,std::list <DTProducto>);
        std::string getNombreProm();
        std::string getNombreVendedor();
-       std::list <DTProducto> getProductos();
-       
+       std::list <DTProducto> getProductos(); 
+       ~DTNotificacion();     
 };
 
 #endif

@@ -16,6 +16,8 @@ class DT2Producto {
         //Getters
         int getCodigo();
         std::string getNombre();
+        //Destructor
+        ~DT2Producto();
 };
 
 #endif

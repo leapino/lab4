@@ -5,7 +5,7 @@
 
 class DTVendedor: public DTUsuario {
     private:
-    std::string DTRUT;
+    std::string RUT;
     public:
     //Creadores
     DTVendedor();

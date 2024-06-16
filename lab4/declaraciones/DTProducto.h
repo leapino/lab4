@@ -26,6 +26,7 @@ class DTProducto {
         std::string getNombre();
         std::string getDescripcion();
         Categoria getCategoria();
+        ~DTProducto();
 };
 
 #endif
