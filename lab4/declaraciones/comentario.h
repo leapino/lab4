@@ -34,7 +34,6 @@ class Comentario {
         void setProdCom(Producto);
         void setMiUsuario(Usuario);
         void setIdCom(int);
-        Comentario guardarCom (Comentario);
         void eliminarLinkUsuaProd();
         
         ~Comentario();

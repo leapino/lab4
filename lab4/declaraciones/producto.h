@@ -42,8 +42,8 @@ class Producto {
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setCategoria(Categoria);
-        void setVendedor(Vendedor);
-        void setComentarios(int,Comentario);
+        void setVendedor(Vendedor *);
+        void setComentarios(int, Comentario *);
         //Destructor
         ~Producto();
 };
