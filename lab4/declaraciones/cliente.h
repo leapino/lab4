@@ -23,7 +23,6 @@ class Cliente: public Usuario {
         Cliente();
         Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud);
         void crearLinkV(Vendedor *);
-        std::list <DTNotificacion *> mostrarNotificaciones();
         void eliminarVendedores();
         void notificar();
         std::string getDireccion();
@@ -31,11 +30,11 @@ class Cliente: public Usuario {
         std::list <Vendedor *> getVendedores();
         std::list <Compra *> getCompras();
         std::list <DTNotificacion *> getDTNotificaciones();
-        void setDireccion(std::string);
-        void setCiudad(std::string);
-        void setVendedores(Vendedor);
-        void setCompra(Compra);
-        void setDTNoti(DTNotificacion);
+        void setDireccion(std::string dir);
+        void setCiudad(std::string city);
+        void setUnVendedor(Vendedor *ven);
+        void setCompra(Compra *comp);
+        void setDTNoti(DTNotificacion *noti);
         ~Cliente();
 };
 

@@ -16,6 +16,42 @@ Compra::Compra(DTFecha *fecha, int monto, Cliente *cliente, CompraProducto * com
     this->compraProductos.push_front(compraPr);
 }
 
+
+ DTFecha *Compra::getFecha() {
+    return this->fecha;
+ }
+
+
+int Compra::getMonto() {
+    return this->monto;
+}
+
+
+Cliente *Compra::getCliente() {
+    return this->cliente;
+}
+
+
+std::list<CompraProducto *> Compra::getcompraProductos() {
+
+}
+
+
+void Compra::setFecha(DTFecha *fecha) {
+    this->fecha = fecha;
+}
+
+
+void Compra::setMonto(int mont) {
+    this->monto = mont;
+}
+
+
+void Compra::setCliente(Cliente *client) {
+    this->cliente = client;
+}
+
+
 void Compra::subirMonto(int precio) {
     this->monto += precio;
 }

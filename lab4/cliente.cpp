@@ -20,7 +20,55 @@ void Cliente::crearLinkV(Vendedor * vend) {
     this->Vendedores.push_front(vend);
 }
 
-//getNotificaciones
+std::list<DTNotificacion *> Cliente::getDTNotificaciones() {
+
+}
+
+
+std::string Cliente::getDireccion() {
+    return this->direccion;
+}
+
+
+std::string Cliente::getCiudad() {
+    return this->ciudad;
+}
+
+
+std::list <Vendedor *> Cliente::getVendedores() {
+
+}
+
+
+std::list <Compra *> Cliente::getCompras() {
+
+}
+
+
+void Cliente::setDireccion(std::string dir) {
+    this->direccion = dir;
+}
+
+
+void Cliente::setCiudad(std::string city) {
+    this->ciudad = city;
+}
+
+
+void Cliente::setUnVendedor(Vendedor *ven) {
+    this->Vendedores.push_front(ven);
+}
+
+
+void Cliente::setCompra(Compra *comp) {
+    this->Compras.push_front(comp);
+}
+
+
+void Cliente::setDTNoti(DTNotificacion *noti) {
+    this->Notificaciones.push_front(noti);
+}
+
 
 void Cliente::eliminarVendedores() {
 

@@ -13,18 +13,16 @@ class CompraProducto {
     private:
         bool enviado;
         int cantidad;
-        Producto *prod;
+        Producto *producto;
     public:
         CompraProducto();
         CompraProducto(Producto *, int cantidad);
         bool getEnviado();
         int getCantidad();
         Producto *getProd();
-        void setEnviado(bool);
-        void setCantidad(int);
-        void setProd(Producto);
-        void enviar();
-        bool fueEnviado();
+        void setEnviado(bool b);
+        void setCantidad(int cant);
+        void setProd(Producto *prod);
         ~CompraProducto();
 };
 

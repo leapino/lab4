@@ -17,25 +17,23 @@
 class Comentario {
     private:
         std::string texto;
-        DTFecha fecha;
-        Producto *prodCom;
+        DTFecha *fecha;
+        Producto *prodComentado;
         Usuario *miUsuario;
         int idcom;
     public:
         Comentario();
-        Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom , std::string comment);
+        Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom , std::string comment);
         std::string getTexto();
-        DTFecha getFecha();
+        DTFecha *getFecha();
         Producto *getProdCom();
         Usuario *getUsuario();
         int getIdcom();
-        void setTexto(std::string);
-        void setFecha(DTFecha);
-        void setProdCom(Producto);
-        void setMiUsuario(Usuario);
-        void setIdCom(int);
-        void eliminarLinkUsuaProd();
-        
+        void setTexto(std::string text);
+        void setFecha(DTFecha *fecha);
+        void setProdComentado(Producto *prod);
+        void setMiUsuario(Usuario *miUser);
+        void setIdCom(int id);
         ~Comentario();
 };
 

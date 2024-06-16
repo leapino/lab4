@@ -6,31 +6,70 @@
 Comentario::Comentario() {
     this->texto = "";
     this->fecha = NULL;
-    this->prodCom = NULL;
+    this->prodComentado = NULL;
     this->miUsuario = NULL;
 }
 
 Comentario::Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom, std::string comment) {
     this->miUsuario = miUsuario;
     this->fecha = fecha;
-    this->prodCom = prodCom;
+    this->prodComentado = prodCom;
     this->texto = comment;
 }
 
+std::string Comentario::getTexto() {
+    return this->texto;
+}
 
-// void Comentario::eliminarLinkUsuario() {
-//     delete this->miUsuario;
-// }
 
-// void Comentario::eliminarLinkProducto() {
-//     delete this->prodCom;
-// }
+DTFecha *Comentario::getFecha() {
+    return this->fecha;
+}
 
-//COMENTÉ ESAS 2 DE ARRIBA PORQUE ES AL PEDO SI EL DESTRUCTOR YA BORRA LAS RELACIONES AL ELIMINAR COMENTARIO NO?
+
+Producto *Comentario::getProdCom() {
+    return this->prodComentado;
+}
+
+
+Usuario *Comentario::getUsuario() {
+    return this->miUsuario;
+}
+
+
+int Comentario::getIdcom() {
+    return this->idcom;
+}
+
+
+void Comentario::setTexto(std::string text) {
+    this->texto = text;
+}
+
+
+void Comentario::setFecha(DTFecha *fecha) {
+    this->fecha = fecha;
+}
+
+
+void Comentario::setProdComentado(Producto *prod) {
+    this->prodComentado = prod;
+}
+
+
+void Comentario::setMiUsuario(Usuario *miUser) {
+    this->miUsuario = miUser;
+}
+
+
+void Comentario::setIdCom(int id) {
+    this->idcom = id;
+}
+
 
 Comentario::~Comentario() {
     delete this->fecha;
-    delete this->prodCom;
+    delete this->prodComentado;
     delete this->miUsuario;
 }
 

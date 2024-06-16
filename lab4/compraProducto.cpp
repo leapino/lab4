@@ -6,25 +6,48 @@
 CompraProducto::CompraProducto() {
     this->enviado = false;
     this->cantidad = 0;
-    this->prod = NULL;
+    this->producto = NULL;
 }
 
 CompraProducto::CompraProducto(Producto *prod, int cantidad) {
     this->enviado = false;
     this->cantidad = cantidad;
-    this->prod = prod;
+    this->producto = prod;
 }
 
-void CompraProducto::enviar() {
-    this->enviado = true;
+
+int CompraProducto::getCantidad() {
+    return this->cantidad;
 }
 
-bool CompraProducto::fueEnviado() {
+
+Producto *CompraProducto::getProd() {
+    return this->producto;
+}
+
+
+bool CompraProducto::getEnviado() {
     return this->enviado;
 }
 
+void CompraProducto::setEnviado(bool b) {
+    this->enviado = b;
+}
+
+
+void CompraProducto::setCantidad(int cant) {
+    this->cantidad = cant;
+}
+
+
+void CompraProducto::setProd(Producto *prod) {
+    this->producto = prod;
+}
+
+
+
 CompraProducto::~CompraProducto() {
-    delete this->prod;
+    delete this->producto;
 }
 
 
