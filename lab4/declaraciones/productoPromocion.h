@@ -17,7 +17,7 @@ class ProductoPromocion {
     public:
         //Creadores
         ProductoPromocion();
-        ProductoPromocion(int,int);
+        ProductoPromocion(int,int,Producto*);
         //Getters
         int getDescuento();
         int getCantMin();

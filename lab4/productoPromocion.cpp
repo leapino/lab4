@@ -9,9 +9,10 @@ ProductoPromocion::ProductoPromocion(){
       this->cantMin = 0;
 }
 
-ProductoPromocion::ProductoPromocion(int desc,int cantMin){
+ProductoPromocion::ProductoPromocion(int desc,int cantMin, Producto *p){
       this->descuento = desc;
       this->cantMin = cantMin;
+      this->producto=p;
 }
 
 int ProductoPromocion::getDescuento(){

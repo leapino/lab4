@@ -6,7 +6,7 @@
 #include <string>
 #include <math.h>
 #include <map>
-#include <list>
+#include <set>
 
 #include "DTFecha.h"
 #include "DTProducto.h"
@@ -18,7 +18,7 @@ class Promocion {
         std::string nombre;
         std::string descripcion;
         DTFecha fecha;
-        std::list < ProductoPromocion *> prodProm;
+        std::set < ProductoPromocion *> prodProm;
     public:
     //Creadores
     Promocion();
@@ -33,7 +33,7 @@ class Promocion {
     void setDescripcion(std::string);
     void setFecha(DTFecha);
     void setProdProm(ProductoPromocion);
-    void agregarProdProm(int,DTProducto);
+    void agregarProdProm(ProductoPromocion*);
 };
 
 #endif

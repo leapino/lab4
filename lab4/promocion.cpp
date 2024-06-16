@@ -3,11 +3,11 @@
 
 #include "declaraciones/promocion.h"
 
-Promocion::Promocion(){
-   this->nombre = "";
-   this->descripcion = "";
- //  this->fecha = ???;
-}
+// Promocion::Promocion(){
+//    this->nombre = "";
+//    this->descripcion = "";
+//  //  this->fecha = ???;
+// }
 
 Promocion::Promocion(std::string nombre,std::string desc,DTFecha fecha){
    this->nombre = nombre;
@@ -39,7 +39,9 @@ void Promocion::setFecha(DTFecha fecha){
    this->fecha = fecha;
 }
 
-// void agregarProdProm(int,DTProducto);
+void Promocion::agregarProdProm(ProductoPromocion* pp){
+   this->prodProm.insert(pp);
+}
 
 
 

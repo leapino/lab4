@@ -21,6 +21,11 @@
 #include "../declaraciones/categoria.h"
 
 
+std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
+    salida << "Código: " << prod->getCodigo() << "\n Nombre: " << prod->getNombre();
+    return salida;
+}
+
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
@@ -47,6 +52,10 @@ void selecVendedor(){
 }
 
 int main() {
+
+    ControladorFecha* ControladorFecha = ControladorFecha::getInstancia();
+    ControladorProducto* ControladorProducto = ControladorProducto::getInstancia();
+    ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
 
     std::cout << "\n";
     int i =-2;
@@ -211,16 +220,39 @@ int main() {
             std::cin >>descuento;
 
             DTFecha fecha=leerFecha();
-
-            //Crear COntrolador Producto            
-            //ctrlProd.ingrDatosPromocion(nombreP,descriP,decuento,fecha);
-
-            selecVendedor();
-            //vector<DTProducto> ProductosdelVendedor=ctrlProd.listarProductos(sacar vendedor guardado en linea anterior);
-            /*for (int j = 0; i < productosdelVendedor.size(); i++){
-                std::cout<<productosdelVendedor[j]->toString();
-            }*/
             
+            std::set<std::string> nicknames = ControladorProducto->listarNicknames();
+            std::set<std::string>::iterator it;
+            std::cout<<"Selecciona un vendedor por su número:\n";
+            int numVend = 1;
+            for (it = nicknames.begin(); it != nicknames.end(); it++){
+                std::cout<< numVend <<")" << " " << *it << "\n";
+            }
+            int numVend2;
+            std::cin >> numVend2;
+            it = nicknames.begin();
+            for (int i = 1; i < numVend2-1; i++){
+                if (it != nicknames.end()){
+                    it++;
+                }
+            }
+            std::set<DT2Producto*> productosVend = ControladorProducto->listarProductos(*it);
+            std::set<DT2Producto*>::iterator it2;
+            std::cout<<"\nIngrese un producto del vendedor:";
+            int numProd = 1;
+            int numProd2;
+            
+            for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
+                std::cout<< numVend <<")" << " " << *it2 << "\n";
+            }
+            while (numProd2 > 0){
+                std::cin>> numProd2;
+                
+            }
+            std::cin>> numProd2;
+
+
+
 
             int agregarmasprod=1;
             while(agregarmasprod){
@@ -231,7 +263,7 @@ int main() {
                 std::cout <<"\n";
 
                 int cantmin;
-                std::cout <<"Ingresar cantidad mínima de compra del Producto para aplicar la promo\n";
+                std::cout <<"Ingresar cantidad mínima de compra del Producto para aplicar la promoción\n";
                 std::cin >>cantmin;
                 std::cout <<"\n";
  
