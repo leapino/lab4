@@ -25,7 +25,7 @@ class ProductoPromocion {
         //Setters
         void setDescuento(int);
         void setCantMin(int);
-        void setProducto(Producto*);
+        void setProducto(Producto);
         //Destructor
         ~ProductoPromocion();
 };

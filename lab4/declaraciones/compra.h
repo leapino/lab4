@@ -16,13 +16,21 @@
 
 class Compra {
     private:
-        DTFecha *fecha;
+        DTFecha fecha;
         int monto;
         Cliente *cliente;
         std::list<CompraProducto *> compraProductos;
     public:
         Compra();
-        Compra(DTFecha *fecha, int monto, Cliente *cliente, CompraProducto *compraPr);
+        Compra(DTFecha fecha, int monto, Cliente *cliente, CompraProducto *compraPr);
+        DTFecha getFecha();
+        int getMonto();
+        Cliente *getCliente();
+        std::list<CompraProducto *> getcompraProductos();
+        void setFecha(DTFecha);
+        void setMonto(int);
+        void setCliente(Cliente);
+        void setCompraProd(CompraProducto);
         void subirMonto(int precio);
         void agregarProdCompra(Producto *prod);
         ~Compra();

@@ -17,6 +17,12 @@ class CompraProducto {
     public:
         CompraProducto();
         CompraProducto(Producto *, int cantidad);
+        bool getEnviado();
+        int getCantidad();
+        Producto *getProd();
+        void setEnviado(bool);
+        void setCantidad(int);
+        void setProd(Producto);
         void enviar();
         bool fueEnviado();
         ~CompraProducto();

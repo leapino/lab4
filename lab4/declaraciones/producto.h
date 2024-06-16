@@ -10,6 +10,7 @@
 
 #include "categoria.h"
 #include "vendedor.h"
+#include "comentario.h"
 
 class Producto {
     private:
@@ -20,6 +21,7 @@ class Producto {
         std::string descripcion;
         Categoria categoria;
         Vendedor *vendedor;
+        std::map<int,Comentario> comentarios;
     public:
         //Creadores
         Producto();
@@ -32,6 +34,7 @@ class Producto {
         std::string getDescripcion();
         Categoria getCategoria();
         Vendedor *getVendedor();
+        std::map<int,Comentario> getComentarios();
         //Setters
         void setCodigo(int);
         void setStock(int);
@@ -39,7 +42,8 @@ class Producto {
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setCategoria(Categoria);
-        void setVendedor(Vendedor*);
+        void setVendedor(Vendedor);
+        void setComentarios(int,Comentario);
         //Destructor
         ~Producto();
 };

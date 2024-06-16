@@ -26,6 +26,16 @@ class Cliente: public Usuario {
         std::list <DTNotificacion *> mostrarNotificaciones();
         void eliminarVendedores();
         void notificar();
+        std::string getDireccion();
+        std::string getCiudad();
+        std::list <Vendedor *> getVendedores();
+        std::list <Compra *> getCompras();
+        std::list <DTNotificacion *> getDTNotificaciones();
+        void setDireccion(std::string);
+        void setCiudad(std::string);
+        void setVendedores(Vendedor);
+        void setCompra(Compra);
+        void setDTNoti(DTNotificacion);
         ~Cliente();
 };
 

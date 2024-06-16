@@ -25,8 +25,11 @@ class Vendedor: public Usuario {
         //Getters
         std::string getRUT();
         std::map<int, Producto*> getProductos();
+        std::list<Cliente *> getClientes();
         //Setters
         void setRUT(std::string);
+        void setProductos(int,Producto);
+        void setClientes(Cliente);
         //Funciones
         bool estaSuscripto(std::string);
         void crearLinkC(Cliente *);
