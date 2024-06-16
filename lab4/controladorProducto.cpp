@@ -23,7 +23,7 @@ std::set<DT2Producto*> ControladorProducto::listarProductos(std::string nombre){
     mu = ManejadorUsuario::getInstancia();
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    std::set<int> lista = mu->getListaProductos(nombre);
+    std::map<int, Producto*> lista = mu->getListaProductos(nombre);
     return mp->listarProductos(lista);
 }
 

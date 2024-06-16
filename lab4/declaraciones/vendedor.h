@@ -10,11 +10,12 @@
 
 #include "usuario.h"
 #include "cliente.h"
+#include "producto.h"
 
 class Vendedor: public Usuario {
     private:
         std::string RUT;
-        std::set<int> Productos;
+        std::map<int, Producto*> Productos;
     public:
         //Creadores
         Vendedor();
@@ -22,7 +23,7 @@ class Vendedor: public Usuario {
         ~Vendedor();
         //Getters
         std::string getRUT();
-        std::set<int> getProductos();
+        std::map<int, Producto*> getProductos();
         //Setters
         void setRUT(std::string);
         //Funciones

@@ -35,7 +35,7 @@ std::set<std::string> ManejadorUsuario::listarNicknames(){
     return nicknames;
 }
 
-std::set<int> ManejadorUsuario::getListaProductos(std::string nombre){
+std::map<int, Producto*> ManejadorUsuario::getListaProductos(std::string nombre){
     Vendedor* vendedor = dynamic_cast<Vendedor*>(this->Usuarios.find(nombre)->second);
     return vendedor->getProductos();
 }
