@@ -22,9 +22,9 @@ class Comentario {
     public:
         Comentario();
         Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom , std::string comment);
-        //DTComentario guardarCom (Qué se supone que hace esto?)
-        // void eliminarLinkUsuario();
-        // void eliminarLinkProducto();
+        Comentario guardarCom (Comentario);
+        void eliminarLinkUsuario();//ver si juntarlas
+        void eliminarLinkProducto();
         ~Comentario();
 };
 

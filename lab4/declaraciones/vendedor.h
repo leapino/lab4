@@ -16,6 +16,7 @@ class Vendedor: public Usuario {
     private:
         std::string RUT;
         std::map<int, Producto*> Productos;
+        std::list<Cliente *> Clientes;
     public:
         //Creadores
         Vendedor();
@@ -28,7 +29,7 @@ class Vendedor: public Usuario {
         void setRUT(std::string);
         //Funciones
         bool estaSuscripto(std::string);
-        //void crearLink()
+        void crearLinkC(Cliente *);
         void desuscribirse(Cliente); 
 };
 #endif

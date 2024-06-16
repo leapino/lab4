@@ -18,7 +18,7 @@ class Compra {
     public:
         Compra();
         void subirMonto(int precio);
-        void agregarProdCompra(DTProducto *prod);
+        void agregarProdCompra(Producto *prod);
         ~Compra();
 };
 

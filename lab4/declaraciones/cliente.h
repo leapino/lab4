@@ -23,7 +23,7 @@ class Cliente: public Usuario {
         Cliente();
         Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud);
         void crearLinkV(Vendedor *);
-        std::list <DTNotificacion *> getNotificaciones();
+        std::list <DTNotificacion *> mostrarNotificaciones();
         void eliminarVendedores();
         void notificar();
         ~Cliente();
