@@ -7,6 +7,7 @@
 #include <vector>
 #include <math.h>
 #include "manejadorUsuario.h"
+#include "manejadorProducto.h"
 
 class ControladorUsuario {
     private:

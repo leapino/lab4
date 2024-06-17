@@ -10,7 +10,6 @@
 
 #include "usuario.h"
 #include "vendedor.h"
-#include "manejadorProducto.h"
 
 class ManejadorUsuario {
     private:
