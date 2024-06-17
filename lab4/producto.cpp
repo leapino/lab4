@@ -2,7 +2,6 @@
 #define PRODUCTO_CPP
 
 #include "declaraciones/producto.h"
-#include "producto.h"
 
 // Producto::Producto(){
 //     this->codigo = 0;

@@ -2,7 +2,6 @@
 #define CONTROLADORPRODUCTO_CPP
 
 #include "declaraciones/controladorProducto.h"
-#include "controladorProducto.h"
 
 ControladorProducto* ControladorProducto::instancia = NULL;
 

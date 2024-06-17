@@ -2,7 +2,6 @@
 #define MANEJADORPRODUCTO_CPP
 
 #include "declaraciones/manejadorProducto.h"
-#include "manejadorProducto.h"
 
 ManejadorProducto* ManejadorProducto::instancia = NULL;
 

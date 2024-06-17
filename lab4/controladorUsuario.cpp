@@ -2,7 +2,6 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
-#include "controladorUsuario.h"
 
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 

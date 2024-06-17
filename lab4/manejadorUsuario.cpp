@@ -33,8 +33,7 @@ std::set<std::string> ManejadorUsuario::getClientes(){
 }
 
 
-std::set<std::string> ManejadorUsuario::listarNicknames()
-{
+std::map<int ,std::string> ManejadorUsuario::listarNicknames(){
     std::map<std::string, Usuario*>::iterator it;
     std::map<int ,std::string> nicknames;
     Vendedor* vendedor;
