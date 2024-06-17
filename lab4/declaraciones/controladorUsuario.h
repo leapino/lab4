@@ -15,8 +15,10 @@ class ControladorUsuario {
         ControladorUsuario();
     public:
         static ControladorUsuario *getInstancia();
-        //getVendedores
-        bool altaDeUsuario();
+        std::list< std::string *> getVendedores();
+        virtual  void altaDeUsuario();
+        bool estaVacio();
+        bool estaUsuario(std::string nombre);
         //listarUsuarios
         //listarComentario
         void eliminarComentario(/*wea*/);
