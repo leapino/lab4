@@ -35,5 +35,6 @@ class Usuario {
         virtual bool esUsuario(Usuario);
         virtual bool esCliente();
 
+
 };
 #endif

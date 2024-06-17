@@ -36,4 +36,7 @@ void ControladorUsuario::confirmarCompra(){
 
 }
 
+void ControladorUsuario::altaDeUsuario(){
+    }
+
 #endif

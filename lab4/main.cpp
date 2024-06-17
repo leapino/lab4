@@ -75,32 +75,40 @@ int main() {
         std::cout <<"\n";
 
 
-        switch (i){
+switch (i){
 
         case 1:{//Crear Usuario
             bool Confirmar=false;
-            int cliente;
+            int usuario;
             std::cout << "Si es vendedor ingrese 0, si es cliente ingrese 1\n";
-            std::cin >>cliente;
+            std::cin >>usuario;
             std::cout <<"\n";
 
             std::string nickname;
-            std::cout <<"Ingrese el nickname del usuario\n";
+            std::cout <<"Ingrese el nickname del usuario \n";
             std::cin >>nickname;
             std::cout <<"\n";
 
             std::string password;
-            std::cout <<"Ingrese la contraseña\n";
+            std::cout <<"Ingrese la contraseña (de al menos 6 caracteres)\n";
             std::cin >>password;
             std::cout <<"\n";
             
             DTFecha fecha=leerFecha();
             
-            //Aca hay q crear la instancia de Controlador Usuario 
+            bool estanom = false;
+            if (ControladorUsuario->estaVacio() == false)
+                 if (ControladorUsuario->estaUsuario(nickname))
+                    estanom = true;
+            
+            bool contrabien = false;
+            //contraseña bien?
+            
+        if ((estanom == false) && (contrabien == true)){
 
-            if (cliente){
-                Cliente nuevoCliente;
-
+            if (usuario == 1){
+               
+            
                 std::string direccion;
                 std::cout <<"Ingrese la dirección del Cliente\n";
                 std::cin >>direccion;
@@ -110,31 +118,23 @@ int main() {
                 std::cout <<"Ingrese la Ciudad \n";
                 std::cin >>ciudad;
                 std::cout <<"\n";
-
-                nuevoCliente=Cliente(nickname,password,fecha,direccion,ciudad);
-                
-                //Aca hay que hacerle ctrlUsuario.altadeUsuario(nuevoCliente);
-
+       
                 }else{
-                Vendedor nuevoVendedor;
-
+                
                 std::string RUT;
                 std::cout <<"Ingrese el número de RUT\n";
                 std::cin >>RUT;
                 std::cout <<"\n";
-
-                nuevoVendedor=Vendedor(nickname,password,fecha,RUT);
-
-                //aca hay que hacer ctrlUsuario.altaDeUsuario(nuevoVendedor);
+     
             }
-
-            if (Confirmar)
-                std::cout << "El usuario se a creado correctamente";
-                else{
+            std::cout << "El usuario se a creado correctamente";
+          }  
+            else{            
                 std::cout<< "El usuario no se creo correctamente\n";
-                std::cout<< "Revise si el nickname utilizado es único\n";
-                }
-        }
+                std::cout<< "Revise si el nickname utilizado es único o si la contraseña\n";
+             }   
+        }  
+         
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
