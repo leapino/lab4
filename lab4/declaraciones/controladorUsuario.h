@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <vector>
 #include <math.h>
+#include "manejadorUsuario.h"
 
 class ControladorUsuario {
     private:
@@ -17,9 +19,9 @@ class ControladorUsuario {
         //listarUsuarios
         //listarComentario
         void eliminarComentario(/*wea*/);
-        //listarClientes
+        std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
-        //mostrarProductos
+        std::set <DTProducto>mostrarProductos();
         void agregarProductoCompra(/*prod*/);
         void confirmarCompra();
         //ingresarNickname

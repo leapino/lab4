@@ -2,6 +2,7 @@
 #define MANEJADORPRODUCTO_CPP
 
 #include "declaraciones/manejadorProducto.h"
+#include "manejadorProducto.h"
 
 ManejadorProducto* ManejadorProducto::instancia = NULL;
 
@@ -16,7 +17,31 @@ void ManejadorProducto::agregarProducto(Producto* p){
     this->Productos.insert({p->getCodigo(),p});
 }
 
-Producto* ManejadorProducto::getProducto(int c){
+std::set<DTProducto> ManejadorProducto::getProductosDisp(){
+    std::set<DTProducto> res;
+    for (std::map<int, Producto*>::iterator it = this->Productos.begin(); it!=this->Productos.end(); ++it){
+        if(it->second->getStock()!=0){
+            res.insert(it->second->getData());
+        }
+    return res;
+    }
+}
+bool ManejadorProducto::hayStock(int codigo, int cantidad){
+    std::map<int,Producto*>::iterator it=this->Productos.find(codigo);
+    bool res=it->second->getStock()>=cantidad;
+    if (res){
+        //recordarProd(codigoP,cantidad);
+    }
+    return res;
+}
+void ManejadorProducto::prodEnCompra(){
+    /*
+    std::map<int,Producto*>::iterator it=this->Productos.find(codigoP);
+    it->second->bajarStock(cantidad);
+    int Preciocompra=(it->second->getPrecio())*cantidad;*/
+}
+Producto *ManejadorProducto::getProducto(int c)
+{
     std::map<int, Producto*>::iterator it;
     it = this->Productos.find(c);
     return it->second;

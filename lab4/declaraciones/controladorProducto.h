@@ -21,7 +21,8 @@ class ControladorProducto {
         std::map<int, DT2Producto*> listarProductos(std::string RUTVendedor); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
         void agregarProducto(int codigo,int cantMin);
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
-        std::set<Producto*> getProductosDisp();
+        std::set<DTProducto> getProductosDisp();
+        void confirmarAltaPromocion();//poner parametros
         bool hayStock(int codigoP,int cantidad); 
         bool prodEnCompra();
         bool checkPromo(int);

@@ -2,6 +2,7 @@
 #define PRODUCTO_CPP
 
 #include "declaraciones/producto.h"
+#include "producto.h"
 
 // Producto::Producto(){
 //     this->codigo = 0;
@@ -45,6 +46,10 @@ std::string Producto::getDescripcion(){
 Categoria Producto::getCategoria(){
    return this->categoria;
     }
+
+DTProducto Producto::getData(){
+    return DTProducto(this->codigo,this->stock,this->precio,this->nombre,this->descripcion,this->categoria);
+}
 
 void Producto::setCodigo(int codigo){
    this->codigo = codigo;

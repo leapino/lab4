@@ -33,7 +33,7 @@ class Usuario {
         //Funciones
         virtual bool esVendedor(Usuario);
         virtual bool esUsuario(Usuario);
-        virtual bool esCliente(Usuario);
+        virtual bool esCliente();
 
 };
 #endif

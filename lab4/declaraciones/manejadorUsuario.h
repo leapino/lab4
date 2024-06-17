@@ -10,6 +10,7 @@
 
 #include "usuario.h"
 #include "vendedor.h"
+#include "manejadorProducto.h"
 
 class ManejadorUsuario {
     private:
@@ -21,6 +22,7 @@ class ManejadorUsuario {
         void addUsuario(Usuario*);
         Usuario* getUsuario(std::string);
         std::map<int, std::string> listarNicknames();
+        std::set<std::string> getClientes();
         std::map<int, Producto*> getListaProductos(std::string nombre);
 };
 #endif

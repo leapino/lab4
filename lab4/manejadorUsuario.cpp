@@ -22,7 +22,19 @@ Usuario* ManejadorUsuario::getUsuario(std::string n){
     return it->second;
 }
 
-std::map<int ,std::string> ManejadorUsuario::listarNicknames(){
+std::set<std::string> ManejadorUsuario::getClientes(){
+    std::set<std::string> listaClientes;
+    for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
+        if (it->second->esCliente()){
+            listaClientes.insert(it->first);
+        }
+    }
+    return listaClientes;
+}
+
+
+std::set<std::string> ManejadorUsuario::listarNicknames()
+{
     std::map<std::string, Usuario*>::iterator it;
     std::map<int ,std::string> nicknames;
     Vendedor* vendedor;
