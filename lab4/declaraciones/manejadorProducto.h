@@ -21,6 +21,7 @@ class ManejadorProducto {
         static ManejadorProducto* getInstancia();
         void agregarProducto(Producto*);
         Producto* getProducto(int);
-        std::set<DT2Producto*> listarProductos(std::map<int, Producto*>);
+        std::map<int, DT2Producto*> listarProductos(std::map<int, Producto*>);
+        bool checkPromo(int);
 };
 #endif

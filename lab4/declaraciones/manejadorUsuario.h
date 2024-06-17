@@ -20,7 +20,7 @@ class ManejadorUsuario {
         static ManejadorUsuario* getInstancia();
         void addUsuario(Usuario*);
         Usuario* getUsuario(std::string);
-        std::set<std::string> listarNicknames();
+        std::map<int, std::string> listarNicknames();
         std::map<int, Producto*> getListaProductos(std::string nombre);
 };
 #endif

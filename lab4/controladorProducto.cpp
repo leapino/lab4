@@ -12,19 +12,29 @@ ControladorProducto* ControladorProducto::getInstancia(){
         return instancia;
 }
 
-std::set<std::string> ControladorProducto::listarNicknames(){
+std::map<int ,std::string> ControladorProducto::listarNicknames(){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     return mu->listarNicknames();
 }
 
-std::set<DT2Producto*> ControladorProducto::listarProductos(std::string nombre){
+std::map<int , DT2Producto*> ControladorProducto::listarProductos(std::string nombre){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
     std::map<int, Producto*> lista = mu->getListaProductos(nombre);
     return mp->listarProductos(lista);
+}
+
+bool ControladorProducto::checkPromo(int codigo){
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    return mp->checkPromo(codigo);
+}
+
+void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
+
 }
 
 #endif

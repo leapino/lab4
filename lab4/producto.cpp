@@ -3,14 +3,14 @@
 
 #include "declaraciones/producto.h"
 
-Producto::Producto(){
-    this->codigo = 0;
-    this->stock = 0;
-    this->precio = 0;
-    this->nombre = "";
-    this->descripcion = "";
-//  this->categoria = ???;
-    };   
+// Producto::Producto(){
+//     this->codigo = 0;
+//     this->stock = 0;
+//     this->precio = 0;
+//     this->nombre = "";
+//     this->descripcion = "";
+// //  this->categoria = ???;
+//     };   
 
 Producto::Producto(int codigo,int stock,int precio,std::string nombre,std::string desc,Categoria categoria){
     this->codigo = codigo;
@@ -19,6 +19,7 @@ Producto::Producto(int codigo,int stock,int precio,std::string nombre,std::strin
     this->nombre = nombre;
     this->descripcion = desc;
     this->categoria = categoria;
+    this->promo = NULL;
     }
 
 int Producto::getCodigo(){
@@ -68,4 +69,12 @@ void Producto::setDescripcion(std::string desc){
 void Producto::setCategoria(Categoria categoria){   
    this->categoria = categoria;
     }
+
+void Producto::setPromo(ProductoPromocion* promocion){
+    this->promo = promocion;
+}
+
+ProductoPromocion* Producto::getPromo(){
+    return this->promo;
+}
 #endif 

@@ -22,14 +22,26 @@ Producto* ManejadorProducto::getProducto(int c){
     return it->second;
 }
 
-std::set<DT2Producto*> ManejadorProducto::listarProductos(std::map<int, Producto*> lista){
+std::map<int, DT2Producto*> ManejadorProducto::listarProductos(std::map<int, Producto*> lista){
     std::map<int, Producto*>::iterator it;
-    std::set<DT2Producto*> dataProductos;
+    std::map<int, DT2Producto*> dataProductos;
+    int num = 1;
     for (it = lista.begin(); it != lista.end(); it++){
         DT2Producto* dProducto = new DT2Producto(it->second->getCodigo(), it->second->getNombre());
-        dataProductos.insert(dProducto);
+        dataProductos.insert({num, dProducto});
+        num++;
     }
     return dataProductos;
+}
+
+bool ManejadorProducto::checkPromo(int codigo){
+    Producto* prod = this->Productos.find(codigo)->second;
+    if (prod->getPromo() == NULL){
+        return false;
+    }
+    else{
+        return true;
+    }
 }
 
 #endif

@@ -221,62 +221,55 @@ int main() {
 
             DTFecha fecha=leerFecha();
             
-            std::set<std::string> nicknames = ControladorProducto->listarNicknames();
-            std::set<std::string>::iterator it;
+            std::map<int ,std::string> nicknames = ControladorProducto->listarNicknames();
+            std::map<int ,std::string>::iterator it;
             std::cout<<"Selecciona un vendedor por su número:\n";
-            int numVend = 1;
             for (it = nicknames.begin(); it != nicknames.end(); it++){
-                std::cout<< numVend <<")" << " " << *it << "\n";
+                std::cout<< it->first <<")" << " " << it->second << "\n";
             }
-            int numVend2;
-            std::cin >> numVend2;
-            it = nicknames.begin();
-            for (int i = 1; i < numVend2-1; i++){
-                if (it != nicknames.end()){
-                    it++;
-                }
-            }
-            std::set<DT2Producto*> productosVend = ControladorProducto->listarProductos(*it);
-            std::set<DT2Producto*>::iterator it2;
-            std::cout<<"\nIngrese un producto del vendedor:";
-            int numProd = 1;
-            int numProd2;
+            int numVend;
+            std::cin >> numVend;
+            std::map<int, DT2Producto*> productosVend = ControladorProducto->listarProductos(nicknames.find(numVend)->second);
+            std::map<int, DT2Producto*>::iterator it2;
+            std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:";
+            std::map<int, int> infoProd;
             
             for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
-                std::cout<< numVend <<")" << " " << *it2 << "\n";
+                std::cout<< numVend <<")" << " " << it2->second << "\n";
             }
-            while (numProd2 > 0){
-                std::cin>> numProd2;
-                
-            }
-            std::cin>> numProd2;
-
-
-
-
-            int agregarmasprod=1;
-            while(agregarmasprod){
-
-                int eleccion;
-                std::cout <<"Ingresar Código del producto a agregar a la promoción\n";
-                std::cin >>eleccion;
+            int numProd = 1;
+            int cantMin;
+            while (numProd > 0){
+                std::cout<< "Número producto:\n";
+                std::cin>> numProd;
                 std::cout <<"\n";
-
-                int cantmin;
-                std::cout <<"Ingresar cantidad mínima de compra del Producto para aplicar la promoción\n";
-                std::cin >>cantmin;
-                std::cout <<"\n";
- 
-                /*bool prodAptoparaPromocion=
-                if (prodAptoparaPromocion)
-                    agregarProducto(eleccion,cantmin);
-                else
-                    std::cout <<"Producto no apto para Promoción\n";
-                */
-                std::cout <<"Desea ingresar mar productos\n"<<"0-No\n"<<"1-Si\n";
-                std::cin >>agregarmasprod;
+                if (numProd > 0){
+                    DT2Producto* prod = productosVend.find(numProd)->second;
+                    bool tienePromo = ControladorProducto->checkPromo(prod->getCodigo());
+                    if (!tienePromo){
+                        std::cout<< "Cantidad mínima:\n";
+                        std::cin>> cantMin;
+                        std::cout <<"\n";
+                        infoProd.insert({numProd, cantMin});
+                    }
+                    else{
+                        std::cout<< "Este producto ya se encuentra en una promoción\n";
+                    }
+                }
             }
-            //CtrlProd.ConfirmarAltaPromocion();
+            int confirm = 2;
+            while (confirm != 1 || confirm!= 0)
+            {
+                std::cout<< "\nIngrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
+                std::cin>> confirm;
+                if (confirm == 1){
+                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+                }if (confirm == 0){
+                    //Usar destructores??
+                }else{
+                    std::cout<<"\nSe ingresó mal el número, intente denuevo";
+                }
+            }
         }
         break;
         case 6:{//Consultar Promocion
