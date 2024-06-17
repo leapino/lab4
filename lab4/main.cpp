@@ -26,6 +26,12 @@ std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
     return salida;
 }
 
+std::ostream &operator<<(std::ostream &salida, DTProducto *prod){
+    salida << "Código: " << prod->getCodigo() << "\n Stock: " << prod->getStock()<<"\n Precio:"<<prod->getPrecio()<<"\n Nombre:"<<prod->getNombre()<<"\n Descripción:"<<prod->getDescripcion()<<"\n Categoria:"<<prod->getCategoria();
+    return salida;
+}
+
+
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
@@ -73,36 +79,28 @@ int main() {
 
         case 1:{//Crear Usuario
             bool Confirmar=false;
-            int usuario;
+            int cliente;
             std::cout << "Si es vendedor ingrese 0, si es cliente ingrese 1\n";
-            std::cin >>usuario;
+            std::cin >>cliente;
             std::cout <<"\n";
 
             std::string nickname;
-            std::cout <<"Ingrese el nickname del usuario \n";
+            std::cout <<"Ingrese el nickname del usuario\n";
             std::cin >>nickname;
             std::cout <<"\n";
 
             std::string password;
-            std::cout <<"Ingrese la contraseña (de al menos 6 caracteres)\n";
+            std::cout <<"Ingrese la contraseña\n";
             std::cin >>password;
             std::cout <<"\n";
             
             DTFecha fecha=leerFecha();
             
-            bool estanom = false;
-            if (ControladorUsuario->estaVacio() == false)
-                 if (ControladorUsuario->estaUsuario(nickname))
-                    estanom = true;
-            
-            bool contrabien = false;
-            //contraseña bien?
-            
-        if ((estanom == false) && (contrabien == true)){
+            //Aca hay q crear la instancia de Controlador Usuario 
 
-            if (usuario == 1){
+            if (cliente){
                 Cliente nuevoCliente;
-            
+
                 std::string direccion;
                 std::cout <<"Ingrese la dirección del Cliente\n";
                 std::cin >>direccion;
@@ -114,8 +112,9 @@ int main() {
                 std::cout <<"\n";
 
                 nuevoCliente=Cliente(nickname,password,fecha,direccion,ciudad);
-               // ControladorUsuario->altaDeUsuario(nuevoCliente);
                 
+                //Aca hay que hacerle ctrlUsuario.altadeUsuario(nuevoCliente);
+
                 }else{
                 Vendedor nuevoVendedor;
 
@@ -125,15 +124,17 @@ int main() {
                 std::cout <<"\n";
 
                 nuevoVendedor=Vendedor(nickname,password,fecha,RUT);
-              //  ControladorUsuario->altaDeUsuario(nuevoVendedor);
+
+                //aca hay que hacer ctrlUsuario.altaDeUsuario(nuevoVendedor);
             }
-            std::cout << "El usuario se a creado correctamente";
-          }  
-            else{            
+
+            if (Confirmar)
+                std::cout << "El usuario se a creado correctamente";
+                else{
                 std::cout<< "El usuario no se creo correctamente\n";
-                std::cout<< "Revise si el nickname utilizado es único o si la contraseña\n";
-             }   
-        }  
+                std::cout<< "Revise si el nickname utilizado es único\n";
+                }
+        }
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
@@ -304,14 +305,18 @@ int main() {
         }
             break;
         case 7:{//Realizar Compra
-            //Incializar Controlador Usuario
-            //std::vector <string> clientes=ctrlUsuario.listarClientes();
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
 
             std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
             std::string cliente;
             std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
-            //ctrlUsuario.selectCliente(cliente);
-            //std::vector <DTProducto> productos=ctrlUsuario.mostrarProductos();
+            ControladorUsuario->selectCliente();
+
+            std::set <DTProducto> productos=ControladorProducto->getProductosDisp();
+
+            for(std::set<DTProducto>::iterator it=productos.begin();it!=productos.end();++it){
+                std::cout <<&it;
+            }
 
             int i=1;
             std::cout <<"Desea ingresar producto a la compra\n"<<"0-No\n"<<"1-Sí\n";
@@ -327,13 +332,12 @@ int main() {
                 int cantidad;
                 std::cin >>cantidad;
 
-                //ctrlUsuario.agregarProductoCompra(codigo,cantidad);
+                ControladorUsuario->agregarProductoCompra(codigo,cantidad);
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
-            //ctrlUsuario.confirmarCompra();
-
+            ControladorUsuario->confirmarCompra();
         }
             break;
         
