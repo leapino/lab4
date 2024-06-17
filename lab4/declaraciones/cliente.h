@@ -36,7 +36,6 @@ class Cliente: public Usuario {
         void setUnVendedor(Vendedor *ven);
         void setCompra(Compra *comp);
         void setDTNoti(DTNotificacion *noti);
-        void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud);
         ~Cliente();
 };
 

@@ -34,6 +34,6 @@ class Vendedor: public Usuario {
         bool estaSuscripto(std::string);
         void crearLinkC(Cliente *);
         void desuscribirse(Cliente); 
-        void altaDeUsuario(std::string nombre, std::string contra,DTFecha fechaNac,std::string RUT);
+        
 };
 #endif

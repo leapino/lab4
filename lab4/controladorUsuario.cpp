@@ -36,7 +36,24 @@ void ControladorUsuario::confirmarCompra(){
 
 }
 
-void ControladorUsuario::altaDeUsuario(){
+void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad){
+       Cliente* nuevoCliente =new  Cliente(nick,pass,fechnaci,dir,ciudad);       
+       ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
+       mu->addUsuario(nuevoCliente);
+}
+
+void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT){
+       Vendedor* nuevoVendedor =new  Vendedor(nick,pass,fechnaci,RUT);       
+       ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
+       mu->addUsuario(nuevoVendedor);
+}
+
+bool ControladorUsuario::estaVacio(){
+        bool estaV = true;
+        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
+        std::map<int ,std::string> nombres = mu->listarNicknames();
+        if (nombres.empty() == false)
+          estaV = false;
     }
 
 #endif

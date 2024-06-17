@@ -101,8 +101,9 @@ switch (i){
                  if (ControladorUsuario->estaUsuario(nickname))
                     estanom = true;
             
-            bool contrabien = false;
-            //contraseña bien?
+            bool contrabien = true;
+            if (password.length()<6)
+                contrabien = false;
             
         if ((estanom == false) && (contrabien == true)){
 
@@ -118,7 +119,9 @@ switch (i){
                 std::cout <<"Ingrese la Ciudad \n";
                 std::cin >>ciudad;
                 std::cout <<"\n";
-       
+
+               ControladorUsuario->altaDeUsuario(nickname,password,fecha,direccion,ciudad);
+
                 }else{
                 
                 std::string RUT;
@@ -126,12 +129,17 @@ switch (i){
                 std::cin >>RUT;
                 std::cout <<"\n";
      
+                ControladorUsuario->altaDeUsuario(nickname,password,fecha,RUT);
+
             }
             std::cout << "El usuario se a creado correctamente";
           }  
             else{            
                 std::cout<< "El usuario no se creo correctamente\n";
-                std::cout<< "Revise si el nickname utilizado es único o si la contraseña\n";
+                if (estanom == true)
+                 std::cout<< "Ese nickname ya esta en uso, elija otro\n";
+                if (contrabien == false)
+                 std::cout<< "Su contraseña tiene menos de 6 caracteres, ingrese una con 6 o mas caracteres\n";
              }   
         }  
          

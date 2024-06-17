@@ -8,8 +8,6 @@
 #include <math.h>
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
-#include "cliente.h"
-#include "vendedor.h"
 
 class ControladorUsuario {
     private:
@@ -18,7 +16,8 @@ class ControladorUsuario {
     public:
         static ControladorUsuario *getInstancia();
         std::list< std::string *> getVendedores();
-        void altaDeUsuario();
+        void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad);
+        void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT);
         bool estaVacio();
         bool estaUsuario(std::string nombre);
         //listarUsuarios
