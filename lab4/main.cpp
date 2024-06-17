@@ -274,14 +274,15 @@ switch (i){
             int confirm = 2;
             while (confirm != 1 || confirm!= 0)
             {
-                std::cout<< "\nIngrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
+                std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
                 std::cin>> confirm;
                 if (confirm == 1){
                     ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+                    std::cout<< "\nSe agregó la promoción\n"
                 }if (confirm == 0){
-                    //Usar destructores??
+                    std::cout<< "\nNo se agregó la promoción\n"
                 }else{
-                    std::cout<<"\nSe ingresó mal el número, intente denuevo";
+                    std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
                 }
             }
         }

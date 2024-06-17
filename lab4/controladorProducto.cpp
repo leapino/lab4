@@ -48,7 +48,9 @@ bool ControladorProducto::checkPromo(int codigo){
 }
 
 void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
-
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
 }
 
 std::set<DTProducto> ControladorProducto::getProductosDisp(){

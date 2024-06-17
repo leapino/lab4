@@ -11,19 +11,19 @@
 
 class ProductoPromocion {
     private:
-        int descuento;
+        float descuento;
         int cantMin;
         Producto *producto;
     public:
         //Creadores
         ProductoPromocion();
-        ProductoPromocion(int,int,Producto*);
+        ProductoPromocion(float,int,Producto*);
         //Getters
-        int getDescuento();
+        float getDescuento();
         int getCantMin();
         Producto* getProducto();
         //Setters
-        void setDescuento(int);
+        void setDescuento(float);
         void setCantMin(int);
         void setProducto(Producto *p);
         //Destructor

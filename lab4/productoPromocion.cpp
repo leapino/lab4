@@ -9,13 +9,13 @@ ProductoPromocion::ProductoPromocion(){
       this->cantMin = 0;
 }
 
-ProductoPromocion::ProductoPromocion(int desc,int cantMin, Producto *p){
+ProductoPromocion::ProductoPromocion(float desc,int cantMin, Producto *p){
       this->descuento = desc;
       this->cantMin = cantMin;
       this->producto=p;
 }
 
-int ProductoPromocion::getDescuento(){
+float ProductoPromocion::getDescuento(){
       return this->descuento;
 }
 
@@ -26,7 +26,7 @@ int ProductoPromocion::getCantMin(){
 Producto *ProductoPromocion::getProducto(){
     return this->producto;
 }
-void ProductoPromocion::setDescuento(int desc){
+void ProductoPromocion::setDescuento(float desc){
        this->descuento = desc;
 }
 

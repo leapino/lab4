@@ -32,7 +32,6 @@ class Promocion {
     void setNombre(std::string);
     void setDescripcion(std::string);
     void setFecha(DTFecha);
-    void setProdProm(ProductoPromocion);
     void agregarProdProm(ProductoPromocion*);
 };
 

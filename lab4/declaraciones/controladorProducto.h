@@ -22,7 +22,6 @@ class ControladorProducto {
         void agregarProducto(int codigo,int cantMin);
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
         std::set<DTProducto> getProductosDisp();
-        void confirmarAltaPromocion();//poner parametros
         bool hayStock(int codigoP,int cantidad); 
         bool prodEnCompra();
         bool checkPromo(int);

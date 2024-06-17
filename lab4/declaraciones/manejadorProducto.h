@@ -11,12 +11,15 @@
 #include "producto.h"
 #include "DTProducto.h"
 #include "DT2Producto.h"
+#include "productoPromocion.h"
+#include "promocion.h"
 
 class ManejadorProducto {
     private:
         static ManejadorProducto* instancia;
         ManejadorProducto();
         std::map<int, Producto*> Productos;
+        std::map<std::string, Promocion*> Promociones;
     public:
         static ManejadorProducto* getInstancia();
         void agregarProducto(Producto*);
@@ -25,6 +28,7 @@ class ManejadorProducto {
         void prodEnCompra();
         Producto* getProducto(int);
         std::map<int, DT2Producto*> listarProductos(std::map<int, Producto*>);
+        void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
         bool checkPromo(int);
 };
 #endif
