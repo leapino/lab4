@@ -278,9 +278,9 @@ switch (i){
                 std::cin>> confirm;
                 if (confirm == 1){
                     ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
-                    std::cout<< "\nSe agregó la promoción\n"
+                    std::cout<< "\nSe agregó la promoción\n";
                 }if (confirm == 0){
-                    std::cout<< "\nNo se agregó la promoción\n"
+                    std::cout<< "\nNo se agregó la promoción\n";
                 }else{
                     std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
                 }
