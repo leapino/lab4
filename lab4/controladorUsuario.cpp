@@ -36,9 +36,12 @@ void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *clie
     int monto=0;
 
     for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
+
         Producto* prod=mProducto->getProducto(it->first);
         CompraProducto* relacion=new CompraProducto(prod,it->second);
+
         productos.push_back(relacion);
+
         int precioConvertido=prod->getPrecio();
         if(mProducto->checkPromo(it->first)){//Chequea si esta en una promo
             if(mProducto->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
@@ -46,12 +49,11 @@ void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *clie
             }
         }
         monto+=precioConvertido*it->second;
+
     }
     Compra* compra=new Compra(fechaActual,monto,cliente,productos);
-    //mProducto->prodEnCompra();
-    //Compra->subirMonto(PrecioCompra);
-    //agregarProdCompra(codigoP,cantidad)
-    //pasarle la compra a el cliente correspondiente
+    mProducto->prodEnCompra(compra);// le baja el stock a los productos
+    mUsuario->agregarCompraCliente(cliente,compra);
 }
 
 

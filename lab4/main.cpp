@@ -334,7 +334,7 @@ switch (i){
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);
+                productoCompra.insert(codigo,cantidad);//deberiamos chequear si la cantidad que ingreso es menor o igual a la del stock
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;

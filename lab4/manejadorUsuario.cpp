@@ -72,4 +72,9 @@ std::map<int ,std::string> ManejadorUsuario::listarNickUsuarios(){
     }
     return nicknames;
 }
+
+void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
+    cliente->agregarCompra(compra);
+}
+
 #endif

@@ -80,6 +80,9 @@ void Cliente::notificar() {
 
 }
 
+void Cliente::agregarCompra(Compra* Compra){
+    this->Compras.push_front(Compra);
+}
 
 Cliente::~Cliente() {
     for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
