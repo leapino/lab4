@@ -412,6 +412,7 @@ switch (i){
             }
             int id;
             std::cin >>id;
+            ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
         }            
 
         default:
