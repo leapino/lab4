@@ -75,9 +75,14 @@ Comentario::~Comentario() {
 
 void Comentario::borrarRespuestas(){
      std::map<int, Comentario*>::iterator it;
-     for (it = this->respuestas.end(); it != this->respuestas.begin(); it--){
-          
+     it = this->respuestas.begin();
+     Comentario* aborrar;
+     while ( it != this->respuestas.end()){
+        aborrar = it->second;
+        it = this->respuestas.erase(it);     
+        aborrar->~Comentario();
      }
+     aborrar = nullptr;
 }
 
 #endif
