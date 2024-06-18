@@ -3,6 +3,8 @@
 
 #include "declaraciones/controladorUsuario.h"
 
+
+
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
 ControladorUsuario* ControladorUsuario::getInstancia(){
@@ -19,21 +21,44 @@ std::set<std::string> ControladorUsuario::listarClientes(){
     return listaClientes;
 }
 
-void ControladorUsuario::selectCliente(){
+void ControladorUsuario::selectCliente(){}
 
-}
+void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(){
+void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *cliente,DTFecha *fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto* mProducto;
     mProducto=ManejadorProducto::getInstancia();
-    //Compra()
-    mProducto->prodEnCompra();
+
+    std::list<CompraProducto *> productos;
+
+    int monto=0;
+
+    for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
+        Producto* prod=mProducto->getProducto(it->first);
+        CompraProducto* relacion=new CompraProducto(prod,it->second);
+        productos.push_back(relacion);
+        int precioConvertido=prod->getPrecio();
+        if(mProducto->checkPromo(it->first)){//Chequea si esta en una promo
+            if(mProducto->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
+                precioConvertido=precioConvertido-(precioConvertido*mProducto->descPromo(prod));//Realiza el Descuento
+            }
+        }
+        monto+=precioConvertido*it->second;
+    }
+    Compra* compra=new Compra(fechaActual,monto,cliente,productos);
+    //mProducto->prodEnCompra();
     //Compra->subirMonto(PrecioCompra);
     //agregarProdCompra(codigoP,cantidad)
     //pasarle la compra a el cliente correspondiente
+}
 
+
+Usuario * getUsuario(std::string Usuario){
+    ManejadorUsuario* mUsuario;
+    mUsuario=ManejadorUsuario::getInstancia();
+    return mUsuario->getUsuario(Usuario);
 }
 
 void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad){
@@ -51,9 +76,15 @@ void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFec
 bool ControladorUsuario::estaVacio(){
         bool estaV = true;
         ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
-        std::map<int ,std::string> nombres = mu->listarNicknames();
+        std::map<int ,std::string> nombres = mu->listarNickUsuarios();
         if (nombres.empty() == false)
           estaV = false;
     }
+
+std::map<int ,std::string> ControladorUsuario::listarNickUsuarios(){
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->listarNickUsuarios();
+}
 
 #endif

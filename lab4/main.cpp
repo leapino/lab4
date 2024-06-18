@@ -21,17 +21,6 @@
 #include "../declaraciones/categoria.h"
 
 
-std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
-    salida << "Código: " << prod->getCodigo() << "\n Nombre: " << prod->getNombre();
-    return salida;
-}
-
-std::ostream &operator<<(std::ostream &salida, DTProducto *prod){
-    salida << "Código: " << prod->getCodigo() << "\n Stock: " << prod->getStock()<<"\n Precio:"<<prod->getPrecio()<<"\n Nombre:"<<prod->getNombre()<<"\n Descripción:"<<prod->getDescripcion()<<"\n Categoria:"<<prod->getCategoria();
-    return salida;
-}
-
-
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
@@ -70,7 +59,8 @@ int main() {
 
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
-        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n";
+        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -235,7 +225,7 @@ switch (i){
 
             DTFecha fecha=leerFecha();
             
-            std::map<int ,std::string> nicknames = ControladorProducto->listarNicknames();
+            std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
             std::map<int ,std::string>::iterator it;
             std::cout<<"Selecciona un vendedor por su número:\n";
             for (it = nicknames.begin(); it != nicknames.end(); it++){
@@ -313,6 +303,8 @@ switch (i){
             std::cout <<"Desea ingresar producto a la compra\n"<<"0-No\n"<<"1-Sí\n";
             std::cin >>i;
 
+            std::map <int,int> productoCompra;
+
             while(i){
 
                 std::cout<<"Ingresar codigo del Producto\n";
@@ -324,11 +316,16 @@ switch (i){
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
+                productoCompra.insert(codigo,cantidad);
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
-            ControladorUsuario->confirmarCompra();
+            Cliente* pCliente=dynamic_cast<Cliente*>(ControladorUsuario->getUsuario(cliente));
+
+            DTFecha* fechaActual=new DTFecha;
+            fechaActual=&ControladorFecha->getFechaActual();
+            ControladorUsuario->confirmarCompra(productoCompra,pCliente,fechaActual);
         }
             break;
         
@@ -380,7 +377,14 @@ switch (i){
         }
             break;
         case 9:{//Eliminar Comentario
-
+            std::map<int ,std::string> nicknames = ControladorUsuario->listarNickUsuarios();
+            std::map<int ,std::string>::iterator it;
+            std::cout<<"Selecciona un usuario por su número:\n";
+            for (it = nicknames.begin(); it != nicknames.end(); it++){
+                std::cout<< it->first <<")" << " " << it->second << "\n";
+            }
+            int usu;
+            std::cin >>usu;
         }            
 
         default:

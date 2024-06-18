@@ -33,11 +33,17 @@ bool ManejadorProducto::hayStock(int codigo, int cantidad){
     }
     return res;
 }
-void ManejadorProducto::prodEnCompra(){
-    /*
-    std::map<int,Producto*>::iterator it=this->Productos.find(codigoP);
-    it->second->bajarStock(cantidad);
-    int Preciocompra=(it->second->getPrecio())*cantidad;*/
+
+
+void ManejadorProducto::prodEnCompra(Compra* Compra){
+    std::list<CompraProducto*> Comprados=Compra->getcompraProductos();
+
+    for ( std::list<CompraProducto*>::iterator it=Comprados.begin(); it!=Comprados.end(); ++it){
+        
+    }
+    
+    //std::map<int,Producto*>::iterator it=this->Productos.find(codigoP);
+    //it->second->bajarStock(cantidad);
 }
 Producto *ManejadorProducto::getProducto(int c)
 {
@@ -66,6 +72,12 @@ bool ManejadorProducto::checkPromo(int codigo){
     else{
         return true;
     }
+}
+int ManejadorProducto::cantMinPromo(Producto* prod){
+    return prod->getPromo()->getCantMin();
+}
+float ManejadorProducto::descPromo(Producto* prod){
+    return prod->getPromo()->getDescuento();   
 }
 
 void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){

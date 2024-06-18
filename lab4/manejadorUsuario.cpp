@@ -33,7 +33,7 @@ std::set<std::string> ManejadorUsuario::getClientes(){
 }
 
 
-std::map<int ,std::string> ManejadorUsuario::listarNicknames(){
+std::map<int ,std::string> ManejadorUsuario::listarNicknamesV(){
     std::map<std::string, Usuario*>::iterator it;
     std::map<int ,std::string> nicknames;
     Vendedor* vendedor;
@@ -53,4 +53,23 @@ std::map<int, Producto*> ManejadorUsuario::getListaProductos(std::string nombre)
     return vendedor->getProductos();
 }
 
+bool ManejadorUsuario::estaUsuario(std::string nombre) {   
+       bool estaN = false;
+       std::map<std::string, Usuario*>::iterator it;
+       it = this->Usuarios.find(nombre);
+       if (it != this->Usuarios.end())
+          estaN = true;
+       return estaN;
+}
+
+std::map<int ,std::string> ManejadorUsuario::listarNickUsuarios(){
+    std::map<std::string, Usuario*>::iterator it;
+    std::map<int ,std::string> nicknames;
+    int num = 1;
+    for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
+        nicknames.insert({num, it->first});
+        num++;
+    }
+    return nicknames;
+}
 #endif

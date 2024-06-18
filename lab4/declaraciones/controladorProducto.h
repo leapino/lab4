@@ -17,7 +17,7 @@ class ControladorProducto {
     public:
         static ControladorProducto *getInstancia();
         void ingrDatosPromocion(std::string nombreP,std::string descripcionP,float descuentoP,DTFecha fechaP);
-        std::map<int ,std::string> listarNicknames(); //Devuelve un map<int, std::string> con los nicknames de los vendedores
+        std::map<int ,std::string> listarNicknamesV(); //Devuelve un map<int, std::string> con los nicknames de los vendedores
         std::map<int, DT2Producto*> listarProductos(std::string RUTVendedor); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
         void agregarProducto(int codigo,int cantMin);
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);

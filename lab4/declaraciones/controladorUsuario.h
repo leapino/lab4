@@ -20,14 +20,15 @@ class ControladorUsuario {
         void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT);
         bool estaVacio();
         bool estaUsuario(std::string nombre);
-        //listarUsuarios
+        std::map<int, std::string> listarNickUsuarios();
         //listarComentario
         void eliminarComentario(/*wea*/);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
         void agregarProductoCompra(int codigo, int cantidad);
-        void confirmarCompra();
+        void confirmarCompra(std::map <int,int> datos,Cliente *cliente,DTFecha *fechaActual);
+        Usuario * getUsuario(std::string Usuario);
         //ingresarNickname
         //suscribirVendedores
         //consultarNotificaciones
