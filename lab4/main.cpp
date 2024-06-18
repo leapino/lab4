@@ -21,17 +21,6 @@
 #include "../declaraciones/categoria.h"
 
 
-std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
-    salida << "Código: " << prod->getCodigo() << "\n Nombre: " << prod->getNombre();
-    return salida;
-}
-
-std::ostream &operator<<(std::ostream &salida, DTProducto *prod){
-    salida << "Código: " << prod->getCodigo() << "\n Stock: " << prod->getStock()<<"\n Precio:"<<prod->getPrecio()<<"\n Nombre:"<<prod->getNombre()<<"\n Descripción:"<<prod->getDescripcion()<<"\n Categoria:"<<prod->getCategoria();
-    return salida;
-}
-
-
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
