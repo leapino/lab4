@@ -9,24 +9,25 @@
 
 #include "DTFecha.h"
 #include "producto.h"
+#include "comentario.h"
 
 class Usuario {
     private:
         std::string nickname;
         std::string password;
         DTFecha fechaNacimiento;
-        std::map<int,Comentario> comentarios;
+        std::map<int,Comentario*> comentarios;
     public:
         //Creadores
         Usuario();
         Usuario(std::string nick, std::string pass, DTFecha fechnaci);
         //Getters
-        std::map<int,Comentario> getComentarios();
+        std::map<int,Comentario*> getComentarios();
         std::string getNickname();
         std::string getPassword();
         DTFecha getFecha();
         //Setters
-        void setComentarios(int,Comentario);
+        void setComentarios(int,Comentario*);
         void setNickname(std::string);
         void setPassword(std::string);
         void setFecha(DTFecha);
@@ -34,7 +35,6 @@ class Usuario {
         virtual bool esVendedor();
         virtual bool esUsuario(Usuario);
         virtual bool esCliente();
-
-
+        std::map<int, std::string> listarComentarios();
 };
 #endif

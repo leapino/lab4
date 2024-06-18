@@ -73,4 +73,11 @@ Comentario::~Comentario() {
     delete this->miUsuario;
 }
 
+void Comentario::borrarRespuestas(){
+     std::map<int, Comentario*>::iterator it;
+     for (it = this->respuestas.end(); it != this->respuestas.begin(); it--){
+          
+     }
+}
+
 #endif

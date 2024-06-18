@@ -21,19 +21,23 @@ class Comentario {
         Producto *prodComentado;
         Usuario *miUsuario;
         int idcom;
+        std::map<int,Comentario*> respuestas;
     public:
         Comentario();
         Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom , std::string comment);
+        std::map<int,Comentario*> getRespuestas();
         std::string getTexto();
         DTFecha *getFecha();
         Producto *getProdCom();
         Usuario *getUsuario();
         int getIdcom();
+        void setRespuestas(int id,Comentario* respuesta);
         void setTexto(std::string text);
         void setFecha(DTFecha *fecha);
         void setProdComentado(Producto *prod);
         void setMiUsuario(Usuario *miUser);
         void setIdCom(int id);
+        void borrarRespuestas();
         ~Comentario();
 };
 
