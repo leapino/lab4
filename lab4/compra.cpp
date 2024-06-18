@@ -9,11 +9,11 @@ Compra::Compra() {
     this->cliente = NULL;
 }
 
-Compra::Compra(DTFecha *fecha, int monto, Cliente *cliente, CompraProducto * compraPr) {
+Compra::Compra(DTFecha *fecha, int monto, Cliente *cliente,std::list<CompraProducto *> compraPr) {
     this->fecha = fecha;
     this->monto = monto;
     this->cliente = cliente;
-    this->compraProductos.push_front(compraPr);
+    this->compraProductos=compraPr;
 }
 
 
@@ -33,7 +33,7 @@ Cliente *Compra::getCliente() {
 
 
 std::list<CompraProducto *> Compra::getcompraProductos() {
-
+    return this->compraProductos;
 }
 
 

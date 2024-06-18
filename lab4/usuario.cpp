@@ -39,4 +39,17 @@ void Usuario::setFecha(DTFecha fecha){
     this->fechaNacimiento = fecha;
 }
 
+bool Usuario::esVendedor(){
+    Vendedor* pVendedor;
+    pVendedor=dynamic_cast<Vendedor*> (this);
+    return pVendedor!=nullptr;
+}
+
+bool Usuario::esCliente(){
+    Cliente* pCliente;
+    pCliente=dynamic_cast<Cliente*> (this);
+    return pCliente!=nullptr;
+}
+
+
 #endif

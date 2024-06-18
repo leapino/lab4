@@ -17,7 +17,7 @@ struct DTFecha{
     public:
         //Creadores
         DTFecha();
-        DTFecha(int,int,int,int,int);
+        DTFecha(int dia,int mes,int anio,int hora,int minuto);
         //Destructor
         ~DTFecha();
         //Getters
@@ -31,6 +31,6 @@ struct DTFecha{
         void setMes(int);
         void setAnio(int);  
         void setHora(int);
-        void setMinuto(int);   
+        void setMinuto(int);
 };
 #endif

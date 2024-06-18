@@ -338,8 +338,11 @@ switch (i){
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
-            Cliente* pCliente=ControladorUsuario->getCliente(cliente);
-            ControladorUsuario->confirmarCompra(productoCompra,pCliente);
+            Cliente* pCliente=dynamic_cast<Cliente*>(ControladorUsuario->getUsuario(cliente));
+
+            DTFecha* fechaActual=new DTFecha;
+            fechaActual=&ControladorFecha->getFechaActual();
+            ControladorUsuario->confirmarCompra(productoCompra,pCliente,fechaActual);
         }
             break;
         

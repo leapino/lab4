@@ -22,7 +22,7 @@ class Compra {
         std::list<CompraProducto *> compraProductos;
     public:
         Compra();
-        Compra(DTFecha *fecha, int monto, Cliente *cliente, CompraProducto *compraPr);
+        Compra(DTFecha *fecha, int monto, Cliente *cliente, std::list<CompraProducto*> compraPr);
         DTFecha *getFecha();
         int getMonto();
         Cliente *getCliente();

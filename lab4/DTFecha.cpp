@@ -57,8 +57,7 @@ void DTFecha::setHora(int hora){
 
 void DTFecha::setMinuto(int minuto){
      this->minuto = minuto;
-}   
-
+}
 
 DTFecha::~DTFecha() {
 }

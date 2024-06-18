@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string>
 #include <math.h>
+#include <ctime>
 
 #include "DTFecha.h"
 
@@ -17,6 +18,7 @@ class ControladorFecha {
         static ControladorFecha *getInstancia();
         void setFecha(DTFecha);
         DTFecha getFecha();
+        DTFecha getFechaActual();
 };
 
 #endif
