@@ -76,9 +76,15 @@ void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFec
 bool ControladorUsuario::estaVacio(){
         bool estaV = true;
         ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
-        std::map<int ,std::string> nombres = mu->listarNicknames();
+        std::map<int ,std::string> nombres = mu->listarNickUsuarios();
         if (nombres.empty() == false)
           estaV = false;
     }
+
+std::map<int ,std::string> ControladorUsuario::listarNickUsuarios(){
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->listarNickUsuarios();
+}
 
 #endif

@@ -59,7 +59,8 @@ int main() {
 
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
-        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n";
+        std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -224,7 +225,7 @@ switch (i){
 
             DTFecha fecha=leerFecha();
             
-            std::map<int ,std::string> nicknames = ControladorProducto->listarNicknames();
+            std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
             std::map<int ,std::string>::iterator it;
             std::cout<<"Selecciona un vendedor por su número:\n";
             for (it = nicknames.begin(); it != nicknames.end(); it++){
@@ -394,7 +395,14 @@ switch (i){
         }
             break;
         case 9:{//Eliminar Comentario
-
+            std::map<int ,std::string> nicknames = ControladorUsuario->listarNickUsuarios();
+            std::map<int ,std::string>::iterator it;
+            std::cout<<"Selecciona un usuario por su número:\n";
+            for (it = nicknames.begin(); it != nicknames.end(); it++){
+                std::cout<< it->first <<")" << " " << it->second << "\n";
+            }
+            int usu;
+            std::cin >>usu;
         }            
 
         default:

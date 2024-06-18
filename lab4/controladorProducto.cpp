@@ -12,10 +12,10 @@ ControladorProducto* ControladorProducto::getInstancia(){
         return instancia;
 }
 
-std::map<int ,std::string> ControladorProducto::listarNicknames(){
+std::map<int ,std::string> ControladorProducto::listarNicknamesV(){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
-    return mu->listarNicknames();
+    return mu->listarNicknamesV();
 }
 
 std::map<int , DT2Producto*> ControladorProducto::listarProductos(std::string nombre){

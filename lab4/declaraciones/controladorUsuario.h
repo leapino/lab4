@@ -20,7 +20,7 @@ class ControladorUsuario {
         void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT);
         bool estaVacio();
         bool estaUsuario(std::string nombre);
-        //listarUsuarios
+        std::map<int, std::string> listarNickUsuarios();
         //listarComentario
         void eliminarComentario(/*wea*/);
         std::set <std::string> listarClientes();
