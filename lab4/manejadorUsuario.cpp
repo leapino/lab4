@@ -53,4 +53,12 @@ std::map<int, Producto*> ManejadorUsuario::getListaProductos(std::string nombre)
     return vendedor->getProductos();
 }
 
+bool ManejadorUsuario::estaUsuario(std::string nombre) {   
+       bool estaN = false;
+       std::map<std::string, Usuario*>::iterator it;
+       it = this->Usuarios.find(nombre);
+       if (it != this->Usuarios.end())
+          estaN = true;
+       return estaN;
+}
 #endif

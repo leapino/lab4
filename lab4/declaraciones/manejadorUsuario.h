@@ -24,5 +24,6 @@ class ManejadorUsuario {
         std::set<std::string> getClientes();
         Cliente * getCliente(std::string);
         std::map<int, Producto*> getListaProductos(std::string nombre);
+        bool estaUsuario(std::string nombre);
 };
 #endif
