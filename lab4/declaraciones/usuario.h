@@ -36,5 +36,6 @@ class Usuario {
         virtual bool esUsuario(Usuario);
         virtual bool esCliente();
         std::map<int, std::string> listarComentarios();
+        void borrarComentario(int id);
 };
 #endif

@@ -60,4 +60,12 @@ std::map<int, std::string> Usuario::listarComentarios(){
     return coments;
 }    
 
+void Usuario::borrarComentario(int id){
+     std::map<int, Comentario*>::iterator it;
+     it = this->comentarios.find(id);
+     Comentario* eliminar = it->second;
+     eliminar->borrarRespuestas();
+     this->comentarios.erase(it);
+     eliminar->~Comentario();
+}
 #endif

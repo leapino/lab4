@@ -91,4 +91,9 @@ std::map<int, std::string> ControladorUsuario::listarComentario(std::string nomb
        Usuario* usuario = getUsuario(nombreU);
        return usuario->listarComentarios();
 }
+
+void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
+        Usuario* usuario = getUsuario(nombreU);
+        usuario->borrarComentario(id);
+}
 #endif
