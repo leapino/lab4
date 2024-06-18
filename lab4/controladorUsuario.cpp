@@ -23,12 +23,12 @@ void ControladorUsuario::selectCliente(){
 
 }
 
-void ControladorUsuario::confirmarCompra(){
+void ControladorUsuario::confirmarCompra(std::map <int,int> datos,Cliente *cliente){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto* mProducto;
     mProducto=ManejadorProducto::getInstancia();
-    //Compra()
+    //Compra(fechacompra,0,cliente,)
     mProducto->prodEnCompra();
     //Compra->subirMonto(PrecioCompra);
     //agregarProdCompra(codigoP,cantidad)
@@ -36,6 +36,12 @@ void ControladorUsuario::confirmarCompra(){
 
 }
 
+Cliente * getCliente(std::string cliente){
+    ManejadorUsuario* mUsuario;
+    mUsuario=ManejadorUsuario::getInstancia();
+    Cliente* res=mUsuario->getCliente(cliente);
+
+}
 void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad){
        Cliente* nuevoCliente =new  Cliente(nick,pass,fechnaci,dir,ciudad);       
        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();

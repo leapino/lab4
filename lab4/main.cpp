@@ -331,6 +331,8 @@ switch (i){
             std::cout <<"Desea ingresar producto a la compra\n"<<"0-No\n"<<"1-Sí\n";
             std::cin >>i;
 
+            std::map <int,int> productoCompra;
+
             while(i){
 
                 std::cout<<"Ingresar codigo del Producto\n";
@@ -342,11 +344,13 @@ switch (i){
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
+                productoCompra.insert(codigo,cantidad);
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
-            ControladorUsuario->confirmarCompra();
+            Cliente* pCliente=ControladorUsuario->getCliente(cliente);
+            ControladorUsuario->confirmarCompra(productoCompra,pCliente);
         }
             break;
         

@@ -27,7 +27,8 @@ class ControladorUsuario {
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
         void agregarProductoCompra(int codigo, int cantidad);
-        void confirmarCompra();
+        void confirmarCompra(std::map <int,int> datos,Cliente *cliente);
+        Cliente * getCliente(std::string cliente);
         //ingresarNickname
         //suscribirVendedores
         //consultarNotificaciones

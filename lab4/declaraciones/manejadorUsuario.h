@@ -22,6 +22,7 @@ class ManejadorUsuario {
         Usuario* getUsuario(std::string);
         std::map<int, std::string> listarNicknames();
         std::set<std::string> getClientes();
+        Cliente * getCliente(std::string);
         std::map<int, Producto*> getListaProductos(std::string nombre);
 };
 #endif
