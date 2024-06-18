@@ -51,5 +51,13 @@ bool Usuario::esCliente(){
     return pCliente!=nullptr;
 }
 
+std::map<int, std::string> Usuario::listarComentarios(){
+    std::map<int, Comentario*>::iterator it;
+    std::map<int ,std::string> coments;
+    for (it = this->comentarios.begin(); it != this->comentarios.end(); it++){
+        coments.insert({it->first, it->second->getTexto()});
+    }
+    return coments;
+}    
 
 #endif

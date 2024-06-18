@@ -87,4 +87,8 @@ std::map<int ,std::string> ControladorUsuario::listarNickUsuarios(){
     return mu->listarNickUsuarios();
 }
 
+std::map<int, std::string> ControladorUsuario::listarComentario(std::string nombreU){
+       Usuario* usuario = getUsuario(nombreU);
+       return usuario->listarComentarios();
+}
 #endif
