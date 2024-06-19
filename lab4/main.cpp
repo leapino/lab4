@@ -65,7 +65,7 @@ int main() {
         std::cout <<"\n";
 
 
-switch (i){
+    switch (i){
 
         case 1:{//Crear Usuario
             bool Confirmar=false;
@@ -277,19 +277,7 @@ switch (i){
             }
         }
         break;
-        case 6:{//Consultar Promocion 
-
-            std::set <DTPromocion> promos=ControladorProducto->ListarPromos(ControladorFecha->getFechaActual());
-            for (std::set<DTPromocion>::iterator it = promos.begin(); it!=promos.end(); ++it){
-                std::cout<<&it;
-            }
-            
-
-           std::cout <<"Quieres consultar los productos y el Vendedor de alguna promocion \n"<<"1-Sí\n"<<"2-No\n";
-           int k;
-           std::cin >>k;
-
-           while (k){
+        case 6:{//Consultar Promocion
 
             std::map<std::string, DTPromocion*> promociones = ControladorProducto->getPromos();
             std::map<std::string, DTPromocion*>::iterator it;
@@ -299,7 +287,6 @@ switch (i){
             std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
             std::string nombrePromo;
             std::cin >>nombrePromo;
-            
         }
             break;
         case 7:{//Realizar Compra
