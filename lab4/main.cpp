@@ -136,13 +136,17 @@ int main() {
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
-
-            //Aca hay q crear la instancia de Controlador Usuario
-
-            std::vector<DTUsuario> infousuarios;//=ctrlUsuario.listarUsuarios();
-            for(int j=0;j<infousuarios.size();j++)
-                j=j+1;//esta aca para q no salten errores
-                //std::cout <<infousuarios[j]->toString();Falta hacer el toString
+              std::list<Usuario*> lista = ControladorUsuario->ListaUsuarios();
+              for (std::list<Usuario*>::iterator it = lista.begin(); it != lista.end(); it++){
+                   if((*it)->esCliente()){
+                      DTCliente client = ControladorUsuario->getInfoCliente(*it);
+                      std::cout<<& client;
+                    }
+                   else{
+                      DTVendedor vend = ControladorUsuario->getInfoVendedor(*it);
+                      std::cout<<& vend;
+                   }  
+            }
         }
             break;
 

@@ -1,5 +1,11 @@
 #include "DTVendedor.h"
 #include <string>
+#include <iostream>
+
+std::ostream &operator<<(std::ostream &salida, DTVendedor* vend){
+    salida << "Nickname" << vend->getDTNickname() << "\n Fecha de Nacimiento: " << &vend->getDTNacimiento() << "RUT" << vend->getDTRUT();
+    return salida;
+}
 
 DTVendedor::DTVendedor(){
 }

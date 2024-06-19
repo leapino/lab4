@@ -155,4 +155,11 @@ void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         Usuario* usuario = getUsuario(nombreU);
         usuario->borrarComentario(id);
 }
+
+std::list<Usuario*> ControladorUsuario::ListaUsuarios(){
+        ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->ListarUsuarios();
+}
+
 #endif

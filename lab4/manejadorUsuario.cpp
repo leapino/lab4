@@ -172,4 +172,13 @@ void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
     cliente->agregarCompra(compra);
 }
 
+std::list<Usuario*> ManejadorUsuario::ListarUsuarios(){
+     std::map<std::string, Usuario*>::iterator it;
+     std::list<Usuario*> usuarios;
+     for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
+       usuarios.push_back(it->second);     
+     }
+     return usuarios;
+}
+
 #endif
