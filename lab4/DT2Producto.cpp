@@ -11,7 +11,16 @@ std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
 }
 
 
-DT2Producto::DT2Producto(int, std::string){
+DT2Producto::DT2Producto(int codigo, std::string nombre){
+    this->codigo = codigo;
+    this->nombre = nombre;
 }
 
+int DT2Producto::getCodigo(){
+    return this->codigo;
+}
+
+std::string DT2Producto::getNombre(){
+    return this->nombre;
+}
 #endif

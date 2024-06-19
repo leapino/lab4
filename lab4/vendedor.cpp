@@ -10,4 +10,12 @@ Vendedor::Vendedor(std::string nick,std::string pass, DTFecha fecha, std::string
 std::string Vendedor::getRUT(){
      return this->RUT;
 }
+
+std::map<int, Producto*> Vendedor::getProductos(){
+    return this->Productos;
+}
+
+std::list<Cliente *> Vendedor::getClientes(){
+    return this->Clientes;
+}
 #endif
