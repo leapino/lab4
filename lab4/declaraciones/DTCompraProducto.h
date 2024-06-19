@@ -24,7 +24,7 @@ class DTCompraProducto{
         //Getters
         bool getEnviado();
         int getCantidad();
-        DTProducto getprod();
+        DTProducto getProd();
         //Setters
         void setEnviado(bool enviado);
         void setCantidad(int cantidad);

@@ -60,7 +60,7 @@ int main() {
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
-        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -415,14 +415,59 @@ int main() {
             Cliente* pElegido=dynamic_cast<Cliente*>(elegido);
             if (pElegido!=nullptr){
                 std::cout<<&ControladorUsuario->getInfoCliente(pElegido);
+                std::cout<<&ControladorUsuario->getInfoComprasCliente(pElegido);
                 
             }else{
                 Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
                 std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
+                std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
+                std::cout<<&ControladorUsuario->getPromoVigente(pElegido);//Falta Crear el Link entre promocion y vendedor
             }
 
         }
-        break;     
+        break;
+        case 12:{//Suscribirse a notis
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->getVendedoresNoSuscrito(cliente);
+
+            std::list<std::string> asuscribirse;
+            
+            std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir";
+
+            int i=1;
+            while (i){
+                std::string agregar;
+                std::cin >> agregar;
+                asuscribirse.push_front(agregar);
+
+                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No"<<"1-Sí";
+                std::cin >>i;
+            }
+            ControladorUsuario->suscribirVendedores(asuscribirse,cliente);
+
+        }
+        break; 
+        case 13:{//Consulta de Notificaciones
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->consultarNotificaciones(cliente);
+
+        }
+        break;
+        case 14:{ //eliminar Suscripciones
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->getVendedoresSuscrito(cliente);
+
+        } 
+        break;
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";

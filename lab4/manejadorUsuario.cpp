@@ -2,6 +2,7 @@
 #define MANEJADORUSUARIO_CPP
 
 #include "declaraciones/manejadorUsuario.h"
+#include "manejadorUsuario.h"
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
@@ -34,19 +35,89 @@ DTVendedor ManejadorUsuario::getInfoVendedor(Vendedor *usuario){
 }
 std::list<DTCompra> ManejadorUsuario::getInfoComprasCliente(Cliente *cliente){
 
-    /*std::list<DTCompra> res;
+    std::list<DTCompra> res;
 
     for (std::list<Compra*>::iterator it = cliente->getCompras().begin(); it!=cliente->getCompras().end(); ++it){
         std::list<DTCompraProducto> prods;
-        std::list<CompraProducto*>::iterator it2=it;
-        for(=it->getCompraProductos().begin();it2!=it->getCompraProductos().end();++it2){
-
+        for(std::list<CompraProducto*>::iterator it2=(*it)->getcompraProductos().begin();it2!=(*it)->getcompraProductos().end();++it2){
+            DTProducto amostrar=DTProducto((*it2)->getProd()->getCodigo(),(*it2)->getProd()->getStock(),(*it2)->getProd()->getPrecio(),(*it2)->getProd()->getNombre(),(*it2)->getProd()->getDescripcion(),(*it2)->getProd()->getCategoria());
+            prods.push_back(DTCompraProducto((*it2)->getEnviado(),(*it2)->getCantidad(),amostrar));
         }
-        DTCompra compraactual=DTCompra(it->getFecha(),it->getMonto(),prods);
-    }  
-*/
+        DTCompra compraactual=DTCompra((*it)->getFecha(),(*it)->getMonto(),prods);
+        res.push_back(compraactual);
+    }
+    return res;  
 }
-std::set<std::string> ManejadorUsuario::getClientes(){
+
+std::list<DTProducto> ManejadorUsuario::getProdEnVenta(Vendedor * vendedor){
+    std::list<DTProducto> res;
+    for (std::map<int,Producto*>::iterator it =vendedor->getProductos().begin(); it!=vendedor->getProductos().end(); ++it){
+        res.push_back(DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria()));
+    }
+    
+return res;
+}
+
+std::list<DTPromocion> ManejadorUsuario::getPromoVigente(Vendedor *Vendedor){
+
+    return ;
+}
+
+std::list<std::string> ManejadorUsuario::getVendedoresNoSuscrito(std::string cliente){
+    std::list<std::string> res;
+    std::map<int,std::string> Vendedores=this->listarNicknamesV();
+    Cliente* pcliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
+
+    std::list<Vendedor*> suscritos = pcliente->getVendedores();
+
+    std::set<std::string> suscritosNicknames;
+    
+    for (auto it = suscritos.begin(); it != suscritos.end(); ++it) {
+        suscritosNicknames.insert((*it)->getNickname());
+    }
+    for (auto it = Vendedores.begin(); it != Vendedores.end(); ++it) {
+        if (suscritosNicknames.find(it->second) == suscritosNicknames.end()) {
+            res.push_back(it->second);
+        }
+    }
+    return res;
+}
+
+void ManejadorUsuario::suscribirVendedores(std::list<std::string> Vendedores, std::string cliente){
+    Cliente * pCliente=dynamic_cast<Cliente*>(this->getUsuario(cliente));
+    for (auto i = Vendedores.begin(); i !=Vendedores.end(); i++){
+        Vendedor* pVendedor=dynamic_cast<Vendedor*>(this->getUsuario(*i));
+        pCliente->crearLinkV((pVendedor));
+        pVendedor->crearLinkC(pCliente);
+    }
+    
+}
+
+std::list<DTNotificacion*> ManejadorUsuario::consultarNotificaciones(std::string cliente){
+    Cliente * pCliente=dynamic_cast<Cliente*>(this->getUsuario(cliente));
+    std::list <DTNotificacion*> res=pCliente->getDTNotificaciones();
+    pCliente->limpiarNotificaciones();
+    return res;
+}
+
+std::list<std::string *> ManejadorUsuario::getVendedoresSuscrito(std::string cliente){
+
+    Cliente* pcliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
+
+    std::list<Vendedor*> suscritos = pcliente->getVendedores();
+
+    std::list<std::string*> suscritosNicknames;
+    
+    for (auto it = suscritos.begin(); it != suscritos.end(); ++it) {
+        std::string * agregar=new std::string ((*it)->getNickname());
+        suscritosNicknames.push_front(agregar);
+    }
+
+    return suscritosNicknames;
+}
+
+std::set<std::string> ManejadorUsuario::getClientes()
+{
 
     std::set<std::string> listaClientes;
     for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){

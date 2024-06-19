@@ -26,7 +26,7 @@ class ControladorUsuario {
         void eliminarComentario(int id,std::string nombreU);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
-        std::set <DTProducto>mostrarProductos();
+        std::set <DTProducto*>mostrarProductos();
         void agregarProductoCompra(int codigo, int cantidad);
         void confirmarCompra(std::map <int,int> datos,Cliente *cliente,DTFecha *fechaActual);
         Usuario * getUsuario(std::string Usuario);
@@ -34,10 +34,13 @@ class ControladorUsuario {
         DTCliente getInfoCliente(Usuario* usuario);
         DTVendedor getInfoVendedor(Usuario* usuario);
         std::list<DTCompra> getInfoComprasCliente(Cliente* cliente);
+        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
+        std::list<DTPromocion> getPromoVigente(Vendedor* vendedor);
+        std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
         //ingresarNickname
-        //suscribirVendedores
-        //consultarNotificaciones
-        //getVendedoresSuscrito
+        void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
+        std::list<DTNotificacion*> consultarNotificaciones(std::string cliente);
+        std::list<std::string*> getVendedoresSuscrito(std::string cliente);
         //seleccionarVendedores
         //eliminarSusVendedores
 };

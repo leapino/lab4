@@ -2,6 +2,7 @@
 #define CLIENTE_CPP
 
 #include "declaraciones/cliente.h"
+#include "cliente.h"
 
 Cliente::Cliente() {
     this->direccion = "";
@@ -76,6 +77,9 @@ void Cliente::eliminarVendedores() {
     }
 }
 
+void Cliente::limpiarNotificaciones(){
+    this->Notificaciones.clear();
+}
 void Cliente::notificar() {
 
 }

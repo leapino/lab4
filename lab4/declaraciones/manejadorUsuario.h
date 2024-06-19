@@ -12,6 +12,7 @@
 #include "vendedor.h"
 #include "DTCompra.h"
 #include "DTCompraProducto.h"
+#include "DTPromocion.h"
 
 class ManejadorUsuario {
     private:
@@ -33,5 +34,11 @@ class ManejadorUsuario {
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);
         std::list <DTCompra> getInfoComprasCliente(Cliente *cliente);
+        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
+        std::list<DTPromocion> getPromoVigente(Vendedor* Vendedor);
+        std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
+        void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
+        std::list <DTNotificacion*> consultarNotificaciones(std::string cliente);
+        std::list<std::string*> getVendedoresSuscrito(std::string cliente);
 };
 #endif
