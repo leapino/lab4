@@ -277,13 +277,13 @@ switch (i){
             }
         }
         break;
-        case 6:{//Consultar Promocion
-            //Crear COntrolador Producto            
-            /*std::vector<DTPromocion> promos=ctrlProd.ListarPromos();
-            for (int j = 0; j < promos.size(); j++){
-                std::cout <<promos[j]->toString;
+        case 6:{//Consultar Promocion 
+
+            std::set <DTPromocion> promos=ControladorProducto->ListarPromos(ControladorFecha->getFechaActual());
+            for (std::set<DTPromocion>::iterator it = promos.begin(); it!=promos.end(); ++it){
+                std::cout<<&it;
             }
-            */
+            
 
            std::cout <<"Quieres consultar los productos y el Vendedor de alguna promocion \n"<<"1-Sí\n"<<"2-No\n";
            int k;
@@ -294,8 +294,8 @@ switch (i){
                 std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
                 std::string nombrePromo;
                 std::cin >>nombrePromo;
-                //Crear Controlador Producto 
-                //std::cout << SelectPromos(nombrePromo)->toString;
+                std::cout <<&ControladorProducto->getPromo(nombrePromo);
+                
 
                 std::cout <<"Quieres consultar de alguna otra promocion? \n"<<"1-Sí\n"<<"2-No\n";
                 std::cin >>k;
@@ -412,7 +412,6 @@ switch (i){
             }
             int id;
             std::cin >>id;
-            ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
         }            
 
         default:

@@ -87,4 +87,19 @@ void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string d
     }
 }
 
+std::set<DTPromocion> ManejadorProducto::ListarPromos(DTFecha fechact){
+    std::set<DTPromocion> res;
+    for (std::map<std::string,Promocion*>::iterator it = this->Promociones.begin(); it!=this->Promociones.end();++it){
+
+        if(fechact.EsFechaMayor(it->second->getFecha(),fechact))
+            res.insert(DTPromocion(it->first,it->second->getDescripcion(),it->second->getFecha()));
+    }
+    return res;    
+}
+
+DTPromocion ManejadorProducto::getPromo(std::string nombre){
+    std::map<std::string,Promocion*>::iterator it=this->Promociones.find(nombre);
+    return DTPromocion(it->first,it->second->getDescripcion(),it->second->getFecha());
+}
+
 #endif

@@ -25,6 +25,7 @@ class ControladorProducto {
         bool hayStock(int codigoP,int cantidad); 
         bool prodEnCompra();
         bool checkPromo(int);
+        std::set<DTPromocion> ListarPromos(DTFecha fechact);
 };
 
 #endif

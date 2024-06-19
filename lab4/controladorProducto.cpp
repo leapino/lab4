@@ -66,4 +66,16 @@ bool ControladorProducto::hayStock(int codigoP, int cantidad){
     bool res=mP->hayStock(codigoP,cantidad);
     return ;
 }
+
+std::set<DTPromocion> ControladorProducto::ListarPromos(DTFecha fechact){
+    ManejadorProducto *mP;
+    mP=ManejadorProducto::getInstancia();
+    return mP->ListarPromos(fechact);
+}
+
+DTPromocion ControladorProducto::getPromo(std::string nombre){
+    ManejadorProducto *mP;
+    mP=ManejadorProducto::getInstancia();
+    return mP->getPromo(nombre);
+}
 #endif
