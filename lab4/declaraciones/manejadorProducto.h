@@ -13,6 +13,7 @@
 #include "DT2Producto.h"
 #include "productoPromocion.h"
 #include "promocion.h"
+#include "DTPromocion.h"
 
 class ManejadorProducto {
     private:
@@ -33,5 +34,6 @@ class ManejadorProducto {
         bool checkPromo(int);
         int cantMinPromo(Producto* prod);//pre: estar en una promo
         float descPromo(Producto* prod);//Pre estar en una promo
+        std::map<std::string, Promocion*> getPromos();
 };
 #endif

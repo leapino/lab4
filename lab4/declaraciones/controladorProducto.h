@@ -7,8 +7,10 @@
 #include <math.h>
 #include <set>
 
+#include "DTFecha.h"
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
+#include "controladorFecha.h"
 
 class ControladorProducto {
     private: 
@@ -25,6 +27,7 @@ class ControladorProducto {
         bool hayStock(int codigoP,int cantidad); 
         bool prodEnCompra();
         bool checkPromo(int);
+        std::map<std::string, DTPromocion*> getPromos();
 };
 
 #endif

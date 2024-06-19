@@ -66,4 +66,20 @@ bool ControladorProducto::hayStock(int codigoP, int cantidad){
     bool res=mP->hayStock(codigoP,cantidad);
     return ;
 }
+
+std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    ControladorFecha* cf;
+    cf = ControladorFecha::getInstancia();
+    std::map<std::string, Promocion*>::iterator it;
+    std::map<std::string, DTPromocion*> dtpromociones;
+    for (it = mp->getPromos().begin(); it != mp->getPromos().end(); it++){
+        if (cf->esVigente(it->second->getFecha())){
+            DTPromocion* dtpromo = new DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
+            dtpromociones.insert({it->second->getNombre(), dtpromo});
+        }
+    }
+    return dtpromociones;
+}
 #endif

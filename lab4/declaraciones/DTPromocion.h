@@ -1,5 +1,5 @@
-#ifndef DTPRODUCTO_H
-#define DTPRODUCTO_H
+#ifndef DTPROMOCION_H
+#define DTPROMOCION_H
 
 #include <string>
 #include "DTFecha.h"

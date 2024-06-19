@@ -279,6 +279,11 @@ switch (i){
         break;
         case 6:{//Consultar Promocion
 
+            std::map<std::string, DTPromocion*> promociones = ControladorProducto->getPromos();
+            std::map<std::string, DTPromocion*>::iterator it;
+            for (it = promociones.begin(); it != promociones.end(); it++){
+                
+            }
             std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
             std::string nombrePromo;
             std::cin >>nombrePromo;

@@ -92,4 +92,8 @@ void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string d
     }
 }
 
+std::map<std::string, Promocion*> ManejadorProducto::getPromos(){
+    return this->Promociones;
+}
+
 #endif
