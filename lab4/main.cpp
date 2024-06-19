@@ -389,6 +389,15 @@ int main() {
             }
             int usu;
             std::cin >>usu;
+            std::map<int ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::map<int ,std::string>::iterator it2;
+            std::cout<<"Selecciona un comentario por su identificador:\n";
+            for (it = comentarios.begin(); it2 != comentarios.end(); it2++){
+                std::cout<< it2->first <<")" << " " << it2->second << "\n";
+            }
+            int id;
+            std::cin >>id;
+            ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
         } 
         break;  
         case 10:{//Enviar Producto
