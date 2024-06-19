@@ -47,24 +47,12 @@ bool ControladorProducto::checkPromo(int codigo){
     return mp->checkPromo(codigo);
 }
 
-void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
+void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd, std::string vendedor){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
-}
-
-std::set<DTProducto> ControladorProducto::getProductosDisp(){
-    ManejadorProducto *mP;
-    mP=ManejadorProducto::getInstancia();
-    std::set<DTProducto>listaProductosDisp=mP->getProductosDisp();
-    return listaProductosDisp;
-}
-
-bool ControladorProducto::hayStock(int codigoP, int cantidad){
-    ManejadorProducto *mP;
-    mP=ManejadorProducto::getInstancia();
-    bool res=mP->hayStock(codigoP,cantidad);
-    return ;
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd, mu->getVendedor(vendedor));
 }
 
 std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
@@ -82,4 +70,17 @@ std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
     }
     return dtpromociones;
 }
+
+std::set<DTProducto*> ControladorProducto::getProductoPromo(std::string nombrePromo){
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    mp->getProductoPromo(nombrePromo);
+}
+
+DTVendedor* ControladorProducto::vendedorPromo(std::string promo){
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    return mp->vendedorPromo(promo);
+}
+
 #endif

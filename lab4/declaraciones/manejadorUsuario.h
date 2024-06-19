@@ -26,5 +26,6 @@ class ManejadorUsuario {
         std::map<int, Producto*> getListaProductos(std::string nombre);
         bool estaUsuario(std::string nombre);
         void agregarCompraCliente(Cliente *cliente,Compra* compra);
+        Vendedor* getVendedor(std::string);
 };
 #endif

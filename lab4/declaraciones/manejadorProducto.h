@@ -30,10 +30,12 @@ class ManejadorProducto {
         Producto* getProducto(int);
         std::map<int, DT2Producto*> listarProductos(std::map<int, Producto*>);
         //Promociones
-        void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
+        void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>,Vendedor*);
         bool checkPromo(int);
         int cantMinPromo(Producto* prod);//pre: estar en una promo
         float descPromo(Producto* prod);//Pre estar en una promo
         std::map<std::string, Promocion*> getPromos();
+        std::set<DTProducto*> getProductoPromo(std::string);
+        DTVendedor* vendedorPromo(std::string);
 };
 #endif

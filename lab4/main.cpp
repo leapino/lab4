@@ -267,7 +267,7 @@ int main() {
                 std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
                 std::cin>> confirm;
                 if (confirm == 1){
-                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd, nicknames.find(numVend)->second);
                     std::cout<< "\nSe agregó la promoción\n";
                 }if (confirm == 0){
                     std::cout<< "\nNo se agregó la promoción\n";
@@ -282,11 +282,25 @@ int main() {
             std::map<std::string, DTPromocion*> promociones = ControladorProducto->getPromos();
             std::map<std::string, DTPromocion*>::iterator it;
             for (it = promociones.begin(); it != promociones.end(); it++){
-                
+                std::cout<< it->second;
             }
-            std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
-            std::string nombrePromo;
-            std::cin >>nombrePromo;
+            int confirm;
+            std::cout << "Desea consultar una promoción?\n1)Si\n2)No\n";
+            std::cin>> confirm;
+            if (confirm == 1){
+                std::cout <<"Ingresar nombre de la promocion que desea consultar:\n";
+                std::string nombrePromo;
+                std::cin >>nombrePromo;
+                std::set<DTProducto*> productos = ControladorProducto->getProductoPromo(nombrePromo);
+                DTVendedor* vendedor = ControladorProducto->vendedorPromo(nombrePromo);
+                std::set<DTProducto*>::iterator it2;
+                std::cout << "Vendedor que ofrece la promoción:\n";
+                std::cout << vendedor;
+                std::cout << "Productos de la promoción:\n";
+                for (it2 = productos.begin(); it2 != productos.end(); ++it){
+                    std::cout << *it2;
+                }
+            }
         }
             break;
         case 7:{//Realizar Compra
