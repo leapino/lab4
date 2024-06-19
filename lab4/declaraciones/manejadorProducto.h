@@ -24,10 +24,12 @@ class ManejadorProducto {
     public:
         static ManejadorProducto* getInstancia();
         void agregarProducto(Producto*);
-        std::set<DTProducto> getProductosDisp();
+        std::set<DTProducto*> getProductosDisp();
+        std::map<int,std::string> getProds();
         bool hayStock(int codigo, int cantidad);
-        void prodEnCompra(Compra* compra);
+        void prodEnCompra(Producto* prod,int cantidad);
         Producto* getProducto(int);
+        std::map<std::string, DTProducto *> getInfoProd(std::string producto);
         std::map<int, DT2Producto*> listarProductos(std::map<int, Producto*>);
         //Promociones
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>,Vendedor*);

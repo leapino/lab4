@@ -199,17 +199,20 @@ int main() {
         break;
         
         case 4:{//Consultar Producto
-            std::map<std::string,int> InfoProd;
-            //Crear Controlador Producto
-            //InfoProd=ctrlProd.ListarCodNom();
-            for (std::map<std::string, int>::iterator it = InfoProd.begin(); it != InfoProd.end(); ++it) {
-                std::cout << it->first << "     " << it->second << std::endl;
-            } 
+             std::map<int,std::string> prods=ControladorProducto->getProds();
+
+            for (auto i = prods.begin(); i != prods.end(); ++i){
+                std::cout <<&i;
+            }
             std::string eleccion;
             std::cout <<"Ingresar Nombre o Código del producto\n";
             std::cin >>eleccion;
-            //DTProducto elegido=SelecCodName(eleccion);
-            //std::cout<<elegido->toString();
+            
+            std::map<std::string,DTProducto*> amostrar=ControladorProducto->getInfoProd(eleccion);
+            std::cout <<amostrar.begin()->first;
+            std::cout <<amostrar.begin()->second;
+
+            amostrar.clear();
         }
         break;
 
@@ -313,11 +316,10 @@ int main() {
             std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
             std::string cliente;
             std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
-            ControladorUsuario->selectCliente();
 
-            std::set <DTProducto> productos=ControladorProducto->getProductosDisp();
+            std::set <DTProducto*> productos=ControladorProducto->getProductosDisp();
 
-            for(std::set<DTProducto>::iterator it=productos.begin();it!=productos.end();++it){
+            for(std::set<DTProducto*>::iterator it=productos.begin();it!=productos.end();++it){
                 std::cout <<&it;
             }
 
@@ -343,11 +345,19 @@ int main() {
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
+            int monto=0;
+
             Cliente* pCliente=dynamic_cast<Cliente*>(ControladorUsuario->getUsuario(cliente));
 
             DTFecha* fechaActual=new DTFecha;
+
             fechaActual=&ControladorFecha->getFechaActual();
-            ControladorUsuario->confirmarCompra(productoCompra,pCliente,fechaActual);
+
+            std::list<CompraProducto*> compra=ControladorProducto->confirmarCompra(productoCompra,monto);
+
+            ControladorUsuario->confirmarCompra(compra,monto,pCliente,fechaActual);
+
+            productos.clear();
         }
             break;
         
@@ -458,7 +468,10 @@ int main() {
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
-            std::cout <<&ControladorUsuario->getVendedoresNoSuscrito(cliente);
+            std::list<std::string> vendnosus=ControladorUsuario->getVendedoresNoSuscrito(cliente);
+            for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
+                std::cout << &i;
+            }
 
             std::list<std::string> asuscribirse;
             
@@ -481,9 +494,10 @@ int main() {
             std::string cliente;
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
-
-            std::cout <<&ControladorUsuario->consultarNotificaciones(cliente);
-
+            std::list<DTNotificacion*> notis=ControladorUsuario->consultarNotificaciones(cliente);
+            for (auto i = notis.begin(); i !=notis.end(); ++i){
+                std::cout<<&i;
+            }
         }
         break;
         case 14:{ //eliminar Suscripciones
@@ -491,7 +505,11 @@ int main() {
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
-            std::cout <<&ControladorUsuario->getVendedoresSuscrito(cliente);
+             std::list <std::string*> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
+
+            for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
+                std::cout<<&i;
+            }
 
         } 
         break;

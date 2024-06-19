@@ -26,34 +26,11 @@ void ControladorUsuario::selectCliente(){}
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *cliente,DTFecha *fechaActual){
+void ControladorUsuario::confirmarCompra(std::list<CompraProducto* > productos,int monto,Cliente *cliente,DTFecha *fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
-    ManejadorProducto* mProducto;
-    mProducto=ManejadorProducto::getInstancia();
 
-    std::list<CompraProducto *> productos;
-
-    int monto=0;
-
-    for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
-
-        Producto* prod=mProducto->getProducto(it->first);
-        CompraProducto* relacion=new CompraProducto(prod,it->second);
-
-        productos.push_back(relacion);
-
-        int precioConvertido=prod->getPrecio();
-        if(mProducto->checkPromo(it->first)){//Chequea si esta en una promo
-            if(mProducto->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
-                precioConvertido=precioConvertido-(precioConvertido*mProducto->descPromo(prod));//Realiza el Descuento
-            }
-        }
-        monto+=precioConvertido*it->second;
-
-    }
     Compra* compra=new Compra(fechaActual,monto,cliente,productos);
-    mProducto->prodEnCompra(compra);// le baja el stock a los productos
     mUsuario->agregarCompraCliente(cliente,compra);
 }
 

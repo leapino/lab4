@@ -3,6 +3,7 @@
 
 #include "declaraciones/controladorProducto.h"
 
+
 ControladorProducto* ControladorProducto::instancia = NULL;
 
 ControladorProducto* ControladorProducto::getInstancia(){
@@ -27,11 +28,49 @@ std::map<int , DT2Producto*> ControladorProducto::listarProductos(std::string no
     return mp->listarProductos(lista);
 }
 
-std::set<DTProducto> ControladorProducto::getProductosDisp(){
+std::set<DTProducto*> ControladorProducto::getProductosDisp(){
     ManejadorProducto *mP;
     mP=ManejadorProducto::getInstancia();
-    std::set<DTProducto>listaProductosDisp=mP->getProductosDisp();
+    std::set<DTProducto*>listaProductosDisp=mP->getProductosDisp();
     return listaProductosDisp;
+}
+
+std::list<CompraProducto *>ControladorProducto::confirmarCompra(std::map<int, int> datos, int &monto){
+    ManejadorProducto *mProducto=ManejadorProducto::getInstancia();
+    std::list<CompraProducto *> productos;
+
+
+    for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
+
+        Producto* prod=mProducto->getProducto(it->first);
+
+        CompraProducto* relacion=new CompraProducto(prod,it->second);
+
+        productos.push_back(relacion);
+
+        mProducto->prodEnCompra(prod,it->second);
+
+        int precioConvertido=prod->getPrecio();
+        if(mProducto->checkPromo(it->first)){//Chequea si esta en una promo
+            if(mProducto->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
+                precioConvertido=precioConvertido-(precioConvertido*mProducto->descPromo(prod));//Realiza el Descuento
+            }
+        }
+        monto+=precioConvertido*it->second;
+
+    }
+    return productos;
+    
+}
+
+
+std::map<std::string, DTProducto *> ControladorProducto::getInfoProd(std::string producto){
+    ManejadorProducto *mP=ManejadorProducto::getInstancia();
+    return mP->getInfoProd(producto);
+}
+std::map<int, std::string> ControladorProducto::getProds(){
+    ManejadorProducto *mP=ManejadorProducto::getInstancia();
+    return mP->getProds();
 }
 
 bool ControladorProducto::hayStock(int codigoP, int cantidad){
@@ -39,6 +78,14 @@ bool ControladorProducto::hayStock(int codigoP, int cantidad){
     mP=ManejadorProducto::getInstancia();
     bool res=mP->hayStock(codigoP,cantidad);
     return ;
+}
+
+void ControladorProducto::prodEnCompra(std::map<int,int> prods){
+    ManejadorProducto*mP=ManejadorProducto::getInstancia();
+    for (auto i = prods.begin(); i!=prods.end(); i++){
+        Producto* prod=mP->getProducto(i->first);
+        mP->prodEnCompra(prod,i->second);       
+    }
 }
 
 bool ControladorProducto::checkPromo(int codigo){
