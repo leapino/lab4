@@ -10,6 +10,8 @@
 
 #include "usuario.h"
 #include "vendedor.h"
+#include "DTCompra.h"
+#include "DTCompraProducto.h"
 
 class ManejadorUsuario {
     private:
@@ -26,5 +28,10 @@ class ManejadorUsuario {
         std::map<int, Producto*> getListaProductos(std::string nombre);
         bool estaUsuario(std::string nombre);
         void agregarCompraCliente(Cliente *cliente,Compra* compra);
+        Usuario * getUsuario(std::string Usuario);
+        DTUsuario getInfoUsuario(Usuario* usuario);
+        DTCliente getInfoCliente(Cliente* usuario);
+        DTVendedor getInfoVendedor(Vendedor* usuario);
+        std::list <DTCompra> getInfoComprasCliente(Cliente *cliente);
 };
 #endif

@@ -22,7 +22,32 @@ Usuario* ManejadorUsuario::getUsuario(std::string n){
     return it->second;
 }
 
+DTUsuario ManejadorUsuario::getInfoUsuario(Usuario *usuario){
+    return DTUsuario(usuario->getNickname(),usuario->getFecha());
+}
+
+DTCliente ManejadorUsuario::getInfoCliente(Cliente *usuario){
+    return DTCliente(usuario->getNickname(),usuario->getFecha(),usuario->getDireccion(),usuario->getCiudad());
+}
+DTVendedor ManejadorUsuario::getInfoVendedor(Vendedor *usuario){
+    return DTVendedor(usuario->getNickname(),usuario->getFecha(),usuario->getRUT());
+}
+std::list<DTCompra> ManejadorUsuario::getInfoComprasCliente(Cliente *cliente){
+
+    /*std::list<DTCompra> res;
+
+    for (std::list<Compra*>::iterator it = cliente->getCompras().begin(); it!=cliente->getCompras().end(); ++it){
+        std::list<DTCompraProducto> prods;
+        std::list<CompraProducto*>::iterator it2=it;
+        for(=it->getCompraProductos().begin();it2!=it->getCompraProductos().end();++it2){
+
+        }
+        DTCompra compraactual=DTCompra(it->getFecha(),it->getMonto(),prods);
+    }  
+*/
+}
 std::set<std::string> ManejadorUsuario::getClientes(){
+
     std::set<std::string> listaClientes;
     for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
         if (it->second->esCliente()){
@@ -31,7 +56,6 @@ std::set<std::string> ManejadorUsuario::getClientes(){
     }
     return listaClientes;
 }
-
 
 std::map<int ,std::string> ManejadorUsuario::listarNicknamesV(){
     std::map<std::string, Usuario*>::iterator it;

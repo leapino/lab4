@@ -8,6 +8,7 @@
 #include <math.h>
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
+#include "DTCompra.h"
 
 class ControladorUsuario {
     private:
@@ -29,6 +30,10 @@ class ControladorUsuario {
         void agregarProductoCompra(int codigo, int cantidad);
         void confirmarCompra(std::map <int,int> datos,Cliente *cliente,DTFecha *fechaActual);
         Usuario * getUsuario(std::string Usuario);
+        DTUsuario getInfoUsuario(Usuario* usuario);
+        DTCliente getInfoCliente(Usuario* usuario);
+        DTVendedor getInfoVendedor(Usuario* usuario);
+        std::list<DTCompra> getInfoComprasCliente(Cliente* cliente);
         //ingresarNickname
         //suscribirVendedores
         //consultarNotificaciones

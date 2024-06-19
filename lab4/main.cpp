@@ -389,7 +389,40 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-        }            
+        } 
+        break;  
+        case 10:{//Enviar Producto
+
+        } 
+        break;
+        case 11:{//Expediente de usuario
+            std::map<int,std::string> nicknames=ControladorUsuario->listarNickUsuarios();
+
+            for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
+
+                std::cout << it->second;
+            }
+
+            std::cout <<"Ingrese el nickname del usuario";
+            std::string usuario;
+            std::cin >>usuario;
+
+            Usuario* elegido=ControladorUsuario->getUsuario(usuario);
+
+            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
+            std::cout << &infoUsuario;
+
+            Cliente* pElegido=dynamic_cast<Cliente*>(elegido);
+            if (pElegido!=nullptr){
+                std::cout<<&ControladorUsuario->getInfoCliente(pElegido);
+                
+            }else{
+                Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
+                std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
+            }
+
+        }
+        break;     
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";

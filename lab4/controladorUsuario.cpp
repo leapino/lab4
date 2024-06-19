@@ -56,6 +56,33 @@ void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *clie
     mUsuario->agregarCompraCliente(cliente,compra);
 }
 
+Usuario *ControladorUsuario::getUsuario(std::string Usuario)
+{
+    return nullptr;
+}
+
+DTUsuario ControladorUsuario::getInfoUsuario(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getInfoUsuario(usuario);
+}
+
+DTCliente ControladorUsuario::getInfoCliente(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    Cliente* pCliente=dynamic_cast<Cliente*> (usuario);
+    return mU->getInfoCliente(pCliente);
+}
+
+DTVendedor ControladorUsuario::getInfoVendedor(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (usuario);
+    return mU->getInfoVendedor(pVendedor);
+}
+
+std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getInfoComprasCliente(cliente);
+}
+
 
 Usuario * getUsuario(std::string Usuario){
     ManejadorUsuario* mUsuario;
