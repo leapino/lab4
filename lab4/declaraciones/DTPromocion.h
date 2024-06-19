@@ -1,5 +1,5 @@
-#ifndef DTPRODUCTO_H
-#define DTPRODUCTO_H
+#ifndef DTPROMOCION_H
+#define DTPROMOCION_H
 
 #include <string>
 #include "DTFecha.h"
@@ -11,7 +11,7 @@ struct DTPromocion {
        DTFecha fecha;
     public:
        DTPromocion();
-       DTPromocion(std::string,std::string,DTFecha);
+       DTPromocion(std::string nombre,std::string desc,DTFecha fecha);
        std::string getNombre();
        std::string getDesc();
        DTFecha getFecha();

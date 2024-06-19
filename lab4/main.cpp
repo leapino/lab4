@@ -277,11 +277,29 @@ switch (i){
             }
         }
         break;
-        case 6:{//Consultar Promocion
+        case 6:{//Consultar Promocion 
 
-            std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
-            std::string nombrePromo;
-            std::cin >>nombrePromo;
+            std::set <DTPromocion> promos=ControladorProducto->ListarPromos(ControladorFecha->getFechaActual());
+            for (std::set<DTPromocion>::iterator it = promos.begin(); it!=promos.end(); ++it){
+                std::cout<<&it;
+            }
+            
+
+           std::cout <<"Quieres consultar los productos y el Vendedor de alguna promocion \n"<<"1-Sí\n"<<"2-No\n";
+           int k;
+           std::cin >>k;
+
+           while (k){
+
+                std::cout <<"Ingresar nombre de la promocion que desea consultar\n";
+                std::string nombrePromo;
+                std::cin >>nombrePromo;
+                std::cout <<&ControladorProducto->getPromo(nombrePromo);
+                
+
+                std::cout <<"Quieres consultar de alguna otra promocion? \n"<<"1-Sí\n"<<"2-No\n";
+                std::cin >>k;
+           }
             
         }
             break;
@@ -316,7 +334,7 @@ switch (i){
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);
+                productoCompra.insert(codigo,cantidad);//deberiamos chequear si la cantidad que ingreso es menor o igual a la del stock
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;

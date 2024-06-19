@@ -20,22 +20,28 @@ class Cliente: public Usuario {
         std::list <Compra *> Compras;
         std::list <DTNotificacion *> Notificaciones;
     public:
+        //Creadores
         Cliente();
         Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud);
-        void crearLinkV(Vendedor *);
-        void eliminarVendedores();
-        std::list <DTNotificacion *> mostrarNotificaciones();
-        void notificar();
+        //getters
         std::string getDireccion();
         std::string getCiudad();
         std::list <Vendedor *> getVendedores();
         std::list <Compra *> getCompras();
         std::list <DTNotificacion *> getDTNotificaciones();
+        //setters
         void setDireccion(std::string dir);
         void setCiudad(std::string city);
         void setUnVendedor(Vendedor *ven);
         void setCompra(Compra *comp);
         void setDTNoti(DTNotificacion *noti);
+        //funciones
+        void crearLinkV(Vendedor *);
+        void eliminarVendedores();
+        std::list <DTNotificacion *> mostrarNotificaciones();
+        void notificar();
+        void agregarCompra(Compra* Compra);
+        //destructor
         ~Cliente();
 };
 

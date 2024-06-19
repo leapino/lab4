@@ -22,28 +22,23 @@ std::set<DTProducto> ManejadorProducto::getProductosDisp(){
         if(it->second->getStock()!=0){
             res.insert(it->second->getData());
         }
-    return res;
     }
 }
 bool ManejadorProducto::hayStock(int codigo, int cantidad){
     std::map<int,Producto*>::iterator it=this->Productos.find(codigo);
-    bool res=it->second->getStock()>=cantidad;
-    if (res){
-        //recordarProd(codigoP,cantidad);
-    }
-    return res;
+    return it->second->getStock()>=cantidad;
 }
 
 
 void ManejadorProducto::prodEnCompra(Compra* Compra){
-    std::list<CompraProducto*> Comprados=Compra->getcompraProductos();
 
-    for ( std::list<CompraProducto*>::iterator it=Comprados.begin(); it!=Comprados.end(); ++it){
+    for (std::list<CompraProducto*>::iterator it = Compra->getcompraProductos().begin(); it!=Compra->getcompraProductos().end(); ++it){
+
+        CompraProducto* compraProducto=*it;
+        Producto* prod=compraProducto->getProd();
         
+        prod->bajarStock(compraProducto->getCantidad());//bajar el Stock del Producto
     }
-    
-    //std::map<int,Producto*>::iterator it=this->Productos.find(codigoP);
-    //it->second->bajarStock(cantidad);
 }
 Producto *ManejadorProducto::getProducto(int c)
 {
@@ -90,6 +85,21 @@ void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string d
         producto->setPromo(productoPromo);
         promo->agregarProdProm(productoPromo);
     }
+}
+
+std::set<DTPromocion> ManejadorProducto::ListarPromos(DTFecha fechact){
+    std::set<DTPromocion> res;
+    for (std::map<std::string,Promocion*>::iterator it = this->Promociones.begin(); it!=this->Promociones.end();++it){
+
+        if(fechact.EsFechaMayor(it->second->getFecha(),fechact))
+            res.insert(DTPromocion(it->first,it->second->getDescripcion(),it->second->getFecha()));
+    }
+    return res;    
+}
+
+DTPromocion ManejadorProducto::getPromo(std::string nombre){
+    std::map<std::string,Promocion*>::iterator it=this->Promociones.find(nombre);
+    return DTPromocion(it->first,it->second->getDescripcion(),it->second->getFecha());
 }
 
 #endif
