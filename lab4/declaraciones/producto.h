@@ -49,6 +49,7 @@ class Producto {
         void setVendedor(Vendedor *);
         void setComentarios(int, Comentario *);
         void setPromo(ProductoPromocion*);
+        void bajarStock(int cantidad);
         //Destructor
         ~Producto();
 };

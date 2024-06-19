@@ -1,7 +1,14 @@
 #ifndef DTFECHA_CPP
 #define DTFECHA_CPP
 
+#include <iostream>
+
 #include "declaraciones/DTFecha.h"
+
+std::ostream &operator<<(std::ostream &salida, DTFecha *fecha){
+    salida << "Año:"<<fecha->getAnio()<<"\n Mes:"<<fecha->getMes()<<"\n Dia" <<fecha->getDia()<<"\n Hora"<<fecha->getHora()<<"\n Minuto"<<fecha->getMinuto();
+    return salida;
+}
 
 DTFecha::DTFecha(){
     this->dia=1;
@@ -62,5 +69,8 @@ void DTFecha::setMinuto(int minuto){
 DTFecha::~DTFecha() {
 }
 
+bool EsFechaMayor(DTFecha fecha1, DTFecha fecha2){
+    return ((fecha1.getAnio()>fecha2.getAnio())||((fecha1.getAnio()==fecha2.getAnio())&&(fecha1.getMes()>fecha2.getMes()))||((fecha1.getAnio()==fecha2.getAnio())&&(fecha1.getMes()==fecha2.getMes())&&(fecha1.getDia()>fecha2.getDia()))||((fecha1.getAnio()==fecha2.getAnio())&&(fecha1.getMes()==fecha2.getMes())&&(fecha1.getDia()==fecha2.getDia())&&(fecha1.getHora()>fecha2.getHora()))||((fecha1.getAnio()==fecha2.getAnio())&&(fecha1.getMes()==fecha2.getMes())&&(fecha1.getDia()==fecha2.getDia())&&(fecha1.getHora()==fecha2.getHora())&&(fecha1.getMinuto()>fecha2.getMinuto())));    
+}
 
 #endif

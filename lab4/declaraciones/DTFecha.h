@@ -32,5 +32,7 @@ struct DTFecha{
         void setAnio(int);  
         void setHora(int);
         void setMinuto(int);
+        //Funciones
+        bool EsFechaMayor(DTFecha fecha1, DTFecha fecha2);
 };
 #endif

@@ -81,4 +81,8 @@ void Producto::setPromo(ProductoPromocion* promocion){
 ProductoPromocion* Producto::getPromo(){
     return this->promo;
 }
+
+void Producto::bajarStock(int cantidad){
+    this->stock=this->stock-cantidad;
+}
 #endif 

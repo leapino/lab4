@@ -277,7 +277,19 @@ switch (i){
             }
         }
         break;
-        case 6:{//Consultar Promocion
+        case 6:{//Consultar Promocion 
+
+            std::set <DTPromocion> promos=ControladorProducto->ListarPromos(ControladorFecha->getFechaActual());
+            for (std::set<DTPromocion>::iterator it = promos.begin(); it!=promos.end(); ++it){
+                std::cout<<&it;
+            }
+            
+
+           std::cout <<"Quieres consultar los productos y el Vendedor de alguna promocion \n"<<"1-Sí\n"<<"2-No\n";
+           int k;
+           std::cin >>k;
+
+           while (k){
 
             std::map<std::string, DTPromocion*> promociones = ControladorProducto->getPromos();
             std::map<std::string, DTPromocion*>::iterator it;
@@ -321,7 +333,7 @@ switch (i){
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);
+                productoCompra.insert(codigo,cantidad);//deberiamos chequear si la cantidad que ingreso es menor o igual a la del stock
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
@@ -390,15 +402,6 @@ switch (i){
             }
             int usu;
             std::cin >>usu;
-
-            std::map<int ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
-            std::map<int ,std::string>::iterator it2;
-            std::cout<<"Selecciona un comentario por su identificador:\n";
-            for (it = comentarios.begin(); it2 != comentarios.end(); it2++){
-                std::cout<< it2->first <<")" << " " << it2->second << "\n";
-            }
-            int id;
-            std::cin >>id;
         }            
 
         default:
