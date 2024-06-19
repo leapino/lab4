@@ -60,7 +60,7 @@ int main() {
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
-        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -136,13 +136,17 @@ int main() {
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
-
-            //Aca hay q crear la instancia de Controlador Usuario
-
-            std::vector<DTUsuario> infousuarios;//=ctrlUsuario.listarUsuarios();
-            for(int j=0;j<infousuarios.size();j++)
-                j=j+1;//esta aca para q no salten errores
-                //std::cout <<infousuarios[j]->toString();Falta hacer el toString
+              std::list<Usuario*> lista = ControladorUsuario->ListaUsuarios();
+              for (std::list<Usuario*>::iterator it = lista.begin(); it != lista.end(); it++){
+                   if((*it)->esCliente()){
+                      DTCliente client = ControladorUsuario->getInfoCliente(*it);
+                      std::cout<<& client;
+                    }
+                   else{
+                      DTVendedor vend = ControladorUsuario->getInfoVendedor(*it);
+                      std::cout<<& vend;
+                   }  
+            }
         }
             break;
 
@@ -403,7 +407,94 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-        }            
+            std::map<int ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::map<int ,std::string>::iterator it2;
+            std::cout<<"Selecciona un comentario por su identificador:\n";
+            for (it = comentarios.begin(); it2 != comentarios.end(); it2++){
+                std::cout<< it2->first <<")" << " " << it2->second << "\n";
+            }
+            int id;
+            std::cin >>id;
+            ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
+        } 
+        break;  
+        case 10:{//Enviar Producto
+
+        } 
+        break;
+        case 11:{//Expediente de usuario
+            std::map<int,std::string> nicknames=ControladorUsuario->listarNickUsuarios();
+
+            for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
+
+                std::cout << it->second;
+            }
+
+            std::cout <<"Ingrese el nickname del usuario";
+            std::string usuario;
+            std::cin >>usuario;
+
+            Usuario* elegido=ControladorUsuario->getUsuario(usuario);
+
+            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
+            std::cout << &infoUsuario;
+
+            Cliente* pElegido=dynamic_cast<Cliente*>(elegido);
+            if (pElegido!=nullptr){
+                std::cout<<&ControladorUsuario->getInfoCliente(pElegido);
+                std::cout<<&ControladorUsuario->getInfoComprasCliente(pElegido);
+                
+            }else{
+                Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
+                std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
+                std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
+                std::cout<<&ControladorUsuario->getPromoVigente(pElegido);//Falta Crear el Link entre promocion y vendedor
+            }
+
+        }
+        break;
+        case 12:{//Suscribirse a notis
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->getVendedoresNoSuscrito(cliente);
+
+            std::list<std::string> asuscribirse;
+            
+            std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir";
+
+            int i=1;
+            while (i){
+                std::string agregar;
+                std::cin >> agregar;
+                asuscribirse.push_front(agregar);
+
+                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No"<<"1-Sí";
+                std::cin >>i;
+            }
+            ControladorUsuario->suscribirVendedores(asuscribirse,cliente);
+
+        }
+        break; 
+        case 13:{//Consulta de Notificaciones
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->consultarNotificaciones(cliente);
+
+        }
+        break;
+        case 14:{ //eliminar Suscripciones
+            std::string cliente;
+            std::cout<<"Ingrese el nickname del cliente";
+            std::cin >>cliente;
+
+            std::cout <<&ControladorUsuario->getVendedoresSuscrito(cliente);
+
+        } 
+        break;
 
         default:
             std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";

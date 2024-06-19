@@ -1,6 +1,12 @@
 #include <string>
+#include <iostream>
 
 #include "DTCliente.h"
+
+std::ostream &operator<<(std::ostream &salida, DTCliente* client){
+    salida << "Nickname" << client->getDTNickname() << "\n Fecha de Nacimiento: " << &client->getDTNacimiento() << "\n Direccion: " << client->getDTAdress() << "\n Ciudad: " << client->getDTCiudad();
+    return salida;
+}
 
 DTCliente::DTCliente(){
 }

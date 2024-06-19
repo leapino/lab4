@@ -7,4 +7,7 @@ Vendedor::Vendedor(std::string nick,std::string pass, DTFecha fecha, std::string
     this->RUT = RUT;
 }
 
+std::string Vendedor::getRUT(){
+     return this->RUT;
+}
 #endif

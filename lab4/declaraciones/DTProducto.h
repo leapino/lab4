@@ -18,7 +18,8 @@ class DTProducto {
         Categoria categoria;
     public:
         //Creadores
-        DTProducto(int,int,int,std::string,std::string,Categoria);
+        DTProducto();
+        DTProducto(int codigo,int stock,int precio,std::string nombre,std::string descripcion,Categoria categoria);
         //Getters
         int getCodigo();
         int getStock();

@@ -2,6 +2,7 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
+#include "controladorUsuario.h"
 
 
 
@@ -56,6 +57,62 @@ void ControladorUsuario::confirmarCompra(std::map<int, int> datos, Cliente *clie
     mUsuario->agregarCompraCliente(cliente,compra);
 }
 
+Usuario *ControladorUsuario::getUsuario(std::string Usuario)
+{
+    return nullptr;
+}
+
+DTUsuario ControladorUsuario::getInfoUsuario(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getInfoUsuario(usuario);
+}
+
+DTCliente ControladorUsuario::getInfoCliente(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    Cliente* pCliente=dynamic_cast<Cliente*> (usuario);
+    return mU->getInfoCliente(pCliente);
+}
+
+DTVendedor ControladorUsuario::getInfoVendedor(Usuario *usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (usuario);
+    return mU->getInfoVendedor(pVendedor);
+}
+
+std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getInfoComprasCliente(cliente);
+}
+
+std::list<DTProducto> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getProdEnVenta(vendedor);
+}
+
+std::list<DTPromocion> ControladorUsuario::getPromoVigente(Vendedor *vendedor){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getPromoVigente(vendedor);
+}
+
+std::list<std::string> ControladorUsuario::getVendedoresNoSuscrito(std::string cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getVendedoresNoSuscrito(cliente);
+}
+
+void ControladorUsuario::suscribirVendedores(std::list<std::string> Vendedores, std::string cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    mU->suscribirVendedores(Vendedores,cliente);
+}
+
+std::list<DTNotificacion*> ControladorUsuario::consultarNotificaciones(std::string cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->consultarNotificaciones(cliente);
+}
+
+std::list<std::string *> ControladorUsuario::getVendedoresSuscrito(std::string cliente){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getVendedoresSuscrito(cliente);
+}
 
 Usuario * getUsuario(std::string Usuario){
     ManejadorUsuario* mUsuario;
@@ -98,4 +155,11 @@ void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         Usuario* usuario = getUsuario(nombreU);
         usuario->borrarComentario(id);
 }
+
+std::list<Usuario*> ControladorUsuario::ListaUsuarios(){
+        ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->ListarUsuarios();
+}
+
 #endif
