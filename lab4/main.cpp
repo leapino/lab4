@@ -505,11 +505,25 @@ int main() {
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
-             std::list <std::string*> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
+            std::list <std::string*> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
 
             for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
                 std::cout<<&i;
             }
+
+            std::list<std::string> aeliminar;
+            int i;
+            std::cout << "Desea Desuscribirse de algun \n"<<"0-No\n"<<"1-Sí";
+            std::cin >>i;
+            while(i){
+                std::string vendedor;
+                std::cout <<"Ingrese el nickname del vendedor";
+                std::cin >> vendedor;
+
+                ControladorUsuario->eliminarSusVendedores(cliente,vendedor);
+
+                std::cout << "Desea Desuscribirse de algun \n"<<"0-No\n"<<"1-Sí";
+            }            
 
         } 
         break;

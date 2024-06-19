@@ -18,4 +18,10 @@ std::map<int, Producto*> Vendedor::getProductos(){
 std::list<Cliente *> Vendedor::getClientes(){
     return this->Clientes;
 }
+
+
+void Vendedor::crearLinkC(Cliente * cliente){
+    this->Clientes.push_front(cliente);
+}
+
 #endif

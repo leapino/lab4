@@ -43,7 +43,7 @@ class ControladorUsuario {
         std::list<std::string*> getVendedoresSuscrito(std::string cliente);
         std::list<Usuario*> ListaUsuarios();
         //seleccionarVendedores
-        //eliminarSusVendedores
+        void eliminarSusVendedores(std::string cliente, std::string vendedor);
 };
 
 #endif

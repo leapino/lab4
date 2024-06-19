@@ -2,7 +2,7 @@
 #define MANEJADORUSUARIO_CPP
 
 #include "declaraciones/manejadorUsuario.h"
-#include "manejadorUsuario.h"
+
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
@@ -179,6 +179,13 @@ std::list<Usuario*> ManejadorUsuario::ListarUsuarios(){
        usuarios.push_back(it->second);     
      }
      return usuarios;
+}
+
+void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
+    Cliente* pCliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (this->getUsuario(vendedor));
+    pCliente->crearLinkV(pVendedor);
+    pVendedor->crearLinkC(pCliente);
 }
 
 #endif
