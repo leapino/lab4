@@ -141,7 +141,7 @@ void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
         usuario->borrarComentario(id);
 }
 
-std::list<Usuario*> ControladorUsuario::ListaUsuarios(){
+std::list<DTUsuario> ControladorUsuario::ListaUsuarios(){
         ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     return mu->ListarUsuarios();

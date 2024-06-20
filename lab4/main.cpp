@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include <bits/stdc++.h>
-#include "declaraciones/DTFecha.h"
+#include "../declaraciones/DTFecha.h"
 #include "../declaraciones/DTUsuario.h"
 #include "../declaraciones/DTCliente.h"
 #include "../declaraciones/DTVendedor.h"
@@ -19,7 +19,6 @@
 #include "../declaraciones/cliente.h"
 #include "../declaraciones/vendedor.h"
 #include "../declaraciones/categoria.h"
-#include "../declaraciones/comentario.h"
 
 
 DTFecha leerFecha(){
@@ -156,15 +155,13 @@ int main() {
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
-              std::list<Usuario*> lista = ControladorUsuario->ListaUsuarios();
-              for (std::list<Usuario*>::iterator it = lista.begin(); it != lista.end(); it++){
-                   if((*it)->esCliente()){
-                      DTCliente client = ControladorUsuario->getInfoCliente(*it);
-                      std::cout<<& client;
+              std::list<DTUsuario> lista = ControladorUsuario->ListaUsuarios();
+              for (std::list<DTUsuario>::iterator it = lista.begin(); it != lista.end(); it++){
+                   if(typeid(it) == typeid(DTCliente)){
+                     std::cout<<& it;
                     }
                    else{
-                      DTVendedor vend = ControladorUsuario->getInfoVendedor(*it);
-                      std::cout<<& vend;
+                      std::cout<<& it;
                    }  
             }
         }
@@ -270,9 +267,9 @@ int main() {
             std::map<int, DT2Producto*>::iterator it2;
             std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:";
             std::map<int, int> infoProd;
-
+            
             for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
-                std::cout<< numVend <<")" << " " << it2->second->getNombre() << "\n";
+                std::cout<< numVend <<")" << " " << it2->second << "\n";
             }
             int numProd = 1;
             int cantMin;
@@ -387,7 +384,7 @@ int main() {
         }
             break;
         
-        case 8:{//Dejar Comentario Falta ver como vamos a hacer con los comentarios para mi le sacamos el ida  la mierda.
+        case 8:{//Dejar Comentario
 
             std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
             for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
@@ -462,13 +459,12 @@ int main() {
         case 10:{//Enviar Producto
             //~ listar nicknames de todos los vendedores. DONE
 
-            //~ seleccionar uno (el sistema luego lista los productos que vende ese vendedor que tienen al menos una compra pendiente de envio). DONE
+            //~ seleccionar uno (el sistema luego lista los productos que vende ese vendedor que tienen al menos una compra pendiente de envio).
 
-            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas (nick del cliente, fecha de compra) 
-            //para aquellas compras que tienen pendientes de enviar el producto.
+            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas
+            //(nick del cliente, fecha de compra) para aquellas compras que tienen pendientes de enviar el producto.
 
             //~ el admin selecciona un elemento de esa lista y el sistema marca al producto en la compra como enviado.
-
             std::list<std::string *> vendedores = ControladorUsuario->getVendedores();
             std::cout << "Seleccione un vendedor por su nombre \n";
 
@@ -479,21 +475,8 @@ int main() {
             std::string nombreVendedor;
             std::cin >> nombreVendedor;
 
-            std::map<int, DT2Producto *> productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
-            std::cout << "Seleccione un producto por su número. \n";
-
-            for(std::map<int, DT2Producto *>::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
-                std::cout<< it->first <<")" << " " << it->second->getNombre() << "\n";
-            }
             
-            int numProdNoEnviado;
-            std::cin >> numProdNoEnviado;
 
-        
-
-
-
-            
             
             
         }
@@ -510,10 +493,7 @@ int main() {
             std::string usuario;
             std::cin >>usuario;
 
-            DTFecha* fechaActual=new DTFecha;
-            fechaActual=&ControladorFecha->getFechaActual();
-
-            Usuario* elegido=ControladorUsuario->getUsuario(usuario);//cambiar
+            Usuario* elegido=ControladorUsuario->getUsuario(usuario);
 
             DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
             std::cout << &infoUsuario;
@@ -527,7 +507,7 @@ int main() {
                 Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
                 std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
                 std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
-                std::cout<<&ControladorProducto->getPromoVigente(usuario,(*fechaActual));
+                std::cout<<&ControladorUsuario->getPromoVigente(pElegido);//Falta Crear el Link entre promocion y vendedor
             }
 
         }

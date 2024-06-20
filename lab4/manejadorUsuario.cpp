@@ -31,6 +31,7 @@ DTUsuario ManejadorUsuario::getInfoUsuario(Usuario *usuario){
 DTCliente ManejadorUsuario::getInfoCliente(Cliente *usuario){
     return DTCliente(usuario->getNickname(),usuario->getFecha(),usuario->getDireccion(),usuario->getCiudad());
 }
+
 DTVendedor ManejadorUsuario::getInfoVendedor(Vendedor *usuario){
     return DTVendedor(usuario->getNickname(),usuario->getFecha(),usuario->getRUT());
 }
@@ -193,13 +194,20 @@ void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Produc
     
 }
 
-std::list<Usuario*> ManejadorUsuario::ListarUsuarios(){
+std::list<DTUsuario> ManejadorUsuario::ListarUsuarios(){
      std::map<std::string, Usuario*>::iterator it;
-     std::list<Usuario*> usuarios;
+     std::list<DTUsuario> usuario;
+     DTUsuario sec;
      for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
-       usuarios.push_back(it->second);     
+       if (it->second->esVendedor()){
+          sec = getInfoVendedor(it->second->getVend());
+       }
+       else{
+          sec = getInfoCliente(it->second->getCliente());
+       }
+       usuario.push_back(sec);     
      }
-     return usuarios;
+     return usuario;
 }
 
 void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
