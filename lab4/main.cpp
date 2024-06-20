@@ -12,6 +12,7 @@
 #include "../declaraciones/DTUsuario.h"
 #include "../declaraciones/DTCliente.h"
 #include "../declaraciones/DTVendedor.h"
+#include "../declaraciones/DTProducto.h"
 #include "../declaraciones/controladorUsuario.h"
 #include "../declaraciones/controladorProducto.h"
 #include "../declaraciones/controladorFecha.h"
@@ -266,13 +267,13 @@ int main() {
             }
             int numVend;
             std::cin >> numVend;
-            std::map<int, DT2Producto*> productosVend = ControladorProducto->listarProductos(nicknames.find(numVend)->second);
-            std::map<int, DT2Producto*>::iterator it2;
+            std::map<int, DT2Producto> productosVend = ControladorProducto->listarProductos(nicknames.find(numVend)->second);
+            std::map<int, DT2Producto>::iterator it2;
             std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:";
             std::map<int, int> infoProd;
 
             for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
-                std::cout<< numVend <<")" << " " << it2->second->getNombre() << "\n";
+                std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
             }
             int numProd = 1;
             int cantMin;
@@ -281,8 +282,8 @@ int main() {
                 std::cin>> numProd;
                 std::cout <<"\n";
                 if (numProd > 0){
-                    DT2Producto* prod = productosVend.find(numProd)->second;
-                    bool tienePromo = ControladorProducto->checkPromo(prod->getCodigo());
+                    DT2Producto prod = productosVend.find(numProd)->second;
+                    bool tienePromo = ControladorProducto->checkPromo(prod.getCodigo());
                     if (!tienePromo){
                         std::cout<< "Cantidad mínima:\n";
                         std::cin>> cantMin;
@@ -300,7 +301,7 @@ int main() {
                 std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
                 std::cin>> confirm;
                 if (confirm == 1){
-                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd, nicknames.find(numVend)->second);
+                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
                     std::cout<< "\nSe agregó la promoción\n";
                 }if (confirm == 0){
                     std::cout<< "\nNo se agregó la promoción\n";
@@ -324,14 +325,14 @@ int main() {
                 std::cout <<"Ingresar nombre de la promocion que desea consultar:\n";
                 std::string nombrePromo;
                 std::cin >>nombrePromo;
-                std::set<DTProducto*> productos = ControladorProducto->getProductoPromo(nombrePromo);
-                DTVendedor* vendedor = ControladorProducto->vendedorPromo(nombrePromo);
-                std::set<DTProducto*>::iterator it2;
+                std::set<DTProducto> productos = ControladorProducto->getProductoPromo(nombrePromo);
+                DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
+                std::set<DTProducto>::iterator it2;
                 std::cout << "Vendedor que ofrece la promoción:\n";
-                std::cout << vendedor;
-                std::cout << "Productos de la promoción:\n";
-                for (it2 = productos.begin(); it2 != productos.end(); ++it){
-                    std::cout << *it2;
+                std::cout << vendedor.getDTNickname();
+                std::cout << "\nProductos de la promoción:\n";
+                for (it2 = productos.begin(); it2 != productos.end(); it++){
+                    std::cout << &it2;
                 }
             }
         }

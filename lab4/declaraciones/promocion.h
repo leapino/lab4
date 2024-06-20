@@ -20,23 +20,20 @@ class Promocion {
         std::string descripcion;
         DTFecha fecha;
         std::set <ProductoPromocion*> prodProm;
-        Vendedor* vendedor;
     public:
     //Creadores
     Promocion();
-    Promocion(std::string,std::string,DTFecha,Vendedor*);
+    Promocion(std::string,std::string,DTFecha);
     //Getters
     std::string getNombre();
     std::string getDescripcion();
     DTFecha getFecha();
     std::set <ProductoPromocion*> getProdProm();
-     Vendedor* getVendedor();
     //Setters
     void setNombre(std::string);
     void setDescripcion(std::string);
     void setFecha(DTFecha);
     void agregarProdProm(ProductoPromocion*);
-    void setVendedor(Vendedor*);
    
 };
 

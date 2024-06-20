@@ -32,15 +32,15 @@ class ManejadorProducto {
         void prodEnCompra(Producto* prod,int cantidad);
         Producto* getProducto(int);
         std::map<std::string, DTProducto *> getInfoProd(std::string producto);
-        std::map<int, DT2Producto*> listarProductos(std::map<int, Producto*>);
+        std::map<int, DT2Producto> listarProductos(std::map<int, Producto*>);
         //Promociones
-        void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>,Vendedor*);
+        void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
         bool checkPromo(int);
         int cantMinPromo(Producto* prod);//pre: estar en una promo
         float descPromo(Producto* prod);//Pre estar en una promo
         std::map<std::string, Promocion*> getPromos();
-        std::set<DTProducto*> getProductoPromo(std::string);
-        DTVendedor* vendedorPromo(std::string);
+        std::set<DTProducto> getProductoPromo(std::string);
+        DTVendedor vendedorPromo(DTProducto);
         std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
         void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
         std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);

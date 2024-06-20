@@ -11,11 +11,6 @@ std::ostream &operator<<(std::ostream &salida, DTVendedor* vend){
     return salida;
 }
 
-std::ostream &operator<<(std::ostream &salida, DTVendedor* vend){
-    salida << "Nickname: " << vend->getDTNickname() << "\nRUT: " << vend->getDTRUT() << "\n";
-    return salida;
-}
-
 DTVendedor::DTVendedor()
 {
 }

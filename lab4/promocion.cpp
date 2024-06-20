@@ -13,11 +13,10 @@
     {
     }
 
-Promocion::Promocion(std::string nombre,std::string desc,DTFecha fecha, Vendedor* vendedor){
+Promocion::Promocion(std::string nombre,std::string desc,DTFecha fecha){
    this->nombre = nombre;
    this->descripcion = desc;
    this->fecha = fecha;
-   this->vendedor = vendedor;
 }
 
 std::string Promocion::getNombre(){
@@ -48,18 +47,9 @@ void Promocion::agregarProdProm(ProductoPromocion* pp){
    this->prodProm.insert(pp);
 }
 
-void Promocion::setVendedor(Vendedor * vend)
-{
-   this->vendedor=vend;
-}
-
 std::set<ProductoPromocion*> Promocion::getProdProm(){
    return this->prodProm;
 }
 
-Vendedor *Promocion::getVendedor()
-{
-    return this->vendedor;
-}
 
 #endif

@@ -19,7 +19,7 @@ std::map<int ,std::string> ControladorProducto::listarNicknamesV(){
     return mu->listarNicknamesV();
 }
 
-std::map<int , DT2Producto*> ControladorProducto::listarProductos(std::string nombre){
+std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nombre){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     ManejadorProducto* mp;
@@ -94,12 +94,10 @@ bool ControladorProducto::checkPromo(int codigo){
     return mp->checkPromo(codigo);
 }
 
-void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd, std::string vendedor){
+void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    ManejadorUsuario* mu;
-    mu = ManejadorUsuario::getInstancia();
-    mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd, mu->getVendedor(vendedor));
+    mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
 }
 
 std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
@@ -118,16 +116,16 @@ std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
     return dtpromociones;
 }
 
-std::set<DTProducto*> ControladorProducto::getProductoPromo(std::string nombrePromo){
+std::set<DTProducto> ControladorProducto::getProductoPromo(std::string nombrePromo){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
     mp->getProductoPromo(nombrePromo);
 }
 
-DTVendedor* ControladorProducto::vendedorPromo(std::string promo){
+DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    return mp->vendedorPromo(promo);
+    return mp->vendedorPromo(producto);
 }
 
 void ControladorProducto::escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom){
