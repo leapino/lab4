@@ -32,6 +32,7 @@ DTFecha Usuario::getFecha(){
     return this->fechaNacimiento;
 }
 
+
 Cliente* Usuario::getCliente(){
     Cliente* eCliente;
     eCliente=dynamic_cast<Cliente*> (this);
@@ -43,6 +44,7 @@ Vendedor* Usuario::getVend(){
     eVend=dynamic_cast<Vendedor*> (this);
     return eVend;
 }
+
 
 void Usuario::setComentarios(std::map<std::string, Comentario *> comm)
 {

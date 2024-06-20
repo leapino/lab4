@@ -18,7 +18,7 @@ class Cliente: public Usuario {
         std::string ciudad;
         std::list <Vendedor *> Vendedores;
         std::list <Compra *> Compras;
-        std::list <DTNotificacion *> Notificaciones;
+        std::list <DTNotificacion > Notificaciones;
     public:
         //Creadores
         Cliente();
@@ -28,13 +28,13 @@ class Cliente: public Usuario {
         std::string getCiudad();
         std::list <Vendedor *> getVendedores();
         std::list <Compra *> getCompras();
-        std::list <DTNotificacion *> getDTNotificaciones();
+        std::list <DTNotificacion > getDTNotificaciones();
         //setters
         void setDireccion(std::string dir);
         void setCiudad(std::string city);
         void setUnVendedor(Vendedor *ven);
         void setCompra(Compra *comp);
-        void setDTNoti(DTNotificacion *noti);
+        void setDTNoti(std::list<DTNotificacion> noti);
         //funciones
         void crearLinkV(Vendedor * Vendedor);
         void eliminarVendedores();

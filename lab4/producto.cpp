@@ -48,14 +48,14 @@ Categoria Producto::getCategoria(){
    return this->categoria;
     }
 
-DTProducto *Producto::getData()
+DTProducto Producto::getData()
 {
-    DTProducto *nuevo = new DTProducto(this->codigo, this->stock, this->precio, this->nombre, this->descripcion, this->categoria);
+    DTProducto nuevo = DTProducto(this->codigo, this->stock, this->precio, this->nombre, this->descripcion, this->categoria);
     return nuevo;
 }
 
-DT2Producto *Producto::getData2()
-{   DT2Producto* nosequequerianhaceraca=new DT2Producto(0,"h");
+DT2Producto Producto::getData2()
+{   DT2Producto nosequequerianhaceraca=DT2Producto(this->codigo,this->nombre);
     return nosequequerianhaceraca;
 }
 

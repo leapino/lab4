@@ -29,21 +29,22 @@ class ControladorUsuario {
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
-        std::map<int, DT2Producto*> getProductosNoEnv(std::string nomVend);
+        std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         void agregarProductoCompra(int codigo, int cantidad);
-        void confirmarCompra(std::list<CompraProducto* > productos,int monto,Cliente *cliente,DTFecha *fechaActual);
+        void confirmarCompra(std::map <int,int > productos,int &monto,std::string cliente,DTFecha fechaActual);
         Usuario * getUsuario(std::string Usuario);
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Usuario* usuario);
         DTVendedor getInfoVendedor(Usuario* usuario);
-        std::list<DTCompra*> getInfoComprasCliente(Cliente* cliente);
-        std::list<DTProducto*> getProdEnVenta(Vendedor* vendedor);
+        std::list<DTCompra> getInfoComprasCliente(Cliente* cliente);
+        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
         std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
         //ingresarNickname
         void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
-        std::list<DTNotificacion*> consultarNotificaciones(std::string cliente);
-        std::list<std::string*> getVendedoresSuscrito(std::string cliente);
+        std::list<DTNotificacion> consultarNotificaciones(std::string cliente);
+        std::list<std::string> getVendedoresSuscrito(std::string cliente);
         std::list<DTUsuario> ListaUsuarios();
+        std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         //seleccionarVendedores
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         Vendedor* getVendedor(std::string v);

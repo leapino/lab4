@@ -11,12 +11,14 @@
 #include "usuario.h"
 #include "cliente.h"
 #include "producto.h"
+#include "promocion.h"
 
 class Vendedor: public Usuario {
     private:
         std::string RUT;
         std::map<int, Producto*> Productos;
         std::list<Cliente *> Clientes;
+        std::map <std::string,Promocion*> promociones;
     public:
         //Creadores
         Vendedor();
@@ -26,10 +28,12 @@ class Vendedor: public Usuario {
         std::string getRUT();
         std::map<int, Producto*> getProductos();
         std::list<Cliente *> getClientes();
+        std::map<std::string,Promocion*> getPromociones();
         //Setters
         void setRUT(std::string);
         void setProductos(std::map<int, Producto*>);
         void setClientes(std::list<Cliente *>);
+        void setPromociones(std::map<std::string,Promocion*> promos);
         //Funciones
         void crearLinkC(Cliente * cliente);
         void desuscribirse(Cliente); 

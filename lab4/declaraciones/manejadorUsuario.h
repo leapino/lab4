@@ -42,15 +42,16 @@ class ManejadorUsuario {
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);
-        std::list <DTCompra*> getInfoComprasCliente(Cliente *cliente);
-        std::list<DTProducto*> getProdEnVenta(Vendedor* vendedor);
+        std::list <DTCompra> getInfoComprasCliente(Cliente *cliente);
+        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
         std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
         void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
-        std::list <DTNotificacion*> consultarNotificaciones(std::string cliente);
-        std::list<std::string*> getVendedoresSuscrito(std::string cliente);
+        std::list <DTNotificacion> consultarNotificaciones(std::string cliente);
+        std::list<std::string> getVendedoresSuscrito(std::string cliente);
         std::list<DTUsuario> ListarUsuarios();
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
+        std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         
-        std::map<int, DT2Producto*> getProductosNoEnv(std::string nomVend);
+        std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
 };
 #endif

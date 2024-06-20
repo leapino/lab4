@@ -53,6 +53,10 @@ void Promocion::setVendedor(Vendedor * vend)
    this->vendedor=vend;
 }
 
+bool Promocion::esPromoVigente(DTFecha fechaactual)
+{
+    return this->fecha>fechaactual;
+}
 std::set<ProductoPromocion*> Promocion::getProdProm(){
    return this->prodProm;
 }

@@ -8,7 +8,7 @@ Cliente::Cliente() {
     this->ciudad = "";
     this->Vendedores = {nullptr};
     this->Compras = {nullptr};
-    this->Notificaciones = {nullptr};
+    this->Notificaciones;
 }
 
 Cliente::Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud):Usuario(nick, pass, fechnaci) {
@@ -20,7 +20,7 @@ void Cliente::crearLinkV(Vendedor * vend) {
     this->Vendedores.push_front(vend);
 }
 
-std::list<DTNotificacion *> Cliente::getDTNotificaciones() {
+std::list<DTNotificacion > Cliente::getDTNotificaciones() {
     return this->Notificaciones;
 }
 
@@ -65,8 +65,8 @@ void Cliente::setCompra(Compra *comp) {
 }
 
 
-void Cliente::setDTNoti(DTNotificacion *noti) {
-    this->Notificaciones.push_front(noti);
+void Cliente::setDTNoti(std::list<DTNotificacion> noti) {
+    this->Notificaciones=noti;
 }
 
 
@@ -91,7 +91,7 @@ Cliente::~Cliente() {
     for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
         this->Vendedores.erase(it);
     }
-    for (std::list<DTNotificacion*>::iterator it = this->Notificaciones.begin();it != this->Notificaciones.end(); ++it){
+    for (std::list<DTNotificacion>::iterator it = this->Notificaciones.begin();it != this->Notificaciones.end(); ++it){
         this->Notificaciones.erase(it);
     }
     for (std::list<Compra*>::iterator it = this->Compras.begin();it != this->Compras.end(); ++it){

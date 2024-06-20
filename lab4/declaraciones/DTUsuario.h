@@ -1,7 +1,6 @@
 #ifndef DTUSUARIO_H
 #define DTUSUARIO_H
-#include "../declaraciones/DTCliente.h"
-#include "../declaraciones/DTVendedor.h"
+
 #include "../declaraciones/DTFecha.h"
 class DTUsuario {
     private:

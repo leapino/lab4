@@ -10,20 +10,20 @@ std::ostream &operator<<(std::ostream &salida, DTFecha *fecha){
     return salida;
 }
 
-bool operator>( const DTFecha& lhs, const DTFecha& rhs) {
-    if (lhs.getAnio()!= rhs.getAnio()) {
-        return lhs.getAnio() > rhs.getAnio();
+bool operator>( const DTFecha &lhs, const DTFecha &rhs){
+    if (lhs.anio != rhs.anio) {
+        return lhs.anio > rhs.anio;
     }
-    if (lhs.getMes() != rhs.getMes()) {
-        return lhs.getMes() > rhs.getMes();
+    if (lhs.mes != rhs.mes) {
+        return lhs.mes > rhs.mes;
     }
-    if (lhs.getDia() != rhs.getDia()) {
-        return lhs.getDia() > rhs.getDia();
+    if (lhs.dia != rhs.dia) {
+        return lhs.dia > rhs.dia;
     }
-    if (lhs.getHora() != rhs.getHora()) {
-        return lhs.getHora() > rhs.getHora();
+    if (lhs.hora != rhs.hora) {
+        return lhs.hora > rhs.hora;
     }
-    return lhs.getMinuto() > rhs.getMinuto();
+    return lhs.minuto > rhs.minuto;
 }
 
 DTFecha::DTFecha(){
@@ -42,23 +42,23 @@ DTFecha::DTFecha(int dia, int mes, int anio,int hora,int minuto){
     this->minuto = minuto;
 }
 
-int DTFecha::getDia() const{
+int DTFecha::getDia() {
     return this->dia;
 }
 
-int DTFecha::getMes() const{
+int DTFecha::getMes() {
     return this->mes;
 }
 
-int DTFecha::getAnio()const{
+int DTFecha::getAnio(){
     return this->anio;
 }
 
-int DTFecha::getHora()const {
+int DTFecha::getHora() {
     return this->hora;
 }
 
-int DTFecha::getMinuto()const {
+int DTFecha::getMinuto() {
     return this->minuto;
 }
 

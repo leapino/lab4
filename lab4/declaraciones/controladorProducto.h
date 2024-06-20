@@ -20,22 +20,20 @@ class ControladorProducto {
         static ControladorProducto *getInstancia();
         //void ingrDatosPromocion(std::string nombreP,std::string descripcionP,float descuentoP,DTFecha fechaP);
         std::map<int ,std::string> listarNicknamesV(); //Devuelve un map<int, std::string> con los nicknames de los vendedores
-        std::map<int, DT2Producto*> listarProductos(std::string RUTVendedor); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
+        std::map<int, DT2Producto> listarProductos(std::string RUTVendedor); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
         //void agregarProducto(int codigo,int cantMin);
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>,std::string);
-        std::set<DTProducto*> getProductosDisp();
-        std::set<DTProducto*> getProductosDisp();
-        std::map<std::string,DTProducto*> getInfoProd(std::string producto);//Devuelve un DT del producto y en la casilla de string el nickname del vendedor
+        std::set<DTProducto> getProductosDisp();
+        std::map<std::string,DTProducto> getInfoProd(std::string producto);//Devuelve un DT del producto y en la casilla de string el nickname del vendedor
         std::map<int,std::string> getProds();//Retorna el codigo y el nombre de todos los productos
         bool hayStock(int codigoP,int cantidad);
         void prodEnCompra(std::map<int,int> prods);
-        std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto);
+        //std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto); se paso esta funcion al controlador Usuario
         bool checkPromo(int);
-        std::map<std::string, DTPromocion*> getPromos();
-        std::set<DTProducto*> getProductoPromo(std::string);
-        DTVendedor* vendedorPromo(std::string);
-        void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
-        std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
+        std::map<std::string, DTPromocion> getPromos();
+        std::set<DTProducto> getProductoPromo(std::string);
+        DTVendedor vendedorPromo(std::string);
+        void escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom);
 };
 
 #endif
