@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 #include <bits/stdc++.h>
-#include "../declaraciones/DTFecha.h"
+#include "declaraciones/DTFecha.h"
 #include "../declaraciones/DTUsuario.h"
 #include "../declaraciones/DTCliente.h"
 #include "../declaraciones/DTVendedor.h"
