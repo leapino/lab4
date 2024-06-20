@@ -8,17 +8,18 @@
 #include <string>
 #include <vector>
 #include <bits/stdc++.h>
-#include "../declaraciones/DTFecha.h"
-#include "../declaraciones/DTUsuario.h"
-#include "../declaraciones/DTCliente.h"
-#include "../declaraciones/DTVendedor.h"
-#include "../declaraciones/controladorUsuario.h"
-#include "../declaraciones/controladorProducto.h"
-#include "../declaraciones/controladorFecha.h"
-#include "../declaraciones/usuario.h"
-#include "../declaraciones/cliente.h"
-#include "../declaraciones/vendedor.h"
-#include "../declaraciones/categoria.h"
+#include "declaraciones/DTFecha.h"
+#include "declaraciones/DTUsuario.h"
+#include "declaraciones/DTCliente.h"
+#include "declaraciones/DTVendedor.h"
+#include "declaraciones/controladorUsuario.h"
+#include "declaraciones/controladorProducto.h"
+#include "declaraciones/controladorFecha.h"
+#include "declaraciones/usuario.h"
+#include "declaraciones/cliente.h"
+#include "declaraciones/vendedor.h"
+#include "declaraciones/categoria.h"
+#include "declaraciones/comentario.h"
 
 
 DTFecha leerFecha(){

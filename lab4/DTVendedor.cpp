@@ -1,7 +1,7 @@
 #ifndef DTVENDEDOR_CPP
 #define DTVENDEDOR_CPP
 
-#include "../declaraciones/DTVendedor.h"
+#include "declaraciones/DTVendedor.h"
 #include <iostream>
 #include <string>
 #include <iostream>

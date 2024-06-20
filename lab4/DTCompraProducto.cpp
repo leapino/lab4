@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-#include "../declaraciones/DTCompraProducto.h"
+#include "declaraciones/DTCompraProducto.h"
 
 
 std::ostream &operator<<(std::ostream &salida, DTCompraProducto *prod){

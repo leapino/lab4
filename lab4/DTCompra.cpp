@@ -1,6 +1,6 @@
 #ifndef DTCOMPRA_CPP
 #define DTCOMPRA_CPP
-#include "../declaraciones/DTCompra.h"
+#include "declaraciones/DTCompra.h"
 
 DTCompra::DTCompra(){}
 
