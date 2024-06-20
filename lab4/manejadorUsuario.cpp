@@ -188,11 +188,11 @@ void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string ve
     pVendedor->crearLinkC(pCliente);
 }
 
-std::map<int, DT2Producto *> ManejadorUsuario::getProductosNoEnv(Vendedor *vendedor) {
+std::map<int, DT2Producto *> ManejadorUsuario::getProductosNoEnv(std::string nomVend) {
     std::map<int, DT2Producto *> resu;
     int num = 1;
 
-    std::list<Cliente *> clientes = vendedor->getClientes();
+    std::list<Cliente *> clientes = getVendedor(nomVend)->getClientes();
     for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {
         
         std::list<Compra *> compras = (*cliente)->getCompras();
@@ -213,4 +213,11 @@ std::map<int, DT2Producto *> ManejadorUsuario::getProductosNoEnv(Vendedor *vende
     return resu;
 
 }
+
+Vendedor *ManejadorUsuario::getVendedor(std::string v) {
+    std::map<std::string, Usuario*>::iterator it;
+    it = this->Usuarios.find(v);
+    return dynamic_cast<Vendedor *>(it->second);
+}
+
 #endif

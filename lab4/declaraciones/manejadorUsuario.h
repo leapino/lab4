@@ -31,7 +31,7 @@ class ManejadorUsuario {
         std::map<int, Producto*> getListaProductos(std::string nombre);
         bool estaUsuario(std::string nombre);
         void agregarCompraCliente(Cliente *cliente,Compra* compra);
-        Vendedor* getVendedor(std::string);
+        Vendedor* getVendedor(std::string v);
         Usuario * getUsuario(std::string Usuario);
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
@@ -46,6 +46,6 @@ class ManejadorUsuario {
         std::list<Usuario*> ListarUsuarios();
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         
-        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
+        std::map<int, DT2Producto*> getProductosNoEnv(std::string nomVend);
 };
 #endif
