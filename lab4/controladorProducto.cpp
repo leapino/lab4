@@ -115,4 +115,20 @@ void ControladorProducto::agregarPromoVendedor(std::string promo,std::string ven
     mu->getVendedor(vendedor)->addPromo(mp->getPromos().find(promo)->second);
 }
 
+void ControladorProducto::altaDeProducto(std::string nombre,int precio,int stock,std::string desc,Categoria categoria){
+       Producto* nuevoProducto =new Producto(stock,precio,nombre,desc,categoria);       
+       ManejadorProducto* mp = ManejadorProducto::getInstancia();
+       mp->addProducto(nuevoProducto);
+}
+
+void ControladorProducto::linkVendProd(std::string nombV){
+       ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
+       Vendedor* vendedor = mu->getVendedor(nombV);
+       ManejadorProducto* mp = ManejadorProducto::getInstancia();
+       Producto* prod = mp->finalProd();
+       prod->setVendedor(vendedor);
+       int cod = prod->getCodigo();
+       vendedor->setProductos(cod,prod);
+}
+
 #endif

@@ -46,5 +46,7 @@ class ManejadorProducto {
         void escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, int &monto);
+        Producto* finalProd();
+        void addProducto(Producto*);
 };      
 #endif

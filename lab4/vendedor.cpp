@@ -43,10 +43,10 @@ void Vendedor::setRUT(std::string rut)
     this->RUT=rut;
 }
 
-void Vendedor::setProductos(std::map<int, Producto *> prods)
-{   
-    this->Productos=prods;
+void Vendedor::setProductos(int codigo, Producto* prod){   
+    this->Productos[codigo]=prod;
 }
+
 
 void Vendedor::setClientes(std::list<Cliente *> client)
 {

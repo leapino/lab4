@@ -170,7 +170,15 @@ int main() {
             break;
 
         case 3:{//alta de Producto
-            
+           std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
+            std::map<int ,std::string>::iterator it;
+            std::cout<<"Selecciona un vendedor por su número:\n";
+            for (it = nicknames.begin(); it != nicknames.end(); it++){
+                std::cout<< it->first <<")" << " " << it->second << "\n";
+            }
+            int numVend;
+            std::cin >> numVend;
+            std::string nombreV = nicknames.find(numVend)->second;
 
             std::string nomProd;
             std::cout << "Nombre del producto a ingresar\n";
@@ -196,25 +204,10 @@ int main() {
             int j;
             std::cout <<"Categoria de su producto\n"<<"1-Ropa\n"<<"2-Electrodomestico\n"<<"3-Otro\n";
             std::cin >>j;
-            
-            //preguntar en caso de q el usuario erre es factible o deberiamos tomar como que no
 
-            switch (j){
-            case 1:
-                categoria=ropa;
-                break;
-            case 2:
-                categoria=electrodomestico;
-                break;
-            case 3:
-                categoria=otro;
-            default:
-                std::cout<<"Numero ingresado no válido";
-                break;
-            }
-
-            //ctrlUsuario.altaDeProducto(nomProd,precio,stock,descripProd,categoria);
-        }
+            ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
+            ControladorProducto->linkVendProd(nombreV);
+        }    
         break;
         
         case 4:{//Consultar Producto

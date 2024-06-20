@@ -38,6 +38,7 @@ class Vendedor: public Usuario {
         //Funciones
         void crearLinkC(Cliente * cliente);
         void desuscribirse(Cliente); 
+        void setProductos(int, Producto*);
         
 };
 #endif

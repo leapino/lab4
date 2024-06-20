@@ -56,5 +56,6 @@ class Producto {
         ~Producto();
         //funcion
         void agregarComentario(int id,Comentario* comment);
+        Producto(int,int,std::string,std::string,Categoria);
 };
 #endif

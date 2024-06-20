@@ -172,4 +172,19 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
     }
     return productos;
 }
+
+void ManejadorProducto::addProducto(Producto* p){
+    int u = 1;
+    if(this->Productos.empty() == false){
+       u = this->Productos.end()->first;
+       u++;
+    } 
+    p->setCodigo(u);
+    this->Productos.insert({u,p});
+}
+
+Producto* ManejadorProducto::finalProd(){
+    return this->Productos.end()->second;
+}    
+
 #endif
