@@ -34,35 +34,33 @@ DTCliente ManejadorUsuario::getInfoCliente(Cliente *usuario){
 DTVendedor ManejadorUsuario::getInfoVendedor(Vendedor *usuario){
     return DTVendedor(usuario->getNickname(),usuario->getFecha(),usuario->getRUT());
 }
-std::list<DTCompra> ManejadorUsuario::getInfoComprasCliente(Cliente *cliente){
+std::list<DTCompra*> ManejadorUsuario::getInfoComprasCliente(Cliente *cliente){
 
-    std::list<DTCompra> res;
+    std::list<DTCompra*> res;
 
     for (std::list<Compra*>::iterator it = cliente->getCompras().begin(); it!=cliente->getCompras().end(); ++it){
-        std::list<DTCompraProducto> prods;
+        std::list<DTCompraProducto*> prods;
         for(std::list<CompraProducto*>::iterator it2=(*it)->getcompraProductos().begin();it2!=(*it)->getcompraProductos().end();++it2){
-            DTProducto amostrar=DTProducto((*it2)->getProd()->getCodigo(),(*it2)->getProd()->getStock(),(*it2)->getProd()->getPrecio(),(*it2)->getProd()->getNombre(),(*it2)->getProd()->getDescripcion(),(*it2)->getProd()->getCategoria());
-            prods.push_back(DTCompraProducto((*it2)->getEnviado(),(*it2)->getCantidad(),amostrar));
+            DTProducto* amostrar=new DTProducto((*it2)->getProd()->getCodigo(),(*it2)->getProd()->getStock(),(*it2)->getProd()->getPrecio(),(*it2)->getProd()->getNombre(),(*it2)->getProd()->getDescripcion(),(*it2)->getProd()->getCategoria());
+            DTCompraProducto* aingresar=new DTCompraProducto((*it2)->getEnviado(),(*it2)->getCantidad(),amostrar);
+            prods.push_back(aingresar);
         }
-        DTCompra compraactual=DTCompra((*it)->getFecha(),(*it)->getMonto(),prods);
+        DTCompra * compraactual=new DTCompra((*it)->getFecha(),(*it)->getMonto(),prods);
         res.push_back(compraactual);
     }
     return res;  
 }
 
-std::list<DTProducto> ManejadorUsuario::getProdEnVenta(Vendedor * vendedor){
-    std::list<DTProducto> res;
-    for (std::map<int,Producto*>::iterator it =vendedor->getProductos().begin(); it!=vendedor->getProductos().end(); ++it){
-        res.push_back(DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria()));
+std::list<DTProducto*> ManejadorUsuario::getProdEnVenta(Vendedor * vendedor){
+    std::list<DTProducto*> res;
+    for (std::map<int,Producto*>::iterator it =vendedor->getProductos().begin(); it!=vendedor->getProductos().end(); ++it){;
+        DTProducto * apushear= new DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());
+        res.push_back(apushear);
     }
     
 return res;
 }
 
-std::list<DTPromocion> ManejadorUsuario::getPromoVigente(Vendedor *Vendedor){
-
-    return ;
-}
 
 std::list<std::string> ManejadorUsuario::getVendedoresNoSuscrito(std::string cliente){
     std::list<std::string> res;
@@ -170,6 +168,29 @@ std::map<int ,std::string> ManejadorUsuario::listarNickUsuarios(){
 
 void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
     cliente->agregarCompra(compra);
+}
+
+void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto* codProd, std::string usuario){
+    Usuario* user=this->getUsuario(usuario);
+    Comentario* agregar=new Comentario(user,&fecha,codProd,comentario);
+    std::string id;
+    int converter;
+    if(!user->getComentarios().empty()){
+        converter=std::stoi(user->getComentarios().rbegin()->first);
+        converter++;
+        id=std::to_string(converter);
+    }else{
+        id=1;
+    }
+    user->getComentarios().insert(std::make_pair(id,agregar));
+}
+
+void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, std::string idCom, std::string usuario){
+    Usuario* user=this->getUsuario(usuario);
+    Comentario* agregar=new Comentario(user,&fecha,codProd,comentario);
+    std::string id;
+    int converter;
+    
 }
 
 std::list<Usuario*> ManejadorUsuario::ListarUsuarios(){

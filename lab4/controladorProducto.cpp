@@ -134,4 +134,9 @@ void ControladorProducto::escribirCom(std::string comment,DTFecha* fecha,int cod
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
     mP->escribirCom(comment,fecha,codProd,usuario,idCom);    
 }
+
+std::list<DTPromocion*> ControladorProducto::getPromoVigente(std::string vendedor,DTFecha fechaActual){
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    return mP->getPromoVigente(vendedor,fechaActual);
+}
 #endif

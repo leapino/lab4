@@ -3,19 +3,24 @@
 
 #include "declaraciones/usuario.h"
 
-// Usuario::Usuario(){
-//     this->nickname = "";
-//     this->password = "";
-//     this->fechaNacimiento = NULL;
-// }
+Usuario::Usuario(){}
+
 
 Usuario::Usuario(std::string nick,std::string pass, DTFecha fecha){
+
+
     this->nickname = nick;
     this->password = pass;
     this->fechaNacimiento = fecha;
 }
 
-std::string Usuario::getNickname(){
+std::map<std::string, Comentario *> Usuario::getComentarios()
+{
+    return this->comentarios;
+}
+
+std::string Usuario::getNickname()
+{
     return this->nickname;
 }
 
@@ -27,7 +32,13 @@ DTFecha Usuario::getFecha(){
     return this->fechaNacimiento;
 }
 
-void Usuario::setNickname(std::string nick){
+void Usuario::setComentarios(std::map<std::string, Comentario *> comm)
+{
+    this->comentarios=comm;
+}
+
+void Usuario::setNickname(std::string nick)
+{
     this->nickname = nick;
 }
 

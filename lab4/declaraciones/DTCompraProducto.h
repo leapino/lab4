@@ -16,18 +16,18 @@ class DTCompraProducto{
     private:
         bool enviado;
         int cantidad;
-        DTProducto prod;
+        DTProducto* prod;
     public:
         //Creadores
         DTCompraProducto();
-        DTCompraProducto(bool enviado, int cantidad, DTProducto prods);
+        DTCompraProducto(bool enviado, int cantidad, DTProducto *prods);
         //Getters
         bool getEnviado();
         int getCantidad();
-        DTProducto getProd();
+        DTProducto* getProd();
         //Setters
         void setEnviado(bool enviado);
         void setCantidad(int cantidad);
-        void setProd(DTProducto prod);
+        void setProd(DTProducto* prod);
 };
 #endif

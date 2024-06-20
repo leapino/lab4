@@ -48,9 +48,25 @@ Categoria Producto::getCategoria(){
    return this->categoria;
     }
 
-DTProducto *Producto::getData(){
-    DTProducto * nuevo=new DTProducto(this->codigo,this->stock,this->precio,this->nombre,this->descripcion,this->categoria);
+DTProducto *Producto::getData()
+{
+    DTProducto *nuevo = new DTProducto(this->codigo, this->stock, this->precio, this->nombre, this->descripcion, this->categoria);
     return nuevo;
+}
+
+DT2Producto *Producto::getData2()
+{   DT2Producto* nosequequerianhaceraca=new DT2Producto(0,"h");
+    return nosequequerianhaceraca;
+}
+
+std::map<int, Comentario*> Producto::getComentarios()
+{
+    return this->comentarios;
+}
+
+Vendedor *Producto::getVendedor()
+{
+    return this->vendedor;
 }
 
 void Producto::setCodigo(int codigo){
@@ -77,6 +93,16 @@ void Producto::setCategoria(Categoria categoria){
    this->categoria = categoria;
     }
 
+    void Producto::setVendedor(Vendedor * vendedor)
+    {
+        this->vendedor=vendedor;
+    }
+
+    void Producto::setComentarios(std::map<int, Comentario *> comments)
+    {
+        this->comentarios=comments;
+    }
+
 void Producto::setPromo(ProductoPromocion* promocion){
     this->promo = promocion;
 }
@@ -89,6 +115,9 @@ void Producto::bajarStock(int cantidad){
     this->stock=this->stock-cantidad;
 }
 
+Producto::~Producto()
+{
+}
 
 void Producto::agregarComentario(int id, Comentario *comment){
     /*auto it=this->comentarios.find(id);

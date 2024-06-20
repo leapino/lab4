@@ -1,7 +1,7 @@
 #ifndef DTVENDEDOR_CPP
 #define DTVENDEDOR_CPP
 
-#include "DTVendedor.h"
+#include "../declaraciones/DTVendedor.h"
 #include <iostream>
 #include <string>
 #include <iostream>
@@ -16,7 +16,12 @@ std::ostream &operator<<(std::ostream &salida, DTVendedor* vend){
     return salida;
 }
 
-DTVendedor::DTVendedor(std::string Nickname, DTFecha fecha,std::string rut){
+DTVendedor::DTVendedor()
+{
+}
+
+DTVendedor::DTVendedor(std::string Nickname, DTFecha fecha, std::string rut)
+{
     this->DTRUT=rut;
 }
 

@@ -30,12 +30,14 @@ class Promocion {
     std::string getDescripcion();
     DTFecha getFecha();
     std::set <ProductoPromocion*> getProdProm();
+     Vendedor* getVendedor();
     //Setters
     void setNombre(std::string);
     void setDescripcion(std::string);
     void setFecha(DTFecha);
     void agregarProdProm(ProductoPromocion*);
-    Vendedor* getVendedor();
+    void setVendedor(Vendedor*);
+   
 };
 
 #endif

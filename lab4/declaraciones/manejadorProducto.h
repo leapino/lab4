@@ -15,6 +15,7 @@
 #include "promocion.h"
 #include "DTPromocion.h"
 #include "comentario.h"
+#include "DTFecha.h"
 
 class ManejadorProducto {
     private:
@@ -42,5 +43,6 @@ class ManejadorProducto {
         DTVendedor* vendedorPromo(std::string);
         std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
         void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
+        std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
 };
 #endif

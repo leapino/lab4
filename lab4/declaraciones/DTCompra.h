@@ -19,7 +19,7 @@ class DTCompra{
     public:
         //Creadores
         DTCompra();
-        DTCompra(DTFecha *fecha, int monto, std::list <DTCompraProducto> prods);
+        DTCompra(DTFecha *fecha, int monto, std::list <DTCompraProducto*> prods);
         //Getters
         DTFecha* getFecha();
         int getMonto();
@@ -27,6 +27,6 @@ class DTCompra{
         //Setters
         void setFecha(DTFecha *fecha);
         void setMonto(int mont);
-        void setCantidad(int cantidad);
+        void setProds(std::list<DTCompraProducto*> prods);
 };
 #endif

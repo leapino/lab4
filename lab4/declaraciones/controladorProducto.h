@@ -18,10 +18,10 @@ class ControladorProducto {
         ControladorProducto();
     public:
         static ControladorProducto *getInstancia();
-        void ingrDatosPromocion(std::string nombreP,std::string descripcionP,float descuentoP,DTFecha fechaP);
+        //void ingrDatosPromocion(std::string nombreP,std::string descripcionP,float descuentoP,DTFecha fechaP);
         std::map<int ,std::string> listarNicknamesV(); //Devuelve un map<int, std::string> con los nicknames de los vendedores
         std::map<int, DT2Producto*> listarProductos(std::string RUTVendedor); //Devuelve un set de DT2Producto con codigo y nombre asociado a los productos del vendedor
-        void agregarProducto(int codigo,int cantMin);
+        //void agregarProducto(int codigo,int cantMin);
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>,std::string);
         std::set<DTProducto*> getProductosDisp();
         std::set<DTProducto*> getProductosDisp();
@@ -35,6 +35,7 @@ class ControladorProducto {
         std::set<DTProducto*> getProductoPromo(std::string);
         DTVendedor* vendedorPromo(std::string);
         void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
+        std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
 };
 
 #endif

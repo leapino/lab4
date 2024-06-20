@@ -27,13 +27,12 @@ class Usuario {
         std::string getPassword();
         DTFecha getFecha();
         //Setters
-        void setComentarios(int,Comentario*);
+        void setComentarios(std::map<std::string,Comentario*>);
         void setNickname(std::string);
         void setPassword(std::string);
         void setFecha(DTFecha);
         //Funciones
         virtual bool esVendedor();
-        virtual bool esUsuario(Usuario);
         virtual bool esCliente();
         std::map<std::string, std::string> listarComentarios();
         void borrarComentario(std::string id);

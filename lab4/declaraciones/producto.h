@@ -12,6 +12,7 @@
 #include "vendedor.h"
 #include "comentario.h"
 #include "productoPromocion.h"
+#include "DT2Producto.h"
 
 class Producto {
     private:
@@ -38,7 +39,7 @@ class Producto {
         Vendedor *getVendedor();
         DTProducto *getData();
         DT2Producto *getData2();
-        std::map<int,Comentario> getComentarios();
+        std::map<int,Comentario*> getComentarios();
         ProductoPromocion* getPromo();
         //Setters
         void setCodigo(int);
@@ -48,7 +49,7 @@ class Producto {
         void setDescripcion(std::string);
         void setCategoria(Categoria);
         void setVendedor(Vendedor *);
-        void setComentarios(int, Comentario *);
+        void setComentarios(std::map<int,Comentario*>);
         void setPromo(ProductoPromocion*);
         void bajarStock(int cantidad);
         //Destructor

@@ -17,7 +17,6 @@ class DTUsuario {
     std::string getDTNickname();
     DTFecha getDTNacimiento();
     //Setters
-    void setDTesCliente(bool check);
     void setDTNickname(std::string nick);
     void setDTNacimiento(DTFecha fecha);
 };

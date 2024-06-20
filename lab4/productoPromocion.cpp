@@ -2,7 +2,6 @@
 #define PRODUCTOPROMOCION_CPP
 
 #include "declaraciones/productoPromocion.h"
-#include "productoPromocion.h"
 
 ProductoPromocion::ProductoPromocion(){
       this->descuento = 0;

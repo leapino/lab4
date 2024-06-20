@@ -148,4 +148,18 @@ void ManejadorProducto::escribirCom(std::string comment,DTFecha *fecha,int codPr
     //agregar comentarioa producto ,si el id es 0 es com nuevo si es mayor es respuesta
 }
 
+std::list<DTPromocion*> ManejadorProducto::getPromoVigente(std::string vendedor,DTFecha fechaActual){
+    std::list<DTPromocion*> res;
+    for (auto i = this->Promociones.begin(); i !=Promociones.end(); ++i){
+        std::string nickvendedor=i->second->getVendedor()->getNickname();
+        if (nickvendedor==vendedor){
+            DTFecha fechaPromo=i->second->getFecha();
+            if (&fechaPromo>&fechaActual){
+                DTPromocion* agregarpromo=new DTPromocion(i->second->getNombre(),i->second->getDescripcion(),i->second->getFecha());
+                res.push_front(agregarpromo);
+            }
+        }
+    }
+    return res;
+}
 #endif

@@ -3,8 +3,16 @@
 
 #include "declaraciones/vendedor.h"
 
+    Vendedor::Vendedor()
+    {
+    }
+
 Vendedor::Vendedor(std::string nick,std::string pass, DTFecha fecha, std::string RUT):Usuario(nick,pass,fecha){
     this->RUT = RUT;
+}
+
+Vendedor::~Vendedor()
+{
 }
 
 std::string Vendedor::getRUT(){
@@ -19,8 +27,23 @@ std::list<Cliente *> Vendedor::getClientes(){
     return this->Clientes;
 }
 
+void Vendedor::setRUT(std::string rut)
+{
+    this->RUT=rut;
+}
 
-void Vendedor::crearLinkC(Cliente * cliente){
+void Vendedor::setProductos(std::map<int, Producto *> prods)
+{   
+    this->Productos=prods;
+}
+
+void Vendedor::setClientes(std::list<Cliente *> client)
+{
+    this->Clientes=client;
+}
+
+void Vendedor::crearLinkC(Cliente *cliente)
+{
     this->Clientes.push_front(cliente);
 }
 

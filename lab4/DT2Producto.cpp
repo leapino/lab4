@@ -5,6 +5,7 @@
 
 #include "../declaraciones/DT2Producto.h"
 
+
 std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
     salida << "Código: " << prod->getCodigo() << "\n Nombre: " << prod->getNombre();
     return salida;
@@ -22,5 +23,9 @@ int DT2Producto::getCodigo(){
 
 std::string DT2Producto::getNombre(){
     return this->nombre;
+}
+
+DT2Producto::~DT2Producto()
+{
 }
 #endif

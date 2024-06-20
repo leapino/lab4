@@ -1,3 +1,6 @@
+#ifndef DTUSUARIO_CPP
+#define DTUSUARIO_CPP
+
 #include "DTUsuario.h"
 
 #include <iostream>
@@ -37,3 +40,4 @@ void DTUsuario::setDTNacimiento(DTFecha fecha){
     this->DTNacimiento=fecha;
 }
 
+#endif

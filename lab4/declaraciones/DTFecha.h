@@ -21,18 +21,18 @@ struct DTFecha{
         //Destructor
         ~DTFecha();
         //Getters
-        int getDia();
-        int getMes();
-        int getAnio();
-        int getHora();
-        int getMinuto();
+        int getDia() const;
+        int getMes() const;
+        int getAnio() const;
+        int getHora() const;
+        int getMinuto() const;
         //Setters
         void setDia(int);
         void setMes(int);
         void setAnio(int);  
         void setHora(int);
         void setMinuto(int);
+        
         //Funciones
-        bool EsFechaMayor(DTFecha fecha1, DTFecha fecha2);
 };
 #endif

@@ -17,6 +17,9 @@ Comentario::Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom, st
     this->texto = comment;
 }
 
+std::map<std::string, Comentario *> Comentario::getRespuestas(){
+    return this->respuestas;
+}
 std::string Comentario::getTexto() {
     return this->texto;
 }
@@ -41,6 +44,9 @@ std::string Comentario::getIdcom() {
     return this->idcom;
 }
 
+void Comentario::setRespuestas(std::map<std::string,Comentario*> respuesta){
+    this->respuestas= respuesta;
+}
 
 void Comentario::setTexto(std::string text) {
     this->texto = text;

@@ -7,6 +7,10 @@
 #include <math.h>
 #include <map>
 #include <set>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <vector>
 
 #include "usuario.h"
 #include "vendedor.h"
@@ -31,14 +35,15 @@ class ManejadorUsuario {
         std::map<int, Producto*> getListaProductos(std::string nombre);
         bool estaUsuario(std::string nombre);
         void agregarCompraCliente(Cliente *cliente,Compra* compra);
+        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string usuario);
+        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
         Vendedor* getVendedor(std::string v);
         Usuario * getUsuario(std::string Usuario);
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);
-        std::list <DTCompra> getInfoComprasCliente(Cliente *cliente);
-        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
-        std::list<DTPromocion> getPromoVigente(Vendedor* Vendedor);
+        std::list <DTCompra*> getInfoComprasCliente(Cliente *cliente);
+        std::list<DTProducto*> getProdEnVenta(Vendedor* vendedor);
         std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
         void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
         std::list <DTNotificacion*> consultarNotificaciones(std::string cliente);

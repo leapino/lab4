@@ -19,6 +19,7 @@
 #include "../declaraciones/cliente.h"
 #include "../declaraciones/vendedor.h"
 #include "../declaraciones/categoria.h"
+#include "../declaraciones/comentario.h"
 
 
 DTFecha leerFecha(){
@@ -386,7 +387,7 @@ int main() {
         }
             break;
         
-        case 8:{//Dejar Comentario
+        case 8:{//Dejar Comentario Falta ver como vamos a hacer con los comentarios para mi le sacamos el ida  la mierda.
 
             std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
             for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
@@ -509,7 +510,10 @@ int main() {
             std::string usuario;
             std::cin >>usuario;
 
-            Usuario* elegido=ControladorUsuario->getUsuario(usuario);
+            DTFecha* fechaActual=new DTFecha;
+            fechaActual=&ControladorFecha->getFechaActual();
+
+            Usuario* elegido=ControladorUsuario->getUsuario(usuario);//cambiar
 
             DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
             std::cout << &infoUsuario;
@@ -523,7 +527,7 @@ int main() {
                 Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
                 std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
                 std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
-                std::cout<<&ControladorUsuario->getPromoVigente(pElegido);//Falta Crear el Link entre promocion y vendedor
+                std::cout<<&ControladorProducto->getPromoVigente(usuario,(*fechaActual));
             }
 
         }

@@ -5,7 +5,6 @@
 
 
 
-
 ControladorUsuario* ControladorUsuario::instancia = NULL;
 
 ControladorUsuario* ControladorUsuario::getInstancia(){
@@ -23,6 +22,10 @@ std::set<std::string> ControladorUsuario::listarClientes(){
 }
 
 void ControladorUsuario::selectCliente(){}
+
+/*std::set<DTProducto> ControladorUsuario::mostrarProductos(){
+    return std::set<DTProducto>();
+}*/
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
@@ -56,19 +59,14 @@ DTVendedor ControladorUsuario::getInfoVendedor(Usuario *usuario){
     return mU->getInfoVendedor(pVendedor);
 }
 
-std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
+std::list<DTCompra*> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getInfoComprasCliente(cliente);
 }
 
-std::list<DTProducto> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
+std::list<DTProducto*> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getProdEnVenta(vendedor);
-}
-
-std::list<DTPromocion> ControladorUsuario::getPromoVigente(Vendedor *vendedor){
-    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    return mU->getPromoVigente(vendedor);
 }
 
 std::list<std::string> ControladorUsuario::getVendedoresNoSuscrito(std::string cliente){
@@ -117,15 +115,25 @@ bool ControladorUsuario::estaVacio(){
           estaV = false;
     }
 
-std::map<int ,std::string> ControladorUsuario::listarNickUsuarios(){
-    ManejadorUsuario* mu;
-    mu = ManejadorUsuario::getInstancia();
-    return mu->listarNickUsuarios();
+bool ControladorUsuario::estaUsuario(std::string nombre){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return (mU->getUsuario(nombre)!=nullptr);
 }
+std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
+    {
+        ManejadorUsuario *mu;
+        mu = ManejadorUsuario::getInstancia();
+        return mu->listarNickUsuarios();
+    }
 
 std::map<std::string, std::string> ControladorUsuario::listarComentario(std::string nombreU){
        Usuario* usuario = getUsuario(nombreU);
        return usuario->listarComentarios();
+}
+
+void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto* codProd, std::string usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    mU->escribirCom(comentario,fecha,codProd,usuario);
 }
 
 void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
