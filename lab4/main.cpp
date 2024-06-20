@@ -407,7 +407,7 @@ int main() {
                 //ctrlUsuario.escribirComNuevo(comentario);                
             }
         }
-            break;
+        break;
         case 9:{//Eliminar Comentario
             std::map<int ,std::string> nicknames = ControladorUsuario->listarNickUsuarios();
             std::map<int ,std::string>::iterator it;
@@ -429,9 +429,28 @@ int main() {
         } 
         break;  
         case 10:{//Enviar Producto
+            //~ listar nicknames de todos los vendedores. DONE
 
-        } 
-        break;
+            //~ seleccionar uno (el sistema luego lista los productos que vende ese vendedor que tienen al menos una compra pendiente de envio).
+
+            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas
+            //(nick del cliente, fecha de compra) para aquellas compras que tienen pendientes de enviar el producto.
+
+            //~ el admin selecciona un elemento de esa lista y el sistema marca al producto en la compra como enviado.
+            std::list<std::string *> vendedores = ControladorUsuario->getVendedores();
+            std::cout << "Seleccione un vendedor por su nombre \n";
+
+            std::list<std::string *>::iterator it;
+            for(it = vendedores.begin(); it != vendedores.end(); it++) {
+                std::cout << (*it) << "\n";
+            }
+            std::string nombreVendedor;
+            std::cin >> nombreVendedor;
+
+            
+            
+        }
+        break; 
         case 11:{//Expediente de usuario
             std::map<int,std::string> nicknames=ControladorUsuario->listarNickUsuarios();
 

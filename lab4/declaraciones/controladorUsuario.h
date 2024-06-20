@@ -26,7 +26,8 @@ class ControladorUsuario {
         void eliminarComentario(int id,std::string nombreU);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
-        std::set <DTProducto*>mostrarProductos();
+        std::set <DTProducto>mostrarProductos();
+        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
         void agregarProductoCompra(int codigo, int cantidad);
         void confirmarCompra(std::list<CompraProducto* > productos,int monto,Cliente *cliente,DTFecha *fechaActual);
         Usuario * getUsuario(std::string Usuario);

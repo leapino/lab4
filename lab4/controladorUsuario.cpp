@@ -143,4 +143,11 @@ void ControladorUsuario::eliminarSusVendedores(std::string cliente, std::string 
     mU->eliminarSusVendedores(cliente,vendedor);
 }
 
+std::map<int, DT2Producto *> ControladorUsuario::getProductosNoEnv(Vendedor *vendedor) {
+    ManejadorUsuario *mU;
+    mU = ManejadorUsuario::getInstancia();
+    std::map<int, DT2Producto *> productosNoEnviados = mU->getProductosNoEnv(vendedor);
+    return productosNoEnviados;
+}
+
 #endif

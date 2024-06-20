@@ -46,5 +46,6 @@ class ManejadorUsuario {
         std::list<Usuario*> ListarUsuarios();
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         
+        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
 };
 #endif
