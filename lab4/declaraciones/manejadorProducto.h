@@ -41,7 +41,7 @@ class ManejadorProducto {
         float descPromo(Producto* prod);//Pre estar en una promo
         std::map<std::string, Promocion*> getPromos();
         std::set<DTProducto> getProductoPromo(std::string);
-        DTVendedor vendedorPromo(std::string);
+        DTVendedor vendedorPromo(DTProducto);
         std::map<int, DT2Producto> getProductosNoEnv(Vendedor *vendedor);
         void escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
