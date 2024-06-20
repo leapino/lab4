@@ -36,7 +36,8 @@ class Producto {
         std::string getDescripcion();
         Categoria getCategoria();
         Vendedor *getVendedor();
-        DTProducto getData();
+        DTProducto *getData();
+        DT2Producto *getData2();
         std::map<int,Comentario> getComentarios();
         ProductoPromocion* getPromo();
         //Setters

@@ -44,5 +44,8 @@ class ManejadorUsuario {
         std::list <DTNotificacion*> consultarNotificaciones(std::string cliente);
         std::list<std::string*> getVendedoresSuscrito(std::string cliente);
         std::list<Usuario*> ListarUsuarios();
+        void eliminarSusVendedores(std::string cliente, std::string vendedor);
+        
+        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
 };
 #endif

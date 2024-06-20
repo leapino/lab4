@@ -2,7 +2,8 @@
 #define MANEJADORUSUARIO_CPP
 
 #include "declaraciones/manejadorUsuario.h"
-#include "manejadorUsuario.h"
+#include "declaraciones/DT2Producto.h"
+
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
@@ -181,4 +182,36 @@ std::list<Usuario*> ManejadorUsuario::ListarUsuarios(){
      return usuarios;
 }
 
+void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
+    Cliente* pCliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (this->getUsuario(vendedor));
+    pCliente->crearLinkV(pVendedor);
+    pVendedor->crearLinkC(pCliente);
+}
+
+std::map<int, DT2Producto *> ManejadorUsuario::getProductosNoEnv(Vendedor *vendedor) {
+    std::map<int, DT2Producto *> resu;
+    int num = 1;
+
+    std::list<Cliente *> clientes = vendedor->getClientes();
+    for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {
+        
+        std::list<Compra *> compras = (*cliente)->getCompras();
+        for(std::list<Compra *>::iterator compra = compras.begin(); compra != compras.end(); ++compra) {
+
+            std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
+            for(std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto){
+
+                if(!(*compraProducto)->getEnviado()) {
+                    Producto *prodAux = (*compraProducto)->getProd();
+                    DT2Producto *productoAinsertar = prodAux->getData2();
+                    resu.insert({num, productoAinsertar});
+                    num++;
+                }
+            }
+        }
+    }
+    return resu;
+
+}
 #endif

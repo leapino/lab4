@@ -32,7 +32,7 @@ class Vendedor: public Usuario {
         void setClientes(Cliente);
         //Funciones
         bool estaSuscripto(std::string);
-        void crearLinkC(Cliente *);
+        void crearLinkC(Cliente * cliente);
         void desuscribirse(Cliente); 
         
 };

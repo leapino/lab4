@@ -2,7 +2,6 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
-#include "controladorUsuario.h"
 
 
 
@@ -137,6 +136,18 @@ std::list<Usuario*> ControladorUsuario::ListaUsuarios(){
         ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     return mu->ListarUsuarios();
+}
+
+void ControladorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    mU->eliminarSusVendedores(cliente,vendedor);
+}
+
+std::map<int, DT2Producto *> ControladorUsuario::getProductosNoEnv(Vendedor *vendedor) {
+    ManejadorUsuario *mU;
+    mU = ManejadorUsuario::getInstancia();
+    std::map<int, DT2Producto *> productosNoEnviados = mU->getProductosNoEnv(vendedor);
+    return productosNoEnviados;
 }
 
 #endif

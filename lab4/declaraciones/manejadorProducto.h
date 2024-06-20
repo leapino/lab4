@@ -39,5 +39,6 @@ class ManejadorProducto {
         std::map<std::string, Promocion*> getPromos();
         std::set<DTProducto*> getProductoPromo(std::string);
         DTVendedor* vendedorPromo(std::string);
+        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
 };
 #endif
