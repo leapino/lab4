@@ -35,6 +35,7 @@ class ControladorProducto {
         DTVendedor vendedorPromo(DTProducto);
         void escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom);
         std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
+        void agregarPromoVendedor(std::string,std::string);
 };
 
 #endif

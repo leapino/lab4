@@ -107,4 +107,12 @@ void ControladorProducto::escribirCom(std::string comment,DTFecha fecha,int codP
     mP->escribirCom(comment,fecha,codProd,user,idCom);    
 }
 
+void ControladorProducto::agregarPromoVendedor(std::string promo,std::string vendedor){
+    ManejadorProducto* mp;
+    mp = ManejadorProducto::getInstancia();
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    mu->getVendedor(vendedor)->addPromo(mp->getPromos().find(promo)->second);
+}
+
 #endif

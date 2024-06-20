@@ -58,4 +58,8 @@ void Vendedor::crearLinkC(Cliente *cliente)
     this->Clientes.push_front(cliente);
 }
 
+void Vendedor::addPromo(Promocion* promo){
+    this->promociones.insert({promo->getNombre(),promo});
+}
+
 #endif

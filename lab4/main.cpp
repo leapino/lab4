@@ -300,6 +300,7 @@ int main() {
                 std::cin>> confirm;
                 if (confirm == 1){
                     ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+                    ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
                     std::cout<< "\nSe agregó la promoción\n";
                 }if (confirm == 0){
                     std::cout<< "\nNo se agregó la promoción\n";

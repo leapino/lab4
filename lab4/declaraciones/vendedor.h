@@ -34,6 +34,7 @@ class Vendedor: public Usuario {
         void setProductos(std::map<int, Producto*>);
         void setClientes(std::list<Cliente *>);
         void setPromociones(std::map<std::string,Promocion*> promos);
+        void addPromo(Promocion*);
         //Funciones
         void crearLinkC(Cliente * cliente);
         void desuscribirse(Cliente); 
