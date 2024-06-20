@@ -37,7 +37,7 @@ Usuario *Comentario::getUsuario() {
 }
 
 
-int Comentario::getIdcom() {
+std::string Comentario::getIdcom() {
     return this->idcom;
 }
 
@@ -62,7 +62,7 @@ void Comentario::setMiUsuario(Usuario *miUser) {
 }
 
 
-void Comentario::setIdCom(int id) {
+void Comentario::setIdCom(std::string id) {
     this->idcom = id;
 }
 
@@ -74,7 +74,7 @@ Comentario::~Comentario() {
 }
 
 void Comentario::borrarRespuestas(){
-     std::map<int, Comentario*>::iterator it;
+     std::map<std::string, Comentario*>::iterator it;
      it = this->respuestas.begin();
      Comentario* aborrar;
      while ( it != this->respuestas.end()){

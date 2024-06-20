@@ -123,12 +123,12 @@ std::map<int ,std::string> ControladorUsuario::listarNickUsuarios(){
     return mu->listarNickUsuarios();
 }
 
-std::map<int, std::string> ControladorUsuario::listarComentario(std::string nombreU){
+std::map<std::string, std::string> ControladorUsuario::listarComentario(std::string nombreU){
        Usuario* usuario = getUsuario(nombreU);
        return usuario->listarComentarios();
 }
 
-void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
+void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
         Usuario* usuario = getUsuario(nombreU);
         usuario->borrarComentario(id);
 }

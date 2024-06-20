@@ -16,13 +16,13 @@ class Usuario {
         std::string nickname;
         std::string password;
         DTFecha fechaNacimiento;
-        std::map<int,Comentario*> comentarios;
+        std::map<std::string,Comentario*> comentarios;
     public:
         //Creadores
         Usuario();
         Usuario(std::string nick, std::string pass, DTFecha fechnaci);
         //Getters
-        std::map<int,Comentario*> getComentarios();
+        std::map<std::string,Comentario*> getComentarios();
         std::string getNickname();
         std::string getPassword();
         DTFecha getFecha();
@@ -35,7 +35,7 @@ class Usuario {
         virtual bool esVendedor();
         virtual bool esUsuario(Usuario);
         virtual bool esCliente();
-        std::map<int, std::string> listarComentarios();
-        void borrarComentario(int id);
+        std::map<std::string, std::string> listarComentarios();
+        void borrarComentario(std::string id);
 };
 #endif

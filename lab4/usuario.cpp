@@ -51,17 +51,17 @@ bool Usuario::esCliente(){
     return pCliente!=nullptr;
 }
 
-std::map<int, std::string> Usuario::listarComentarios(){
-    std::map<int, Comentario*>::iterator it;
-    std::map<int ,std::string> coments;
+std::map<std::string, std::string> Usuario::listarComentarios(){
+    std::map<std::string, Comentario*>::iterator it;
+    std::map<std::string ,std::string> coments;
     for (it = this->comentarios.begin(); it != this->comentarios.end(); it++){
         coments.insert({it->first, it->second->getTexto()});
     }
     return coments;
 }    
 
-void Usuario::borrarComentario(int id){
-     std::map<int, Comentario*>::iterator it;
+void Usuario::borrarComentario(std::string id){
+     std::map<std::string, Comentario*>::iterator it;
      it = this->comentarios.find(id);
      Comentario* eliminar = it->second;
      eliminar->borrarRespuestas();

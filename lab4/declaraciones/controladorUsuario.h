@@ -22,8 +22,8 @@ class ControladorUsuario {
         bool estaVacio();
         bool estaUsuario(std::string nombre);
         std::map<int, std::string> listarNickUsuarios();
-        std::map<int, std::string> listarComentario(std::string nombreU);
-        void eliminarComentario(int id,std::string nombreU);
+        std::map<std::string, std::string> listarComentario(std::string nombreU);
+        void eliminarComentario(std::string id,std::string nombreU);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
