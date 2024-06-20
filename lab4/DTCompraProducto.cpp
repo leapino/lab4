@@ -3,18 +3,18 @@
 
 #include <iostream>
 
-#include "../declaraciones/DTCompraProducto.h"
+#include "declaraciones/DTCompraProducto.h"
 
 
 std::ostream &operator<<(std::ostream &salida, DTCompraProducto *prod){
-    salida << "Enviado: " << prod->getEnviado() << "\n Cantidad: " << prod->getCantidad()<<"\n Producto:" <<prod->getProd();
+    salida << "Enviado: " << prod->getEnviado() << "\n Cantidad: " << prod->getCantidad()<<"\n Producto:" <<&prod->getProd();
     return salida;
 }
 
 DTCompraProducto::DTCompraProducto(){
 }
 
-DTCompraProducto::DTCompraProducto(bool enviado, int cantidad, DTProducto *prod) {
+DTCompraProducto::DTCompraProducto(bool enviado, int cantidad, DTProducto prod) {
     this->enviado=enviado;
     this->cantidad=cantidad;
     this->prod=prod;
@@ -29,7 +29,7 @@ int DTCompraProducto::getCantidad() {
     return this->cantidad;
 }
 
-DTProducto* DTCompraProducto::getProd() {
+DTProducto DTCompraProducto::getProd() {
     return this->prod;
 }
 
@@ -42,7 +42,7 @@ void DTCompraProducto::setCantidad(int cantidad) {
     this->cantidad = cantidad;
 }
 
-void DTCompraProducto::setProd(DTProducto* prod) {
+void DTCompraProducto::setProd(DTProducto prod) {
     this->prod = prod;
 }
 

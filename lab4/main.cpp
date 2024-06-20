@@ -157,15 +157,13 @@ int main() {
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
-              std::list<Usuario*> lista = ControladorUsuario->ListaUsuarios();
-              for (std::list<Usuario*>::iterator it = lista.begin(); it != lista.end(); it++){
-                   if((*it)->esCliente()){
-                      DTCliente client = ControladorUsuario->getInfoCliente(*it);
-                      std::cout<<& client;
-                    }
+              std::list<DTUsuario> lista = ControladorUsuario->ListaUsuarios();
+              for (std::list<DTUsuario>::iterator it = lista.begin(); it != lista.end(); it++){
+                   if(typeid(it) == typeid(DTCliente)){
+                     std::cout<<& it;
+                   }
                    else{
-                      DTVendedor vend = ControladorUsuario->getInfoVendedor(*it);
-                      std::cout<<& vend;
+                      std::cout<<& it;
                    }  
             }
         }
@@ -229,9 +227,9 @@ int main() {
             std::cout <<"Ingresar Nombre o Código del producto\n";
             std::cin >>eleccion;
             
-            std::map<std::string,DTProducto*> amostrar=ControladorProducto->getInfoProd(eleccion);
+            std::map<std::string,DTProducto> amostrar=ControladorProducto->getInfoProd(eleccion);
             std::cout <<amostrar.begin()->first;
-            std::cout <<amostrar.begin()->second;
+            std::cout <<&amostrar.begin()->second;
 
             amostrar.clear();
         }
@@ -312,11 +310,10 @@ int main() {
         }
         break;
         case 6:{//Consultar Promocion
-
-            std::map<std::string, DTPromocion*> promociones = ControladorProducto->getPromos();
-            std::map<std::string, DTPromocion*>::iterator it;
+            std::map<std::string, DTPromocion> promociones = ControladorProducto->getPromos();
+            std::map<std::string, DTPromocion>::iterator it;
             for (it = promociones.begin(); it != promociones.end(); it++){
-                std::cout<< it->second;
+                std::cout<< &it->second;
             }
             int confirm;
             std::cout << "Desea consultar una promoción?\n1)Si\n2)No\n";
@@ -338,15 +335,16 @@ int main() {
         }
             break;
         case 7:{//Realizar Compra
+
             std::set <std::string> clientes=ControladorUsuario->listarClientes();
 
             std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
             std::string cliente;
             std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
 
-            std::set <DTProducto*> productos=ControladorProducto->getProductosDisp();
+            std::set <DTProducto> productos=ControladorProducto->getProductosDisp();
 
-            for(std::set<DTProducto*>::iterator it=productos.begin();it!=productos.end();++it){
+            for(std::set<DTProducto>::iterator it=productos.begin();it!=productos.end();++it){
                 std::cout <<&it;
             }
 
@@ -372,17 +370,13 @@ int main() {
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
             }
+
             int monto=0;
 
-            Cliente* pCliente=dynamic_cast<Cliente*>(ControladorUsuario->getUsuario(cliente));
 
-            DTFecha* fechaActual=new DTFecha;
+            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
-            fechaActual=&ControladorFecha->getFechaActual();
-
-            std::list<CompraProducto*> compra=ControladorProducto->confirmarCompra(productoCompra,monto);
-
-            ControladorUsuario->confirmarCompra(compra,monto,pCliente,fechaActual);
+            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaActual);
 
             productos.clear();
         }
@@ -480,11 +474,11 @@ int main() {
             std::string nombreVendedor;
             std::cin >> nombreVendedor;
 
-            std::map<int, DT2Producto *> productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
+            std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
             std::cout << "Seleccione un producto por su número. \n";
 
-            for(std::map<int, DT2Producto *>::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
-                std::cout<< it->first <<")" << " " << it->second->getNombre() << "\n";
+            for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
+                std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
             
             int numProdNoEnviado;
@@ -500,6 +494,7 @@ int main() {
         }
         break; 
         case 11:{//Expediente de usuario
+
             std::map<int,std::string> nicknames=ControladorUsuario->listarNickUsuarios();
 
             for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
@@ -511,8 +506,7 @@ int main() {
             std::string usuario;
             std::cin >>usuario;
 
-            DTFecha* fechaActual=new DTFecha;
-            fechaActual=&ControladorFecha->getFechaActual();
+            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             Usuario* elegido=ControladorUsuario->getUsuario(usuario);//cambiar
 
@@ -528,7 +522,7 @@ int main() {
                 Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
                 std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
                 std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
-                std::cout<<&ControladorProducto->getPromoVigente(usuario,(*fechaActual));
+                std::cout<<&ControladorUsuario->getPromoVigente(usuario,fechaActual);//cambiar a Controlador Usuario
             }
 
         }
@@ -564,7 +558,7 @@ int main() {
             std::string cliente;
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
-            std::list<DTNotificacion*> notis=ControladorUsuario->consultarNotificaciones(cliente);
+            std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
                 std::cout<<&i;
             }
@@ -575,7 +569,7 @@ int main() {
             std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
-            std::list <std::string*> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
+            std::list <std::string> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
 
             for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
                 std::cout<<&i;

@@ -4,12 +4,12 @@
 #include "declaraciones/compra.h"
 
 Compra::Compra() {
-    this->fecha = NULL;
+    this->fecha=DTFecha();
     this->monto = 0;
     this->cliente = NULL;
 }
 
-Compra::Compra(DTFecha *fecha, int monto, Cliente *cliente,std::list<CompraProducto *> compraPr) {
+Compra::Compra(DTFecha fecha, int monto, Cliente *cliente,std::list<CompraProducto *> compraPr) {
     this->fecha = fecha;
     this->monto = monto;
     this->cliente = cliente;
@@ -17,7 +17,7 @@ Compra::Compra(DTFecha *fecha, int monto, Cliente *cliente,std::list<CompraProdu
 }
 
 
- DTFecha *Compra::getFecha() {
+ DTFecha Compra::getFecha() {
     return this->fecha;
  }
 
@@ -37,7 +37,7 @@ std::list<CompraProducto *> Compra::getcompraProductos() {
 }
 
 
-void Compra::setFecha(DTFecha *fecha) {
+void Compra::setFecha(DTFecha fecha) {
     this->fecha = fecha;
 }
 
@@ -61,7 +61,6 @@ void Compra::agregarProdCompra(CompraProducto *comPro) {
 }
 
 Compra::~Compra() {
-    delete this->fecha;
     delete this->cliente;
     for(CompraProducto *ptr : compraProductos) {
         delete ptr;

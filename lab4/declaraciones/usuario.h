@@ -26,6 +26,8 @@ class Usuario {
         std::string getNickname();
         std::string getPassword();
         DTFecha getFecha();
+        Cliente* getCliente();
+        Vendedor* getVend();
         //Setters
         void setComentarios(std::map<std::string,Comentario*>);
         void setNickname(std::string);

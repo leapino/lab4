@@ -29,12 +29,18 @@ void ControladorUsuario::selectCliente(){}
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(std::list<CompraProducto* > productos,int monto,Cliente *cliente,DTFecha *fechaActual){
+void ControladorUsuario::confirmarCompra(std::map<int,int > productos,int &monto,std::string cliente,DTFecha fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
+    ManejadorProducto * mP=ManejadorProducto::getInstancia();
 
-    Compra* compra=new Compra(fechaActual,monto,cliente,productos);
-    mUsuario->agregarCompraCliente(cliente,compra);
+    Cliente* pCliente=dynamic_cast<Cliente*>(mUsuario->getUsuario(cliente));
+
+    std::list<CompraProducto*> prodEnCompra=mP->confirmarCompra(productos,monto);
+
+    Compra* compra=new Compra(fechaActual,monto,pCliente,prodEnCompra);
+    
+    mUsuario->agregarCompraCliente(pCliente,compra);
 }
 
 Usuario *ControladorUsuario::getUsuario(std::string Usuario)
@@ -59,12 +65,12 @@ DTVendedor ControladorUsuario::getInfoVendedor(Usuario *usuario){
     return mU->getInfoVendedor(pVendedor);
 }
 
-std::list<DTCompra*> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
+std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getInfoComprasCliente(cliente);
 }
 
-std::list<DTProducto*> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
+std::list<DTProducto> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getProdEnVenta(vendedor);
 }
@@ -79,12 +85,12 @@ void ControladorUsuario::suscribirVendedores(std::list<std::string> Vendedores, 
     mU->suscribirVendedores(Vendedores,cliente);
 }
 
-std::list<DTNotificacion*> ControladorUsuario::consultarNotificaciones(std::string cliente){
+std::list<DTNotificacion> ControladorUsuario::consultarNotificaciones(std::string cliente){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->consultarNotificaciones(cliente);
 }
 
-std::list<std::string *> ControladorUsuario::getVendedoresSuscrito(std::string cliente){
+std::list<std::string > ControladorUsuario::getVendedoresSuscrito(std::string cliente){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getVendedoresSuscrito(cliente);
 }
@@ -141,7 +147,7 @@ void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
         usuario->borrarComentario(id);
 }
 
-std::list<Usuario*> ControladorUsuario::ListaUsuarios(){
+std::list<DTUsuario> ControladorUsuario::ListaUsuarios(){
         ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     return mu->ListarUsuarios();
@@ -152,10 +158,10 @@ void ControladorUsuario::eliminarSusVendedores(std::string cliente, std::string 
     mU->eliminarSusVendedores(cliente,vendedor);
 }
 
-std::map<int, DT2Producto *> ControladorUsuario::getProductosNoEnv(std::string nomVend) {
+std::map<int, DT2Producto > ControladorUsuario::getProductosNoEnv(std::string nomVend) {
     ManejadorUsuario *mU;
     mU = ManejadorUsuario::getInstancia();
-    std::map<int, DT2Producto *> productosNoEnviados = mU->getProductosNoEnv(nomVend);
+    std::map<int, DT2Producto > productosNoEnviados = mU->getProductosNoEnv(nomVend);
     return productosNoEnviados;
 }
 
@@ -163,6 +169,11 @@ Vendedor *ControladorUsuario::getVendedor(std::string v) {
     ManejadorUsuario *mU;
     mU = ManejadorUsuario::getInstancia();
     return mU->getVendedor(v);
+}
+
+std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,DTFecha fechaActual){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    return mU->getPromoVigente(vendedor,fechaActual);
 }
 
 #endif

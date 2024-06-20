@@ -47,6 +47,15 @@ void Promocion::agregarProdProm(ProductoPromocion* pp){
    this->prodProm.insert(pp);
 }
 
+bool Promocion::esPromoVigente(DTFecha fechaactual)
+{
+    return this->fecha>fechaactual;
+}
+
+bool Promocion::esPromoVigente(DTFecha fechaactual)
+{
+    return this->fecha>fechaactual;
+}
 std::set<ProductoPromocion*> Promocion::getProdProm(){
    return this->prodProm;
 }

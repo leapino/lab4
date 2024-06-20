@@ -5,12 +5,12 @@
 
 Comentario::Comentario() {
     this->texto = "";
-    this->fecha = NULL;
+    this->fecha = DTFecha();
     this->prodComentado = NULL;
     this->miUsuario = NULL;
 }
 
-Comentario::Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom, std::string comment) {
+Comentario::Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom, std::string comment) {
     this->miUsuario = miUsuario;
     this->fecha = fecha;
     this->prodComentado = prodCom;
@@ -25,7 +25,7 @@ std::string Comentario::getTexto() {
 }
 
 
-DTFecha *Comentario::getFecha() {
+DTFecha Comentario::getFecha() {
     return this->fecha;
 }
 
@@ -53,7 +53,7 @@ void Comentario::setTexto(std::string text) {
 }
 
 
-void Comentario::setFecha(DTFecha *fecha) {
+void Comentario::setFecha(DTFecha fecha) {
     this->fecha = fecha;
 }
 
@@ -74,7 +74,6 @@ void Comentario::setIdCom(std::string id) {
 
 
 Comentario::~Comentario() {
-    delete this->fecha;
     delete this->prodComentado;
     delete this->miUsuario;
 }

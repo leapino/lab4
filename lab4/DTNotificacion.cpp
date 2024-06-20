@@ -1,7 +1,7 @@
 #ifndef DTNOTIFICACION_CPP
 #define DTNOTIFICACION_CPP
 
-#include "../declaraciones/DTNotificacion.h"
+#include "declaraciones/DTNotificacion.h"
 
 DTNotificacion::DTNotificacion()
 {

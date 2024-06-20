@@ -1,7 +1,7 @@
 #ifndef DTUSUARIO_CPP
 #define DTUSUARIO_CPP
 
-#include "DTUsuario.h"
+#include "declaraciones/DTUsuario.h"
 
 #include <iostream>
 

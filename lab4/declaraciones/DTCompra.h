@@ -13,20 +13,20 @@
 
 class DTCompra{
     private:
-        DTFecha* fecha;
+        DTFecha fecha;
         int monto;
-        std::list <DTCompraProducto*> Prods;
+        std::list <DTCompraProducto> Prods;
     public:
         //Creadores
         DTCompra();
-        DTCompra(DTFecha *fecha, int monto, std::list <DTCompraProducto*> prods);
+        DTCompra(DTFecha fecha, int monto, std::list <DTCompraProducto> prods);
         //Getters
-        DTFecha* getFecha();
+        DTFecha getFecha();
         int getMonto();
         int getCantidad();
         //Setters
-        void setFecha(DTFecha *fecha);
+        void setFecha(DTFecha fecha);
         void setMonto(int mont);
-        void setProds(std::list<DTCompraProducto*> prods);
+        void setProds(std::list<DTCompraProducto> prods);
 };
 #endif

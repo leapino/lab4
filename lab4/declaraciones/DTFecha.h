@@ -7,7 +7,7 @@
 #include <string>
 #include <math.h>
 
-struct DTFecha{
+class DTFecha{
     private:
         int hora;
         int minuto;
@@ -21,18 +21,18 @@ struct DTFecha{
         //Destructor
         ~DTFecha();
         //Getters
-        int getDia() const;
-        int getMes() const;
-        int getAnio() const;
-        int getHora() const;
-        int getMinuto() const;
+        int getDia();
+        int getMes();
+        int getAnio();
+        int getHora();
+        int getMinuto();
         //Setters
         void setDia(int);
         void setMes(int);
         void setAnio(int);  
         void setHora(int);
         void setMinuto(int);
-        
         //Funciones
+        friend bool operator>(const DTFecha& lhs, const DTFecha& rhs);
 };
 #endif

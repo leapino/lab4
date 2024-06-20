@@ -34,6 +34,7 @@ class Promocion {
     void setDescripcion(std::string);
     void setFecha(DTFecha);
     void agregarProdProm(ProductoPromocion*);
+    bool esPromoVigente(DTFecha fechaactual);
    
 };
 

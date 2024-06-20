@@ -16,11 +16,11 @@ void ManejadorProducto::agregarProducto(Producto* p){
     this->Productos.insert({p->getCodigo(),p});
 }
 
-std::set<DTProducto*> ManejadorProducto::getProductosDisp(){
-    std::set<DTProducto*> res;
+std::set<DTProducto> ManejadorProducto::getProductosDisp(){
+    std::set<DTProducto> res;
     for (std::map<int, Producto*>::iterator it = this->Productos.begin(); it!=this->Productos.end(); ++it){
         if(it->second->getStock()!=0){
-            DTProducto * producto=new DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());            
+            DTProducto  producto=DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());            
             res.insert(producto);
         }
     }
@@ -45,8 +45,8 @@ void ManejadorProducto::prodEnCompra(Producto* prod,int cantidad){
         prod->bajarStock(cantidad);//bajar el Stock del Producto
 }
 
-std::map<std::string, DTProducto *> ManejadorProducto::getInfoProd(std::string producto){
-    std::map<std::string, DTProducto *> res;
+std::map<std::string, DTProducto > ManejadorProducto::getInfoProd(std::string producto){
+    std::map<std::string, DTProducto > res;
 
     std::map<int, Producto*>::iterator it=Productos.begin();
     std::string astring=std::to_string(it->first);
@@ -58,7 +58,7 @@ std::map<std::string, DTProducto *> ManejadorProducto::getInfoProd(std::string p
         flag=((astring==producto)||(it->second->getNombre()==producto));
     }
 
-    DTProducto * prod=new DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());
+    DTProducto prod=DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());
     res.insert({it->second->getVendedor()->getNickname(),prod});  
     return res;
 }
@@ -133,7 +133,7 @@ DTVendedor ManejadorProducto::vendedorPromo(DTProducto producto){
     return dtv;
 }
 
-void ManejadorProducto::escribirCom(std::string comment,DTFecha *fecha,int codProd,Usuario* usuario,int idCom){
+void ManejadorProducto::escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom){
     Producto* pProd=this->getProducto(codProd);
     Comentario* com=new Comentario(usuario,fecha,pProd,comment);
     int Id=1;
@@ -148,18 +148,28 @@ void ManejadorProducto::escribirCom(std::string comment,DTFecha *fecha,int codPr
     //agregar comentarioa producto ,si el id es 0 es com nuevo si es mayor es respuesta
 }
 
-std::list<DTPromocion*> ManejadorProducto::getPromoVigente(std::string vendedor,DTFecha fechaActual){
-    std::list<DTPromocion*> res;
-    for (auto i = this->Promociones.begin(); i !=Promociones.end(); ++i){
-        std::string nickvendedor=i->second->getVendedor()->getNickname();
-        if (nickvendedor==vendedor){
-            DTFecha fechaPromo=i->second->getFecha();
-            if (&fechaPromo>&fechaActual){
-                DTPromocion* agregarpromo=new DTPromocion(i->second->getNombre(),i->second->getDescripcion(),i->second->getFecha());
-                res.push_front(agregarpromo);
+std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, int &monto){
+    
+    std::list<CompraProducto *> productos;
+
+    for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
+
+        Producto* prod=this->Productos.find(it->first)->second;
+        CompraProducto* relacion=new CompraProducto(prod,it->second);
+
+        productos.push_back(relacion);
+
+        this->prodEnCompra(prod,it->second);
+
+        int precioConvertido=prod->getPrecio();
+        if(this->checkPromo(it->first)){//Chequea si esta en una promo
+            if(this->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
+                precioConvertido=precioConvertido-(precioConvertido*this->descPromo(prod));//Realiza el Descuento
             }
         }
+        monto+=precioConvertido*it->second;
+
     }
-    return res;
+    return productos;
 }
 #endif

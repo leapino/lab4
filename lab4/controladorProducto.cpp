@@ -28,43 +28,15 @@ std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nom
     return mp->listarProductos(lista);
 }
 
-std::set<DTProducto*> ControladorProducto::getProductosDisp(){
+std::set<DTProducto> ControladorProducto::getProductosDisp(){
     ManejadorProducto *mP;
     mP=ManejadorProducto::getInstancia();
-    std::set<DTProducto*>listaProductosDisp=mP->getProductosDisp();
+    std::set<DTProducto>listaProductosDisp=mP->getProductosDisp();
     return listaProductosDisp;
 }
 
-std::list<CompraProducto *>ControladorProducto::confirmarCompra(std::map<int, int> datos, int &monto){
-    ManejadorProducto *mProducto=ManejadorProducto::getInstancia();
-    std::list<CompraProducto *> productos;
 
-
-    for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
-
-        Producto* prod=mProducto->getProducto(it->first);
-
-        CompraProducto* relacion=new CompraProducto(prod,it->second);
-
-        productos.push_back(relacion);
-
-        mProducto->prodEnCompra(prod,it->second);
-
-        int precioConvertido=prod->getPrecio();
-        if(mProducto->checkPromo(it->first)){//Chequea si esta en una promo
-            if(mProducto->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
-                precioConvertido=precioConvertido-(precioConvertido*mProducto->descPromo(prod));//Realiza el Descuento
-            }
-        }
-        monto+=precioConvertido*it->second;
-
-    }
-    return productos;
-    
-}
-
-
-std::map<std::string, DTProducto *> ControladorProducto::getInfoProd(std::string producto){
+std::map<std::string, DTProducto> ControladorProducto::getInfoProd(std::string producto){
     ManejadorProducto *mP=ManejadorProducto::getInstancia();
     return mP->getInfoProd(producto);
 }
@@ -100,16 +72,16 @@ void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descue
     mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
 }
 
-std::map<std::string, DTPromocion*> ControladorProducto::getPromos(){
+std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
     ControladorFecha* cf;
     cf = ControladorFecha::getInstancia();
     std::map<std::string, Promocion*>::iterator it;
-    std::map<std::string, DTPromocion*> dtpromociones;
+    std::map<std::string, DTPromocion> dtpromociones;
     for (it = mp->getPromos().begin(); it != mp->getPromos().end(); it++){
         if (cf->esVigente(it->second->getFecha())){
-            DTPromocion* dtpromo = new DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
+            DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
             dtpromociones.insert({it->second->getNombre(), dtpromo});
         }
     }
@@ -128,13 +100,11 @@ DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
     return mp->vendedorPromo(producto);
 }
 
-void ControladorProducto::escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom){
+void ControladorProducto::escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom){
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
-    mP->escribirCom(comment,fecha,codProd,usuario,idCom);    
+    ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
+    Usuario* user=mU->getUsuario(usuario);
+    mP->escribirCom(comment,fecha,codProd,user,idCom);    
 }
 
-std::list<DTPromocion*> ControladorProducto::getPromoVigente(std::string vendedor,DTFecha fechaActual){
-    ManejadorProducto* mP=ManejadorProducto::getInstancia();
-    return mP->getPromoVigente(vendedor,fechaActual);
-}
 #endif

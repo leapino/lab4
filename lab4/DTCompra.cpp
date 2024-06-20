@@ -1,17 +1,17 @@
 #ifndef DTCOMPRA_CPP
 #define DTCOMPRA_CPP
-#include "../declaraciones/DTCompra.h"
+#include "declaraciones/DTCompra.h"
 
 DTCompra::DTCompra(){}
 
-DTCompra::DTCompra(DTFecha *fecha, int monto, std::list<DTCompraProducto*> prods){
+DTCompra::DTCompra(DTFecha fecha, int monto, std::list<DTCompraProducto> prods){
     this->fecha=fecha;
     this->monto=monto;
     this->Prods=prods;
 }
 
 
-DTFecha* DTCompra::getFecha() {
+DTFecha DTCompra::getFecha() {
     return this->fecha;
 }
 
@@ -24,7 +24,7 @@ int DTCompra::getCantidad() {
 }
 
 // Setters
-void DTCompra::setFecha(DTFecha* fecha) {
+void DTCompra::setFecha(DTFecha fecha) {
     this->fecha = fecha;
 }
 
@@ -32,7 +32,7 @@ void DTCompra::setMonto(int monto) {
     this->monto = monto;
 }
 
-void DTCompra::setProds(std::list<DTCompraProducto*>prods){
+void DTCompra::setProds(std::list<DTCompraProducto>prods){
     this->Prods=prods;
 }
 #endif

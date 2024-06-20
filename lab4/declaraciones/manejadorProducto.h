@@ -16,6 +16,7 @@
 #include "DTPromocion.h"
 #include "comentario.h"
 #include "DTFecha.h"
+#include "DTVendedor.h"
 
 class ManejadorProducto {
     private:
@@ -26,12 +27,12 @@ class ManejadorProducto {
     public:
         static ManejadorProducto* getInstancia();
         void agregarProducto(Producto*);
-        std::set<DTProducto*> getProductosDisp();
+        std::set<DTProducto> getProductosDisp();
         std::map<int,std::string> getProds();
         bool hayStock(int codigo, int cantidad);
         void prodEnCompra(Producto* prod,int cantidad);
         Producto* getProducto(int);
-        std::map<std::string, DTProducto *> getInfoProd(std::string producto);
+        std::map<std::string, DTProducto > getInfoProd(std::string producto);
         std::map<int, DT2Producto> listarProductos(std::map<int, Producto*>);
         //Promociones
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
@@ -40,9 +41,10 @@ class ManejadorProducto {
         float descPromo(Producto* prod);//Pre estar en una promo
         std::map<std::string, Promocion*> getPromos();
         std::set<DTProducto> getProductoPromo(std::string);
-        DTVendedor vendedorPromo(DTProducto);
-        std::map<int, DT2Producto*> getProductosNoEnv(Vendedor *vendedor);
-        void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
-        std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
-};
+        DTVendedor vendedorPromo(std::string);
+        std::map<int, DT2Producto> getProductosNoEnv(Vendedor *vendedor);
+        void escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom);
+        std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
+        std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, int &monto);
+};      
 #endif

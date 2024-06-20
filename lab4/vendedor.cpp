@@ -2,6 +2,7 @@
 #define VENDEDOR_CPP
 
 #include "declaraciones/vendedor.h"
+#include "vendedor.h"
 
     Vendedor::Vendedor()
     {
@@ -25,6 +26,16 @@ std::map<int, Producto*> Vendedor::getProductos(){
 
 std::list<Cliente *> Vendedor::getClientes(){
     return this->Clientes;
+}
+
+std::map<std::string, Promocion *> Vendedor::getPromociones()
+{
+    return this->promociones;
+}
+
+void Vendedor::setPromociones(std::map<std::string, Promocion *> promos)
+{
+    this->promociones=promos;
 }
 
 void Vendedor::setRUT(std::string rut)

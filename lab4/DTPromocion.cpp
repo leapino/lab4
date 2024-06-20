@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "../declaraciones/DTPromocion.h"
+#include "declaraciones/DTPromocion.h"
 
 std::ostream &operator<<(std::ostream &salida, DTPromocion *prom){
     salida << "\nNombre: " << prom->getNombre() << "\n Descripción: " << prom->getDesc()<<"\n Fecha Vencimiento:"<<&prom->getFecha()<< "\n";
