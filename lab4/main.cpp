@@ -30,21 +30,6 @@ DTFecha leerFecha(){
     return DTFecha(dia,mes,anio,0,0);
 }
 
-void selecVendedor(){
-        //Aca hay que crear instancia de controlador Usuario
-
-        std::cout<< "Ingrese el nickname de uno de los siguientes Vendedores a cargo del producto \n";
-
-        std::vector<std::string> Nicknames;//=ctrlUsuario.listarNicknames Notar qe lista vendedores nomas
-        for (int j = 0; j < Nicknames.size(); j++){
-                //std::cout <<Nicknames[j]->toString();
-        }
-
-        std::string vendedor;
-        std::cin >> vendedor;
-            
-        //ctrlUsuario.selectNick(vendedor);
-}
 
 int main() {
 
@@ -402,28 +387,32 @@ int main() {
             break;
         
         case 8:{//Dejar Comentario
-            //iniciar controlador Usuario
-            //std::vector <string> nicknames=ctrl.Usuario.listadoDeUsuarios();
-            //imprimir el vector;
+
+            std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
+            for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
+                std::cout <<i->first<<"  "<<i->second;
+            }
+            
             std::cout <<"Ingrese el nickname que quiere dejar un comentario\n";
             std::string usuario;
             std::cin >>usuario;
-            //ctrlUsuario.selectUsuario();
 
-            //iniciar controlador Prod
-
-            std::vector <DTProducto>productos;//=listarProductos();
-            for (int j = 0; j < productos.size(); j++){
-                //std::cout <<productos[j]->toString();
+            std::map <int,std::string>productos=ControladorProducto->getProds();
+            for (auto i = productos.begin(); i !=productos.end(); ++i){
+                std::cout<<"Codigo: " <<i->first<<"\n Nombre: "<<i->second;
             }
+            
             std::cout <<"Ingrese el codigo del producto para dejar el comentario\n";
             int codProd;
             std::cin >> codProd;
-            //ctrlProd.selectProducto(codProd);
 
             std::cout <<"Desea responder a un comentario existente o crear un nuevo comentario\n"<<"0-Nuevo Comentario\n"<<"1-Responder a un comentario existente\n";
             int alt;
             std::cin >>alt;
+
+            DTFecha* fechaActual=new DTFecha;
+
+            fechaActual=&ControladorFecha->getFechaActual();
 
             if (alt){
                 //std::vector <DTComentario> comentarios=ctrlUsuario.listarComProd();
@@ -440,11 +429,12 @@ int main() {
 
                 //ctrlUsuario.escribirCom(comentarios[id],comentario)//ver que pide el comentario incial denuevo;
             }else{
+
                 std::cout <<"Ingrese el comentario\n";
                 std::string comentario;
                 std::cin >>comentario;
 
-                //ctrlUsuario.escribirComNuevo(comentario);                
+                //ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
             }
         }
         break;

@@ -34,6 +34,7 @@ class ControladorProducto {
         std::map<std::string, DTPromocion*> getPromos();
         std::set<DTProducto*> getProductoPromo(std::string);
         DTVendedor* vendedorPromo(std::string);
+        void escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom);
 };
 
 #endif

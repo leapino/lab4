@@ -133,4 +133,19 @@ DTVendedor* ManejadorProducto::vendedorPromo(std::string promo){
     return dtv;
 }
 
+void ManejadorProducto::escribirCom(std::string comment,DTFecha *fecha,int codProd,Usuario* usuario,int idCom){
+    Producto* pProd=this->getProducto(codProd);
+    Comentario* com=new Comentario(usuario,fecha,pProd,comment);
+    int Id=1;
+    if (idCom==0){
+        if (!pProd->getComentarios().empty()) {
+            Id = pProd->getComentarios().rbegin()->first + 1;
+        }
+        
+    }else{
+
+    }
+    //agregar comentarioa producto ,si el id es 0 es com nuevo si es mayor es respuesta
+}
+
 #endif

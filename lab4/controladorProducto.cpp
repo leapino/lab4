@@ -130,4 +130,8 @@ DTVendedor* ControladorProducto::vendedorPromo(std::string promo){
     return mp->vendedorPromo(promo);
 }
 
+void ControladorProducto::escribirCom(std::string comment,DTFecha* fecha,int codProd,Usuario* usuario,int idCom){
+    ManejadorProducto * mP=ManejadorProducto::getInstancia();
+    mP->escribirCom(comment,fecha,codProd,usuario,idCom);    
+}
 #endif

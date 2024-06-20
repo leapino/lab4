@@ -25,7 +25,7 @@ class Comentario {
     public:
         Comentario();
         Comentario(Usuario *miUsuario, DTFecha *fecha, Producto *prodCom , std::string comment);
-        std::map<int,Comentario*> getRespuestas();
+        std::map<int,Comentario*> *getRespuestas();
         std::string getTexto();
         DTFecha *getFecha();
         Producto *getProdCom();
@@ -38,6 +38,7 @@ class Comentario {
         void setMiUsuario(Usuario *miUser);
         void setIdCom(int id);
         void borrarRespuestas();
+        void agregarRespuesta(Comentario comm);
         ~Comentario();
 };
 

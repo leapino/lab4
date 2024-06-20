@@ -22,7 +22,7 @@ class Producto {
         std::string descripcion;
         Categoria categoria;
         Vendedor *vendedor;
-        std::map<int,Comentario> comentarios;
+        std::map<int,Comentario*> comentarios;
         ProductoPromocion* promo;
     public:
         //Creadores
@@ -53,5 +53,7 @@ class Producto {
         void bajarStock(int cantidad);
         //Destructor
         ~Producto();
+        //funcion
+        void agregarComentario(int id,Comentario* comment);
 };
 #endif

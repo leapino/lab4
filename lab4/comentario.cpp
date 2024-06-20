@@ -85,4 +85,7 @@ void Comentario::borrarRespuestas(){
      aborrar = nullptr;
 }
 
+void Comentario::agregarRespuesta(Comentario com){
+    //this->getRespuestas()->insert()
+}
 #endif
