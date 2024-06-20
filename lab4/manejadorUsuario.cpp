@@ -117,8 +117,7 @@ std::list<std::string *> ManejadorUsuario::getVendedoresSuscrito(std::string cli
     return suscritosNicknames;
 }
 
-std::set<std::string> ManejadorUsuario::getClientes()
-{
+std::set<std::string> ManejadorUsuario::getClientes() {
 
     std::set<std::string> listaClientes;
     for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
