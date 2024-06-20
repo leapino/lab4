@@ -52,6 +52,40 @@ int main() {
     ControladorProducto* ControladorProducto = ControladorProducto::getInstancia();
     ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
 
+
+    ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
+    //USUARIOS
+    DTFecha fecha1 = DTFecha(15,5,1988,0,0);
+    ControladorUsuario->altaDeUsuario("ana23", "qwer1234", fecha1, "212345678001");
+    DTFecha fecha2 = DTFecha(18,6,1986,0,0);
+    ControladorUsuario->altaDeUsuario("carlos78", "asdfghj", fecha2, "356789012345");
+    DTFecha fecha3 = DTFecha(28,7,1993,0,0);
+    ControladorUsuario->altaDeUsuario("diegom", "zxcvbn", fecha3, "190123456789");
+    DTFecha fecha4 = DTFecha(20,10,1992,0,0);
+    ControladorUsuario->altaDeUsuario("juan87", "1qaz2wsx", fecha4, "Av. 18 de Julio 456", "Melo");
+    DTFecha fecha5 = DTFecha(22,9,1979,0,0);
+    ControladorUsuario->altaDeUsuario("juan87", "1qaz2wsx", fecha5, "Rondeau 1617", "Montevideo");
+    DTFecha fecha6 = DTFecha(25,3,1985,0,0);
+    ControladorUsuario->altaDeUsuario("maria01", "5tgb6yhn", fecha6, "321098765432");
+    DTFecha fecha7 = DTFecha(14,4,1982,0,0);
+    ControladorUsuario->altaDeUsuario("natalia", "poiuyt", fecha7, "Paysandú 2021", "Salto");
+    DTFecha fecha8 = DTFecha(30,11,1995,0,0);
+    ControladorUsuario->altaDeUsuario("pablo10", "lkjhgv", fecha8, "Av. Rivera 1819", "Mercedes");
+    DTFecha fecha9 = DTFecha(12,8,1990,0,0);
+    ControladorUsuario->altaDeUsuario("roberto", "mnbvcx", fecha9, "Av. Brasil 1011", "Montevideo");
+    DTFecha fecha10 = DTFecha(07,12,1983,0,0);
+    ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
+
+    //PRODUCTOS
+
+    //PROMOCIONES
+
+    //COMPRAS
+
+    //COMENTARIOS
+
+    ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
+
     std::cout << "\n";
     int i =-2;
 
@@ -230,7 +264,13 @@ int main() {
             std::cout <<"Ingresar Descuento\n";
             std::cin >>descuento;
 
-            DTFecha fecha=leerFecha();
+            int dia,mes,anio;
+            std::string separador;
+            std::cout <<"Ingrese la fecha de vencimiento de la promoción con el formato DD/MM/YYYY\n";
+            std::cin >> dia>>separador>>mes>>separador>>anio;
+            std::cout <<"\n";
+            
+            DTFecha fecha = DTFecha(dia,mes,anio,0,0);
             
             std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
             std::map<int ,std::string>::iterator it;
