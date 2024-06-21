@@ -89,7 +89,7 @@ std::list<DTComentario> ManejadorProducto::listarComProd(std::map<int,Comentario
 {
     std::list<DTComentario> res;
     for (auto i = comm.begin(); i !=comm.end(); i++)
-    {   
+    {    
         j++;
         //DTComentario recur=DTComentario(i->second->getTexto(),i->second->getFecha(),j,listarComProd(i->second->getRespuestas(),0));//falta cambiar los comentarios a map<int,comentario*>
         //res.push_front(recur);        
