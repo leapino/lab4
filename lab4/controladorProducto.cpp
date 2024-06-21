@@ -132,4 +132,13 @@ void ControladorProducto::linkVendProd(std::string nombV){
        vendedor->setProductos(cod,prod);
 }
 
+
+std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
+{   
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    std::map<int,Comentario*> comm=mP->getProducto(codProd)->getComentarios();
+    return mP->listarComProd(comm);
+}
+
 #endif

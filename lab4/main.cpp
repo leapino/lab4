@@ -9,18 +9,19 @@
 #include <vector>
 #include <bits/stdc++.h>
 #include "declaraciones/DTFecha.h"
-#include "../declaraciones/DTUsuario.h"
-#include "../declaraciones/DTCliente.h"
-#include "../declaraciones/DTVendedor.h"
-#include "../declaraciones/DTProducto.h"
-#include "../declaraciones/controladorUsuario.h"
-#include "../declaraciones/controladorProducto.h"
-#include "../declaraciones/controladorFecha.h"
-#include "../declaraciones/usuario.h"
-#include "../declaraciones/cliente.h"
-#include "../declaraciones/vendedor.h"
-#include "../declaraciones/categoria.h"
-#include "../declaraciones/comentario.h"
+#include "declaraciones/DTUsuario.h"
+#include "declaraciones/DTCliente.h"
+#include "declaraciones/DTVendedor.h"
+#include "declaraciones/DTProducto.h"
+#include "declaraciones/controladorUsuario.h"
+#include "declaraciones/controladorProducto.h"
+#include "declaraciones/controladorFecha.h"
+#include "declaraciones/usuario.h"
+#include "declaraciones/cliente.h"
+#include "declaraciones/vendedor.h"
+#include "declaraciones/categoria.h"
+#include "declaraciones/comentario.h"
+#include "declaraciones/DTComentario.h"
 
 
 DTFecha leerFecha(){
@@ -360,7 +361,7 @@ int main() {
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);//deberiamos chequear si la cantidad que ingreso es menor o igual a la del stock
+                productoCompra.insert(codigo,cantidad);
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
@@ -403,7 +404,7 @@ int main() {
             DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             if (alt){
-                //std::vector <DTComentario> comentarios=ctrlUsuario.listarComProd();
+                std::list <DTComentario> comentarios=ControladorUsuario->listarComProd(codProd);
                 std::cout<<"A que comentario quiere responder\n";
 
                 //idea:recorrer el vector y darle un numero como "id" a los comentarios

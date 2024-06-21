@@ -2,6 +2,7 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
+#include "controladorUsuario.h"
 
 
 
@@ -143,6 +144,7 @@ void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int c
     Producto * prod=mP->getProducto(codProd);
     mU->escribirCom(comentario,fecha,prod,usuario);
 }
+
 
 void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
         Usuario* usuario = getUsuario(nombreU);

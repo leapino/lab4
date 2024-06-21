@@ -13,7 +13,7 @@ private:
     std::list<DTComentario> respuestas;
 
 public:
-    DTComentario( std::string com,  DTFecha fec);
+    DTComentario( std::string com,  DTFecha fec,int id, std::list<DTComentario> resp);
 
     std::string getComentario() ;
     DTFecha getFecha() ;

@@ -19,6 +19,7 @@
 #include "DTPromocion.h"
 #include "DTCliente.h"
 #include "DTVendedor.h"
+#include "DTComentario.h"
 
 class ManejadorUsuario {
     private:

@@ -3,9 +3,11 @@
 
 #include "declaraciones/DTComentario.h"
 
-DTComentario::DTComentario( std::string com,  DTFecha fec) {
+DTComentario::DTComentario( std::string com,  DTFecha fec,int id,std::list<DTComentario> resp) {
     this->comentario=com;
     this->fecha=fec;
+    this->respuestas=resp;
+    this->idcom=id;
 }
 
 std::string DTComentario::getComentario()  {

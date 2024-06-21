@@ -2,6 +2,7 @@
 #define MANEJADORPRODUCTO_CPP
 
 #include "declaraciones/manejadorProducto.h"
+#include "manejadorProducto.h"
 
 ManejadorProducto* ManejadorProducto::instancia = NULL;
 
@@ -82,6 +83,19 @@ std::map<int, DT2Producto> ManejadorProducto::listarProductos(std::map<int, Prod
         num++;
     }
     return dataProductos;
+}
+
+std::list<DTComentario> ManejadorProducto::listarComProd(std::map<int,Comentario*> comm, int j)
+{
+    std::list<DTComentario> res;
+    for (auto i = comm.begin(); i !=comm.end(); i++)
+    {   
+        j++;
+        //DTComentario recur=DTComentario(i->second->getTexto(),i->second->getFecha(),j,listarComProd(i->second->getRespuestas(),0));//falta cambiar los comentarios a map<int,comentario*>
+        //res.push_front(recur);        
+    }
+    
+    return res;
 }
 
 bool ManejadorProducto::checkPromo(int codigo){

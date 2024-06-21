@@ -27,6 +27,7 @@ class ControladorProducto {
         std::map<int,std::string> getProds();//Retorna el codigo y el nombre de todos los productos
         bool hayStock(int codigoP,int cantidad);
         void prodEnCompra(std::map<int,int> prods);
+        std::list<DTComentario> listarComProd(int codProd);
         //std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto); se paso esta funcion al controlador Usuario
         bool checkPromo(int);
         std::map<std::string, DTPromocion> getPromos();
