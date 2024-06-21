@@ -47,7 +47,7 @@ void CompraProducto::setProd(Producto *prod) {
 
 
 CompraProducto::~CompraProducto() {
-    delete this->producto;
+    //delete this->producto;
 }
 
 

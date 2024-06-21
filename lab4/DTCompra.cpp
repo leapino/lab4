@@ -45,5 +45,9 @@ std::ostream& operator<<(std::ostream& salida, const DTCompra& compra) {
     }
     return salida;
 }
+
+DTCompra::~DTCompra(){
+    this->Prods.clear();
+}
 #endif
 

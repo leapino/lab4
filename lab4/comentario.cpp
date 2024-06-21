@@ -75,7 +75,7 @@ void Comentario::setIdCom(std::string id) {
 
 Comentario::~Comentario() {
     delete this->prodComentado;
-    delete this->miUsuario;
+    //delete this->miUsuario;
 }
 
 void Comentario::borrarRespuestas(){

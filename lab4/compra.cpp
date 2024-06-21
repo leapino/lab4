@@ -61,7 +61,7 @@ void Compra::agregarProdCompra(CompraProducto *comPro) {
 }
 
 Compra::~Compra() {
-    delete this->cliente;
+    //delete this->cliente;
     for(CompraProducto *ptr : compraProductos) {
         delete ptr;
     }

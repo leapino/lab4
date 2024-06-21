@@ -30,6 +30,7 @@ std::string DTPromocion::getDesc(){
 DTFecha DTPromocion::getFecha(){
     return this->fecha;
 }
+
 DTPromocion::~DTPromocion(){
 }
 #endif

@@ -14,7 +14,7 @@ private:
 
 public:
     DTComentario( std::string com,  DTFecha fec,int id, std::list<DTComentario> resp);
-
+    ~DTComentario();
     std::string getComentario() ;
     DTFecha getFecha() ;
     int getIdCom() ;

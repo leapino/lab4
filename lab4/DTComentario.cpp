@@ -47,4 +47,8 @@ void DTComentario::agregarRespuesta( DTComentario respuesta) {
         int id =this->respuestas.rbegin()->getIdCom()+1;
 }
 
+DTComentario::~DTComentario(){
+    this->respuestas.clear();
+}
+
 #endif

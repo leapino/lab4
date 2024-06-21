@@ -46,4 +46,8 @@ void DTCompraProducto::setProd(DTProducto prod) {
     this->prod = prod;
 }
 
+DTCompraProducto::~DTCompraProducto(){
+    
+}
+
 #endif

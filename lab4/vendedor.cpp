@@ -3,16 +3,15 @@
 
 #include "declaraciones/vendedor.h"
 
-    Vendedor::Vendedor()
-    {
-    }
+Vendedor::Vendedor()
+{
+}
 
 Vendedor::Vendedor(std::string nick,std::string pass, DTFecha fecha, std::string RUT):Usuario(nick,pass,fecha){
     this->RUT = RUT;
 }
 
-Vendedor::~Vendedor()
-{
+Vendedor::~Vendedor(){
 }
 
 std::string Vendedor::getRUT(){

@@ -88,15 +88,16 @@ void Cliente::agregarCompra(Compra* Compra){
 }
 
 Cliente::~Cliente() {
-    for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
-        this->Vendedores.erase(it);
-    }
-    for (std::list<DTNotificacion>::iterator it = this->Notificaciones.begin();it != this->Notificaciones.end(); ++it){
-        this->Notificaciones.erase(it);
-    }
-    for (std::list<Compra*>::iterator it = this->Compras.begin();it != this->Compras.end(); ++it){
-        this->Compras.erase(it);
-    }
+    // for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
+    //     this->Vendedores.erase(it);
+    // }
+    // for (std::list<DTNotificacion>::iterator it = this->Notificaciones.begin();it != this->Notificaciones.end(); ++it){
+    //     this->Notificaciones.erase(it);
+    // }
+    // for (std::list<Compra*>::iterator it = this->Compras.begin();it != this->Compras.end(); ++it){
+    //     this->Compras.erase(it);
+    // }
+    this->Notificaciones.clear();
 }
 
 #endif

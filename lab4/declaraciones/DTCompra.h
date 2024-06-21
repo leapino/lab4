@@ -29,7 +29,10 @@ class DTCompra{
         void setFecha(DTFecha fecha);
         void setMonto(int mont);
         void setProds(std::list<DTCompraProducto> prods);
+        //Destructor
+        ~DTCompra();
         //funcion
         friend std::ostream& operator<<(std::ostream& os, const DTCompra& compra);
+
 };
 #endif
