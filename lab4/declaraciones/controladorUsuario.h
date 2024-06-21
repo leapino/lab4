@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <math.h>
+#include <iostream>
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
 #include "DTCompra.h"
@@ -23,7 +24,7 @@ class ControladorUsuario {
         bool estaUsuario(std::string nombre);
         std::map<int, std::string> listarNickUsuarios();
         std::map<std::string, std::string> listarComentario(std::string nombreU);
-        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string usuario);
+        void escribirCom(std::string comentario,DTFecha fecha,int codProd,std::string usuario);
         //void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
         void eliminarComentario(std::string id,std::string nombreU);
         std::set <std::string> listarClientes();

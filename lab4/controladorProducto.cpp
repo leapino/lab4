@@ -4,6 +4,7 @@
 #include "declaraciones/controladorProducto.h"
 
 
+
 ControladorProducto* ControladorProducto::instancia = NULL;
 
 ControladorProducto* ControladorProducto::getInstancia(){

@@ -137,9 +137,11 @@ std::map<std::string, std::string> ControladorUsuario::listarComentario(std::str
        return usuario->listarComentarios();
 }
 
-void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto* codProd, std::string usuario){
+void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int codProd, std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    mU->escribirCom(comentario,fecha,codProd,usuario);
+    ManejadorProducto * mP=ManejadorProducto::getInstancia();
+    Producto * prod=mP->getProducto(codProd);
+    mU->escribirCom(comentario,fecha,prod,usuario);
 }
 
 void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){

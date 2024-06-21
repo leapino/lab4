@@ -376,7 +376,7 @@ int main() {
         }
             break;
         
-        case 8:{//Dejar Comentario Falta ver como vamos a hacer con los comentarios para mi le sacamos el ida  la mierda.
+        case 8:{//Dejar Comentario
 
             std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
             for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
@@ -400,9 +400,7 @@ int main() {
             int alt;
             std::cin >>alt;
 
-            DTFecha* fechaActual=new DTFecha;
-
-            fechaActual=&ControladorFecha->getFechaActual();
+            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             if (alt){
                 //std::vector <DTComentario> comentarios=ctrlUsuario.listarComProd();
@@ -424,7 +422,7 @@ int main() {
                 std::string comentario;
                 std::cin >>comentario;
 
-                //ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
+                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
             }
         }
         break;
