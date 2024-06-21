@@ -9,18 +9,19 @@
 #include <vector>
 #include <bits/stdc++.h>
 #include "declaraciones/DTFecha.h"
-#include "../declaraciones/DTUsuario.h"
-#include "../declaraciones/DTCliente.h"
-#include "../declaraciones/DTVendedor.h"
-#include "../declaraciones/DTProducto.h"
-#include "../declaraciones/controladorUsuario.h"
-#include "../declaraciones/controladorProducto.h"
-#include "../declaraciones/controladorFecha.h"
-#include "../declaraciones/usuario.h"
-#include "../declaraciones/cliente.h"
-#include "../declaraciones/vendedor.h"
-#include "../declaraciones/categoria.h"
-#include "../declaraciones/comentario.h"
+#include "declaraciones/DTUsuario.h"
+#include "declaraciones/DTCliente.h"
+#include "declaraciones/DTVendedor.h"
+#include "declaraciones/DTProducto.h"
+#include "declaraciones/controladorUsuario.h"
+#include "declaraciones/controladorProducto.h"
+#include "declaraciones/controladorFecha.h"
+#include "declaraciones/usuario.h"
+#include "declaraciones/cliente.h"
+#include "declaraciones/vendedor.h"
+#include "declaraciones/categoria.h"
+#include "declaraciones/comentario.h"
+#include "declaraciones/DTComentario.h"
 
 
 DTFecha leerFecha(){
@@ -170,7 +171,15 @@ int main() {
             break;
 
         case 3:{//alta de Producto
-            
+           std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
+            std::map<int ,std::string>::iterator it;
+            std::cout<<"Selecciona un vendedor por su número:\n";
+            for (it = nicknames.begin(); it != nicknames.end(); it++){
+                std::cout<< it->first <<")" << " " << it->second << "\n";
+            }
+            int numVend;
+            std::cin >> numVend;
+            std::string nombreV = nicknames.find(numVend)->second;
 
             std::string nomProd;
             std::cout << "Nombre del producto a ingresar\n";
@@ -196,25 +205,10 @@ int main() {
             int j;
             std::cout <<"Categoria de su producto\n"<<"1-Ropa\n"<<"2-Electrodomestico\n"<<"3-Otro\n";
             std::cin >>j;
-            
-            //preguntar en caso de q el usuario erre es factible o deberiamos tomar como que no
 
-            switch (j){
-            case 1:
-                categoria=ropa;
-                break;
-            case 2:
-                categoria=electrodomestico;
-                break;
-            case 3:
-                categoria=otro;
-            default:
-                std::cout<<"Numero ingresado no válido";
-                break;
-            }
-
-            //ctrlUsuario.altaDeProducto(nomProd,precio,stock,descripProd,categoria);
-        }
+            ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
+            ControladorProducto->linkVendProd(nombreV);
+        }    
         break;
         
         case 4:{//Consultar Producto
@@ -359,6 +353,7 @@ int main() {
 
                 std::cout<<"Ingresar codigo del Producto\n";
                 int codigo;
+
                 std::cin>>codigo;
                 
                 std::cout<<"Ingresar cantidad del producto a comprar \n";
@@ -366,7 +361,7 @@ int main() {
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);//deberiamos chequear si la cantidad que ingreso es menor o igual a la del stock
+                productoCompra.insert(std::make_pair(codigo,cantidad));
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;
@@ -379,11 +374,10 @@ int main() {
 
             ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaActual);
 
-            productos.clear();
         }
             break;
         
-        case 8:{//Dejar Comentario Falta ver como vamos a hacer con los comentarios para mi le sacamos el ida  la mierda.
+        case 8:{//Dejar Comentario
 
             std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
             for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
@@ -407,12 +401,10 @@ int main() {
             int alt;
             std::cin >>alt;
 
-            DTFecha* fechaActual=new DTFecha;
-
-            fechaActual=&ControladorFecha->getFechaActual();
+            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             if (alt){
-                //std::vector <DTComentario> comentarios=ctrlUsuario.listarComProd();
+                std::list <DTComentario> comentarios=ControladorUsuario->listarComProd(codProd);
                 std::cout<<"A que comentario quiere responder\n";
 
                 //idea:recorrer el vector y darle un numero como "id" a los comentarios
@@ -431,7 +423,7 @@ int main() {
                 std::string comentario;
                 std::cin >>comentario;
 
-                //ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
+                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
             }
         }
         break;
@@ -509,21 +501,37 @@ int main() {
 
             DTFecha fechaActual=ControladorFecha->getFechaActual();
 
-            Usuario* elegido=ControladorUsuario->getUsuario(usuario);//cambiar
+            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(usuario);
+            std::cout << infoUsuario;
 
-            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
-            std::cout << &infoUsuario;
 
-            Cliente* pElegido=dynamic_cast<Cliente*>(elegido);
-            if (pElegido!=nullptr){
-                std::cout<<&ControladorUsuario->getInfoCliente(pElegido);
-                std::cout<<&ControladorUsuario->getInfoComprasCliente(pElegido);
+            if (ControladorUsuario->esCliente(usuario)){
+                std::cout<<ControladorUsuario->getInfoCliente(usuario);
+
+                std::list<DTCompra> compras=ControladorUsuario->getInfoComprasCliente(usuario);
+
+                std::cout<< "\n Compras:";
+                
+                for (const auto& i:compras)
+                {
+                    std::cout<<i<<"\n";
+                }
                 
             }else{
-                Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
-                std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
-                std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
-                std::cout<<&ControladorUsuario->getPromoVigente(usuario,fechaActual);//cambiar a Controlador Usuario
+                std::cout<<ControladorUsuario->getInfoVendedor(usuario);
+                
+                std::cout<<"\n Productos:";
+
+                std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
+                for (const auto & i:prods ){
+                    std::cout<<i<<"\n";
+                }
+                
+                std::cout<<"\n Promociones:";
+
+                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaActual);
+                for(const auto & i:promos)
+                    std::cout<<i<<"\n";
             }
 
         }

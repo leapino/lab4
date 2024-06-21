@@ -14,6 +14,10 @@
 #include "productoPromocion.h"
 #include "DT2Producto.h"
 
+class Vendedor;
+class Comentario;
+class ProductoPromocion;
+
 class Producto {
     private:
         int codigo;
@@ -56,5 +60,6 @@ class Producto {
         ~Producto();
         //funcion
         void agregarComentario(int id,Comentario* comment);
+        Producto(int,int,std::string,std::string,Categoria);
 };
 #endif

@@ -2,6 +2,7 @@
 #define DTCLIENTE_H
 
 #include "DTUsuario.h"
+#include "DTFecha.h"
 
 class DTCliente: public DTUsuario {
     private:
@@ -19,6 +20,8 @@ class DTCliente: public DTUsuario {
     //Setters
     void setDTAdress(std::string direc);
     void setDTCiudad(std::string ciudad);
+    //funcion
+    friend std::ostream &operator<<(std::ostream &salida, const DTCliente& client);
 };
 
 #endif

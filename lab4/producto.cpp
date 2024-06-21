@@ -14,8 +14,7 @@ Producto::Producto(){
 // //  this->categoria = ???;
 };   
 
-Producto::Producto(int codigo,int stock,int precio,std::string nombre,std::string desc,Categoria categoria){
-    this->codigo = codigo;
+Producto::Producto(int stock,int precio,std::string nombre,std::string desc,Categoria categoria){
     this->stock = stock;
     this->precio = precio;
     this->nombre = nombre;

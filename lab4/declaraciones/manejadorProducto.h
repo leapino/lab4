@@ -17,6 +17,11 @@
 #include "comentario.h"
 #include "DTFecha.h"
 #include "DTVendedor.h"
+#include "DTComentario.h"
+#include "compraProducto.h"
+
+class Producto;
+class Promocion;
 
 class ManejadorProducto {
     private:
@@ -34,6 +39,7 @@ class ManejadorProducto {
         Producto* getProducto(int);
         std::map<std::string, DTProducto > getInfoProd(std::string producto);
         std::map<int, DT2Producto> listarProductos(std::map<int, Producto*>);
+        std::list <DTComentario> listarComProd(std::map<int,Comentario*> comm, int j);
         //Promociones
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
         bool checkPromo(int);
@@ -46,5 +52,7 @@ class ManejadorProducto {
         void escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, int &monto);
+        Producto* finalProd();
+        void addProducto(Producto*);
 };      
 #endif

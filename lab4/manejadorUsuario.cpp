@@ -3,6 +3,9 @@
 
 #include "declaraciones/manejadorUsuario.h"
 #include "declaraciones/DT2Producto.h"
+#include "declaraciones/usuario.h"
+#include "declaraciones/cliente.h"
+#include "declaraciones/vendedor.h"
 
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
@@ -18,9 +21,9 @@ void ManejadorUsuario::addUsuario(Usuario* u){
     this->Usuarios.insert({u->getNickname(),u});
 }
 
-Usuario* ManejadorUsuario::getUsuario(std::string n){
+Usuario* ManejadorUsuario::getUsuario(std::string usuario){
     std::map<std::string, Usuario*>::iterator it;
-    it = this->Usuarios.find(n);
+    it = this->Usuarios.find(usuario);
     return it->second;
 }
 
@@ -119,7 +122,8 @@ std::set<std::string> ManejadorUsuario::getClientes() {
 
     std::set<std::string> listaClientes;
     for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
-        if (it->second->esCliente()){
+        Cliente* client=dynamic_cast<Cliente*> (it->second);
+        if (client !=nullptr){
             listaClientes.insert(it->first);
         }
     }
@@ -198,7 +202,8 @@ std::list<DTUsuario> ManejadorUsuario::ListarUsuarios(){
      std::list<DTUsuario> usuario;
      DTUsuario sec;
      for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
-       if (it->second->esVendedor()){
+       Vendedor* vendedor=dynamic_cast<Vendedor*> (it->second);
+       if (vendedor!=nullptr){
           sec = getInfoVendedor(it->second->getVend());
        }
        else{

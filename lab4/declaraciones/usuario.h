@@ -8,8 +8,10 @@
 #include <map>
 
 #include "DTFecha.h"
-#include "producto.h"
-#include "comentario.h"
+
+class Comentario;
+class Cliente;
+class Vendedor;
 
 class Usuario {
     private:

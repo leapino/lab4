@@ -2,7 +2,6 @@
 #define VENDEDOR_CPP
 
 #include "declaraciones/vendedor.h"
-#include "vendedor.h"
 
     Vendedor::Vendedor()
     {
@@ -43,10 +42,10 @@ void Vendedor::setRUT(std::string rut)
     this->RUT=rut;
 }
 
-void Vendedor::setProductos(std::map<int, Producto *> prods)
-{   
-    this->Productos=prods;
+void Vendedor::setProductos(int codigo, Producto* prod){   
+    this->Productos[codigo]=prod;
 }
+
 
 void Vendedor::setClientes(std::list<Cliente *> client)
 {
@@ -58,8 +57,9 @@ void Vendedor::crearLinkC(Cliente *cliente)
     this->Clientes.push_front(cliente);
 }
 
-void Vendedor::addPromo(Promocion* promo){
-    this->promociones.insert({promo->getNombre(),promo});
+void Vendedor::addPromo(Promocion * promo){
+    std::string nomPromo=promo->getNombre();
+    this->promociones.insert(std::make_pair(nomPromo,promo));
 }
 
 #endif

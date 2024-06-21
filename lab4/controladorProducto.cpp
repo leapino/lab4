@@ -4,6 +4,7 @@
 #include "declaraciones/controladorProducto.h"
 
 
+
 ControladorProducto* ControladorProducto::instancia = NULL;
 
 ControladorProducto* ControladorProducto::getInstancia(){
@@ -49,7 +50,7 @@ bool ControladorProducto::hayStock(int codigoP, int cantidad){
     ManejadorProducto *mP;
     mP=ManejadorProducto::getInstancia();
     bool res=mP->hayStock(codigoP,cantidad);
-    return ;
+    return res ;
 }
 
 void ControladorProducto::prodEnCompra(std::map<int,int> prods){
@@ -91,7 +92,7 @@ std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
 std::set<DTProducto> ControladorProducto::getProductoPromo(std::string nombrePromo){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    mp->getProductoPromo(nombrePromo);
+    return mp->getProductoPromo(nombrePromo);
 }
 
 DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
@@ -113,6 +114,31 @@ void ControladorProducto::agregarPromoVendedor(std::string promo,std::string ven
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
     mu->getVendedor(vendedor)->addPromo(mp->getPromos().find(promo)->second);
+}
+
+void ControladorProducto::altaDeProducto(std::string nombre,int precio,int stock,std::string desc,Categoria categoria){
+       Producto* nuevoProducto =new Producto(stock,precio,nombre,desc,categoria);       
+       ManejadorProducto* mp = ManejadorProducto::getInstancia();
+       mp->addProducto(nuevoProducto);
+}
+
+void ControladorProducto::linkVendProd(std::string nombV){
+       ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
+       Vendedor* vendedor = mu->getVendedor(nombV);
+       ManejadorProducto* mp = ManejadorProducto::getInstancia();
+       Producto* prod = mp->finalProd();
+       prod->setVendedor(vendedor);
+       int cod = prod->getCodigo();
+       vendedor->setProductos(cod,prod);
+}
+
+
+std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
+{   
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    std::map<int,Comentario*> comm=mP->getProducto(codProd)->getComentarios();
+    return mP->listarComProd(comm,0);
 }
 
 #endif

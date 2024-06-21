@@ -8,6 +8,7 @@
 #include <map>
 
 #include "producto.h"
+class Producto;
 
 class ProductoPromocion {
     private:

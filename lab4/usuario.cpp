@@ -33,19 +33,6 @@ DTFecha Usuario::getFecha(){
 }
 
 
-Cliente* Usuario::getCliente(){
-    Cliente* eCliente;
-    eCliente=dynamic_cast<Cliente*> (this);
-    return eCliente;
-}
-
-Vendedor* Usuario::getVend(){
-    Vendedor* eVend;
-    eVend=dynamic_cast<Vendedor*> (this);
-    return eVend;
-}
-
-
 void Usuario::setComentarios(std::map<std::string, Comentario *> comm)
 {
     this->comentarios=comm;
@@ -64,7 +51,7 @@ void Usuario::setFecha(DTFecha fecha){
     this->fechaNacimiento = fecha;
 }
 
-bool Usuario::esVendedor(){
+/*bool Usuario::esVendedor(){
     Vendedor* pVendedor;
     pVendedor=dynamic_cast<Vendedor*> (this);
     return pVendedor!=nullptr;
@@ -75,12 +62,13 @@ bool Usuario::esCliente(){
     pCliente=dynamic_cast<Cliente*> (this);
     return pCliente!=nullptr;
 }
+*/
 
 std::map<std::string, std::string> Usuario::listarComentarios(){
     std::map<std::string, Comentario*>::iterator it;
     std::map<std::string ,std::string> coments;
     for (it = this->comentarios.begin(); it != this->comentarios.end(); it++){
-        coments.insert({it->first, it->second->getTexto()});
+        //coments.insert(std::make_pair(it->first, *it->second->getTexto()));
     }
     return coments;
 }    
@@ -89,8 +77,8 @@ void Usuario::borrarComentario(std::string id){
      std::map<std::string, Comentario*>::iterator it;
      it = this->comentarios.find(id);
      Comentario* eliminar = it->second;
-     eliminar->borrarRespuestas();
+     //eliminar->borrarRespuestas();
      this->comentarios.erase(it);
-     eliminar->~Comentario();
+     //eliminar->~Comentario();
 }
 #endif

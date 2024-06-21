@@ -13,6 +13,7 @@
 #include "DTProducto.h"
 #include "productoPromocion.h"
 
+class ProductoPromocion;
 
 class Promocion {
     private:
@@ -35,6 +36,7 @@ class Promocion {
     void setFecha(DTFecha);
     void agregarProdProm(ProductoPromocion*);
     bool esPromoVigente(DTFecha fechaactual);
+    ~Promocion();
    
 };
 

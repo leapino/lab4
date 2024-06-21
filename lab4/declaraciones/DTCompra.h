@@ -7,6 +7,7 @@
 #include <math.h>
 #include <map>
 #include <list>
+#include <iostream>
 
 #include "DTFecha.h"
 #include "DTCompraProducto.h"
@@ -28,5 +29,7 @@ class DTCompra{
         void setFecha(DTFecha fecha);
         void setMonto(int mont);
         void setProds(std::list<DTCompraProducto> prods);
+        //funcion
+        friend std::ostream& operator<<(std::ostream& os, const DTCompra& compra);
 };
 #endif

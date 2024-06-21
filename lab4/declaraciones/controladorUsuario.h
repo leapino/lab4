@@ -6,9 +6,10 @@
 #include <string>
 #include <vector>
 #include <math.h>
+#include <iostream>
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
-#include "DTCompra.h"
+
 
 class ControladorUsuario {
     private:
@@ -23,21 +24,23 @@ class ControladorUsuario {
         bool estaUsuario(std::string nombre);
         std::map<int, std::string> listarNickUsuarios();
         std::map<std::string, std::string> listarComentario(std::string nombreU);
-        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string usuario);
+        void escribirCom(std::string comentario,DTFecha fecha,int codProd,std::string usuario);
+        std::list <DTComentario> listarComProd(int codProd);
         //void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
         void eliminarComentario(std::string id,std::string nombreU);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
+        bool esCliente(std::string usuario);//retorna true si es cliente
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         void agregarProductoCompra(int codigo, int cantidad);
         void confirmarCompra(std::map <int,int > productos,int &monto,std::string cliente,DTFecha fechaActual);
         Usuario * getUsuario(std::string Usuario);
-        DTUsuario getInfoUsuario(Usuario* usuario);
-        DTCliente getInfoCliente(Usuario* usuario);
-        DTVendedor getInfoVendedor(Usuario* usuario);
-        std::list<DTCompra> getInfoComprasCliente(Cliente* cliente);
-        std::list<DTProducto> getProdEnVenta(Vendedor* vendedor);
+        DTUsuario getInfoUsuario(std::string usuario);
+        DTCliente getInfoCliente(std::string usuario);
+        DTVendedor getInfoVendedor(std::string usuario);
+        std::list<DTCompra> getInfoComprasCliente(std::string cliente);
+        std::list<DTProducto> getProdEnVenta(std::string vendedor);
         std::list<std::string> getVendedoresNoSuscrito(std::string cliente);
         //ingresarNickname
         void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);

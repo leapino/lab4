@@ -14,6 +14,9 @@
 #include "producto.h"
 #include "usuario.h"
 
+class Producto;
+class Usuario;
+
 class Comentario {
     private:
         std::string texto;

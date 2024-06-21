@@ -33,6 +33,7 @@ class DTFecha{
         void setHora(int);
         void setMinuto(int);
         //Funciones
+        friend std::ostream &operator<<(std::ostream& salida, const DTFecha& fecha);
         friend bool operator>(const DTFecha& lhs, const DTFecha& rhs);
 };
 #endif

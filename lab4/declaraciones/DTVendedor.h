@@ -16,6 +16,7 @@ class DTVendedor: public DTUsuario {
     std::string getDTRUT();
     //Setter
     void setDTRUT(std::string rut);
+    friend std::ostream &operator<<(std::ostream &salida, const DTVendedor& vend);
 };
 
 #endif

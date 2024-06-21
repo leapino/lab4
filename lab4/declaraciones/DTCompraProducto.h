@@ -29,5 +29,6 @@ class DTCompraProducto{
         void setEnviado(bool enviado);
         void setCantidad(int cantidad);
         void setProd(DTProducto prod);
+        friend std::ostream &operator<<(std::ostream &salida, const DTCompraProducto& prod);
 };
 #endif
