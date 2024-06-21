@@ -5,8 +5,6 @@
 
 #include "declaraciones/DTProducto.h"
 
-
-
 std::ostream &operator<<(std::ostream &salida, DTProducto prod){
     salida << "Código: " << prod.getCodigo() << "\n Stock: " << prod.getStock()<<"\n Precio:"<<prod.getPrecio()<<"\n Nombre:"<<prod.getNombre()<<"\n Descripción:"<<prod.getDescripcion()<<"\n Categoria:"<<prod.getCategoria();
     return salida;
