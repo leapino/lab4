@@ -267,4 +267,18 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     return dynamic_cast<Vendedor *>(it->second);
 }
 
+void ManejadorUsuario::eraseRespuestas(int id){
+     Comentario* com = this->Comentarios.find(id)->second;
+     std::map<int, Comentario*>::iterator it;
+     it = com->getRespuestas().begin();     
+     while ( it != com->getRespuestas().end()){
+         this->Comentarios.erase(it->second->getIdcom());
+         ++it;
+     }     
+}
+
+void ManejadorUsuario::eraseCom(int id){
+     this->Comentarios.erase(id);
+}    
+
 #endif

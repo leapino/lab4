@@ -14,7 +14,7 @@ Usuario::Usuario(std::string nick,std::string pass, DTFecha fecha){
     this->fechaNacimiento = fecha;
 }
 
-std::map<std::string, Comentario *> Usuario::getComentarios()
+std::map<int, Comentario *> Usuario::getComentarios()
 {
     return this->comentarios;
 }
@@ -33,9 +33,9 @@ DTFecha Usuario::getFecha(){
 }
 
 
-void Usuario::setComentarios(std::map<std::string, Comentario *> comm)
+void Usuario::setComentarios(int id , Comentario * comm)
 {
-    this->comentarios=comm;
+    this->comentarios.insert(std::make_pair(id,comm));
 }
 
 void Usuario::setNickname(std::string nick)
@@ -64,21 +64,21 @@ bool Usuario::esCliente(){
 }
 */
 
-std::map<std::string, std::string> Usuario::listarComentarios(){
-    std::map<std::string, Comentario*>::iterator it;
-    std::map<std::string ,std::string> coments;
+std::map<int, std::string> Usuario::listarComentarios(){
+    std::map<int, Comentario*>::iterator it;
+    std::map<int ,std::string> coments;
     for (it = this->comentarios.begin(); it != this->comentarios.end(); it++){
         //coments.insert(std::make_pair(it->first, *it->second->getTexto()));
     }
     return coments;
 }    
 
-void Usuario::borrarComentario(std::string id){
-     std::map<std::string, Comentario*>::iterator it;
+void Usuario::borrarComentario(int id){
+     std::map<int, Comentario*>::iterator it;
      it = this->comentarios.find(id);
      Comentario* eliminar = it->second;
-     //eliminar->borrarRespuestas();
+     eliminar->borrarRespuestas();
      this->comentarios.erase(it);
-     //eliminar->~Comentario();
+     eliminar->~Comentario();
 }
 #endif

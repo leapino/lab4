@@ -135,7 +135,7 @@ std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
         return mu->listarNickUsuarios();
     }
 
-std::map<std::string, std::string> ControladorUsuario::listarComentario(std::string nombreU){
+std::map<int, std::string> ControladorUsuario::listarComentario(std::string nombreU){
        Usuario* usuario = getUsuario(nombreU);
        return usuario->listarComentarios();
 }
@@ -148,9 +148,12 @@ void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int c
 }
 
 
-void ControladorUsuario::eliminarComentario(std::string id,std::string nombreU){
+void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
+        ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
+        mU->eraseRespuestas(id);
         Usuario* usuario = getUsuario(nombreU);
         usuario->borrarComentario(id);
+        mU->eraseCom(id);
 }
 
 std::list<DTUsuario> ControladorUsuario::ListaUsuarios(){

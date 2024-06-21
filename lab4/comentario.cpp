@@ -17,7 +17,7 @@ Comentario::Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom, std
     this->texto = comment;
 }
 
-std::map<std::string, Comentario *> Comentario::getRespuestas(){
+std::map<int, Comentario *> Comentario::getRespuestas(){
     return this->respuestas;
 }
 std::string Comentario::getTexto() {
@@ -40,12 +40,12 @@ Usuario *Comentario::getUsuario() {
 }
 
 
-std::string Comentario::getIdcom() {
+int Comentario::getIdcom() {
     return this->idcom;
 }
 
-void Comentario::setRespuestas(std::map<std::string,Comentario*> respuesta){
-    this->respuestas= respuesta;
+void Comentario::setRespuestas(int id , Comentario* respuesta){   
+    this->respuestas.insert(std::make_pair(id,respuesta));
 }
 
 void Comentario::setTexto(std::string text) {
@@ -68,7 +68,7 @@ void Comentario::setMiUsuario(Usuario *miUser) {
 }
 
 
-void Comentario::setIdCom(std::string id) {
+void Comentario::setIdCom(int id) {
     this->idcom = id;
 }
 
@@ -79,13 +79,14 @@ Comentario::~Comentario() {
 }
 
 void Comentario::borrarRespuestas(){
-     std::map<std::string, Comentario*>::iterator it;
+     std::map<int, Comentario*>::iterator it;
      it = this->respuestas.begin();
      Comentario* aborrar;
      while ( it != this->respuestas.end()){
         aborrar = it->second;
         it = this->respuestas.erase(it);     
         aborrar->~Comentario();
+        ++it;
      }
      aborrar = nullptr;
 }

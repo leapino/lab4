@@ -436,13 +436,13 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-            std::map<std::string ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
-            std::map<std::string ,std::string>::iterator it2;
+            std::map<int ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::map<int ,std::string>::iterator it2;
             std::cout<<"Selecciona un comentario por su identificador:\n";
             for (it2 = comentarios.begin(); it2 != comentarios.end(); it2++){
                 std::cout<< it2->first <<")" << " " << it2->second << "\n";
             }
-            std::string id;
+            int id;
             std::cin >>id;
             ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
         } 

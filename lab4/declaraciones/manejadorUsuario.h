@@ -23,6 +23,7 @@
 #include "DTNotificacion.h"
 #include "compra.h"
 #include "promocion.h"
+#include "comentario.h"
 
 class Usuario;
 
@@ -31,6 +32,7 @@ class ManejadorUsuario {
         static ManejadorUsuario* instancia;
         ManejadorUsuario();
         std::map<std::string, Usuario*> Usuarios;
+        std::map<int, Comentario*> Comentarios;
     public:
         static ManejadorUsuario* getInstancia();
         void addUsuario(Usuario*);
@@ -56,7 +58,8 @@ class ManejadorUsuario {
         std::list<DTUsuario> ListarUsuarios();
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
-        
+        void eraseRespuestas(int id);
+        void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
 };
 #endif

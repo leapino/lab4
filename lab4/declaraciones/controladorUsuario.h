@@ -23,11 +23,11 @@ class ControladorUsuario {
         bool estaVacio();
         bool estaUsuario(std::string nombre);
         std::map<int, std::string> listarNickUsuarios();
-        std::map<std::string, std::string> listarComentario(std::string nombreU);
+        std::map<int, std::string> listarComentario(std::string nombreU);
         void escribirCom(std::string comentario,DTFecha fecha,int codProd,std::string usuario);
         std::list <DTComentario> listarComProd(int codProd);
         //void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
-        void eliminarComentario(std::string id,std::string nombreU);
+        void eliminarComentario(int id,std::string nombreU);
         std::set <std::string> listarClientes();
         void selectCliente(/*cliente*/);
         std::set <DTProducto>mostrarProductos();
