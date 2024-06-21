@@ -14,6 +14,9 @@
 #include "compraProducto.h"
 #include "cliente.h"
 
+class Cliente;
+class CompraProducto;
+
 class Compra {
     private:
         DTFecha fecha;

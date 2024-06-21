@@ -9,6 +9,8 @@
 
 #include "producto.h"
 
+class Producto;
+
 class CompraProducto {
     private:
         bool enviado;

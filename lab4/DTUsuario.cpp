@@ -3,10 +3,10 @@
 
 #include "declaraciones/DTUsuario.h"
 
-#include <iostream>
 
-std::ostream &operator<<(std::ostream &salida, DTUsuario* user){
-    salida << "Nickname" << user->getDTNickname() << "\n Fecha de Nacimiento: " << &user->getDTNacimiento();
+
+std::ostream &operator<<(std::ostream &salida, DTUsuario& user){
+    salida << "Nickname" << user.getDTNickname() << "\n Fecha de Nacimiento: " << user.getDTNacimiento();
     return salida;
 }
 

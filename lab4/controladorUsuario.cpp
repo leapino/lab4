@@ -2,7 +2,6 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
-#include "controladorUsuario.h"
 
 
 
@@ -49,31 +48,33 @@ Usuario *ControladorUsuario::getUsuario(std::string Usuario)
     return nullptr;
 }
 
-DTUsuario ControladorUsuario::getInfoUsuario(Usuario *usuario){
+DTUsuario ControladorUsuario::getInfoUsuario(std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    return mU->getInfoUsuario(usuario);
+    return mU->getInfoUsuario(mU->getUsuario(usuario));
 }
 
-DTCliente ControladorUsuario::getInfoCliente(Usuario *usuario){
+DTCliente ControladorUsuario::getInfoCliente(std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    Cliente* pCliente=dynamic_cast<Cliente*> (usuario);
+    Cliente* pCliente=dynamic_cast<Cliente*> (mU->getUsuario(usuario));
     return mU->getInfoCliente(pCliente);
 }
 
-DTVendedor ControladorUsuario::getInfoVendedor(Usuario *usuario){
+DTVendedor ControladorUsuario::getInfoVendedor(std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    Vendedor* pVendedor=dynamic_cast<Vendedor*> (usuario);
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (mU->getUsuario(usuario));
     return mU->getInfoVendedor(pVendedor);
 }
 
-std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(Cliente *cliente){
+std::list<DTCompra> ControladorUsuario::getInfoComprasCliente(std::string cliente){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    return mU->getInfoComprasCliente(cliente);
+    Cliente* pCliente=dynamic_cast<Cliente*> (mU->getUsuario(cliente));
+    return mU->getInfoComprasCliente(pCliente);
 }
 
-std::list<DTProducto> ControladorUsuario::getProdEnVenta(Vendedor *vendedor){
+std::list<DTProducto> ControladorUsuario::getProdEnVenta(std::string vendedor){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    return mU->getProdEnVenta(vendedor);
+    Vendedor* pVendedor=dynamic_cast<Vendedor*> (mU->getUsuario(vendedor));
+    return mU->getProdEnVenta(pVendedor);
 }
 
 std::list<std::string> ControladorUsuario::getVendedoresNoSuscrito(std::string cliente){
@@ -162,7 +163,15 @@ void ControladorUsuario::eliminarSusVendedores(std::string cliente, std::string 
     mU->eliminarSusVendedores(cliente,vendedor);
 }
 
-std::map<int, DT2Producto > ControladorUsuario::getProductosNoEnv(std::string nomVend) {
+bool ControladorUsuario::esCliente(std::string usuario)
+{   
+    ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
+    Cliente * pCliente=dynamic_cast<Cliente*> (mU->getUsuario(usuario));
+    return pCliente!=nullptr;
+}
+
+std::map<int, DT2Producto> ControladorUsuario::getProductosNoEnv(std::string nomVend)
+{
     ManejadorUsuario *mU;
     mU = ManejadorUsuario::getInstancia();
     std::map<int, DT2Producto > productosNoEnviados = mU->getProductosNoEnv(nomVend);

@@ -501,21 +501,37 @@ int main() {
 
             DTFecha fechaActual=ControladorFecha->getFechaActual();
 
-            Usuario* elegido=ControladorUsuario->getUsuario(usuario);//cambiar
+            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(usuario);
+            std::cout << infoUsuario;
 
-            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(elegido);
-            std::cout << &infoUsuario;
 
-            Cliente* pElegido=dynamic_cast<Cliente*>(elegido);
-            if (pElegido!=nullptr){
-                std::cout<<&ControladorUsuario->getInfoCliente(pElegido);
-                std::cout<<&ControladorUsuario->getInfoComprasCliente(pElegido);
+            if (ControladorUsuario->esCliente(usuario)){
+                std::cout<<ControladorUsuario->getInfoCliente(usuario);
+
+                std::list<DTCompra> compras=ControladorUsuario->getInfoComprasCliente(usuario);
+
+                std::cout<< "\n Compras:";
+                
+                for (const auto& i:compras)
+                {
+                    std::cout<<i<<"\n";
+                }
                 
             }else{
-                Vendedor* pElegido=dynamic_cast<Vendedor*>(elegido);
-                std::cout<<&ControladorUsuario->getInfoVendedor(pElegido);
-                std::cout<<&ControladorUsuario->getProdEnVenta(pElegido);
-                std::cout<<&ControladorUsuario->getPromoVigente(usuario,fechaActual);//cambiar a Controlador Usuario
+                std::cout<<ControladorUsuario->getInfoVendedor(usuario);
+                
+                std::cout<<"\n Productos:";
+
+                std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
+                for (const auto & i:prods ){
+                    std::cout<<i<<"\n";
+                }
+                
+                std::cout<<"\n Promociones:";
+
+                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaActual);
+                for(const auto & i:promos)
+                    std::cout<<i<<"\n";
             }
 
         }

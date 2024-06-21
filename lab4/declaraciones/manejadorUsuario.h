@@ -20,6 +20,11 @@
 #include "DTCliente.h"
 #include "DTVendedor.h"
 #include "DTComentario.h"
+#include "DTNotificacion.h"
+#include "compra.h"
+#include "promocion.h"
+
+class Usuario;
 
 class ManejadorUsuario {
     private:
@@ -29,7 +34,6 @@ class ManejadorUsuario {
     public:
         static ManejadorUsuario* getInstancia();
         void addUsuario(Usuario*);
-        Usuario* getUsuario(std::string);
         std::map<int, std::string> listarNicknamesV();
         std::map<int, std::string> listarNickUsuarios();
         std::set<std::string> getClientes();
@@ -39,7 +43,7 @@ class ManejadorUsuario {
         void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string usuario);
         void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
         Vendedor* getVendedor(std::string v);
-        Usuario * getUsuario(std::string Usuario);
+        Usuario * getUsuario(std::string usuario);
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);

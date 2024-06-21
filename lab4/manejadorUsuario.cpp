@@ -3,6 +3,9 @@
 
 #include "declaraciones/manejadorUsuario.h"
 #include "declaraciones/DT2Producto.h"
+#include "declaraciones/usuario.h"
+#include "declaraciones/cliente.h"
+#include "declaraciones/vendedor.h"
 
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
@@ -18,9 +21,9 @@ void ManejadorUsuario::addUsuario(Usuario* u){
     this->Usuarios.insert({u->getNickname(),u});
 }
 
-Usuario* ManejadorUsuario::getUsuario(std::string n){
+Usuario* ManejadorUsuario::getUsuario(std::string usuario){
     std::map<std::string, Usuario*>::iterator it;
-    it = this->Usuarios.find(n);
+    it = this->Usuarios.find(usuario);
     return it->second;
 }
 

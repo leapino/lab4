@@ -16,6 +16,7 @@ struct DTPromocion {
        std::string getDesc();
        DTFecha getFecha();
        ~DTPromocion();
+       friend std::ostream &operator<<(std::ostream &salida,const DTPromocion&prom);
 };
 
 #endif

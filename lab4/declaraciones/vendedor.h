@@ -6,12 +6,15 @@
 #include <string>
 #include <math.h>
 #include <map>
-#include <set>
+#include <list>
 
 #include "usuario.h"
-#include "cliente.h"
-#include "producto.h"
-#include "promocion.h"
+
+class Producto;
+class Promocion;
+class Cliente;
+class Usuario;
+
 
 class Vendedor: public Usuario {
     private:

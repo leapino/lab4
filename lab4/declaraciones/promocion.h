@@ -13,6 +13,7 @@
 #include "DTProducto.h"
 #include "productoPromocion.h"
 
+class ProductoPromocion;
 
 class Promocion {
     private:

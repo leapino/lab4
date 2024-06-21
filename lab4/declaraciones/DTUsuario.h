@@ -1,7 +1,8 @@
 #ifndef DTUSUARIO_H
 #define DTUSUARIO_H
 
-#include "../declaraciones/DTFecha.h"
+#include <iostream>
+#include "DTFecha.h"
 class DTUsuario {
     private:
     std::string DTNickname;
@@ -18,6 +19,8 @@ class DTUsuario {
     //Setters
     void setDTNickname(std::string nick);
     void setDTNacimiento(DTFecha fecha);
+    //Funcion
+    friend std::ostream &operator<<(std::ostream &salida, DTUsuario& user);
 };
 
 #endif

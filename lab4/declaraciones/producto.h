@@ -14,6 +14,10 @@
 #include "productoPromocion.h"
 #include "DT2Producto.h"
 
+class Vendedor;
+class Comentario;
+class ProductoPromocion;
+
 class Producto {
     private:
         int codigo;

@@ -8,9 +8,12 @@
 #include <list>
 
 #include "usuario.h"
+#include "DTNotificacion.h"
 #include "vendedor.h"
 #include "compra.h"
-#include "DTNotificacion.h"
+
+class Vendedor;
+class Compra;
 
 class Cliente: public Usuario {
     private:

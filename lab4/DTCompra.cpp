@@ -35,4 +35,15 @@ void DTCompra::setMonto(int monto) {
 void DTCompra::setProds(std::list<DTCompraProducto>prods){
     this->Prods=prods;
 }
+
+std::ostream& operator<<(std::ostream& salida, const DTCompra& compra) {
+    salida << "Fecha de compra: " << compra.fecha << "\n"; 
+    salida << "Monto: $" << compra.monto << "\n";
+    salida << "Productos:" << "\n";
+    for (const auto& prod : compra.Prods) {
+        salida << "- " << prod << "\n";
+    }
+    return salida;
+}
 #endif
+

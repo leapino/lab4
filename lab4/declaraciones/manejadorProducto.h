@@ -19,6 +19,9 @@
 #include "DTVendedor.h"
 #include "DTComentario.h"
 
+class Producto;
+class Promocion;
+
 class ManejadorProducto {
     private:
         static ManejadorProducto* instancia;

@@ -28,6 +28,7 @@ class DTProducto {
         std::string getDescripcion();
         Categoria getCategoria();
         ~DTProducto();
+        friend std::ostream &operator<<(std::ostream &salida,const DTProducto &prod);
 };
 
 #endif
