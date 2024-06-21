@@ -114,8 +114,12 @@ void Producto::bajarStock(int cantidad){
     this->stock=this->stock-cantidad;
 }
 
-Producto::~Producto()
-{
+Producto::~Producto(){
+    for (std::map<int,Comentario*>::iterator it = this->comentarios.begin();it != this->comentarios.end(); ++it){
+        delete it->second;
+        this->comentarios.erase(it);
+    }
+    delete this->promo;
 }
 
 void Producto::agregarComentario(int id, Comentario *comment){

@@ -38,7 +38,7 @@ void ProductoPromocion::setProducto(Producto *p){
 }
 
 ProductoPromocion::~ProductoPromocion(){
-      this->producto=nullptr;
+      //this->producto=nullptr;
 }
 
 #endif

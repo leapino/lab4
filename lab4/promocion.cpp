@@ -53,10 +53,10 @@ bool Promocion::esPromoVigente(DTFecha fechaactual)
 }
 
 Promocion::~Promocion(){
-   for (auto i = this->prodProm.begin(); i !=this->prodProm.end(); i++)
-   {
-      delete *i;
-   }   
+   // for (auto i = this->prodProm.begin(); i !=this->prodProm.end(); i++)
+   // {
+   //    delete *i;
+   // }   //como ya se borra cada prodProm en producto no creo que sea necesario aca
 }
 std::set<ProductoPromocion *> Promocion::getProdProm()
 {

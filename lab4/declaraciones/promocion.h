@@ -37,7 +37,6 @@ class Promocion {
     void agregarProdProm(ProductoPromocion*);
     bool esPromoVigente(DTFecha fechaactual);
     ~Promocion();
-   
 };
 
 #endif
