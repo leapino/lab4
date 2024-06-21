@@ -352,6 +352,7 @@ int main() {
 
                 std::cout<<"Ingresar codigo del Producto\n";
                 int codigo;
+
                 std::cin>>codigo;
                 
                 std::cout<<"Ingresar cantidad del producto a comprar \n";
@@ -372,7 +373,6 @@ int main() {
 
             ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaActual);
 
-            productos.clear();
         }
             break;
         
