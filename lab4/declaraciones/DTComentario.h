@@ -26,7 +26,6 @@ public:
     void setRespuestas( std::list< DTComentario> resp);
 
     void agregarRespuesta( DTComentario respuesta);
-    DTComentario obtenerRespuesta( int id) ;
 };
 
 #endif

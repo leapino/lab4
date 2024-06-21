@@ -2,7 +2,6 @@
 #define VENDEDOR_CPP
 
 #include "declaraciones/vendedor.h"
-#include "vendedor.h"
 
     Vendedor::Vendedor()
     {
@@ -58,8 +57,9 @@ void Vendedor::crearLinkC(Cliente *cliente)
     this->Clientes.push_front(cliente);
 }
 
-void Vendedor::addPromo(Promocion* promo){
-    this->promociones.insert({promo->getNombre(),promo});
+void Vendedor::addPromo(Promocion * promo){
+    std::string nomPromo=promo->getNombre();
+    this->promociones.insert(std::make_pair(nomPromo,promo));
 }
 
 #endif

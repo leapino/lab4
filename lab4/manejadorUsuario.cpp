@@ -122,7 +122,8 @@ std::set<std::string> ManejadorUsuario::getClientes() {
 
     std::set<std::string> listaClientes;
     for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
-        if (it->second->esCliente()){
+        Cliente* client=dynamic_cast<Cliente*> (it->second);
+        if (client !=nullptr){
             listaClientes.insert(it->first);
         }
     }
@@ -201,7 +202,8 @@ std::list<DTUsuario> ManejadorUsuario::ListarUsuarios(){
      std::list<DTUsuario> usuario;
      DTUsuario sec;
      for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
-       if (it->second->esVendedor()){
+       Vendedor* vendedor=dynamic_cast<Vendedor*> (it->second);
+       if (vendedor!=nullptr){
           sec = getInfoVendedor(it->second->getVend());
        }
        else{

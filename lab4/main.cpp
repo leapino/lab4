@@ -361,7 +361,7 @@ int main() {
                 std::cin >>cantidad;
 
                 ControladorUsuario->agregarProductoCompra(codigo,cantidad);
-                productoCompra.insert(codigo,cantidad);
+                productoCompra.insert(std::make_pair(codigo,cantidad));
 
                 std::cout<<"Desea agregar otro producto?\n"<<"0-No\n"<<"1-Sí\n";
                 std::cin >> i;

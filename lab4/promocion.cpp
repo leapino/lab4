@@ -52,13 +52,15 @@ bool Promocion::esPromoVigente(DTFecha fechaactual)
     return this->fecha>fechaactual;
 }
 
-bool Promocion::esPromoVigente(DTFecha fechaactual)
+Promocion::~Promocion(){
+   for (auto i = this->prodProm.begin(); i !=this->prodProm.end(); i++)
+   {
+      delete *i;
+   }   
+}
+std::set<ProductoPromocion *> Promocion::getProdProm()
 {
-    return this->fecha>fechaactual;
+    return this->prodProm;
 }
-std::set<ProductoPromocion*> Promocion::getProdProm(){
-   return this->prodProm;
-}
-
 
 #endif

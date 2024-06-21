@@ -9,6 +9,7 @@
 #include <list>
 
 #include "usuario.h"
+#include "promocion.h"
 
 class Producto;
 class Promocion;

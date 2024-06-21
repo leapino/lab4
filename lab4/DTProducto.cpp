@@ -13,6 +13,11 @@ std::ostream &operator<<(std::ostream &salida, DTProducto &prod){
 }
 
 
+bool operator<(const DTProducto& prod,const DTProducto otroprod){
+    return prod.codigo<otroprod.codigo;
+}
+
+
 DTProducto::DTProducto(){
 }
 

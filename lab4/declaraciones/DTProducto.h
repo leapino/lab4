@@ -29,6 +29,7 @@ class DTProducto {
         Categoria getCategoria();
         ~DTProducto();
         friend std::ostream &operator<<(std::ostream &salida,const DTProducto &prod);
+        friend bool operator<(const DTProducto&,const DTProducto);
 };
 
 #endif

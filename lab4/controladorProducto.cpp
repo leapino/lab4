@@ -50,7 +50,7 @@ bool ControladorProducto::hayStock(int codigoP, int cantidad){
     ManejadorProducto *mP;
     mP=ManejadorProducto::getInstancia();
     bool res=mP->hayStock(codigoP,cantidad);
-    return ;
+    return res ;
 }
 
 void ControladorProducto::prodEnCompra(std::map<int,int> prods){
@@ -92,7 +92,7 @@ std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
 std::set<DTProducto> ControladorProducto::getProductoPromo(std::string nombrePromo){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
-    mp->getProductoPromo(nombrePromo);
+    return mp->getProductoPromo(nombrePromo);
 }
 
 DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
@@ -138,7 +138,7 @@ std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     std::map<int,Comentario*> comm=mP->getProducto(codProd)->getComentarios();
-    return mP->listarComProd(comm);
+    return mP->listarComProd(comm,0);
 }
 
 #endif

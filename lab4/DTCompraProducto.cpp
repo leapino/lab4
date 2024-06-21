@@ -7,7 +7,7 @@
 
 
 std::ostream &operator<<(std::ostream &salida, DTCompraProducto &prod){
-    salida << "Enviado: " << prod.getEnviado() << "\n Cantidad: " << prod.getCantidad()<<"\n Producto:" <<&prod.getProd();
+    salida << "Enviado: " << prod.getEnviado() << "\n Cantidad: " << prod.getCantidad()<<"\n Producto:" <<prod.getProd();
     return salida;
 }
 

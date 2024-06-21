@@ -47,13 +47,4 @@ void DTComentario::agregarRespuesta( DTComentario respuesta) {
         int id =this->respuestas.rbegin()->getIdCom()+1;
 }
 
-DTComentario DTComentario::obtenerRespuesta(int id)  {
-    for (auto i = this->respuestas.begin(); i !=this->respuestas.end(); i++)
-    {
-        /* code */
-    }
-    
-
-}
-
 #endif

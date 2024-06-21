@@ -2,7 +2,6 @@
 #define MANEJADORPRODUCTO_CPP
 
 #include "declaraciones/manejadorProducto.h"
-#include "manejadorProducto.h"
 
 ManejadorProducto* ManejadorProducto::instancia = NULL;
 
@@ -25,12 +24,13 @@ std::set<DTProducto> ManejadorProducto::getProductosDisp(){
             res.insert(producto);
         }
     }
+    return res;
 }
 
 std::map<int, std::string> ManejadorProducto::getProds(){
     std::map<int, std::string> res;
     for (std::map<int, Producto*>::iterator it = this->Productos.begin(); it!=this->Productos.end(); ++it){
-            res.insert({it->first,it->second->getNombre()});
+            res.insert(std::make_pair(it->first,it->second->getNombre()));
     }
     return res;
     

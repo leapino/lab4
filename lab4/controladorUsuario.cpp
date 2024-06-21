@@ -121,6 +121,7 @@ bool ControladorUsuario::estaVacio(){
         std::map<int ,std::string> nombres = mu->listarNickUsuarios();
         if (nombres.empty() == false)
           estaV = false;
+          return estaV;
     }
 
 bool ControladorUsuario::estaUsuario(std::string nombre){

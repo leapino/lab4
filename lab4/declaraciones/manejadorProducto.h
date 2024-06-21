@@ -18,6 +18,7 @@
 #include "DTFecha.h"
 #include "DTVendedor.h"
 #include "DTComentario.h"
+#include "compraProducto.h"
 
 class Producto;
 class Promocion;
