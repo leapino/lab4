@@ -4,7 +4,7 @@
 #include <string>
 #include "DTFecha.h"
 
-struct DTPromocion {
+class DTPromocion {
     private:
        std::string nombre;
        std::string descripcion;

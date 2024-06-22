@@ -7,7 +7,7 @@
 
 #include "DTProducto.h"
 
-struct DTNotificacion {
+class DTNotificacion {
     private:
        std::string nombreprom;
        std::string nombrevendedor;
