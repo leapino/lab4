@@ -121,7 +121,7 @@ void ControladorProducto::agregarPromoVendedor(std::string promo,std::string ven
     vend->addPromo(mp->getPromos().find(promo)->second);
 }
 
-void ControladorProducto::altaDeProducto(std::string nombre,int precio,int stock,std::string desc,Categoria categoria){
+void ControladorProducto::altaDeProducto(std::string nombre,double precio,int stock,std::string desc,Categoria categoria){
        Producto* nuevoProducto =new Producto(stock,precio,nombre,desc,categoria);       
        ManejadorProducto* mp = ManejadorProducto::getInstancia();
        mp->addProducto(nuevoProducto);
