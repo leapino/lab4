@@ -202,4 +202,8 @@ std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,
     return mU->getPromoVigente(vendedor,fechaActual);
 }
 
+std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {
+    
+}
+
 #endif

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 #include <bits/stdc++.h>
 #include "declaraciones/DTFecha.h"
 #include "declaraciones/DTUsuario.h"
@@ -446,7 +447,7 @@ int main() {
 
             //~ seleccionar uno (el sistema luego lista los productos que vende ese vendedor que tienen al menos una compra pendiente de envio). DONE
 
-            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas (nick del cliente, fecha de compra) 
+            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas (nick del cliente, fecha de compra) DONE
             //para aquellas compras que tienen pendientes de enviar el producto.
 
             //~ el admin selecciona un elemento de esa lista y el sistema marca al producto en la compra como enviado.
@@ -471,11 +472,17 @@ int main() {
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
 
-        
+            int idProdNoEnv = productosNoEnviados.find(numProdNoEnviado)->second.getCodigo();
 
+            std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
+            std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
 
+            for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
-            
+                std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
+            }
+
+            //FALTA MARCARLO COMO ENVIADO LRPM
             
             
         }

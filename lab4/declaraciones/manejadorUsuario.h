@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <utility>
 
 #include "usuario.h"
 #include "vendedor.h"
@@ -62,6 +63,8 @@ class ManejadorUsuario {
         void eraseRespuestas(int id);
         void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
+        std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
+    
         void setComentarios(std::map<int,Comentario*> comm);
 };
 #endif
