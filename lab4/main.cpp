@@ -41,9 +41,9 @@ DTFecha leerFecha(){
     std::cout <<"Ingrese la fecha con el formato DD/MM/YYYY\n";
     std::cout <<"dia\n";
     std::cin >> dia;
-    std::cout <<"dia\n";
+    std::cout <<"mes\n";
     std::cin >>mes;
-    std::cout <<"dia\n";
+    std::cout <<"anio\n";
     std::cin >>anio;
     std::cout <<"\n";
     DTFecha creada=DTFecha(dia,mes,anio,0,0);
