@@ -251,7 +251,7 @@ int main() {
             std::cin >> nomProd;
             std::cout <<"\n";
 
-            float precio;
+            double precio;
             std::cout <<"Precio del Producto\n";
             std::cin >>precio;
             std::cout <<"\n";
@@ -270,6 +270,21 @@ int main() {
             int j;
             std::cout <<"Categoria de su producto\n"<<"1-Ropa\n"<<"2-Electrodomestico\n"<<"3-Otro\n";
             std::cin >>j;
+            
+            switch (j)
+            {
+            case 1:
+                  categoria = ropa;
+                break;
+            case 2:
+                  categoria = electrodomestico;
+                break;
+            case 3:
+                  categoria = otro;
+            default:
+                std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
+                break;
+            }
 
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
             std::cout <<"creo bien el producto";

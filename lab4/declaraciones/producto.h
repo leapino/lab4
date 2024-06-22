@@ -22,7 +22,7 @@ class Producto {
     private:
         int codigo;
         int stock;
-        int precio;
+        double precio;
         std::string nombre;
         std::string descripcion;
         Categoria categoria;
@@ -32,11 +32,11 @@ class Producto {
     public:
         //Creadores
         Producto();
-        Producto(int,int,int,std::string,std::string,Categoria);
+        Producto(int,double,std::string,std::string,Categoria);
         //Getters
         int getCodigo();
         int getStock();
-        int getPrecio();
+        double getPrecio();
         std::string getNombre();
         std::string getDescripcion();
         Categoria getCategoria();
@@ -48,7 +48,7 @@ class Producto {
         //Setters
         void setCodigo(int);
         void setStock(int);
-        void setPrecio(int);
+        void setPrecio(double);
         void setNombre(std::string);
         void setDescripcion(std::string);
         void setCategoria(Categoria);

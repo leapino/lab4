@@ -20,7 +20,7 @@ void Producto::agregarComentario(Comentario * comment){
     this->comentarios.insert(std::make_pair(comment->getIdcom(),comment));
 }
 
-Producto::Producto(int stock,int precio,std::string nombre,std::string desc,Categoria categoria){
+Producto::Producto(int stock,double precio,std::string nombre,std::string desc,Categoria categoria){
     this->stock = stock;
     this->precio = precio;
     this->nombre = nombre;
@@ -37,7 +37,7 @@ int Producto::getStock(){
    return this->stock;
     }
 
-int Producto::getPrecio(){
+double Producto::getPrecio(){
    return this->precio;
     }   
 
@@ -82,7 +82,7 @@ void Producto::setStock(int stock){
    this->stock = stock;
     }
 
-void Producto::setPrecio(int precio){
+void Producto::setPrecio(double precio){
    this->precio = precio;
     }
 
