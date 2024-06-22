@@ -20,7 +20,7 @@ class ControladorUsuario {
         ControladorUsuario();
     public:
         static ControladorUsuario *getInstancia();
-        std::list< std::string *> getVendedores();
+        std::list< std::string > getVendedores();
         void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad);
         void altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT);
         bool estaVacio();
@@ -56,6 +56,7 @@ class ControladorUsuario {
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         Vendedor* getVendedor(std::string v);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
+        void setProductoVendido(std::string c, DTFecha f, int id);
 };
 
 #endif
