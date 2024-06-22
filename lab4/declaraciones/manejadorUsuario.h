@@ -42,10 +42,11 @@ class ManejadorUsuario {
         std::map<int, Producto*> getListaProductos(std::string nombre);
         bool estaUsuario(std::string nombre);
         void agregarCompraCliente(Cliente *cliente,Compra* compra);
-        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string usuario);
-        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);
+        void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,int id,std::string usuario);
+        void escribirCom(int idCom,std::string comentario,DTFecha fecha,Producto* codProd,int id,std::string usuario);
         Vendedor* getVendedor(std::string v);
         Usuario * getUsuario(std::string usuario);
+        std::map<int,Comentario*> getComentarios();
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);
@@ -61,5 +62,6 @@ class ManejadorUsuario {
         void eraseRespuestas(int id);
         void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
+        void setComentarios(std::map<int,Comentario*> comm);
 };
 #endif

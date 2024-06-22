@@ -41,5 +41,6 @@ class Usuario {
         virtual bool esCliente();
         std::map<int, std::string> listarComentarios();
         void borrarComentario(int id);
+        void agregarComentario(Comentario* comm);
 };
 #endif

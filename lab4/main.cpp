@@ -215,7 +215,7 @@ int main() {
              std::map<int,std::string> prods=ControladorProducto->getProds();
 
             for (auto i = prods.begin(); i != prods.end(); ++i){
-                std::cout <<&i;
+                std::cout <<"Codigo:"<<i->first<<"\n Nombre:"<<i->second;
             }
             std::string eleccion;
             std::cout <<"Ingresar Nombre o Código del producto\n";
@@ -223,9 +223,8 @@ int main() {
             
             std::map<std::string,DTProducto> amostrar=ControladorProducto->getInfoProd(eleccion);
             std::cout <<amostrar.begin()->first;
-            std::cout <<&amostrar.begin()->second;
+            std::cout <<amostrar.begin()->second;
 
-            amostrar.clear();
         }
         break;
 
@@ -403,28 +402,23 @@ int main() {
 
             DTFecha fechaActual=ControladorFecha->getFechaActual();
 
+            std::cout <<"Ingrese el comentario\n";
+                std::string comentario;
+                std::cin >>comentario;
+
             if (alt){
-                std::list <DTComentario> comentarios=ControladorUsuario->listarComProd(codProd);
+
+                std::list <DTComentario> comentarios=ControladorProducto->listarComProd(codProd);
                 std::cout<<"A que comentario quiere responder\n";
 
-                //idea:recorrer el vector y darle un numero como "id" a los comentarios
-                int id;
-                std::cin >>id;
-                //ctrlUsuario.selectComProd(comentarios[id]);
+                std::cout <<"Ingrese el  id del comentario a responder\n";
+                int idPrincipal;
+                std::cin >>idPrincipal;
 
-                std::cout <<"Ingrese el comentario\n";
-                std::string comentario;
-                std::cin >>comentario;
+                ControladorUsuario->escribirCom(idPrincipal,comentario,fechaActual,codProd,usuario);
 
-                //ctrlUsuario.escribirCom(comentarios[id],comentario)//ver que pide el comentario incial denuevo;
-            }else{
-
-                std::cout <<"Ingrese el comentario\n";
-                std::string comentario;
-                std::cin >>comentario;
-
-                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,0);
-            }
+            }else
+                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,usuario);
         }
         break;
         case 9:{//Eliminar Comentario

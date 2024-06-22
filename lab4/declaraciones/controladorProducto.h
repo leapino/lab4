@@ -26,6 +26,7 @@ class ControladorProducto {
         std::map<std::string,DTProducto> getInfoProd(std::string producto);//Devuelve un DT del producto y en la casilla de string el nickname del vendedor
         std::map<int,std::string> getProds();//Retorna el codigo y el nombre de todos los productos
         bool hayStock(int codigoP,int cantidad);
+        std::list <DTComentario> listarComProd(int codProd);
         void prodEnCompra(std::map<int,int> prods);
         std::list<DTComentario> listarComProd(int codProd);
         //std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto); se paso esta funcion al controlador Usuario

@@ -24,7 +24,7 @@ public:
     void setFecha( DTFecha fec);
     void setIdCom( int id);
     void setRespuestas( std::list< DTComentario> resp);
-
+    //DTComentario obtenerRespuesta( int id) ;
     void agregarRespuesta( DTComentario respuesta);
 };
 

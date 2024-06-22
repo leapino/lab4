@@ -59,7 +59,7 @@ class Producto {
         //Destructor
         ~Producto();
         //funcion
-        void agregarComentario(int id,Comentario* comment);
+        void agregarComentario(Comentario* comment);
         Producto(int,int,std::string,std::string,Categoria);
 };
 #endif

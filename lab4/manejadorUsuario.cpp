@@ -6,6 +6,7 @@
 #include "declaraciones/usuario.h"
 #include "declaraciones/cliente.h"
 #include "declaraciones/vendedor.h"
+#include "manejadorUsuario.h"
 
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
@@ -27,6 +28,10 @@ Usuario* ManejadorUsuario::getUsuario(std::string usuario){
     return it->second;
 }
 
+std::map<int, Comentario *> ManejadorUsuario::getComentarios()
+{
+    return this->Comentarios;
+}
 DTUsuario ManejadorUsuario::getInfoUsuario(Usuario *usuario){
     return DTUsuario(usuario->getNickname(),usuario->getFecha());
 }
@@ -174,27 +179,24 @@ void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
     cliente->agregarCompra(compra);
 }
 
-void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto* codProd, std::string usuario){
+
+void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
-    Comentario* agregar=new Comentario(user,fecha,codProd,comentario);
-    std::string id;
-    int converter;
-    if(!user->getComentarios().empty()){
-        converter=std::stoi(user->getComentarios().rbegin()->first);
-        converter++;
-        id=std::to_string(converter);
-    }else{
-        id=1;
-    }
-    user->getComentarios().insert(std::make_pair(id,agregar));
+    Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
+    auto i = this->getComentarios().begin(); 
+    while ((i !=this->getComentarios().end())&&(i->first!=idCom))
+        i++;
+    if (i !=this->getComentarios().end())
+        i->second->agregarRespuesta(agregar);
+    this->Comentarios.insert(std::make_pair(id,agregar));    
 }
 
-void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, std::string idCom, std::string usuario){
+void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
-    Comentario* agregar=new Comentario(user,fecha,codProd,comentario);
-    std::string id;
-    int converter;
-    
+    Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
+    codProd->agregarComentario(agregar);
+    user->agregarComentario(agregar);
+    this->Comentarios.insert(std::make_pair(id,agregar));    
 }
 
 std::list<DTUsuario> ManejadorUsuario::ListarUsuarios(){
@@ -260,6 +262,12 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
     return resu;
 
 }
+
+void ManejadorUsuario::setComentarios(std::map<int, Comentario *> comm)
+{
+    this->Comentarios=comm;
+}
+
 
 Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     std::map<std::string, Usuario*>::iterator it;

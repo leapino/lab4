@@ -2,6 +2,7 @@
 #define CONTROLADORUSUARIO_CPP
 
 #include "declaraciones/controladorUsuario.h"
+#include "controladorUsuario.h"
 
 
 
@@ -140,13 +141,21 @@ std::map<int, std::string> ControladorUsuario::listarComentario(std::string nomb
        return usuario->listarComentarios();
 }
 
+void ControladorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fecha,int codProd, std::string usuario){
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    ManejadorProducto * mP=ManejadorProducto::getInstancia();
+    Producto * prod=mP->getProducto(codProd);
+    int id=mU->getComentarios().size();
+    mU->escribirCom(idCom,comentario,fecha,prod,id,usuario);
+}
+
 void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int codProd, std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
     Producto * prod=mP->getProducto(codProd);
-    mU->escribirCom(comentario,fecha,prod,usuario);
+    int id=mU->getComentarios().size();
+    mU->escribirCom(comentario,fecha,prod,id,usuario);
 }
-
 
 void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         ManejadorUsuario * mU=ManejadorUsuario::getInstancia();

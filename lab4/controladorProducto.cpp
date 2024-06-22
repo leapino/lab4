@@ -20,6 +20,14 @@ std::map<int ,std::string> ControladorProducto::listarNicknamesV(){
     return mu->listarNicknamesV();
 }
 
+
+std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
+{
+    ManejadorProducto* mP=ManejadorProducto::getInstancia();
+    Producto* prod=mP->getProducto(codProd);
+    return mP->listarComProd(prod->getComentarios());
+}
+
 std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nombre){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
@@ -138,7 +146,7 @@ std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     ManejadorProducto* mP=ManejadorProducto::getInstancia();
     std::map<int,Comentario*> comm=mP->getProducto(codProd)->getComentarios();
-    return mP->listarComProd(comm,0);
+    return mP->listarComProd(comm);
 }
 
 #endif

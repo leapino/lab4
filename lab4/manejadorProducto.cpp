@@ -85,14 +85,15 @@ std::map<int, DT2Producto> ManejadorProducto::listarProductos(std::map<int, Prod
     return dataProductos;
 }
 
-std::list<DTComentario> ManejadorProducto::listarComProd(std::map<int,Comentario*> comm, int j)
+std::list<DTComentario> ManejadorProducto::listarComProd(std::map<int,Comentario*> comm)
 {
     std::list<DTComentario> res;
     for (auto i = comm.begin(); i !=comm.end(); i++)
     {   
-        j++;
-        //DTComentario recur=DTComentario(i->second->getTexto(),i->second->getFecha(),j,listarComProd(i->second->getRespuestas(),0));//falta cambiar los comentarios a map<int,comet>
-        //res.push_front(recur);        
+        int id=i->first;
+        std::map <int,Comentario*> pararecur=i->second->getRespuestas();
+        DTComentario recur=DTComentario(i->second->getTexto(),i->second->getFecha(),id,listarComProd(pararecur));
+        res.push_front(recur);        
     }
     
     return res;
@@ -147,20 +148,6 @@ DTVendedor ManejadorProducto::vendedorPromo(DTProducto producto){
     return dtv;
 }
 
-void ManejadorProducto::escribirCom(std::string comment,DTFecha fecha,int codProd,Usuario* usuario,int idCom){
-    Producto* pProd=this->getProducto(codProd);
-    Comentario* com=new Comentario(usuario,fecha,pProd,comment);
-    int Id=1;
-    if (idCom==0){
-        if (!pProd->getComentarios().empty()) {
-            Id = pProd->getComentarios().rbegin()->first + 1;
-        }
-        
-    }else{
-
-    }
-    //agregar comentarioa producto ,si el id es 0 es com nuevo si es mayor es respuesta
-}
 
 std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, int &monto){
     

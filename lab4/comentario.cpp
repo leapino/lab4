@@ -10,11 +10,12 @@ Comentario::Comentario() {
     this->miUsuario = NULL;
 }
 
-Comentario::Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom, std::string comment) {
+Comentario::Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom, std::string comment, int idcom) {
     this->miUsuario = miUsuario;
     this->fecha = fecha;
     this->prodComentado = prodCom;
     this->texto = comment;
+    this->idcom=idcom;
 }
 
 std::map<int, Comentario *> Comentario::getRespuestas(){
@@ -44,8 +45,8 @@ int Comentario::getIdcom() {
     return this->idcom;
 }
 
-void Comentario::setRespuestas(int id , Comentario* respuesta){   
-    this->respuestas.insert(std::make_pair(id,respuesta));
+void Comentario::setRespuestas(std::map<int,Comentario*> respuesta){
+    this->respuestas= respuesta;
 }
 
 void Comentario::setTexto(std::string text) {
@@ -91,7 +92,9 @@ void Comentario::borrarRespuestas(){
      aborrar = nullptr;
 }
 
-void Comentario::agregarRespuesta(Comentario com){
-    //this->getRespuestas()->insert()
+void Comentario::agregarRespuesta(Comentario* com)
+{   
+    int id=com->getIdcom();
+    this->respuestas.insert(std::make_pair(id,com));
 }
 #endif

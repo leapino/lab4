@@ -3,6 +3,7 @@
 
 #include "declaraciones/producto.h"
 #include "declaraciones/DT2Producto.h"
+#include "producto.h"
 
 
 Producto::Producto(){
@@ -13,6 +14,12 @@ Producto::Producto(){
 //     this->descripcion = "";
 // //  this->categoria = ???;
 };   
+
+
+
+void Producto::agregarComentario(Comentario * comment){
+    this->comentarios.insert(std::make_pair(comment->getIdcom(),comment));
+}
 
 Producto::Producto(int stock,int precio,std::string nombre,std::string desc,Categoria categoria){
     this->stock = stock;
@@ -122,9 +129,4 @@ Producto::~Producto(){
     delete this->promo;
 }
 
-void Producto::agregarComentario(int id, Comentario *comment){
-    /*auto it=this->comentarios.find(id);
-    if(it!=nullptr)
-        it->second->(std::make_pair(id,comment));
-*/}
 #endif 

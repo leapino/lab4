@@ -2,6 +2,7 @@
 #define USUARIO_CPP
 
 #include "declaraciones/usuario.h"
+#include "usuario.h"
 
 Usuario::Usuario(){}
 
@@ -80,5 +81,11 @@ void Usuario::borrarComentario(int id){
      eliminar->borrarRespuestas();
      this->comentarios.erase(it);
      eliminar->~Comentario();
+}
+
+
+void Usuario::agregarComentario(Comentario *comm)
+{
+    this->comentarios.insert(std::make_pair(comm->getIdcom(),comm));
 }
 #endif
