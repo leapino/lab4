@@ -526,6 +526,7 @@ int main() {
             //para aquellas compras que tienen pendientes de enviar el producto. DONE
 
             //~ el admin selecciona un elemento de esa lista y el sistema marca al producto en la compra como enviado.
+
             std::list<std::string *> vendedores = ControladorUsuario->getVendedores();
             std::cout << "Seleccione un vendedor por su nombre \n";
 
@@ -551,14 +552,17 @@ int main() {
             std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
             std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
         
+            std::cout << "Seleccione una compra por su número. \n";
 
             for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
                 std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
             }
 
-            //FALTA MARCARLO COMO ENVIADO LRPM
-            
+            int numCompra;
+            std::cin >> numCompra;
+
+            ControladorUsuario->setProductoVendido(nombreVendedor, iterator->second.second, idProdNoEnv);
             
             
         }

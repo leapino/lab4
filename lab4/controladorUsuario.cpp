@@ -17,10 +17,13 @@ ControladorUsuario* ControladorUsuario::getInstancia(){
         return instancia;
 }
 
-std::list<std::string *> ControladorUsuario::getVendedores()
-{
-    return std::list<std::string *>();
-}
+// std::list<std::string> ControladorUsuario::getVendedores() {
+//     ManejadorUsuario *mU;
+//     mU = ManejadorUsuario::getInstancia();
+//     return 
+
+// }
+
 std::set<std::string> ControladorUsuario::listarClientes(){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
@@ -218,4 +221,9 @@ std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,
 std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDeProdNoEnviado(std::string v, int codigoProd){
 return std::map<int, std::pair<std::string, DTFecha>> ();
 }
+
+void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
+
+}
+
 #endif

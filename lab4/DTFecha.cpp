@@ -82,6 +82,11 @@ void DTFecha::setMinuto(int minuto){
      this->minuto = minuto;
 }
 
+bool DTFecha::esIgualFecha(DTFecha f) {
+    bool resu = false;
+    return resu = (this->anio == f.anio && this->mes == f.mes && this->dia == f.dia && this->hora == f.hora && this->minuto == f.minuto);
+}
+
 bool DTFecha::esVigente(DTFecha fechaActual){
     int actual = (fechaActual.getAnio() * 365 + fechaActual.getMes() * 31 + fechaActual.getDia());
     int final = (this->anio * 365 + this->mes * 31 + this->dia);

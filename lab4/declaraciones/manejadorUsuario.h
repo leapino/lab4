@@ -13,6 +13,7 @@
 #include <vector>
 #include <utility>
 
+#include "DTFecha.h"
 #include "DTCompra.h"
 #include "DTCompraProducto.h"
 #include "DTPromocion.h"
@@ -68,5 +69,7 @@ class ManejadorUsuario {
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
         void setComentarios(std::map<int,Comentario*> comm);
+        std::list< std::string > getVendedores();
+        void setProductoVendido(std::string c, DTFecha f, int id);
 };
 #endif
