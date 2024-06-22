@@ -2,12 +2,10 @@
 #define DTVENDEDOR_CPP
 
 #include "declaraciones/DTVendedor.h"
-#include <iostream>
-#include <string>
-#include <iostream>
 
-std::ostream &operator<<(std::ostream &salida, DTVendedor& vend){
-    salida << "Nickname" << vend.getDTNickname() << "\n Fecha de Nacimiento: " << vend.getDTNacimiento() << "RUT" << vend.getDTRUT();
+
+std::ostream &operator<<(std::ostream &salida, const DTVendedor & vend){
+    salida << "RUT" << vend.DTRUT;
     return salida;
 }
 

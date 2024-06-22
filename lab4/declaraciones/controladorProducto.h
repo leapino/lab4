@@ -11,6 +11,7 @@
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
 #include "controladorFecha.h"
+#include "vendedor.h"
 
 class ControladorProducto {
     private: 
@@ -28,7 +29,6 @@ class ControladorProducto {
         bool hayStock(int codigoP,int cantidad);
         std::list <DTComentario> listarComProd(int codProd);
         void prodEnCompra(std::map<int,int> prods);
-        std::list<DTComentario> listarComProd(int codProd);
         //std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto); se paso esta funcion al controlador Usuario
         bool checkPromo(int);
         std::map<std::string, DTPromocion> getPromos();

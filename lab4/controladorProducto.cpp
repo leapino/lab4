@@ -28,6 +28,7 @@ std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
     return mP->listarComProd(prod->getComentarios());
 }
 
+
 std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nombre){
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
@@ -121,7 +122,8 @@ void ControladorProducto::agregarPromoVendedor(std::string promo,std::string ven
     mp = ManejadorProducto::getInstancia();
     ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
-    mu->getVendedor(vendedor)->addPromo(mp->getPromos().find(promo)->second);
+    Vendedor* vend=mu->getVendedor(vendedor);
+    vend->addPromo(mp->getPromos().find(promo)->second);
 }
 
 void ControladorProducto::altaDeProducto(std::string nombre,int precio,int stock,std::string desc,Categoria categoria){
@@ -141,12 +143,5 @@ void ControladorProducto::linkVendProd(std::string nombV){
 }
 
 
-std::list<DTComentario> ControladorProducto::listarComProd(int codProd)
-{   
-    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-    ManejadorProducto* mP=ManejadorProducto::getInstancia();
-    std::map<int,Comentario*> comm=mP->getProducto(codProd)->getComentarios();
-    return mP->listarComProd(comm);
-}
 
 #endif

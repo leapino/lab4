@@ -5,8 +5,8 @@
 
 
 
-std::ostream &operator<<(std::ostream &salida, DTUsuario& user){
-    salida << "Nickname" << user.getDTNickname() << "\n Fecha de Nacimiento: " << user.getDTNacimiento();
+std::ostream &operator<<(std::ostream &salida, const DTUsuario& user){
+    salida << "Nickname" << user.DTNickname << "\n Fecha de Nacimiento: " << user.DTNacimiento;
     return salida;
 }
 

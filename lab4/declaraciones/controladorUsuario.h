@@ -9,6 +9,9 @@
 #include <iostream>
 #include "manejadorUsuario.h"
 #include "manejadorProducto.h"
+#include "usuario.h"
+#include "cliente.h"
+#include "vendedor.h"
 
 
 class ControladorUsuario {
@@ -51,7 +54,6 @@ class ControladorUsuario {
         //seleccionarVendedores
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         Vendedor* getVendedor(std::string v);
-        std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
 };
 
 #endif

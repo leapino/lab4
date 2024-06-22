@@ -11,10 +11,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include <utility>
 
-#include "usuario.h"
-#include "vendedor.h"
 #include "DTCompra.h"
 #include "DTCompraProducto.h"
 #include "DTPromocion.h"
@@ -24,9 +21,13 @@
 #include "DTNotificacion.h"
 #include "compra.h"
 #include "promocion.h"
-#include "comentario.h"
+#include "DT2Producto.h"
+#include "usuario.h"
+#include "cliente.h"
+#include "vendedor.h"
 
-class Usuario;
+
+class Comentario;
 
 class ManejadorUsuario {
     private:
@@ -63,8 +64,6 @@ class ManejadorUsuario {
         void eraseRespuestas(int id);
         void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
-        std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
-    
         void setComentarios(std::map<int,Comentario*> comm);
 };
 #endif

@@ -9,14 +9,14 @@
 #include <set>
 
 #include "categoria.h"
-#include "vendedor.h"
-#include "comentario.h"
 #include "productoPromocion.h"
 #include "DT2Producto.h"
+#include "DTProducto.h"
+#include "comentario.h"
 
 class Vendedor;
-class Comentario;
 class ProductoPromocion;
+class Comentario;
 
 class Producto {
     private:

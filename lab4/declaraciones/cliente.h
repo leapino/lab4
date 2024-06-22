@@ -7,13 +7,12 @@
 #include <math.h>
 #include <list>
 
-#include "usuario.h"
 #include "DTNotificacion.h"
-#include "vendedor.h"
 #include "compra.h"
+#include "usuario.h"
 
-class Vendedor;
 class Compra;
+class Usuario;
 
 class Cliente: public Usuario {
     private:

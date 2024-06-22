@@ -3,6 +3,13 @@
 
 #include "declaraciones/DTComentario.h"
 
+
+std::ostream &operator<<(std::ostream &salida, DTComentario const &prod){
+    salida << "Id Comentario: " << prod.idcom<<"\n Texto Comentario:"<<prod.comentario;
+    return salida;
+}
+
+
 DTComentario::DTComentario( std::string com,  DTFecha fec,int id,std::list<DTComentario> resp) {
     this->comentario=com;
     this->fecha=fec;

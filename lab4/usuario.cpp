@@ -2,7 +2,6 @@
 #define USUARIO_CPP
 
 #include "declaraciones/usuario.h"
-#include "usuario.h"
 
 Usuario::Usuario(){}
 

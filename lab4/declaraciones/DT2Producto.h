@@ -18,6 +18,7 @@ class DT2Producto {
         std::string getNombre();
         //Destructor
         ~DT2Producto();
+        friend std::ostream &operator<<(std::ostream &salida, DT2Producto const &prod);
 };
 
 #endif

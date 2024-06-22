@@ -14,14 +14,17 @@
 #include "productoPromocion.h"
 #include "promocion.h"
 #include "DTPromocion.h"
-#include "comentario.h"
 #include "DTFecha.h"
 #include "DTVendedor.h"
 #include "DTComentario.h"
 #include "compraProducto.h"
+#include "vendedor.h"
+
 
 class Producto;
 class Promocion;
+class Comentario;
+
 
 class ManejadorProducto {
     private:

@@ -7,6 +7,14 @@ DTNotificacion::DTNotificacion()
 {
 }
 
+std::ostream &operator<<(std::ostream &salida, const DTNotificacion  &   noti){
+    salida << "Nombre Promocion"<<noti.nombreprom<<"\n Nombre Vendedor"<<noti.nombrevendedor<<"\n Productos";
+    for (const auto& i : noti.productos) {
+        salida << "- " << i << "\n";
+    }
+    return salida;
+}
+
 DTNotificacion::DTNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto*> prods){
     this->nombreprom=nombreP;
     this->nombrevendedor=nombreV;

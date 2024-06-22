@@ -7,7 +7,6 @@
 #include <math.h>
 #include <list>
 
-#include "producto.h"
 
 class Producto;
 

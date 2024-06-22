@@ -12,7 +12,6 @@
 #include "DTCliente.h"
 #include "DTProducto.h"
 #include "compraProducto.h"
-#include "cliente.h"
 
 class Cliente;
 class CompraProducto;

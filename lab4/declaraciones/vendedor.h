@@ -13,8 +13,6 @@
 
 class Producto;
 class Promocion;
-class Cliente;
-class Usuario;
 
 
 class Vendedor: public Usuario {

@@ -7,7 +7,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <utility>
 #include <bits/stdc++.h>
 #include "declaraciones/DTFecha.h"
 #include "declaraciones/DTUsuario.h"
@@ -24,6 +23,16 @@
 #include "declaraciones/comentario.h"
 #include "declaraciones/DTComentario.h"
 
+void ImprimirComentarios(std::list <DTComentario> comentarios){
+    for (auto i =comentarios.begin(); i !=comentarios.end(); i++)
+    {
+        std::cout << *i;
+
+        if(!i->getRespuestas().empty())
+            std::cout << "\n Respuestas comentario con id "<<i->getIdCom();
+            ImprimirComentarios(i->getRespuestas());   
+    }
+}
 
 DTFecha leerFecha(){
     int dia,mes,anio;
@@ -162,10 +171,10 @@ int main() {
               std::list<DTUsuario> lista = ControladorUsuario->ListaUsuarios();
               for (std::list<DTUsuario>::iterator it = lista.begin(); it != lista.end(); it++){
                    if(typeid(it) == typeid(DTCliente)){
-                     std::cout<<& it;
+                     std::cout<< *it;
                    }
                    else{
-                      std::cout<<& it;
+                      std::cout<< *it;
                    }  
             }
         }
@@ -280,7 +289,7 @@ int main() {
                         std::cout<< "Cantidad mínima:\n";
                         std::cin>> cantMin;
                         std::cout <<"\n";
-                        infoProd.insert({numProd, cantMin});
+                        infoProd.insert(std::make_pair(numProd, cantMin));
                     }
                     else{
                         std::cout<< "Este producto ya se encuentra en una promoción\n";
@@ -308,7 +317,7 @@ int main() {
             std::map<std::string, DTPromocion> promociones = ControladorProducto->getPromos();
             std::map<std::string, DTPromocion>::iterator it;
             for (it = promociones.begin(); it != promociones.end(); it++){
-                std::cout<< &it->second;
+                std::cout<< it->second;
             }
             int confirm;
             std::cout << "Desea consultar una promoción?\n1)Si\n2)No\n";
@@ -324,7 +333,7 @@ int main() {
                 std::cout << vendedor.getDTNickname();
                 std::cout << "\nProductos de la promoción:\n";
                 for (it2 = productos.begin(); it2 != productos.end(); it++){
-                    std::cout << &it2;
+                    std::cout << *it2;
                 }
             }
         }
@@ -333,6 +342,12 @@ int main() {
 
             std::set <std::string> clientes=ControladorUsuario->listarClientes();
 
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i;
+            }
+            
+
             std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
             std::string cliente;
             std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
@@ -340,7 +355,7 @@ int main() {
             std::set <DTProducto> productos=ControladorProducto->getProductosDisp();
 
             for(std::set<DTProducto>::iterator it=productos.begin();it!=productos.end();++it){
-                std::cout <<&it;
+                std::cout <<*it;
             }
 
             int i=1;
@@ -412,6 +427,10 @@ int main() {
                 std::list <DTComentario> comentarios=ControladorProducto->listarComProd(codProd);
                 std::cout<<"A que comentario quiere responder\n";
 
+                ImprimirComentarios(comentarios);
+
+                //funcion recursiva para imprimir sus comentarios y sus respuestas
+
                 std::cout <<"Ingrese el  id del comentario a responder\n";
                 int idPrincipal;
                 std::cin >>idPrincipal;
@@ -447,7 +466,7 @@ int main() {
 
             //~ seleccionar uno (el sistema luego lista los productos que vende ese vendedor que tienen al menos una compra pendiente de envio). DONE
 
-            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas (nick del cliente, fecha de compra) DONE
+            //~ el admin selecciona el producto y el sistema lista todas las compras como parejas (nick del cliente, fecha de compra) 
             //para aquellas compras que tienen pendientes de enviar el producto.
 
             //~ el admin selecciona un elemento de esa lista y el sistema marca al producto en la compra como enviado.
@@ -472,17 +491,11 @@ int main() {
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
 
-            int idProdNoEnv = productosNoEnviados.find(numProdNoEnviado)->second.getCodigo();
+        
 
-            std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
-            std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
 
-            for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
-                std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
-            }
-
-            //FALTA MARCARLO COMO ENVIADO LRPM
+            
             
             
         }
@@ -513,7 +526,7 @@ int main() {
 
                 std::cout<< "\n Compras:";
                 
-                for (const auto& i:compras)
+                for (const auto i:compras)
                 {
                     std::cout<<i<<"\n";
                 }
@@ -524,7 +537,7 @@ int main() {
                 std::cout<<"\n Productos:";
 
                 std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
-                for (const auto & i:prods ){
+                for (const auto i:prods ){
                     std::cout<<i<<"\n";
                 }
                 
@@ -544,7 +557,7 @@ int main() {
 
             std::list<std::string> vendnosus=ControladorUsuario->getVendedoresNoSuscrito(cliente);
             for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
-                std::cout << &i;
+                std::cout << *i;
             }
 
             std::list<std::string> asuscribirse;
@@ -570,7 +583,7 @@ int main() {
             std::cin >>cliente;
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
-                std::cout<<&i;
+                std::cout<<*i;
             }
         }
         break;
@@ -582,7 +595,7 @@ int main() {
             std::list <std::string> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
 
             for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
-                std::cout<<&i;
+                std::cout<<*i;
             }
 
             std::list<std::string> aeliminar;
@@ -596,7 +609,7 @@ int main() {
 
                 ControladorUsuario->eliminarSusVendedores(cliente,vendedor);
 
-                std::cout << "Desea Desuscribirse de algun \n"<<"0-No\n"<<"1-Sí";
+                std::cout << "Desea Desuscribirse de algun otro? \n"<<"0-No\n"<<"1-Sí";
             }            
 
         } 

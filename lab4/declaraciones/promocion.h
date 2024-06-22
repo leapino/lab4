@@ -8,7 +8,6 @@
 #include <map>
 #include <set>
 
-#include "vendedor.h"
 #include "DTFecha.h"
 #include "DTProducto.h"
 #include "productoPromocion.h"

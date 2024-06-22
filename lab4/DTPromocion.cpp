@@ -6,8 +6,8 @@
 
 #include "declaraciones/DTPromocion.h"
 
-std::ostream &operator<<(std::ostream &salida, DTPromocion&prom){
-    salida << "\nNombre: " << prom.getNombre() << "\n Descripción: " << prom.getDesc()<<"\n Fecha Vencimiento:"<<prom.getFecha()<< "\n";
+std::ostream &operator<<(std::ostream &salida, const DTPromocion&prom){
+    salida << "\nNombre: " << prom.nombre << "\n Descripción: " << prom.descripcion<<"\n Fecha Vencimiento:"<<prom.fecha<< "\n";
     return salida;
 }
 

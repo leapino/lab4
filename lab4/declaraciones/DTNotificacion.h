@@ -3,6 +3,7 @@
 
 #include <string>
 #include <list>
+#include <iostream>
 
 #include "DTProducto.h"
 
@@ -20,7 +21,8 @@ struct DTNotificacion {
        void setNombrePromo(std::string nombre);
        void setNombreVendedor(std::string nombre);
        void setProductos(std::list<DTProducto*> productos);
-       ~DTNotificacion();     
+       ~DTNotificacion();  
+       friend std::ostream &operator<<(std::ostream &salida, const DTNotificacion  &   noti);   
 };
 
 #endif

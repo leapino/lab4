@@ -12,7 +12,6 @@
 #include "DTUsuario.h"
 #include "DTProducto.h"
 #include "producto.h"
-#include "usuario.h"
 
 class Producto;
 class Usuario;
@@ -39,7 +38,6 @@ class Comentario {
         void setFecha(DTFecha fecha);
         void setProdComentado(Producto *prod);
         void setMiUsuario(Usuario *miUser);
-        void setIdCom(int id);
         void setIdCom(int id);
         void borrarRespuestas();
         void agregarRespuesta(Comentario* comm);

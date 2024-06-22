@@ -12,7 +12,6 @@
 
 class Comentario;
 class Cliente;
-class Vendedor;
 
 class Usuario {
     private:

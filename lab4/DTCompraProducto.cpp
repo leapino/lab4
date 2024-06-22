@@ -6,8 +6,8 @@
 #include "declaraciones/DTCompraProducto.h"
 
 
-std::ostream &operator<<(std::ostream &salida, DTCompraProducto &prod){
-    salida << "Enviado: " << prod.getEnviado() << "\n Cantidad: " << prod.getCantidad()<<"\n Producto:" <<prod.getProd();
+std::ostream &operator<<(std::ostream &salida, const DTCompraProducto &prod){
+    salida << "Enviado: " << prod.enviado<< "\n Cantidad: " << prod.cantidad<<"\n Producto:" <<prod.prod;
     return salida;
 }
 

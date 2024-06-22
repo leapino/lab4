@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include "DTFecha.h"
+#include <iostream>
 
 class DTComentario {
 private:
@@ -26,6 +27,7 @@ public:
     void setRespuestas( std::list< DTComentario> resp);
     //DTComentario obtenerRespuesta( int id) ;
     void agregarRespuesta( DTComentario respuesta);
+    friend std::ostream &operator<<(std::ostream &salida, DTComentario const &prod);
 };
 
 #endif

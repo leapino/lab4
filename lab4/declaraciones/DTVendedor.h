@@ -2,6 +2,8 @@
 #define DTVENDEDOR_H
 
 #include "DTUsuario.h"
+#include <iostream>
+#include <string>
 
 class DTVendedor: public DTUsuario {
     private:

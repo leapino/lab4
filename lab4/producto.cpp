@@ -3,7 +3,6 @@
 
 #include "declaraciones/producto.h"
 #include "declaraciones/DT2Producto.h"
-#include "producto.h"
 
 
 Producto::Producto(){

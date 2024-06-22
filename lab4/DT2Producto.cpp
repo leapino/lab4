@@ -6,8 +6,8 @@
 #include "declaraciones/DT2Producto.h"
 
 
-std::ostream &operator<<(std::ostream &salida, DT2Producto* prod){
-    salida << "Código: " << prod->getCodigo() << "\n Nombre: " << prod->getNombre();
+std::ostream &operator<<(std::ostream &salida, DT2Producto const &prod){
+    salida << "Código: " << prod.codigo << "\n Nombre: " << prod.nombre;
     return salida;
 }
 

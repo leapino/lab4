@@ -20,7 +20,7 @@ class DTUsuario {
     void setDTNickname(std::string nick);
     void setDTNacimiento(DTFecha fecha);
     //Funcion
-    friend std::ostream &operator<<(std::ostream &salida, DTUsuario& user);
+    friend std::ostream &operator<<(std::ostream &salida, const DTUsuario& user);
 };
 
 #endif
