@@ -9,7 +9,7 @@ ControladorProducto* ControladorProducto::instancia = NULL;
 
 ControladorProducto* ControladorProducto::getInstancia(){
     if (instancia == NULL){
-        instancia = new ControladorProducto;
+        instancia = new ControladorProducto();
     }
         return instancia;
 }
