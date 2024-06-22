@@ -41,5 +41,6 @@ class Usuario {
         std::map<int, std::string> listarComentarios();
         void borrarComentario(int id);
         void agregarComentario(Comentario* comm);
+        ~Usuario();
 };
 #endif

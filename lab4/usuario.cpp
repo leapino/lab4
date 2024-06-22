@@ -68,7 +68,8 @@ std::map<int, std::string> Usuario::listarComentarios(){
     std::map<int, Comentario*>::iterator it;
     std::map<int ,std::string> coments;
     for (it = this->comentarios.begin(); it != this->comentarios.end(); it++){
-        //coments.insert(std::make_pair(it->first, *it->second->getTexto()));
+        std::string comm= it->second->getTexto();
+        coments.insert(std::make_pair(it->first, comm));
     }
     return coments;
 }    
@@ -86,5 +87,8 @@ void Usuario::borrarComentario(int id){
 void Usuario::agregarComentario(Comentario *comm)
 {
     this->comentarios.insert(std::make_pair(comm->getIdcom(),comm));
+}
+
+Usuario::~Usuario(){
 }
 #endif

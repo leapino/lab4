@@ -9,7 +9,7 @@ ControladorUsuario* ControladorUsuario::instancia = NULL;
 
 ControladorUsuario* ControladorUsuario::getInstancia(){
     if (instancia == NULL){
-        instancia = new ControladorUsuario();
+        instancia = new ControladorUsuario;
     }
         return instancia;
 }
@@ -201,8 +201,8 @@ std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,
     return mU->getPromoVigente(vendedor,fechaActual);
 }
 
-std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {
-    
-}
 
+std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDeProdNoEnviado(std::string v, int codigoProd){
+return std::map<int, std::pair<std::string, DTFecha>> ();
+}
 #endif

@@ -9,7 +9,7 @@ ControladorProducto* ControladorProducto::instancia = NULL;
 
 ControladorProducto* ControladorProducto::getInstancia(){
     if (instancia == NULL){
-        instancia = new ControladorProducto();
+        instancia = new ControladorProducto;
     }
         return instancia;
 }
@@ -108,13 +108,6 @@ DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
     return mp->vendedorPromo(producto);
-}
-
-void ControladorProducto::escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom){
-    ManejadorProducto * mP=ManejadorProducto::getInstancia();
-    ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
-    Usuario* user=mU->getUsuario(usuario);
-    mP->escribirCom(comment,fecha,codProd,user,idCom);    
 }
 
 void ControladorProducto::agregarPromoVendedor(std::string promo,std::string vendedor){
