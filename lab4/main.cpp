@@ -38,7 +38,7 @@ void ImprimirComentarios(std::list <DTComentario> comentarios){
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
-    std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
+    std::cout <<"Ingrese la fecha con el formato DD/MM/YYYY\n";
     std::cout <<"dia\n";
     std::cin >> dia;
     std::cout <<"dia\n";
@@ -47,7 +47,7 @@ DTFecha leerFecha(){
     std::cin >>anio;
     std::cout <<"\n";
     DTFecha creada=DTFecha(dia,mes,anio,0,0);
-    std::cout <<creada;
+    std::cout <<creada<<"\n";
 
     return creada;
 }
@@ -60,7 +60,6 @@ int main() {
     ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
 
     DTFecha fechaactual=leerFecha();
-    std::cout <<fechaactual<<"\n";
 
 
     ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
@@ -243,6 +242,7 @@ int main() {
             std::cin >>j;
 
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
+            std::cout <<"creo bien el producto";
             ControladorProducto->linkVendProd(nombreV);
         }    
         break;
@@ -536,7 +536,7 @@ int main() {
 
             for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
 
-                std::cout << it->second;
+                std::cout << it->second<<"\n";
             }
 
             std::cout <<"Ingrese el nickname del usuario";

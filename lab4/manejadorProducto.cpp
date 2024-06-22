@@ -183,7 +183,7 @@ void ManejadorProducto::addProducto(Producto* p){
        u++;
     } 
     p->setCodigo(u);
-    this->Productos.insert({u,p});
+    this->Productos.insert(std::make_pair(u,p));
 }
 
 Producto* ManejadorProducto::finalProd(){
