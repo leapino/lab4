@@ -40,9 +40,6 @@ std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nom
     return mp->listarProductos(lista);
 }
 
-void ControladorProducto::confirmarAltaPromocion(std::string nombreP, std::string descriP, float descuento, DTFecha fecha, std::map<int, int> infoProd)
-{
-}
 std::set<DTProducto> ControladorProducto::getProductosDisp()
 {
     ManejadorProducto *mP;
@@ -81,7 +78,7 @@ bool ControladorProducto::checkPromo(int codigo){
     return mp->checkPromo(codigo);
 }
 
-void confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
+void ControladorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
     mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
