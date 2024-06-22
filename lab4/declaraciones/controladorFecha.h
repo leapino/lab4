@@ -19,7 +19,6 @@ class ControladorFecha {
         void setFecha(DTFecha);
         DTFecha getFecha();
         DTFecha getFechaActual();
-        bool esVigente(DTFecha);
 };
 
 #endif

@@ -28,10 +28,4 @@ void ControladorFecha::setFecha(DTFecha nFecha){
     this->fecha = nFecha;
 }
 
-bool ControladorFecha::esVigente(DTFecha fechaFinal){
-    DTFecha fechaActual = this->fecha;
-    int actual = (fechaActual.getAnio() * 365 + fechaActual.getMes() * 31 + fechaActual.getDia());
-    int final = (fechaFinal.getAnio() * 365 + fechaFinal.getMes() * 31 + fechaFinal.getDia());
-    return  actual <= final;
-}
 #endif
