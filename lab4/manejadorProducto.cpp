@@ -178,6 +178,7 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
 
 void ManejadorProducto::addProducto(Producto* p){
     int u = 1;
+    std::cout<< "aca";
     if(this->Productos.empty() == false){
        u = this->Productos.end()->first;
        u++;

@@ -222,7 +222,7 @@ std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDe
 return std::map<int, std::pair<std::string, DTFecha>> ();
 }
 
-void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
+void ControladorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
     ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
     return mU->setProductoVendido(c, f, id);
 }
