@@ -10,6 +10,7 @@
 #include "DTFecha.h"
 #include "comentario.h"
 
+
 class Comentario;
 class Cliente;
 
@@ -36,8 +37,8 @@ class Usuario {
         void setPassword(std::string);
         void setFecha(DTFecha);
         //Funciones
-        virtual bool esVendedor()=0;
-        virtual bool esCliente()=0;
+        //virtual bool esVendedor()=0;
+        //virtual bool esCliente()=0;
         std::map<int, std::string> listarComentarios();
         void borrarComentario(int id);
         void agregarComentario(Comentario* comm);

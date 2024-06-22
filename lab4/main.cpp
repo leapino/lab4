@@ -64,6 +64,7 @@ int main() {
 
     ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
     //USUARIOS
+    
     DTFecha fecha1 = DTFecha(15,5,1988,0,0);
     ControladorUsuario->altaDeUsuario("ana23", "qwer1234", fecha1, "212345678001");
     DTFecha fecha2 = DTFecha(18,6,1986,0,0);

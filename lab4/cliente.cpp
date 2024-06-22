@@ -11,7 +11,7 @@ Cliente::Cliente() {
     this->Notificaciones;
 }
 
-Cliente::Cliente(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciud):Usuario(nick, pass, fechnaci) {
+Cliente::Cliente(std::string nick, std::string pass, DTFecha fecha,std::string dir, std::string ciud):Usuario(nick, pass, fecha) {
     this->direccion = dir;
     this->ciudad = ciud;
 }

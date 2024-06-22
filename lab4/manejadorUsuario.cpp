@@ -23,7 +23,10 @@ void ManejadorUsuario::addUsuario(Usuario* u){
 Usuario* ManejadorUsuario::getUsuario(std::string usuario){
     std::map<std::string, Usuario*>::iterator it;
     it = this->Usuarios.find(usuario);
-    return it->second;
+    if (it != this->Usuarios.end())
+      return it->second;
+    else
+      return nullptr;
 }
 
 std::map<int, Comentario *> ManejadorUsuario::getComentarios()
