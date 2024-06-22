@@ -224,15 +224,14 @@ int main() {
             break;
 
         case 2:{//LIstado de Usuarios, muestra el nick , la fecha de nacimiento y los datos de cliente o vendedor
-              std::list<DTUsuario> lista = ControladorUsuario->ListaUsuarios();
-              for (std::list<DTUsuario>::iterator it = lista.begin(); it != lista.end(); it++){
-                   if(typeid(it) == typeid(DTCliente)){
+              std::list<DTVendedor> listaV = ControladorUsuario->ListaUsuariosV();
+              std::list<DTCliente> listaC = ControladorUsuario->ListaUsuariosC();
+              for (std::list<DTVendedor>::iterator it = listaV.begin(); it != listaV.end(); it++){                 
                      std::cout<< *it;
-                   }
-                   else{
-                      std::cout<< *it;
-                   }  
-            }
+              }
+              for (std::list<DTCliente>::iterator it2 = listaC.begin(); it2 != listaC.end(); it2++){                 
+                     std::cout<< *it2;
+              }  
         }
             break;
 

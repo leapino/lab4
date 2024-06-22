@@ -4,8 +4,8 @@
 #include "declaraciones/DTVendedor.h"
 
 
-std::ostream &operator<<(std::ostream &salida, const DTVendedor & vend){
-    salida << "RUT" << vend.DTRUT;
+std::ostream &operator<<(std::ostream &salida, DTVendedor  vend){
+    salida << "\nNickname: " << vend.getDTNickname() << "\n Fecha de Nacimiento: " << vend.getDTNacimiento() << "\nRUT: " << vend.getDTRUT();
     return salida;
 }
 

@@ -171,10 +171,16 @@ void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         mU->eraseCom(id);
 }
 
-std::list<DTUsuario> ControladorUsuario::ListaUsuarios(){
+std::list<DTVendedor> ControladorUsuario::ListaUsuariosV(){
         ManejadorUsuario* mu;
     mu = ManejadorUsuario::getInstancia();
-    return mu->ListarUsuarios();
+    return mu->ListarUsuariosV();
+}
+
+std::list<DTCliente> ControladorUsuario::ListaUsuariosC(){
+        ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->ListarUsuariosC();
 }
 
 void ControladorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){

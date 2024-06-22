@@ -200,22 +200,34 @@ void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Produc
     this->Comentarios.insert(std::make_pair(id,agregar));    
 }
 
-std::list<DTUsuario> ManejadorUsuario::ListarUsuarios(){
+std::list<DTVendedor> ManejadorUsuario::ListarUsuariosV(){
      std::map<std::string, Usuario*>::iterator it;
-     std::list<DTUsuario> usuario;
-     DTUsuario sec;
+     std::list<DTVendedor> vends;
+     DTVendedor sec;
      for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
        Vendedor* vendedor=dynamic_cast<Vendedor*> (it->second);
        if (vendedor!=nullptr){
-          sec = getInfoVendedor(it->second->getVend());
+          sec = getInfoVendedor(vendedor);
        }
-       else{
-          sec = getInfoCliente(it->second->getCliente());
-       }
-       usuario.push_back(sec);       
+       vends.push_back(sec);       
      }
-     return usuario;
+     return vends;
 }
+
+std::list<DTCliente> ManejadorUsuario::ListarUsuariosC(){
+     std::map<std::string, Usuario*>::iterator it;
+     std::list<DTCliente> clients;
+     DTCliente sec;
+     for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
+       Cliente* cliente=dynamic_cast<Cliente*> (it->second);
+       if (cliente!=nullptr){
+          sec = getInfoCliente(cliente);
+       }
+       clients.push_back(sec);       
+     }
+     return clients;
+}
+
 
 void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
     Cliente* pCliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));

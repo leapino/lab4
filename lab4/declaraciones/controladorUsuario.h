@@ -49,7 +49,8 @@ class ControladorUsuario {
         void suscribirVendedores(std::list<std::string> Vendedores,std::string cliente);
         std::list<DTNotificacion> consultarNotificaciones(std::string cliente);
         std::list<std::string> getVendedoresSuscrito(std::string cliente);
-        std::list<DTUsuario> ListaUsuarios();
+        std::list<DTVendedor> ListaUsuariosV();
+        std::list<DTCliente> ListaUsuariosC();
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         //seleccionarVendedores
         void eliminarSusVendedores(std::string cliente, std::string vendedor);

@@ -21,7 +21,7 @@ class DTCliente: public DTUsuario {
     void setDTAdress(std::string direc);
     void setDTCiudad(std::string ciudad);
     //funcion
-    friend std::ostream &operator<<(std::ostream &salida, DTCliente const& client);
+    friend std::ostream &operator<<(std::ostream &salida, DTCliente  client);
 };
 
 #endif
