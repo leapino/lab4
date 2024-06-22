@@ -32,6 +32,14 @@ DTFecha Usuario::getFecha(){
     return this->fechaNacimiento;
 }
 
+Cliente *Usuario::getCliente()
+{
+    return nullptr;
+}
+Vendedor *Usuario::getVend()
+{
+    return nullptr;
+}
 
 void Usuario::setComentarios(int id , Comentario * comm)
 {

@@ -45,6 +45,8 @@ class Cliente: public Usuario {
         void agregarCompra(Compra* Compra);
         //destructor
         ~Cliente();
+        bool esVendedor() override { return false; };
+        bool esCliente() override { return true; };
 };
 
 #endif

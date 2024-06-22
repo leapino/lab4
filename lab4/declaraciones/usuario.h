@@ -36,11 +36,11 @@ class Usuario {
         void setPassword(std::string);
         void setFecha(DTFecha);
         //Funciones
-        virtual bool esVendedor();
-        virtual bool esCliente();
+        virtual bool esVendedor()=0;
+        virtual bool esCliente()=0;
         std::map<int, std::string> listarComentarios();
         void borrarComentario(int id);
         void agregarComentario(Comentario* comm);
-        ~Usuario();
+        virtual ~Usuario();
 };
 #endif

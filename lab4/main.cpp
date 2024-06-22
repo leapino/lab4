@@ -39,9 +39,17 @@ DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
     std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
-    std::cin >> dia>>separador>>mes>>separador>>anio;
+    std::cout <<"dia\n";
+    std::cin >> dia;
+    std::cout <<"dia\n";
+    std::cin >>mes;
+    std::cout <<"dia\n";
+    std::cin >>anio;
     std::cout <<"\n";
-    return DTFecha(dia,mes,anio,0,0);
+    DTFecha creada=DTFecha(dia,mes,anio,0,0);
+    std::cout <<creada;
+
+    return creada;
 }
 
 
@@ -93,7 +101,7 @@ int main() {
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
-        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -117,7 +125,21 @@ int main() {
             std::cin >>password;
             std::cout <<"\n";
             
-            DTFecha fecha=leerFecha();
+
+            int dia,mes,anio;
+            std::string separador;
+            std::cout <<"Inato DD/MM/YYYY\n";
+            std::cout <<"d\n";
+            std::cin >> dia;
+            std::cout <<"\nm\n";
+            std::cin >>mes;
+            std::cout <<"\nanio";
+            std::cin >>anio;
+            std::cout <<"\n";
+            DTFecha fecha=DTFecha(dia,mes,anio,0,0);
+            std::cout <<fecha;
+
+            std::cout <<"salio de crear la fecha";
             
             bool estanom = false;
             if (ControladorUsuario->estaVacio() == false)
@@ -345,7 +367,7 @@ int main() {
 
             for (auto i = clientes.begin(); i !=clientes.end(); i++)
             {
-                std::cout<<*i;
+                std::cout<<*i<<"\n";
             }
             
 

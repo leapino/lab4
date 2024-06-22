@@ -5,6 +5,8 @@
 
 ControladorFecha* ControladorFecha::instancia = NULL;
 
+ControladorFecha::ControladorFecha() {};
+
 ControladorFecha* ControladorFecha::getInstancia(){
     if (instancia == NULL){
         instancia = new ControladorFecha();

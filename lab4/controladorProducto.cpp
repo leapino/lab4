@@ -7,6 +7,8 @@
 
 ControladorProducto* ControladorProducto::instancia = NULL;
 
+ControladorProducto::ControladorProducto() {};
+
 ControladorProducto* ControladorProducto::getInstancia(){
     if (instancia == NULL){
         instancia = new ControladorProducto();
@@ -38,13 +40,16 @@ std::map<int , DT2Producto> ControladorProducto::listarProductos(std::string nom
     return mp->listarProductos(lista);
 }
 
-std::set<DTProducto> ControladorProducto::getProductosDisp(){
+void ControladorProducto::confirmarAltaPromocion(std::string nombreP, std::string descriP, float descuento, DTFecha fecha, std::map<int, int> infoProd)
+{
+}
+std::set<DTProducto> ControladorProducto::getProductosDisp()
+{
     ManejadorProducto *mP;
     mP=ManejadorProducto::getInstancia();
     std::set<DTProducto>listaProductosDisp=mP->getProductosDisp();
     return listaProductosDisp;
 }
-
 
 std::map<std::string, DTProducto> ControladorProducto::getInfoProd(std::string producto){
     ManejadorProducto *mP=ManejadorProducto::getInstancia();

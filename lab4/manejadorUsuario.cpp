@@ -6,6 +6,8 @@
 
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
+ManejadorUsuario::ManejadorUsuario() {};
+
 ManejadorUsuario* ManejadorUsuario::getInstancia(){
     if (instancia == NULL){
         instancia = new ManejadorUsuario();

@@ -41,6 +41,8 @@ class Vendedor: public Usuario {
         void crearLinkC(Cliente * cliente);
         void desuscribirse(Cliente); 
         void setProductos(int, Producto*);
+        bool esVendedor() override { return true; }
+        bool esCliente() override { return false; }
         
 };
 #endif

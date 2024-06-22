@@ -5,15 +5,22 @@
 
 
 
-ControladorUsuario* ControladorUsuario::instancia = NULL;
+ControladorUsuario* ControladorUsuario::instancia = nullptr;
+
+
+ControladorUsuario::ControladorUsuario() {};
 
 ControladorUsuario* ControladorUsuario::getInstancia(){
-    if (instancia == NULL){
+    if (instancia == nullptr){
         instancia = new ControladorUsuario();
     }
         return instancia;
 }
 
+std::list<std::string *> ControladorUsuario::getVendedores()
+{
+    return std::list<std::string *>();
+}
 std::set<std::string> ControladorUsuario::listarClientes(){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
