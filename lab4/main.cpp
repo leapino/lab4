@@ -59,6 +59,9 @@ int main() {
     ControladorProducto* ControladorProducto = ControladorProducto::getInstancia();
     ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
 
+    DTFecha fechaactual=leerFecha();
+    std::cout <<fechaactual<<"\n";
+
 
     ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
     //USUARIOS
@@ -408,9 +411,7 @@ int main() {
             int monto=0;
 
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
-
-            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaActual);
+            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaactual);
 
         }
             break;
@@ -439,7 +440,6 @@ int main() {
             int alt;
             std::cin >>alt;
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             std::cout <<"Ingrese el comentario\n";
                 std::string comentario;
@@ -458,10 +458,10 @@ int main() {
                 int idPrincipal;
                 std::cin >>idPrincipal;
 
-                ControladorUsuario->escribirCom(idPrincipal,comentario,fechaActual,codProd,usuario);
+                ControladorUsuario->escribirCom(idPrincipal,comentario,fechaactual,codProd,usuario);
 
             }else
-                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,usuario);
+                ControladorUsuario->escribirCom(comentario,fechaactual,codProd,usuario);
         }
         break;
         case 9:{//Eliminar Comentario
@@ -543,7 +543,6 @@ int main() {
             std::string usuario;
             std::cin >>usuario;
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(usuario);
             std::cout << infoUsuario;
@@ -573,7 +572,7 @@ int main() {
                 
                 std::cout<<"\n Promociones:";
 
-                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaActual);
+                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
                 for(const auto & i:promos)
                     std::cout<<i<<"\n";
             }
