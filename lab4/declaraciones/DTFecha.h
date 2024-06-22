@@ -33,6 +33,7 @@ class DTFecha{
         void setHora(int);
         void setMinuto(int);
         //Funciones
+        bool esIgualFecha(DTFecha f);
         friend std::ostream &operator<<(std::ostream& salida, const DTFecha& fecha);
         friend bool operator>(const DTFecha& lhs, const DTFecha& rhs);
         bool esVigente(DTFecha);

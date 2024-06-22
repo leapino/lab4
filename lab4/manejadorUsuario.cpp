@@ -341,4 +341,32 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
     return resu;
 }
 
+std::list< std::string > ManejadorUsuario::getVendedores() {
+
+}
+
+void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
+    Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
+    std::list<Compra *> compras = cliente->getCompras();
+    std::list<Compra *>::iterator it = compras.begin();
+
+    while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
+        ++it;
+    }
+    if(f.esIgualFecha((*it)->getFecha())) {
+
+        std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
+        std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
+
+        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
+            
+            ++compraProducto;
+
+        }
+        if(!((*compraProducto)->getEnviado())) {
+
+            ((*compraProducto))->setEnviado(true);
+        }
+    }
+}
 #endif
