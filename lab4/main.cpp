@@ -281,11 +281,11 @@ int main() {
                 break;
             case 3:
                   categoria = otro;
+                break;
             default:
                 std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
                 break;
             }
-
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
             std::cout <<"creo bien el producto";
             ControladorProducto->linkVendProd(nombreV);
