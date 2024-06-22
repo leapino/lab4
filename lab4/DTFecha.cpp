@@ -82,10 +82,7 @@ void DTFecha::setMinuto(int minuto){
      this->minuto = minuto;
 }
 
-bool DTFecha::esVigente(){
-    ControladorFecha* cf;
-    cf = ControladorFecha::getInstancia();
-    DTFecha fechaActual = cf->getFecha();
+bool DTFecha::esVigente(DTFecha fechaActual){
     int actual = (fechaActual.getAnio() * 365 + fechaActual.getMes() * 31 + fechaActual.getDia());
     int final = (this->anio * 365 + this->mes * 31 + this->dia);
     return  actual <= final;

@@ -7,8 +7,6 @@
 #include <string>
 #include <math.h>
 
-#include "controladorFecha.h"
-
 class DTFecha{
     private:
         int hora;
@@ -37,6 +35,6 @@ class DTFecha{
         //Funciones
         friend std::ostream &operator<<(std::ostream& salida, const DTFecha& fecha);
         friend bool operator>(const DTFecha& lhs, const DTFecha& rhs);
-        bool esVigente();
+        bool esVigente(DTFecha);
 };
 #endif

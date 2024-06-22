@@ -87,10 +87,12 @@ void ControladorProducto::confirmarAltaPromocion(std::string nombreP,std::string
 std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
+    ControladorFecha* cf;
+    cf = ControladorFecha::getInstancia();
     std::map<std::string, Promocion*>::iterator it;
     std::map<std::string, DTPromocion> dtpromociones;
     for (it = mp->getPromos().begin(); it != mp->getPromos().end(); it++){
-        if (it->second->getFecha().esVigente()){
+        if (it->second->getFecha().esVigente(cf->getFecha())){
             DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
             dtpromociones.insert({it->second->getNombre(), dtpromo});
         }
