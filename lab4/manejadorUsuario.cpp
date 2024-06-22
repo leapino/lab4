@@ -341,9 +341,17 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
     return resu;
 }
 
-std::list< std::string > ManejadorUsuario::getVendedores() {
-
+std::list<std::string> ManejadorUsuario::getVendedores() {
+    std::list<std::string> listaVendedores;
+    for (std::map<std::string, Usuario*>::iterator it = this->Usuarios.begin(); it!=this->Usuarios.end(); ++it){
+        Vendedor* vendedor=dynamic_cast<Vendedor*> (it->second);
+        if (vendedor !=nullptr){
+            listaVendedores.push_front(it->first);
+        }
+    }
+    return listaVendedores;
 }
+
 
 void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));

@@ -17,12 +17,12 @@ ControladorUsuario* ControladorUsuario::getInstancia(){
         return instancia;
 }
 
-// std::list<std::string> ControladorUsuario::getVendedores() {
-//     ManejadorUsuario *mU;
-//     mU = ManejadorUsuario::getInstancia();
-//     return 
+std::list<std::string> ControladorUsuario::getVendedores() {
+    ManejadorUsuario *mU;
+    mU = ManejadorUsuario::getInstancia();
+    return mU->getVendedores();
 
-// }
+}
 
 std::set<std::string> ControladorUsuario::listarClientes(){
     ManejadorUsuario* mUsuario;
@@ -217,13 +217,14 @@ std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,
     return mU->getPromoVigente(vendedor,fechaActual);
 }
 
-
+//esto esta medio raro no??
 std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDeProdNoEnviado(std::string v, int codigoProd){
 return std::map<int, std::pair<std::string, DTFecha>> ();
 }
 
 void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
-
+    ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
+    return mU->setProductoVendido(c, f, id);
 }
 
 #endif
