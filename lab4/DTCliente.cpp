@@ -11,7 +11,7 @@ std::ostream &operator<<(std::ostream &salida, DTCliente const& client){
 DTCliente::DTCliente(){
 }
 
-DTCliente::DTCliente(std::string Nickname, DTFecha fecha,std::string direc, std::string Ciudad){
+DTCliente::DTCliente(std::string Nickname, DTFecha fecha,std::string direc, std::string Ciudad):DTUsuario(Nickname, fecha){
     this->DTAdress=direc;
     this->DTCiudad=Ciudad;
 }

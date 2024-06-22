@@ -84,6 +84,36 @@ int main() {
     ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
 
     //PRODUCTOS
+    /*ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
+    ControladorProducto->linkVendProd("carlos78");
+    ControladorProducto->altaDeProducto("Televisor LED", 40500, 30, "Televisor LED 55 pulgadas", electrodomestico);
+    ControladorProducto->linkVendProd("ana23");
+    ControladorProducto->altaDeProducto("Chaqueta de Cuero", 699.99, 20, "Chaqueta de cuero, color negro", ropa);
+    ControladorProducto->linkVendProd("carlos78");
+    ControladorProducto->altaDeProducto("Microondas Digital", 1199.99, 15, "Microondas digital, 30L", electrodomestico);
+    ControladorProducto->linkVendProd("ana23");
+    ControladorProducto->altaDeProducto("Luz LED", 599.99, 40, "Luz Bluetooth LED", otro);
+    ControladorProducto->linkVendProd("diegom");
+    ControladorProducto->altaDeProducto("Pantalones Vaqueros", 60, 25, "Pantalones vaqueros, talla 32", ropa);
+    ControladorProducto->linkVendProd("carlos78");
+    ControladorProducto->altaDeProducto("Auriculares Bluetooth", 199.99, 35, "Auriculares bluethooth para celular", otro);
+    ControladorProducto->linkVendProd("diegom");
+    ControladorProducto->altaDeProducto("Refrigerador", 15499, 10, "Refrigerador de doble puerta", electrodomestico);
+    ControladorProducto->linkVendProd("ana23");
+    ControladorProducto->altaDeProducto("Cafetera", 23000, 50, "Cafetera de goteo programable", electrodomestico);
+    ControladorProducto->linkVendProd("ana23");
+    ControladorProducto->altaDeProducto("Zapatillas Deportivas", 5500, 20, "Zapatillas para correr, talla 42", ropa);
+    ControladorProducto->linkVendProd("carlos78");
+    ControladorProducto->altaDeProducto("Mochila", 9000, 30, "Mochila de viaje, 40L", otro);
+    ControladorProducto->linkVendProd("carlos78");
+    ControladorProducto->altaDeProducto("Plancha de Ropa", 2534, 25, "Plancha a vapor, 1500W", electrodomestico);
+    ControladorProducto->linkVendProd("diegom");
+    ControladorProducto->altaDeProducto("Gorra", 200, 50, "Gorra para deportes, color rojo", ropa);
+    ControladorProducto->linkVendProd("sofia25");
+    ControladorProducto->altaDeProducto("Tablet", 15000, 15, "Tablet Android de 10 pulgadas", electrodomestico);
+    ControladorProducto->linkVendProd("diegom");
+    ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
+    ControladorProducto->linkVendProd("sofia25"); */
 
     //PROMOCIONES
 
@@ -276,9 +306,8 @@ int main() {
             std::cin >>descuento;
 
             int dia,mes,anio;
-            std::string separador;
-            std::cout <<"Ingrese la fecha de vencimiento de la promoción con el formato DD/MM/YYYY\n";
-            std::cin >> dia>>separador>>mes>>separador>>anio;
+            std::cout <<"Ingrese la fecha de vencimiento de la promoción ingresando primero el día, luego el mes y finalmente el año:\n";
+            std::cin >> dia>>mes>>anio;
             std::cout <<"\n";
             
             DTFecha fecha = DTFecha(dia,mes,anio,0,0);
@@ -293,46 +322,50 @@ int main() {
             std::cin >> numVend;
             std::map<int, DT2Producto> productosVend = ControladorProducto->listarProductos(nicknames.find(numVend)->second);
             std::map<int, DT2Producto>::iterator it2;
-            std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:";
-            std::map<int, int> infoProd;
+            if (productosVend.size() != 0){
+                std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:\n";
+                std::map<int, int> infoProd;
 
-            for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
-                std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
-            }
-            int numProd = 1;
-            int cantMin;
-            while (numProd > 0){
-                std::cout<< "Número producto:\n";
-                std::cin>> numProd;
-                std::cout <<"\n";
-                if (numProd > 0){
-                    DT2Producto prod = productosVend.find(numProd)->second;
-                    bool tienePromo = ControladorProducto->checkPromo(prod.getCodigo());
-                    if (!tienePromo){
-                        std::cout<< "Cantidad mínima:\n";
-                        std::cin>> cantMin;
-                        std::cout <<"\n";
-                        infoProd.insert(std::make_pair(numProd, cantMin));
-                    }
-                    else{
-                        std::cout<< "Este producto ya se encuentra en una promoción\n";
+                for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
+                    std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
+                }
+                int numProd = 1;
+                int cantMin;
+                while (numProd > 0){
+                    std::cout<< "Número producto:\n";
+                    std::cin>> numProd;
+                    std::cout <<"\n";
+                    if (numProd > 0){
+                        DT2Producto prod = productosVend.find(numProd)->second;
+                        bool tienePromo = ControladorProducto->checkPromo(prod.getCodigo());
+                        if (!tienePromo){
+                            std::cout<< "Cantidad mínima:\n";
+                            std::cin>> cantMin;
+                            std::cout <<"\n";
+                            infoProd.insert(std::make_pair(numProd, cantMin));
+                        }
+                        else{
+                            std::cout<< "Este producto ya se encuentra en una promoción\n";
+                        }
                     }
                 }
-            }
-            int confirm = 2;
-            while (confirm != 1 || confirm!= 0)
-            {
-                std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
-                std::cin>> confirm;
-                if (confirm == 1){
-                    ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
-                    ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
-                    std::cout<< "\nSe agregó la promoción\n";
-                }if (confirm == 0){
-                    std::cout<< "\nNo se agregó la promoción\n";
-                }else{
-                    std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
+                int confirm = 2;
+                while (confirm != 1 || confirm!= 0)
+                {
+                    std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
+                    std::cin>> confirm;
+                    if (confirm == 1){
+                        ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+                        ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
+                        std::cout<< "\nSe agregó la promoción\n";
+                    }if (confirm == 0){
+                        std::cout<< "\nNo se agregó la promoción\n";
+                    }else{
+                        std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
+                    }
                 }
+            }else{
+                std::cout<< "El vendedor no tiene productos asignados.";
             }
         }
         break;

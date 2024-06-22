@@ -12,7 +12,7 @@ class DTUsuario {
     DTUsuario();
     DTUsuario(std::string Nickname, DTFecha fecha);
     //Destructor
-    ~DTUsuario();
+    virtual ~DTUsuario();
     //Getters
     std::string getDTNickname();
     DTFecha getDTNacimiento();

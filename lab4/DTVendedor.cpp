@@ -13,8 +13,7 @@ DTVendedor::DTVendedor()
 {
 }
 
-DTVendedor::DTVendedor(std::string Nickname, DTFecha fecha, std::string rut)
-{
+DTVendedor::DTVendedor(std::string Nickname, DTFecha fecha, std::string rut):DTUsuario(Nickname, fecha){
     this->DTRUT=rut;
 }
 
