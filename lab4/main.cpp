@@ -38,7 +38,7 @@ void ImprimirComentarios(std::list <DTComentario> comentarios){
 DTFecha leerFecha(){
     int dia,mes,anio;
     std::string separador;
-    std::cout <<"Ingrese la fecha de nacimiento con el formato DD/MM/YYYY\n";
+    std::cout <<"Ingrese la fecha con el formato DD/MM/YYYY\n";
     std::cout <<"dia\n";
     std::cin >> dia;
     std::cout <<"dia\n";
@@ -47,7 +47,7 @@ DTFecha leerFecha(){
     std::cin >>anio;
     std::cout <<"\n";
     DTFecha creada=DTFecha(dia,mes,anio,0,0);
-    std::cout <<creada;
+    std::cout <<creada<<"\n";
 
     return creada;
 }
@@ -58,6 +58,8 @@ int main() {
     ControladorFecha* ControladorFecha = ControladorFecha::getInstancia();
     ControladorProducto* ControladorProducto = ControladorProducto::getInstancia();
     ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
+
+    DTFecha fechaactual=leerFecha();
 
 
     ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
@@ -270,6 +272,7 @@ int main() {
             std::cin >>j;
 
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
+            std::cout <<"creo bien el producto";
             ControladorProducto->linkVendProd(nombreV);
         }    
         break;
@@ -441,9 +444,7 @@ int main() {
             int monto=0;
 
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
-
-            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaActual);
+            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaactual);
 
         }
             break;
@@ -472,7 +473,6 @@ int main() {
             int alt;
             std::cin >>alt;
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             std::cout <<"Ingrese el comentario\n";
                 std::string comentario;
@@ -491,10 +491,10 @@ int main() {
                 int idPrincipal;
                 std::cin >>idPrincipal;
 
-                ControladorUsuario->escribirCom(idPrincipal,comentario,fechaActual,codProd,usuario);
+                ControladorUsuario->escribirCom(idPrincipal,comentario,fechaactual,codProd,usuario);
 
             }else
-                ControladorUsuario->escribirCom(comentario,fechaActual,codProd,usuario);
+                ControladorUsuario->escribirCom(comentario,fechaactual,codProd,usuario);
         }
         break;
         case 9:{//Eliminar Comentario
@@ -569,14 +569,13 @@ int main() {
 
             for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
 
-                std::cout << it->second;
+                std::cout << it->second<<"\n";
             }
 
             std::cout <<"Ingrese el nickname del usuario";
             std::string usuario;
             std::cin >>usuario;
 
-            DTFecha fechaActual=ControladorFecha->getFechaActual();
 
             DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(usuario);
             std::cout << infoUsuario;
@@ -606,7 +605,7 @@ int main() {
                 
                 std::cout<<"\n Promociones:";
 
-                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaActual);
+                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
                 for(const auto & i:promos)
                     std::cout<<i<<"\n";
             }
