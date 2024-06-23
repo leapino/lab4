@@ -208,22 +208,23 @@ std::list<DTVendedor> ManejadorUsuario::ListarUsuariosV(){
        Vendedor* vendedor=dynamic_cast<Vendedor*> (it->second);
        if (vendedor!=nullptr){
           sec = getInfoVendedor(vendedor);
-       }
-       vends.push_back(sec);       
+          vends.push_back(sec);
+       }       
      }
      return vends;
 }
 
 std::list<DTCliente> ManejadorUsuario::ListarUsuariosC(){
      std::map<std::string, Usuario*>::iterator it;
-     std::list<DTCliente> clients;
-     DTCliente sec;
+     std::list<DTCliente> clients ;
+     DTCliente sec ;
      for (it = this->Usuarios.begin(); it != this->Usuarios.end(); it++){
        Cliente* cliente=dynamic_cast<Cliente*> (it->second);
        if (cliente!=nullptr){
           sec = getInfoCliente(cliente);
+          clients.push_back(sec);
        }
-       clients.push_back(sec);       
+              
      }
      return clients;
 }
