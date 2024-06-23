@@ -87,7 +87,7 @@ int main() {
     ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
     
 
-    //PRODUCTOS
+    //PRODUCTOS 
     ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
     ControladorProducto->linkVendProd("carlos78");
     ControladorProducto->altaDeProducto("Televisor LED", 40500, 30, "Televisor LED 55 pulgadas", electrodomestico);
@@ -118,7 +118,7 @@ int main() {
     ControladorProducto->linkVendProd("diegom");
     ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
     ControladorProducto->linkVendProd("sofia25"); 
-
+    
     //PROMOCIONES
     std::map<int, int> infoProd;
 
