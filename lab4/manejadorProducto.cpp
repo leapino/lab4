@@ -120,7 +120,7 @@ float ManejadorProducto::descPromo(Producto* prod){
 void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
     std::map<int, int>::iterator it;
     Promocion* promo = new Promocion(nombreP, descriP, fecha);
-    this->Promociones.insert({nombreP, promo});
+    this->Promociones.insert(std::pair<std::string, Promocion*>(nombreP, promo));
     for (it = infoProd.begin(); it != infoProd.end(); it++){
         Producto* producto = this->Productos.find(it->first)->second;
         ProductoPromocion* productoPromo = new ProductoPromocion(descuento, it->second, producto);
