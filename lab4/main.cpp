@@ -74,7 +74,7 @@ int main() {
     DTFecha fecha4 = DTFecha(20,10,1992,0,0);
     ControladorUsuario->altaDeUsuario("juan87", "1qaz2wsx", fecha4, "Av. 18 de Julio 456", "Melo");
     DTFecha fecha5 = DTFecha(22,9,1979,0,0);
-    ControladorUsuario->altaDeUsuario("juan87", "1qaz2wsx", fecha5, "Rondeau 1617", "Montevideo");
+    ControladorUsuario->altaDeUsuario("laura", "3edc4rfv", fecha5, "Rondeau 1617", "Montevideo");
     DTFecha fecha6 = DTFecha(25,3,1985,0,0);
     ControladorUsuario->altaDeUsuario("maria01", "5tgb6yhn", fecha6, "321098765432");
     DTFecha fecha7 = DTFecha(14,4,1982,0,0);
