@@ -58,8 +58,7 @@ Promocion::~Promocion(){
    //    delete *i;
    // }   //como ya se borra cada prodProm en producto no creo que sea necesario aca
 }
-std::set<ProductoPromocion *> Promocion::getProdProm()
-{
+std::set<ProductoPromocion *> Promocion::getProdProm(){
     return this->prodProm;
 }
 

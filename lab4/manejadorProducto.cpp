@@ -120,7 +120,7 @@ float ManejadorProducto::descPromo(Producto* prod){
 void ManejadorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
     std::map<int, int>::iterator it;
     Promocion* promo = new Promocion(nombreP, descriP, fecha);
-    this->Promociones.insert({nombreP, promo});
+    this->Promociones.insert(std::make_pair(nombreP, promo));
     for (it = infoProd.begin(); it != infoProd.end(); it++){
         Producto* producto = this->Productos.find(it->first)->second;
         ProductoPromocion* productoPromo = new ProductoPromocion(descuento, it->second, producto);
@@ -137,7 +137,8 @@ std::set<DTProducto> ManejadorProducto::getProductoPromo(std::string nombrePromo
     std::set<DTProducto> productos;
     std::set<ProductoPromocion*>::iterator it;
     Promocion* promocion = this->Promociones.find(nombrePromo)->second;
-    for (it = promocion->getProdProm().begin(); it != promocion->getProdProm().end(); it++){
+    std::set<ProductoPromocion*> prodProm = promocion->getProdProm();
+    for (it = prodProm.begin(); it != prodProm.end(); it++){
         DTProducto dtproducto = DTProducto((*it)->getProducto()->getCodigo(), (*it)->getProducto()->getStock(), (*it)->getProducto()->getPrecio(), (*it)->getProducto()->getNombre(), (*it)->getProducto()->getDescripcion(), (*it)->getProducto()->getCategoria());
         productos.insert(dtproducto);
     }

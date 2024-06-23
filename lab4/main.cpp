@@ -142,7 +142,6 @@ int main() {
 
     std::cout << "\n";
     int i =-2;  
-
     while ( i !=0 ){
 
         std::cout << "¿Qué operación deseas realizar?\n";
@@ -363,11 +362,13 @@ int main() {
                 }
                 int numProd = 1;
                 int cantMin;
+                std::set<int> lista;
                 while (numProd > 0){
                     std::cout<< "Número producto:\n";
                     std::cin>> numProd;
-                    std::cout <<"\n";
-                    if (numProd > 0){
+                    std::cout <<"\n";                    
+                    if (numProd > 0 && lista.find(numProd) == lista.end()){
+                        lista.insert(numProd);
                         DT2Producto prod = productosVend.find(numProd)->second;
                         bool tienePromo = ControladorProducto->checkPromo(prod.getCodigo());
                         if (!tienePromo){
@@ -404,25 +405,29 @@ int main() {
         case 6:{//Consultar Promocion
             std::map<std::string, DTPromocion> promociones = ControladorProducto->getPromos();
             std::map<std::string, DTPromocion>::iterator it;
-            for (it = promociones.begin(); it != promociones.end(); it++){
-                std::cout<< it->second;
-            }
-            int confirm;
-            std::cout << "Desea consultar una promoción?\n1)Si\n2)No\n";
-            std::cin>> confirm;
-            if (confirm == 1){
-                std::cout <<"Ingresar nombre de la promocion que desea consultar:\n";
-                std::string nombrePromo;
-                std::cin >>nombrePromo;
-                std::set<DTProducto> productos = ControladorProducto->getProductoPromo(nombrePromo);
-                DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
-                std::set<DTProducto>::iterator it2;
-                std::cout << "Vendedor que ofrece la promoción:\n";
-                std::cout << vendedor.getDTNickname();
-                std::cout << "\nProductos de la promoción:\n";
-                for (it2 = productos.begin(); it2 != productos.end(); it++){
-                    std::cout << *it2;
+            if (promociones.size() != 0){
+                for (it = promociones.begin(); it != promociones.end(); it++){
+                    std::cout<< it->second;
                 }
+                int confirm;
+                std::cout << "Desea consultar una promoción?\n1)Si\n2)No\n";
+                std::cin>> confirm;
+                if (confirm == 1){
+                    std::cout <<"Ingresar nombre de la promocion que desea consultar:\n";
+                    std::string nombrePromo;
+                    std::cin >>nombrePromo;
+                    std::set<DTProducto> productos = ControladorProducto->getProductoPromo(nombrePromo);
+                    DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
+                    std::set<DTProducto>::iterator it2;
+                    std::cout << "Vendedor que ofrece la promoción:\n";
+                    std::cout << vendedor.getDTNickname();
+                    std::cout << "\nProductos de la promoción:\n";
+                    for (it2 = productos.begin(); it2 != productos.end(); it++){
+                        std::cout << *it2;
+                    }
+                }
+            }else{
+                std::cout<< "No hay promociones disponibles.";
             }
         }
             break;
