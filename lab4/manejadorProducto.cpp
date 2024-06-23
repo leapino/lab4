@@ -158,20 +158,28 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
 
     for (std::map<int,int>::iterator it = datos.begin(); it!=datos.end(); ++it){
 
-        Producto* prod=this->Productos.find(it->first)->second;
-        CompraProducto* relacion=new CompraProducto(prod,it->second);
+        std::map<int,Producto*>::iterator i = this->Productos.begin();
 
-        productos.push_back(relacion);
+        while((i!=this->Productos.end())&&(i->first!=it->first))
+            i++;
+        
+        if(i!=this->Productos.end()){
+            Producto* prod=i->second;
+            CompraProducto* relacion=new CompraProducto(prod,it->second);
+            productos.push_back(relacion);
+            this->prodEnCompra(prod,it->second);
+            int precioConvertido=prod->getPrecio();
 
-        this->prodEnCompra(prod,it->second);
+        
 
-        int precioConvertido=prod->getPrecio();
+        
         if(this->checkPromo(it->first)){//Chequea si esta en una promo
             if(this->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
                 precioConvertido=precioConvertido-(precioConvertido*this->descPromo(prod));//Realiza el Descuento
             }
         }
         monto+=precioConvertido*it->second;
+        }
 
     }
     return productos;

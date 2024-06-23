@@ -45,7 +45,6 @@ void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double mon
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
 
     Cliente* pCliente=dynamic_cast<Cliente*>(mUsuario->getUsuario(cliente));
-
     std::list<CompraProducto*> prodEnCompra=mP->confirmarCompra(productos,monto);
 
     Compra* compra=new Compra(fechaActual,monto,pCliente,prodEnCompra);
