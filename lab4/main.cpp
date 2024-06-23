@@ -695,11 +695,10 @@ int main() {
 
             std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
             std::cout << "Seleccione un producto por su número. \n";
-
+            std::cout << productosNoEnviados.size();
             for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
                 std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
-            std::cout << "aca";
             
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
@@ -719,7 +718,7 @@ int main() {
             int numCompra;
             std::cin >> numCompra;
 
-            ControladorUsuario->setProductoEnviado(nombreVendedor, iterator->second.second, idProdNoEnv);
+            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, iterator->second.second, idProdNoEnv);
             
             
         }

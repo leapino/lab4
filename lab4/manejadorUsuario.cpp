@@ -255,21 +255,37 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
     std::map<int, DT2Producto > resu;
     int num = 1;
 
-    std::list<Cliente *> clientes = getVendedor(nomVend)->getClientes();
-    for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {
+    // std::list<Cliente *> clientes = getVendedor(nomVend)->getClientes();
+    // for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {
         
-        std::list<Compra *> compras = (*cliente)->getCompras();
-        for(std::list<Compra *>::iterator compra = compras.begin(); compra != compras.end(); ++compra) {
+    //     std::list<Compra *> compras = (*cliente)->getCompras();
+    //     for(std::list<Compra *>::iterator compra = compras.begin(); compra != compras.end(); ++compra) {
 
-            std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
-            for(std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto){
+    //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
+    //         for(std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto){
 
-                if(!(*compraProducto)->getEnviado()) {
-                    Producto *prodAux = (*compraProducto)->getProd();
-                    DT2Producto productoAinsertar = prodAux->getData2();
-                    resu.insert({num, productoAinsertar});
-                    num++;
-                }
+    //             if(!(*compraProducto)->getEnviado()) {
+    //                 Producto *prodAux = (*compraProducto)->getProd();
+    //                 DT2Producto productoAinsertar = prodAux->getData2();
+    //                 resu.insert({num, productoAinsertar});
+    //                 num++;
+    //             }
+    //         }
+    //     }
+    // }
+
+    Vendedor* vendedor = this->getVendedor(nomVend);
+    std::map<int, Producto*> productos = vendedor->getProductos();
+    std::map<int, Producto*>::iterator it;
+    for (it = productos.begin(); it != productos.end(); ++it){
+        std::set<CompraProducto*> compraProductos = it->second->getCompraProductos();
+        std::set<CompraProducto*>::iterator it2;
+        for (it2 = compraProductos.begin(); it2 != compraProductos.end(); ++it){
+            if (!(*it2)->getEnviado()){
+                Producto *prodAux = (*it2)->getProd();
+                DT2Producto productoAinsertar = prodAux->getData2();
+                resu.insert({num, productoAinsertar});
+                num++;
             }
         }
     }

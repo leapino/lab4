@@ -240,7 +240,9 @@ std::list<DTPromocion> ControladorUsuario::getPromoVigente(std::string vendedor,
 
 //esto esta medio raro no??
 std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDeProdNoEnviado(std::string v, int codigoProd){
-return std::map<int, std::pair<std::string, DTFecha>> ();
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
+    return mu->nickYFechaDeProdNoEnviado(v, codigoProd);
 }
 
 void ControladorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {

@@ -13,6 +13,7 @@
 #include "DT2Producto.h"
 #include "DTProducto.h"
 #include "comentario.h"
+#include "compraProducto.h"
 
 class Vendedor;
 class ProductoPromocion;
@@ -29,6 +30,7 @@ class Producto {
         Vendedor *vendedor;
         std::map<int,Comentario*> comentarios;
         ProductoPromocion* promo;
+        std::set<CompraProducto*> compraProductos;
     public:
         //Creadores
         Producto();
@@ -45,6 +47,7 @@ class Producto {
         DT2Producto getData2();
         std::map<int,Comentario*> getComentarios();
         ProductoPromocion* getPromo();
+        std::set<CompraProducto*> getCompraProductos();
         //Setters
         void setCodigo(int);
         void setStock(int);
@@ -56,6 +59,7 @@ class Producto {
         void setComentarios(std::map<int,Comentario*>);
         void setPromo(ProductoPromocion*);
         void bajarStock(int cantidad);
+        void addCompraProducto(CompraProducto*);
         //Destructor
         ~Producto();
         //funcion

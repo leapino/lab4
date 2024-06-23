@@ -128,4 +128,12 @@ Producto::~Producto(){
     delete this->promo;
 }
 
+std::set<CompraProducto*> Producto::getCompraProductos(){
+    return this->compraProductos;
+}
+
+void Producto::addCompraProducto(CompraProducto* c){
+    this->compraProductos.insert(c);
+}
+
 #endif 
