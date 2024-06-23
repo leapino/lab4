@@ -31,6 +31,8 @@ class Vendedor: public Usuario {
         std::map<int, Producto*> getProductos();
         std::list<Cliente *> getClientes();
         std::map<std::string,Promocion*> getPromociones();
+        std::list<DTProducto> getDTProds();
+        std::list<DTPromocion> getDTPromocion();
         //Setters
         void setRUT(std::string);
         void setProductos(std::map<int, Producto*>);

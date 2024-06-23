@@ -12,6 +12,8 @@
 #include "DTCliente.h"
 #include "DTProducto.h"
 #include "compraProducto.h"
+#include "DTCompraProducto.h"
+#include "DTCompra.h"
 
 class Cliente;
 class CompraProducto;
@@ -34,6 +36,7 @@ class Compra {
         void setCliente(Cliente *client);
         void agregarProdCompra(CompraProducto *comPro);
         void subirMonto(int precio);
+        DTCompra getData();
         ~Compra();
 };
 

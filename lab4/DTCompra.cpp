@@ -46,6 +46,10 @@ std::ostream& operator<<(std::ostream& salida, const DTCompra& compra) {
     return salida;
 }
 
+void DTCompra::agregarProds(DTCompraProducto prod){
+    this->Prods.push_back(prod);
+}
+
 DTCompra::~DTCompra(){
     this->Prods.clear();
 }

@@ -6,6 +6,8 @@
 #include <string>
 #include <math.h>
 #include <list>
+#include "DTCompraProducto.h"
+#include "producto.h"
 
 
 class Producto;
@@ -24,6 +26,7 @@ class CompraProducto {
         void setEnviado(bool b);
         void setCantidad(int cant);
         void setProd(Producto *prod);
+        DTCompraProducto getData();
         ~CompraProducto();
 };
 

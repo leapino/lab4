@@ -172,8 +172,6 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
             i->second->addCompraProducto(relacion);
 
         
-
-        
         if(this->checkPromo(it->first)){//Chequea si esta en una promo
             if(this->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
                 precioConvertido=precioConvertido-(precioConvertido*this->descPromo(prod));//Realiza el Descuento

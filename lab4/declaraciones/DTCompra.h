@@ -29,6 +29,8 @@ class DTCompra{
         void setFecha(DTFecha fecha);
         void setMonto(int mont);
         void setProds(std::list<DTCompraProducto> prods);
+        //funcion
+        void agregarProds(DTCompraProducto prod);
         //Destructor
         ~DTCompra();
         //funcion

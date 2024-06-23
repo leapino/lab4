@@ -44,7 +44,10 @@ void CompraProducto::setProd(Producto *prod) {
     this->producto = prod;
 }
 
-
+DTCompraProducto CompraProducto::getData()
+{
+    return DTCompraProducto(this->enviado,this->cantidad,this->producto->getData());
+}
 
 CompraProducto::~CompraProducto() {
     //delete this->producto;

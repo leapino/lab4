@@ -10,6 +10,7 @@
 #include "DTNotificacion.h"
 #include "compra.h"
 #include "usuario.h"
+#include "DTCompra.h"
 
 class Compra;
 class Usuario;
@@ -43,6 +44,7 @@ class Cliente: public Usuario {
         void limpiarNotificaciones();
         void notificar();
         void agregarCompra(Compra* Compra);
+        std::list <DTCompra> getDTCompras();
         //destructor
         ~Cliente();
        // bool esVendedor() override { return false; };

@@ -56,6 +56,15 @@ void Compra::subirMonto(int precio) {
     this->monto += precio;
 }
 
+DTCompra Compra::getData()
+{
+    std::list<DTCompraProducto> compraprods;
+    for(std::list<CompraProducto*>::iterator it=this->compraProductos.begin();it!=this->compraProductos.end();it++){
+        DTCompraProducto prods=(*it)->getData();
+        compraprods.push_front(prods);
+    }
+    return DTCompra(this->fecha,this->monto,compraprods);
+}
 void Compra::agregarProdCompra(CompraProducto *comPro) {
     this->compraProductos.push_front(comPro);
 }

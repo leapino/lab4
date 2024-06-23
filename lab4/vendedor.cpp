@@ -31,6 +31,29 @@ std::map<std::string, Promocion *> Vendedor::getPromociones()
     return this->promociones;
 }
 
+std::list<DTProducto> Vendedor::getDTProds()
+{
+    std::list<DTProducto>res;
+
+    for (std::map<int,Producto*>::iterator i = this->Productos.begin();i!=this->Productos.end(); i++)
+    {
+        DTProducto apushear=i->second->getData();
+        res.push_front(apushear);
+    }
+    
+    return res;
+}
+std::list<DTPromocion> Vendedor::getDTPromocion()
+{
+    std::list<DTPromocion> res;
+    for (std::map<std::string,Promocion*>::iterator i = this->promociones.begin() ; i !=this->promociones.end(); i++)
+    {
+        DTPromocion apushear=i->second->getData();
+        res.push_front(apushear);   
+    }
+    return res;
+    
+}
 void Vendedor::setPromociones(std::map<std::string, Promocion *> promos)
 {
     this->promociones=promos;

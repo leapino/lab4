@@ -543,7 +543,6 @@ int main() {
                     for (it2 = productos.begin(); it2 != productos.end(); it2++){
                         std::cout << *it2;
                     }
-                    std::cout<< "\n";
                 }
             }else{
                 std::cout<< "No hay promociones disponibles.\n\n";
@@ -577,9 +576,6 @@ int main() {
 
             std::map <int,int> productoCompra;
 
-            std::cout <<"Cuando realizo la compra?\n";
-            DTFecha fechacompra=leerFecha();
-
             while(i){
 
                 std::cout<<"Ingresar codigo del Producto\n"<<"\n";
@@ -601,7 +597,7 @@ int main() {
             int monto=0;
 
 
-            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechacompra);
+            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaactual);
 
         }
             break;
@@ -740,7 +736,7 @@ int main() {
 
 
             if (ControladorUsuario->esCliente(usuario)){
-                std::cout<<ControladorUsuario->getInfoCliente(usuario);
+                std::cout<<ControladorUsuario->getInfoCliente(usuario)<<"\n";
 
                 std::list<DTCompra> compras=ControladorUsuario->getInfoComprasCliente(usuario);
 
@@ -757,16 +753,16 @@ int main() {
                 std::cout<<"\nProductos:\n";
 
                 std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
+                
                 for (std::list<DTProducto>::iterator l=prods.begin();l!=prods.end();l++ ){
                     std::cout<<*l<<"\n";
                 }
                 
                 std::cout<<"\n Promociones:";
 
-                /*std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
+                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
                 for(const auto & i:promos)
                     std::cout<<i<<"\n";
-                */
             }   
 
         }
@@ -840,6 +836,7 @@ int main() {
             ControladorFecha->setFecha(nuevaFecha);
         }
         break;
+
         case 0:{
             std::cout <<"Desconexion Exitosa\n";
         }

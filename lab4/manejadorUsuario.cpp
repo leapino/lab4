@@ -43,31 +43,13 @@ DTCliente ManejadorUsuario::getInfoCliente(Cliente *usuario){
 DTVendedor ManejadorUsuario::getInfoVendedor(Vendedor *usuario){
     return DTVendedor(usuario->getNickname(),usuario->getFecha(),usuario->getRUT());
 }
+
 std::list<DTCompra> ManejadorUsuario::getInfoComprasCliente(Cliente *cliente){
-
-    std::list<DTCompra> res;
-
-    for (std::list<Compra*>::iterator it = cliente->getCompras().begin(); it!=cliente->getCompras().end(); ++it){
-        std::list<DTCompraProducto> prods;
-        for(std::list<CompraProducto*>::iterator it2=(*it)->getcompraProductos().begin();it2!=(*it)->getcompraProductos().end();++it2){
-            DTProducto amostrar=DTProducto((*it2)->getProd()->getCodigo(),(*it2)->getProd()->getStock(),(*it2)->getProd()->getPrecio(),(*it2)->getProd()->getNombre(),(*it2)->getProd()->getDescripcion(),(*it2)->getProd()->getCategoria());
-            DTCompraProducto aingresar=DTCompraProducto((*it2)->getEnviado(),(*it2)->getCantidad(),amostrar);
-            prods.push_back(aingresar);
-        }
-        DTCompra compraactual=DTCompra((*it)->getFecha(),(*it)->getMonto(),prods);
-        res.push_back(compraactual);
-    }
-    return res;  
+    return cliente->getDTCompras();  
 }
 
 std::list<DTProducto> ManejadorUsuario::getProdEnVenta(Vendedor * vendedor){
-    std::list<DTProducto> res;
-    for (std::map<int,Producto*>::iterator it =vendedor->getProductos().begin(); it!=vendedor->getProductos().end(); ++it){;
-        DTProducto apushear=DTProducto(it->second->getCodigo(),it->second->getStock(),it->second->getPrecio(),it->second->getNombre(),it->second->getDescripcion(),it->second->getCategoria());
-        res.push_back(apushear);
-    }
-    
-return res;
+    return vendedor->getDTProds();
 }
 
 
@@ -243,7 +225,7 @@ std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DT
     for (auto i = vend->getPromociones().begin(); i !=vend->getPromociones().end(); ++i){
         DTFecha fechaPromo=i->second->getFecha();
         if (fechaPromo>fechaActual){
-            DTPromocion agregarpromo=DTPromocion(i->second->getNombre(),i->second->getDescripcion(),i->second->getFecha());
+            DTPromocion agregarpromo=i->second->getData();
             res.push_front(agregarpromo);
         }
     }
@@ -256,12 +238,8 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
     int num = 1;
 
     // std::list<Cliente *> clientes = getVendedor(nomVend)->getClientes();
-    // for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {
-        
-    //     std::list<Compra *> compras = (*cliente)->getCompras();
-    //     for(std::list<Compra *>::iterator compra = compras.begin(); compra != compras.end(); ++compra) {
-
-    //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
+    // for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {        
+        //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
     //         for(std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto){
 
     //             if(!(*compraProducto)->getEnviado()) {

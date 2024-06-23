@@ -87,6 +87,17 @@ void Cliente::agregarCompra(Compra* Compra){
     this->Compras.push_front(Compra);
 }
 
+std::list<DTCompra> Cliente::getDTCompras()
+{
+    std::list<DTCompra> res;
+    for (std::list<Compra *>::iterator i = this->Compras.begin(); i !=this->Compras.end(); i++)
+    {
+        DTCompra esta=(*i)->getData();
+        res.push_back(esta);
+    }
+    
+    return res;
+}
 Cliente::~Cliente() {
     // for (std::list<Vendedor*>::iterator it = this->Vendedores.begin();it != this->Vendedores.end(); ++it){
     //     this->Vendedores.erase(it);

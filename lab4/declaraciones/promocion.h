@@ -11,6 +11,7 @@
 #include "DTFecha.h"
 #include "DTProducto.h"
 #include "productoPromocion.h"
+#include "DTPromocion.h"
 
 class ProductoPromocion;
 
@@ -29,6 +30,7 @@ class Promocion {
     std::string getDescripcion();
     DTFecha getFecha();
     std::set <ProductoPromocion*> getProdProm();
+    DTPromocion getData();
     //Setters
     void setNombre(std::string);
     void setDescripcion(std::string);
