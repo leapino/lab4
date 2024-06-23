@@ -169,6 +169,7 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
             productos.push_back(relacion);
             this->prodEnCompra(prod,it->second);
             int precioConvertido=prod->getPrecio();
+            i->second->addCompraProducto(relacion);
 
         
 
