@@ -127,7 +127,6 @@ void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFec
        Cliente* nuevoCliente =new  Cliente(nick,pass,fechnaci,dir,ciudad);       
        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
        mu->addUsuario(nuevoCliente);
-       std::cout<<"todo bien\n";
        }
 }
 
@@ -144,8 +143,7 @@ void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFec
         if ((estanom == false) && (contrabien == true)){
        Vendedor* nuevoVendedor =new  Vendedor(nick,pass,fechnaci,RUT);       
        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
-       mu->addUsuario(nuevoVendedor);
-       std::cout<<"todo bien\n";
+       mu->addUsuario(nuevoVendedor); 
        }
 }
 
