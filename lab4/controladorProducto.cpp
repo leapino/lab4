@@ -90,11 +90,12 @@ std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
     ControladorFecha* cf;
     cf = ControladorFecha::getInstancia();
     std::map<std::string, Promocion*>::iterator it;
+    std::map<std::string, Promocion*> promos = mp->getPromos();
     std::map<std::string, DTPromocion> dtpromociones;
-    for (it = mp->getPromos().begin(); it != mp->getPromos().end(); it++){
+    for (it = promos.begin(); it != promos.end(); ++it){
         if (it->second->getFecha().esVigente(cf->getFecha())){
             DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
-            dtpromociones.insert({it->second->getNombre(), dtpromo});
+            dtpromociones.insert(std::make_pair(it->second->getNombre(), dtpromo));
         }
     }
     return dtpromociones;

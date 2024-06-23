@@ -141,7 +141,6 @@ int main() {
 
     std::cout << "\n";
     int i =-2;  
-
     while ( i !=0 ){
 
         std::cout << "¿Qué operación deseas realizar?\n";
