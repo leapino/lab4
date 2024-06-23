@@ -400,7 +400,7 @@ int main() {
                 break;
             }
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
-            std::cout <<"creo bien el producto";
+            std::cout <<"Se creó el producto correctamente\n\n";
             ControladorProducto->linkVendProd(nombreV);
         }    
         break;
@@ -439,8 +439,13 @@ int main() {
             std::cin >>descuento;
 
             int dia,mes,anio;
-            std::cout <<"Ingrese la fecha de vencimiento de la promoción ingresando primero el día, luego el mes y finalmente el año:\n";
-            std::cin >> dia>>mes>>anio;
+            std::cout <<"Ingrese la fecha de vencimiento de la promoción con el formato DD/MM/YYYY\n";
+            std::cout <<"dia\n";
+            std::cin >> dia;
+            std::cout <<"mes\n";
+            std::cin >>mes;
+            std::cout <<"anio\n";
+            std::cin >>anio;
             std::cout <<"\n";
             
             DTFecha fecha = DTFecha(dia,mes,anio,0,0);
@@ -459,7 +464,7 @@ int main() {
                 std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:\n";
                 std::map<int, int> infoProd;
 
-                for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
+                for(it2 = productosVend.begin(); it2 != productosVend.end(); it2++){
                     std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
                 }
                 int numProd = 1;
@@ -469,11 +474,11 @@ int main() {
                     std::cout<< "Número producto:\n";
                     std::cin>> numProd;
                     std::cout <<"\n";                    
-                    if (numProd > 0 && lista.find(numProd) == lista.end()){
-                        lista.insert(numProd);
+                    if (numProd > 0){
                         DT2Producto prod = productosVend.find(numProd)->second;
                         bool tienePromo = ControladorProducto->checkPromo(prod.getCodigo());
-                        if (!tienePromo){
+                        if (!tienePromo && lista.find(numProd) == lista.end()){
+                            lista.insert(numProd);
                             std::cout<< "Cantidad mínima:\n";
                             std::cin>> cantMin;
                             std::cout <<"\n";
@@ -485,18 +490,20 @@ int main() {
                     }
                 }
                 int confirm = 2;
-                while (confirm != 1 || confirm!= 0)
+                while (confirm != 1 && confirm!= 0)
                 {
-                    std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
-                    std::cin>> confirm;
-                    if (confirm == 1){
+                    switch (confirm)
+                    {
+                    case 1:
                         ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
                         ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
                         std::cout<< "\nSe agregó la promoción\n";
-                    }if (confirm == 0){
+                        break;
+                    case 0:
                         std::cout<< "\nNo se agregó la promoción\n";
-                    }else{
+                    default:
                         std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
+                        break;
                     }
                 }
             }else{
@@ -524,7 +531,7 @@ int main() {
                     std::cout << "Vendedor que ofrece la promoción:\n";
                     std::cout << vendedor.getDTNickname();
                     std::cout << "\nProductos de la promoción:\n";
-                    for (it2 = productos.begin(); it2 != productos.end(); it++){
+                    for (it2 = productos.begin(); it2 != productos.end(); it2++){
                         std::cout << *it2;
                     }
                 }

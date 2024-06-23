@@ -7,7 +7,7 @@
 
 
 std::ostream &operator<<(std::ostream &salida, DT2Producto const &prod){
-    salida << "Código: " << prod.codigo << "\n Nombre: " << prod.nombre;
+    salida << "Nombre: " << prod.nombre << "\nCódigo: " << prod.codigo;
     return salida;
 }
 
