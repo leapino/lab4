@@ -87,7 +87,7 @@ int main() {
     ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
 
     //PRODUCTOS
-    /*ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
+    ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
     ControladorProducto->linkVendProd("carlos78");
     ControladorProducto->altaDeProducto("Televisor LED", 40500, 30, "Televisor LED 55 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
@@ -116,7 +116,7 @@ int main() {
     ControladorProducto->altaDeProducto("Tablet", 15000, 15, "Tablet Android de 10 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("diegom");
     ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
-    ControladorProducto->linkVendProd("sofia25"); */
+    ControladorProducto->linkVendProd("sofia25");
 
     //PROMOCIONES
 
@@ -287,7 +287,7 @@ int main() {
                 break;
             }
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
-            std::cout <<"creo bien el producto";
+            std::cout <<"Se creó el producto correctamente\n\n";
             ControladorProducto->linkVendProd(nombreV);
         }    
         break;
@@ -344,7 +344,7 @@ int main() {
                 std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:\n";
                 std::map<int, int> infoProd;
 
-                for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
+                for(it2 = productosVend.begin(); it2 != productosVend.end(); it2++){
                     std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
                 }
                 int numProd = 1;
@@ -368,18 +368,22 @@ int main() {
                     }
                 }
                 int confirm = 2;
-                while (confirm != 1 || confirm!= 0)
+                while (confirm != 1 && confirm!= 0)
                 {
                     std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
                     std::cin>> confirm;
-                    if (confirm == 1){
+                    switch (confirm)
+                    {
+                    case 1:
                         ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
                         ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
                         std::cout<< "\nSe agregó la promoción\n";
-                    }if (confirm == 0){
+                        break;
+                    case 0:
                         std::cout<< "\nNo se agregó la promoción\n";
-                    }else{
+                    default:
                         std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
+                        break;
                     }
                 }
             }else{
