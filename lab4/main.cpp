@@ -695,7 +695,7 @@ int main() {
 
             std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
             std::cout << "Seleccione un producto por su número. \n";
-            std::cout << productosNoEnviados.size();
+
             for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
                 std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
