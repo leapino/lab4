@@ -164,6 +164,8 @@ int main() {
 
     //COMPRAS
 
+    
+
     //COMENTARIOS
 
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////

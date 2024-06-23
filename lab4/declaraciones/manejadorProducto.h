@@ -51,7 +51,6 @@ class ManejadorProducto {
         std::map<std::string, Promocion*> getPromos();
         std::set<DTProducto> getProductoPromo(std::string);
         DTVendedor vendedorPromo(DTProducto);
-        std::map<int, DT2Producto> getProductosNoEnv(Vendedor *vendedor);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, int &monto);
         Producto* finalProd();
