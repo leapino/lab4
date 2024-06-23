@@ -135,28 +135,28 @@ int main() {
     
     //PROMOCIONES
     std::map<int, int> infoProd1;
-    infoProd1.insert(2, 1);
-    infoProd1.insert(4, 1);
-    infoProd1.insert(8, 1);
+    infoProd1.insert(std::make_pair(2, 1));
+    infoProd1.insert(std::make_pair(4, 1));
+    infoProd1.insert(std::make_pair(8, 1));
     DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
 
     ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd1);
     
     std::map<int, int> infoProd2;
-    infoProd2.insert(3, 2);
-    infoProd2.insert(6, 3);
+    infoProd2.insert(std::make_pair(3, 2));
+    infoProd2.insert(std::make_pair(6, 3));
     DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
 
     ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd2);
 
     std::map<int, int> infoProd3;
-    infoProd3.insert(5, 2);
+    infoProd3.insert(std::make_pair(5, 2));
     DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
 
     ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd3);
 
     std::map<int, int> infoProd4;
-    infoProd4.insert(14, 1);
+    infoProd4.insert(std::make_pair(14, 1));
     DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
 
     ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd4);
@@ -164,45 +164,45 @@ int main() {
 
     //COMPRAS
     std::map<int, int> productosCompra1;
-    productosCompra1.insert(2, 2);
-    productosCompra1.insert(4, 1);
-    productosCompra1.insert(8, 1);
+    productosCompra1.insert(std::make_pair(2, 2));
+    productosCompra1.insert(std::make_pair(4, 1));
+    productosCompra1.insert(std::make_pair(8, 1));
     DTFecha fechaC1 = DTFecha(1, 5, 2024, 0, 0);
     
     std::map<int, int> productosCompra2;
-    productosCompra2.insert(5, 1);
+    productosCompra2.insert(std::make_pair(5, 1));
     DTFecha fechaC2 = DTFecha(1, 5, 2024, 0, 0);
 
     std::map<int, int> productosCompra3;
-    productosCompra3.insert(14, 10);
+    productosCompra3.insert(std::make_pair(14, 10));
     DTFecha fechaC3 = DTFecha(15, 5, 2024, 0, 0);
 
     std::map<int, int> productosCompra4;
-    productosCompra4.insert(11, 1);
-    productosCompra4.insert(12, 1);
-    productosCompra4.insert(13, 1);
+    productosCompra4.insert(std::make_pair(11, 1));
+    productosCompra4.insert(std::make_pair(12, 1));
+    productosCompra4.insert(std::make_pair(13, 1));
     DTFecha fechaC4 = DTFecha(25, 4, 2024, 0, 0);
 
     std::map<int, int> productosCompra5;
-    productosCompra5.insert(3, 2);
-    productosCompra5.insert(6, 3);
+    productosCompra5.insert(std::make_pair(3, 2));
+    productosCompra5.insert(std::make_pair(6, 3));
     DTFecha fechaC5 = DTFecha(20, 5, 2024, 0, 0);
 
     std::map<int, int> productosCompra6;
-    productosCompra6.insert(1, 2);
+    productosCompra6.insert(std::make_pair(1, 2));
     DTFecha fechaC6 = DTFecha(12, 5, 2024, 0, 0);
 
     std::map<int, int> productosCompra7;
-    productosCompra7.insert(1, 3);
+    productosCompra7.insert(std::make_pair(1, 3));
     DTFecha fechaC7 = DTFecha(13, 5, 2024, 0, 0);
 
     std::map<int, int> productosCompra8;
-    productosCompra8.insert(1, 4);
+    productosCompra8.insert(std::make_pair(1, 4));
     DTFecha fechaC8 = DTFecha(14, 5, 2024, 0, 0);
 
 
     std::map<int, int> productosCompra9;
-    productosCompra8.insert(1, 5);
+    productosCompra8.insert(std::make_pair(1, 5));
     DTFecha fechaC9 = DTFecha(15, 5, 2024, 0, 0);
 
 
