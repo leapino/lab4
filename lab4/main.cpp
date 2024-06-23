@@ -52,7 +52,7 @@ DTFecha leerFecha(){
     return creada;
 }
 
-
+//hola
 int main() {
 
     ControladorFecha* ControladorFecha = ControladorFecha::getInstancia();
@@ -116,9 +116,22 @@ int main() {
     ControladorProducto->altaDeProducto("Tablet", 15000, 15, "Tablet Android de 10 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("diegom");
     ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
-    ControladorProducto->linkVendProd("sofia25");
+    ControladorProducto->linkVendProd("sofia25"); 
 
     //PROMOCIONES
+    std::map<int, int> infoProd;
+
+    DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd);
+    
+    DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd);
+
+    DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd);
+
+    DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd);
 
     //COMPRAS
 
@@ -127,7 +140,7 @@ int main() {
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
 
     std::cout << "\n";
-    int i =-2;
+    int i =-2;  
 
     while ( i !=0 ){
 
@@ -287,7 +300,7 @@ int main() {
                 break;
             }
             ControladorProducto->altaDeProducto(nomProd,precio,stock,descripProd,categoria);
-            std::cout <<"Se creó el producto correctamente\n\n";
+            std::cout <<"creo bien el producto";
             ControladorProducto->linkVendProd(nombreV);
         }    
         break;
@@ -344,7 +357,7 @@ int main() {
                 std::cout<<"\nIngrese un producto del vendedor que desee agregar junto a su cantidad mínima o ingrese 0 para no agregar más:\n";
                 std::map<int, int> infoProd;
 
-                for(it2 = productosVend.begin(); it2 != productosVend.end(); it2++){
+                for(it2 = productosVend.begin(); it2 != productosVend.end(); it++){
                     std::cout<< it2->first <<")" << " " << it2->second.getNombre() << "\n";
                 }
                 int numProd = 1;
@@ -370,22 +383,18 @@ int main() {
                     }
                 }
                 int confirm = 2;
-                while (confirm != 1 && confirm!= 0)
+                while (confirm != 1 || confirm!= 0)
                 {
                     std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
                     std::cin>> confirm;
-                    switch (confirm)
-                    {
-                    case 1:
+                    if (confirm == 1){
                         ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
                         ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
                         std::cout<< "\nSe agregó la promoción\n";
-                        break;
-                    case 0:
+                    }if (confirm == 0){
                         std::cout<< "\nNo se agregó la promoción\n";
-                    default:
+                    }else{
                         std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
-                        break;
                     }
                 }
             }else{
@@ -560,6 +569,7 @@ int main() {
             for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
                 std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
+            std::cout << "aca";
             
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;

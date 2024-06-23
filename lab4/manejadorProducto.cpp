@@ -179,7 +179,7 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
 void ManejadorProducto::addProducto(Producto* p){
     int u = 1;
     if(this->Productos.empty() == false){
-       u = this->Productos.end()->first;
+       u = this->Productos.rbegin()->first;
        u++;
     } 
     p->setCodigo(u);
