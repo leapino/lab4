@@ -6,7 +6,7 @@
 #include "declaraciones/DTFecha.h"
 
 std::ostream &operator<<(std::ostream &salida, const DTFecha  &   fecha){
-    salida << "Año:"<<fecha.anio<<"\nMes:"<<fecha.mes<<"\nDia" <<fecha.dia<<"\nHora"<<fecha.hora<<"\nMinuto"<<fecha.minuto;
+    salida << "Año: "<<fecha.anio<<"\nMes: "<<fecha.mes<<"\nDia: " <<fecha.dia<<"\nHora: "<<fecha.hora<<"\nMinuto: "<<fecha.minuto;
     return salida;
 }
 

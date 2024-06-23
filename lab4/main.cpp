@@ -23,15 +23,20 @@
 #include "declaraciones/categoria.h"
 #include "declaraciones/comentario.h"
 #include "declaraciones/DTComentario.h"
+using namespace std; 
 
 void ImprimirComentarios(std::list <DTComentario> comentarios){
-    for (auto i =comentarios.begin(); i !=comentarios.end(); i++)
-    {
-        std::cout << *i;
+    if (comentarios.size()>0){
+        std::cout<<"\n";
+        for (auto i =comentarios.begin(); i !=comentarios.end(); i++)
+        {
+            std::cout << *i<<"\n";
 
-        if(!i->getRespuestas().empty())
-            std::cout << "\n Respuestas comentario con id "<<i->getIdCom();
-            ImprimirComentarios(i->getRespuestas());   
+            if(!i->getRespuestas().empty())
+                std::cout << "\n Respuestas comentario con id "<<i->getIdCom();
+                ImprimirComentarios(i->getRespuestas());
+                std::cout <<"\n";   
+        }
     }
 }
 
@@ -163,7 +168,7 @@ int main() {
 
 
     //COMPRAS
-    std::map<int, int> productosCompra1;
+    /*std::map<int, int> productosCompra1;
     productosCompra1.insert(std::make_pair(2, 2));
     productosCompra1.insert(std::make_pair(4, 1));
     productosCompra1.insert(std::make_pair(8, 1));
@@ -225,7 +230,7 @@ int main() {
     ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
     ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
     
-
+*/
     //FALTA LO DE LAS PROMOS DE LA PARTE 5.1
     //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
@@ -234,13 +239,15 @@ int main() {
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
 
     std::cout << "\n";
-    int i =-2;  
-    while ( i !=0 ){
+    int i =-2;
+    int looppreventer=0;
+    while (( i !=0 )&&(looppreventer<3)){
 
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
         std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir\n";
+        std::cout <<"\n";
         std::cin>>i;
         std::cout <<"\n";
 
@@ -402,15 +409,17 @@ int main() {
              std::map<int,std::string> prods=ControladorProducto->getProds();
 
             for (auto i = prods.begin(); i != prods.end(); ++i){
-                std::cout <<"Codigo:"<<i->first<<"\n Nombre:"<<i->second;
+                std::cout <<"Codigo:"<<i->first<<"-----"<<"Nombre:"<<i->second<<"\n";
             }
             std::string eleccion;
-            std::cout <<"Ingresar Nombre o Código del producto\n";
+            std::cout <<"Ingresar codigo del producto\n";
+            std::cout<<"\n";
             std::cin >>eleccion;
+            std::cout <<"\n";
             
             std::map<std::string,DTProducto> amostrar=ControladorProducto->getInfoProd(eleccion);
-            std::cout <<amostrar.begin()->first;
-            std::cout <<amostrar.begin()->second;
+            std::cout <<amostrar.begin()->first<<"\n";
+            std::cout <<amostrar.begin()->second<<"\n";
 
         }
         break;
@@ -528,20 +537,20 @@ int main() {
 
             std::set <std::string> clientes=ControladorUsuario->listarClientes();
 
+            std::cout <<"Ingresar Nickname del Cliente que va a comprar\n"<<"\n";
+
             for (auto i = clientes.begin(); i !=clientes.end(); i++)
             {
                 std::cout<<*i<<"\n";
             }
-            
-
-            std::cout <<"Ingresar Nickname del Cliente que va a comprar\n";
+           
             std::string cliente;
             std::cin >>cliente;//deberiamos chequear si el admin ingresa bien el cliente?
 
             std::set <DTProducto> productos=ControladorProducto->getProductosDisp();
 
             for(std::set<DTProducto>::iterator it=productos.begin();it!=productos.end();++it){
-                std::cout <<*it;
+                std::cout <<*it<<"\n";
             }
 
             int i=1;
@@ -578,34 +587,41 @@ int main() {
         
         case 8:{//Dejar Comentario
 
-            std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
-            for (auto i = usuarios.begin(); i !=usuarios.end(); ++i){
-                std::cout <<i->first<<"  "<<i->second;
-            }
-            
             std::cout <<"Ingrese el nickname que quiere dejar un comentario\n";
+
+            std::map<int, std::string> usuarios=ControladorUsuario->listarNickUsuarios();
+            for (auto j = usuarios.begin(); j !=usuarios.end(); ++j){
+                std::cout <<j->first<<")"<<j->second<<"\n";
+            }
+
+            std::cout<<"\n";
+            
             std::string usuario;
             std::cin >>usuario;
+            std::cout<<"\n";
+
+            std::cout <<"Ingrese el codigo del producto para dejar el comentario\n";
 
             std::map <int,std::string>productos=ControladorProducto->getProds();
-            for (auto i = productos.begin(); i !=productos.end(); ++i){
-                std::cout<<"Codigo: " <<i->first<<"\n Nombre: "<<i->second;
+            for (auto j = productos.begin(); j !=productos.end(); ++j){
+                std::cout<<"Codigo: " <<j->first<<"-----Nombre: "<<j->second<<"\n";
             }
+            std::cout <<"\n";
             
-            std::cout <<"Ingrese el codigo del producto para dejar el comentario\n";
             int codProd;
             std::cin >> codProd;
 
             std::cout <<"Desea responder a un comentario existente o crear un nuevo comentario\n"<<"0-Nuevo Comentario\n"<<"1-Responder a un comentario existente\n";
-            int alt;
-            std::cin >>alt;
+            int k;
+            std::cin >>k;
 
 
-            std::cout <<"Ingrese el comentario\n";
-                std::string comentario;
-                std::cin >>comentario;
+            std::cout <<"Ingrese el comentario: \n";
+            std::string comentario;
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::getline(cin,comentario);
 
-            if (alt){
+            if (k){
 
                 std::list <DTComentario> comentarios=ControladorProducto->listarComProd(codProd);
                 std::cout<<"A que comentario quiere responder\n";
@@ -691,18 +707,16 @@ int main() {
 
             std::map<int,std::string> nicknames=ControladorUsuario->listarNickUsuarios();
 
+            std::cout <<"Ingrese el nickname del usuario\n";
+
             for (std::map<int,std::string>::iterator it =nicknames.begin(); it!=nicknames.end(); ++it){
 
                 std::cout << it->second<<"\n";
             }
+            std::cout<<"\n";
 
-            std::cout <<"Ingrese el nickname del usuario";
             std::string usuario;
             std::cin >>usuario;
-
-
-            DTUsuario infoUsuario=ControladorUsuario->getInfoUsuario(usuario);
-            std::cout << infoUsuario;
 
 
             if (ControladorUsuario->esCliente(usuario)){
@@ -720,19 +734,20 @@ int main() {
             }else{
                 std::cout<<ControladorUsuario->getInfoVendedor(usuario);
                 
-                std::cout<<"\n Productos:";
+                std::cout<<"\nProductos:\n";
 
                 std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
-                for (const auto i:prods ){
-                    std::cout<<i<<"\n";
+                for (std::list<DTProducto>::iterator l=prods.begin();l!=prods.end();l++ ){
+                    std::cout<<*l<<"\n";
                 }
                 
                 std::cout<<"\n Promociones:";
 
-                std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
+                /*std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
                 for(const auto & i:promos)
                     std::cout<<i<<"\n";
-            }
+                */
+            }   
 
         }
         break;
@@ -801,8 +816,18 @@ int main() {
         } 
         break;
 
-        default:
-            std::cout<<"\n Ese número no es correcto, Ingerese otro número dentro de las opciones\n";
+        case 0:{
+            std::cout <<"Desconexion Exitosa\n";
+        }
+        break;
+        default:{
+            std::cout<<"\nEse número no es correcto, Ingerese otro número dentro de las opciones\n";
+            looppreventer++;
+            if (looppreventer==3){
+                std::cout<<"Se te desconectara del programa\n";
+            }
+        }
+
             break;
         }
     }
