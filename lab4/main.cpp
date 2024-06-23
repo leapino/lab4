@@ -90,49 +90,77 @@ int main() {
     //PRODUCTOS 
     ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
     ControladorProducto->linkVendProd("carlos78");
+
     ControladorProducto->altaDeProducto("Televisor LED", 40500, 30, "Televisor LED 55 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
+
     ControladorProducto->altaDeProducto("Chaqueta de Cuero", 699.99, 20, "Chaqueta de cuero, color negro", ropa);
     ControladorProducto->linkVendProd("carlos78");
+
     ControladorProducto->altaDeProducto("Microondas Digital", 1199.99, 15, "Microondas digital, 30L", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
+
     ControladorProducto->altaDeProducto("Luz LED", 599.99, 40, "Luz Bluetooth LED", otro);
     ControladorProducto->linkVendProd("diegom");
+
     ControladorProducto->altaDeProducto("Pantalones Vaqueros", 60, 25, "Pantalones vaqueros, talla 32", ropa);
     ControladorProducto->linkVendProd("carlos78");
+
     ControladorProducto->altaDeProducto("Auriculares Bluetooth", 199.99, 35, "Auriculares bluethooth para celular", otro);
     ControladorProducto->linkVendProd("diegom");
+
     ControladorProducto->altaDeProducto("Refrigerador", 15499, 10, "Refrigerador de doble puerta", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
+
     ControladorProducto->altaDeProducto("Cafetera", 23000, 50, "Cafetera de goteo programable", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
+
     ControladorProducto->altaDeProducto("Zapatillas Deportivas", 5500, 20, "Zapatillas para correr, talla 42", ropa);
     ControladorProducto->linkVendProd("carlos78");
+
     ControladorProducto->altaDeProducto("Mochila", 9000, 30, "Mochila de viaje, 40L", otro);
     ControladorProducto->linkVendProd("carlos78");
+
     ControladorProducto->altaDeProducto("Plancha de Ropa", 2534, 25, "Plancha a vapor, 1500W", electrodomestico);
     ControladorProducto->linkVendProd("diegom");
+
     ControladorProducto->altaDeProducto("Gorra", 200, 50, "Gorra para deportes, color rojo", ropa);
     ControladorProducto->linkVendProd("sofia25");
+
     ControladorProducto->altaDeProducto("Tablet", 15000, 15, "Tablet Android de 10 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("diegom");
+
     ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
     ControladorProducto->linkVendProd("sofia25"); 
     
     //PROMOCIONES
-    std::map<int, int> infoProd;
-
+    std::map<int, int> infoProd1;
+    infoProd1.insert(2, 1);
+    infoProd1.insert(4, 1);
+    infoProd1.insert(8, 1);
     DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
-    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd);
+
+    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd1);
     
+    std::map<int, int> infoProd2;
+    infoProd2.insert(3, 2);
+    infoProd2.insert(6, 3);
     DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
-    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd);
 
+    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd2);
+
+    std::map<int, int> infoProd3;
+    infoProd3.insert(5, 2);
     DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
-    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd);
 
+    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd3);
+
+    std::map<int, int> infoProd4;
+    infoProd4.insert(14, 1);
     DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
-    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd);
+
+    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd4);
+
 
     //COMPRAS
 
