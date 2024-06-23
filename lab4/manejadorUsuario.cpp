@@ -220,16 +220,8 @@ void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string ve
 }
 
 std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DTFecha fechaActual){
-    std::list<DTPromocion> res;
     Vendedor * vend=dynamic_cast<Vendedor*> (this->getUsuario(vendedor));
-    for (auto i = vend->getPromociones().begin(); i !=vend->getPromociones().end(); ++i){
-        DTFecha fechaPromo=i->second->getFecha();
-        if (fechaPromo>fechaActual){
-            DTPromocion agregarpromo=i->second->getData();
-            res.push_front(agregarpromo);
-        }
-    }
-    return res;
+    return vend->getDTPromocion();
 }
 
 

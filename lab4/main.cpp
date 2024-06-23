@@ -750,7 +750,7 @@ int main() {
             }else{
                 std::cout<<ControladorUsuario->getInfoVendedor(usuario);
                 
-                std::cout<<"\nProductos:\n";
+                std::cout<<"\n\nProductos:\n\n";
 
                 std::list <DTProducto> prods=ControladorUsuario->getProdEnVenta(usuario);
                 
@@ -758,11 +758,11 @@ int main() {
                     std::cout<<*l<<"\n";
                 }
                 
-                std::cout<<"\n Promociones:";
+                std::cout<<"\nPromociones:\n";
 
                 std::list <DTPromocion> promos=ControladorUsuario->getPromoVigente(usuario,fechaactual);
-                for(const auto & i:promos)
-                    std::cout<<i<<"\n";
+                for(std::list<DTPromocion>::iterator it=promos.begin();it!=promos.end();it++)
+                    std::cout<<*it<<"\n";
             }   
 
         }

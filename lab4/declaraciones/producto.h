@@ -13,11 +13,11 @@
 #include "DT2Producto.h"
 #include "DTProducto.h"
 #include "comentario.h"
-#include "compraProducto.h"
 
 class Vendedor;
 class ProductoPromocion;
 class Comentario;
+class CompraProducto;
 
 class Producto {
     private:
