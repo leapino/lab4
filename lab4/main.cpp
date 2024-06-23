@@ -57,7 +57,6 @@ DTFecha leerFecha(){
     return creada;
 }
 
-//hola
 int main() {
 
     ControladorFecha* ControladorFecha = ControladorFecha::getInstancia();
@@ -65,6 +64,7 @@ int main() {
     ControladorUsuario* ControladorUsuario = ControladorUsuario::getInstancia();
 
     DTFecha fechaactual=leerFecha();
+    ControladorFecha->setFecha(fechaactual);
 
 
     ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
@@ -254,7 +254,7 @@ int main() {
         std::cout << "¿Qué operación deseas realizar?\n";
         std::cout << "1-Creación de Usuario \n"<<"2-Listado de Usuarios \n"<< "3-Alta de Producto\n"<<"4-Consultar Producto\n"<<"5-Crear Promoción\n";
         std::cout << "6-Consultar Promoción \n"<<"7-Realizar Compra\n"<<"8-Dejar Comentario\n"<<"9-Eliminar Comentario\n"<<"10-Enviar Producto\n"<<"11-Expediente de Usuario\n";
-        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"0-Salir\n";
+        std::cout << "12-Suscribirse a Notificaciones\n"<<"13-Consulta Notificacion\n"<<"14-Eliminar Suscripciones\n"<<"15-Cambiar fecha del sistema\n"<<"0-Salir\n";
         std::cout <<"\n";
         std::cin>>i;
         std::cout <<"\n";
@@ -516,7 +516,7 @@ int main() {
                     }
                 }
             }else{
-                std::cout<< "El vendedor no tiene productos asignados.";
+                std::cout<< "El vendedor no tiene productos asignados.\n";
             }
         }
         break;
@@ -543,9 +543,10 @@ int main() {
                     for (it2 = productos.begin(); it2 != productos.end(); it2++){
                         std::cout << *it2;
                     }
+                    std::cout<< "\n";
                 }
             }else{
-                std::cout<< "No hay promociones disponibles.";
+                std::cout<< "No hay promociones disponibles.\n\n";
             }
         }
             break;
@@ -835,7 +836,11 @@ int main() {
 
         } 
         break;
-
+        case 15:{ //Cambiar fecha del sistema
+            DTFecha nuevaFecha = leerFecha();
+            ControladorFecha->setFecha(nuevaFecha);
+        }
+        break;
         case 0:{
             std::cout <<"Desconexion Exitosa\n";
         }
