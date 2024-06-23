@@ -280,7 +280,7 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
     for (it = productos.begin(); it != productos.end(); ++it){
         std::set<CompraProducto*> compraProductos = it->second->getCompraProductos();
         std::set<CompraProducto*>::iterator it2;
-        for (it2 = compraProductos.begin(); it2 != compraProductos.end(); ++it){
+        for (it2 = compraProductos.begin(); it2 != compraProductos.end(); ++it2){
             if (!(*it2)->getEnviado()){
                 Producto *prodAux = (*it2)->getProd();
                 DT2Producto productoAinsertar = prodAux->getData2();
