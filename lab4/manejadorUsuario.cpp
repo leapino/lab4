@@ -354,7 +354,7 @@ std::list<std::string> ManejadorUsuario::getVendedores() {
 }
 
 
-void ManejadorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
+void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();

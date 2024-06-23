@@ -70,6 +70,6 @@ class ManejadorUsuario {
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
         void setComentarios(std::map<int,Comentario*> comm);
         std::list< std::string > getVendedores();
-        void setProductoVendido(std::string c, DTFecha f, int id);
+        void setProductoEnviado(std::string c, DTFecha f, int id);
 };
 #endif

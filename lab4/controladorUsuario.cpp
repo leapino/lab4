@@ -39,7 +39,7 @@ void ControladorUsuario::selectCliente(){}
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(std::map<int,int > productos,int &monto,std::string cliente,DTFecha fechaActual){
+void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double monto,std::string cliente,DTFecha fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
@@ -244,9 +244,9 @@ std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDe
 return std::map<int, std::pair<std::string, DTFecha>> ();
 }
 
-void ControladorUsuario::setProductoVendido(std::string c, DTFecha f, int id) {
+void ControladorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
     ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
-    return mU->setProductoVendido(c, f, id);
+    return mU->setProductoEnviado(c, f, id);
 }
 
 #endif

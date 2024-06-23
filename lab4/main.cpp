@@ -163,8 +163,71 @@ int main() {
 
 
     //COMPRAS
-
+    std::map<int, int> productosCompra1;
+    productosCompra1.insert(2, 2);
+    productosCompra1.insert(4, 1);
+    productosCompra1.insert(8, 1);
+    DTFecha fechaC1 = DTFecha(1, 5, 2024, 0, 0);
     
+    std::map<int, int> productosCompra2;
+    productosCompra2.insert(5, 1);
+    DTFecha fechaC2 = DTFecha(1, 5, 2024, 0, 0);
+
+    std::map<int, int> productosCompra3;
+    productosCompra3.insert(14, 10);
+    DTFecha fechaC3 = DTFecha(15, 5, 2024, 0, 0);
+
+    std::map<int, int> productosCompra4;
+    productosCompra4.insert(11, 1);
+    productosCompra4.insert(12, 1);
+    productosCompra4.insert(13, 1);
+    DTFecha fechaC4 = DTFecha(25, 4, 2024, 0, 0);
+
+    std::map<int, int> productosCompra5;
+    productosCompra5.insert(3, 2);
+    productosCompra5.insert(6, 3);
+    DTFecha fechaC5 = DTFecha(20, 5, 2024, 0, 0);
+
+    std::map<int, int> productosCompra6;
+    productosCompra6.insert(1, 2);
+    DTFecha fechaC6 = DTFecha(12, 5, 2024, 0, 0);
+
+    std::map<int, int> productosCompra7;
+    productosCompra7.insert(1, 3);
+    DTFecha fechaC7 = DTFecha(13, 5, 2024, 0, 0);
+
+    std::map<int, int> productosCompra8;
+    productosCompra8.insert(1, 4);
+    DTFecha fechaC8 = DTFecha(14, 5, 2024, 0, 0);
+
+
+    std::map<int, int> productosCompra9;
+    productosCompra8.insert(1, 5);
+    DTFecha fechaC9 = DTFecha(15, 5, 2024, 0, 0);
+
+
+    ControladorUsuario->confirmarCompra(productosCompra1, 68389.293, "juan87", fechaC1);
+    ControladorUsuario->confirmarCompra(productosCompra2, 599.99, "juan87", fechaC2);
+    ControladorUsuario->confirmarCompra(productosCompra3, 150000, "laura", fechaC3);
+    ControladorUsuario->confirmarCompra(productosCompra4, 11734, "natalia", fechaC4);
+    ControladorUsuario->confirmarCompra(productosCompra5, 1263.984, "juan87", fechaC5);
+    ControladorUsuario->confirmarCompra(productosCompra6, 2800, "laura", fechaC6);
+    ControladorUsuario->confirmarCompra(productosCompra7, 4200, "natalia", fechaC7);
+    ControladorUsuario->confirmarCompra(productosCompra8, 5600, "pablo10", fechaC8);
+    ControladorUsuario->confirmarCompra(productosCompra9, 7000, "roberto", fechaC9);
+
+    ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+    ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
+    ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
+    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
+    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
+    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
+    ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
+    ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
+    
+
+    //FALTA LO DE LAS PROMOS DE LA PARTE 5.1
+    //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
     //COMENTARIOS
 
@@ -619,7 +682,7 @@ int main() {
             int numCompra;
             std::cin >> numCompra;
 
-            ControladorUsuario->setProductoVendido(nombreVendedor, iterator->second.second, idProdNoEnv);
+            ControladorUsuario->setProductoEnviado(nombreVendedor, iterator->second.second, idProdNoEnv);
             
             
         }

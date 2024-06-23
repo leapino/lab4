@@ -152,7 +152,7 @@ DTVendedor ManejadorProducto::vendedorPromo(DTProducto producto){
 }
 
 
-std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, int &monto){
+std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, double monto){
     
     std::list<CompraProducto *> productos;
 

@@ -37,7 +37,7 @@ class ControladorUsuario {
         bool esCliente(std::string usuario);//retorna true si es cliente
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         void agregarProductoCompra(int codigo, int cantidad);
-        void confirmarCompra(std::map <int,int > productos,int &monto,std::string cliente,DTFecha fechaActual);
+        void confirmarCompra(std::map <int,int > productos, double monto,std::string cliente,DTFecha fechaActual);
         Usuario * getUsuario(std::string Usuario);
         DTUsuario getInfoUsuario(std::string usuario);
         DTCliente getInfoCliente(std::string usuario);
@@ -56,7 +56,7 @@ class ControladorUsuario {
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         Vendedor* getVendedor(std::string v);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
-        void setProductoVendido(std::string c, DTFecha f, int id);
+        void setProductoEnviado(std::string c, DTFecha f, int id);
 };
 
 #endif

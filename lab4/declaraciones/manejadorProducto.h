@@ -52,7 +52,7 @@ class ManejadorProducto {
         std::set<DTProducto> getProductoPromo(std::string);
         DTVendedor vendedorPromo(DTProducto);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
-        std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, int &monto);
+        std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, double monto);
         Producto* finalProd();
         void addProducto(Producto*);
 };      
