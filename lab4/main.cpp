@@ -87,7 +87,7 @@ int main() {
     ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
 
     //PRODUCTOS
-    /*ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
+    ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
     ControladorProducto->linkVendProd("carlos78");
     ControladorProducto->altaDeProducto("Televisor LED", 40500, 30, "Televisor LED 55 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("ana23");
@@ -116,7 +116,7 @@ int main() {
     ControladorProducto->altaDeProducto("Tablet", 15000, 15, "Tablet Android de 10 pulgadas", electrodomestico);
     ControladorProducto->linkVendProd("diegom");
     ControladorProducto->altaDeProducto("Reloj de Pared", 150.50, 20, "Reloj de pared vintage", otro);
-    ControladorProducto->linkVendProd("sofia25"); */
+    ControladorProducto->linkVendProd("sofia25"); 
 
     //PROMOCIONES
 
@@ -127,7 +127,7 @@ int main() {
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
 
     std::cout << "\n";
-    int i =-2;
+    int i =-2;  
 
     while ( i !=0 ){
 
