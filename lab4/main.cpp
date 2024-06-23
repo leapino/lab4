@@ -119,6 +119,19 @@ int main() {
     ControladorProducto->linkVendProd("sofia25"); 
 
     //PROMOCIONES
+    std::map<int, int> infoProd;
+
+    DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd);
+    
+    DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd);
+
+    DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd);
+
+    DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
+    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd);
 
     //COMPRAS
 
@@ -550,6 +563,7 @@ int main() {
             for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
                 std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
+            std::cout << "aca";
             
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
