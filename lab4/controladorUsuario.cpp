@@ -114,15 +114,39 @@ Usuario * getUsuario(std::string Usuario){
 }
 
 void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string dir, std::string ciudad){
+      bool estanom = false;
+            if (this->estaVacio() == false)
+                 if (this->estaUsuario(nick))
+                    estanom = true;
+            
+            bool contrabien = true;
+            if (pass.length()<6)
+                contrabien = false;
+            
+        if ((estanom == false) && (contrabien == true)){
        Cliente* nuevoCliente =new  Cliente(nick,pass,fechnaci,dir,ciudad);       
        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
        mu->addUsuario(nuevoCliente);
+       std::cout<<"todo bien\n";
+       }
 }
 
 void ControladorUsuario::altaDeUsuario(std::string nick, std::string pass, DTFecha fechnaci,std::string RUT){
+       bool estanom = false;
+            if (this->estaVacio() == false)
+                 if (this->estaUsuario(nick))
+                    estanom = true;
+            
+            bool contrabien = true;
+            if (pass.length()<6)
+                contrabien = false;
+            
+        if ((estanom == false) && (contrabien == true)){
        Vendedor* nuevoVendedor =new  Vendedor(nick,pass,fechnaci,RUT);       
        ManejadorUsuario* mu = ManejadorUsuario::getInstancia();
        mu->addUsuario(nuevoVendedor);
+       std::cout<<"todo bien\n";
+       }
 }
 
 bool ControladorUsuario::estaVacio(){

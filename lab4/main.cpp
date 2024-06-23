@@ -85,6 +85,7 @@ int main() {
     ControladorUsuario->altaDeUsuario("roberto", "mnbvcx", fecha9, "Av. Brasil 1011", "Montevideo");
     DTFecha fecha10 = DTFecha(07,12,1983,0,0);
     ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
+    
 
     //PRODUCTOS
     ControladorProducto->altaDeProducto("Camiseta Azul", 1400, 50, "Camiseta de poliester", ropa);
