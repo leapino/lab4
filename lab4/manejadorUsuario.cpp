@@ -258,13 +258,17 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     return dynamic_cast<Vendedor *>(it->second);
 }
 
-void ManejadorUsuario::eraseRespuestas(int id){
+void ManejadorUsuario::eraseRespuestas(int id){ 
      Comentario* com = this->Comentarios.find(id)->second;
-     std::map<int, Comentario*>::iterator it;
-     it = com->getRespuestas().begin();     
-     while ( it != com->getRespuestas().end()){
-         this->Comentarios.erase(it->second->getIdcom());
-         ++it;
+     if (com->getRespuestas().empty() == false){
+     std::vector<int> respuestaIds;
+     for (const auto& pair : com->getRespuestas()) {
+        respuestaIds.push_back(pair.first);
+    }        
+     for (int respuestaId : respuestaIds) {
+        eraseRespuestas(respuestaId);  
+        this->Comentarios.erase(respuestaId);
+    }
      }     
 }
 

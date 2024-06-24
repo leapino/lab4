@@ -75,21 +75,27 @@ void Comentario::setIdCom(int id) {
 
 
 Comentario::~Comentario() {
-    delete this->prodComentado;
-    //delete this->miUsuario;
+     this->prodComentado = nullptr;
+     this->miUsuario = nullptr;
+     this->respuestas.clear();
 }
 
 void Comentario::borrarRespuestas(){
      std::map<int, Comentario*>::iterator it;
-     it = this->respuestas.begin();
-     Comentario* aborrar;
-     while ( it != this->respuestas.end()){
-        aborrar = it->second;
-        it = this->respuestas.erase(it);     
-        aborrar->~Comentario();
-        ++it;
+     if (this->respuestas.empty() == false){
+     std::vector<int> respuestaIds;
+     for (const auto& pair : this->respuestas) {
+        respuestaIds.push_back(pair.first);
+    }
+    for (int respuestaId : respuestaIds) {
+        Comentario* aborrar = this->respuestas[respuestaId];
+        if (aborrar) {
+            aborrar->borrarRespuestas();  
+            aborrar->~Comentario();               
+        }
+        this->respuestas.erase(respuestaId);
+    }
      }
-     aborrar = nullptr;
 }
 
 void Comentario::agregarRespuesta(Comentario* com)

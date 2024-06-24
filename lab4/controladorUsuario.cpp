@@ -54,11 +54,6 @@ void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double mon
     mUsuario->agregarCompraCliente(pCliente,compra);
 }
 
-Usuario *ControladorUsuario::getUsuario(std::string Usuario)
-{
-    return nullptr;
-}
-
 DTUsuario ControladorUsuario::getInfoUsuario(std::string usuario){
     ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
     return mU->getInfoUsuario(mU->getUsuario(usuario));
@@ -169,7 +164,8 @@ std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
     }
 
 std::map<int, std::string> ControladorUsuario::listarComentario(std::string nombreU){
-       Usuario* usuario = getUsuario(nombreU);
+       ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+       Usuario* usuario = mU->getUsuario(nombreU);
        return usuario->listarComentarios();
 }
 
@@ -192,7 +188,7 @@ void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int c
 void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
         mU->eraseRespuestas(id);
-        Usuario* usuario = getUsuario(nombreU);
+        Usuario* usuario = mU->getUsuario(nombreU);
         usuario->borrarComentario(id);
         mU->eraseCom(id);
 }

@@ -38,7 +38,6 @@ class ControladorUsuario {
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         void agregarProductoCompra(int codigo, int cantidad);
         void confirmarCompra(std::map <int,int > productos, double monto,std::string cliente,DTFecha fechaActual);
-        Usuario * getUsuario(std::string Usuario);
         DTUsuario getInfoUsuario(std::string usuario);
         DTCliente getInfoCliente(std::string usuario);
         DTVendedor getInfoVendedor(std::string usuario);
