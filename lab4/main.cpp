@@ -233,7 +233,7 @@ int main() {
 
     std::cout<< "despues de confirmar compra y antes de setproductoenviado\n";
 
-    ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+    //ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
     // ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
     // ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
     // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
@@ -884,6 +884,10 @@ int main() {
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
                 std::cout<<*i;
+            }
+
+            if (notis.size()==0){
+                std::cout <<"\n\n El cliente no tiene notificaciones de los vendedores que esta suscrito\n\n";
             }
             ControladorUsuario->limpiarNotificaciones(cliente);
         }
