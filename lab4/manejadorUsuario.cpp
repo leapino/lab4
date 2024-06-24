@@ -166,15 +166,11 @@ void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
 
 void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
-    Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
-    auto i = this->getComentarios().begin(); 
-    while ((i !=this->getComentarios().end())&&((*i)->getIdcom()!=idCom))
-        i++;
-    if (i !=this->getComentarios().end())
-        (*i)->agregarRespuesta(agregar);
-    this->Comentarios.push_back(agregar); 
-    codProd->agregarComentario(idCom,agregar,codProd->getComentarios());   
-}
+    Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id); 
+        this->Comentarios.push_back(agregar);
+        user->agregarComentario(agregar);
+        codProd->agregarComentario(idCom,agregar,codProd->getComentarios());
+    }
 
 void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
@@ -391,7 +387,7 @@ std::list<DTComentario> ManejadorUsuario::listarComentsUser(std::string nombreU)
     for(std::list<Comentario*>::iterator it =this->Comentarios.begin();it!=this->Comentarios.end();it++){
         if ((*it)->getUsuario()->getNickname()==nombreU){
             DTComentario apushear=DTComentario((*it)->getTexto(),(*it)->getFecha(),(*it)->getIdcom(),aux);
-            res.push_back(apushear);
+            res.push_front(apushear);
         }
     }
     return res;
