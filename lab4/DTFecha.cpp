@@ -6,7 +6,7 @@
 #include "declaraciones/DTFecha.h"
 
 std::ostream &operator<<(std::ostream &salida, const DTFecha  &   fecha){
-    salida << "Año: "<<fecha.anio<<"\nMes: "<<fecha.mes<<"\nDia: " <<fecha.dia<<"\nHora: "<<fecha.hora<<"\nMinuto: "<<fecha.minuto;
+    salida << "Año: "<<fecha.anio<<"\nMes: "<<fecha.mes<<"\nDia: " <<fecha.dia<<"\n";
     return salida;
 }
 
@@ -20,26 +20,18 @@ bool operator>( const DTFecha &lhs, const DTFecha &rhs){
     if (lhs.dia != rhs.dia) {
         return lhs.dia > rhs.dia;
     }
-    if (lhs.hora != rhs.hora) {
-        return lhs.hora > rhs.hora;
-    }
-    return lhs.minuto > rhs.minuto;
 }
 
 DTFecha::DTFecha(){
     this->dia=1;
     this->mes=1;
     this->anio=1900;
-    this->hora=0;
-    this->minuto=0;
     }
 
-DTFecha::DTFecha(int dia, int mes, int anio,int hora,int minuto){
+DTFecha::DTFecha(int dia, int mes, int anio){
     this->dia = dia;
     this->mes = mes;
     this->anio = anio;
-    this->hora = hora;
-    this->minuto = minuto;
 }
 
 int DTFecha::getDia() {
@@ -54,14 +46,6 @@ int DTFecha::getAnio(){
     return this->anio;
 }
 
-int DTFecha::getHora() {
-    return this->hora;
-}
-
-int DTFecha::getMinuto() {
-    return this->minuto;
-}
-
 void DTFecha::setAnio(int anio){
      this->anio = anio;
 }   
@@ -73,14 +57,6 @@ void DTFecha::setDia(int dia){
 void DTFecha::setMes(int mes){
      this->mes = mes;
 }   
-
-void DTFecha::setHora(int hora){
-     this->hora = hora;
-}   
-
-void DTFecha::setMinuto(int minuto){
-     this->minuto = minuto;
-}
 
 bool DTFecha::esIgualFecha(DTFecha f) {
     bool resu = false;

@@ -5,7 +5,7 @@
 
 
 std::ostream &operator<<(std::ostream &salida, DTVendedor  vend){
-    salida << "\nNickname: " << vend.getDTNickname() << "\nFecha de Nacimiento: " << vend.getDTNacimiento() << "\nRUT: " << vend.getDTRUT();
+    salida << "\nNickname: " << vend.getDTNickname() << "\nFecha de Nacimiento: \n" << vend.getDTNacimiento() << "\nRUT: " << vend.getDTRUT();
     return salida;
 }
 
