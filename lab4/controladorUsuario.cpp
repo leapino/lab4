@@ -39,7 +39,7 @@ void ControladorUsuario::selectCliente(){}
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double monto,std::string cliente,DTFecha fechaActual){
+DTCompra ControladorUsuario::confirmarCompra(std::map<int,int > productos,double &monto,std::string cliente,DTFecha fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
@@ -52,6 +52,14 @@ void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double mon
     }
     
     mUsuario->agregarCompraCliente(pCliente,compra);
+
+    std::list<DTCompraProducto> DTProds;
+    for (std::list<CompraProducto*>::iterator it2=prodEnCompra.begin(); it2!=prodEnCompra.end(); it2++)
+    {   
+        DTProds.push_back((*it2)->getData());               
+    }
+    
+    return DTCompra (fechaActual,monto,DTProds);
 }
 
 DTUsuario ControladorUsuario::getInfoUsuario(std::string usuario){

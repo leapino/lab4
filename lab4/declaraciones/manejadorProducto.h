@@ -51,7 +51,7 @@ class ManejadorProducto {
         std::map<std::string, Promocion*> getPromos();
         DTVendedor vendedorPromo(DTProducto);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
-        std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, double monto);
+        std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, double &monto);
         Producto* finalProd();
         void addProducto(Producto*);
 };      

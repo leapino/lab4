@@ -140,7 +140,7 @@ DTVendedor ManejadorProducto::vendedorPromo(DTProducto producto){
 }
 
 
-std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, double monto){
+std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int> datos, double &monto){
     
     std::list<CompraProducto *> productos;
 
@@ -156,16 +156,18 @@ std::list<CompraProducto *> ManejadorProducto::confirmarCompra(std::map<int, int
             CompraProducto* relacion=new CompraProducto(prod,it->second);
             productos.push_back(relacion);
             this->prodEnCompra(prod,it->second);
-            int precioConvertido=prod->getPrecio();
+            double precio=prod->getPrecio();
             i->second->addCompraProducto(relacion);
-
+            
         
         if(this->checkPromo(it->first)){//Chequea si esta en una promo
             if(this->cantMinPromo(prod)<=it->second){//Chequea que compre al menos la CantMin
-                precioConvertido=precioConvertido-(precioConvertido*this->descPromo(prod));//Realiza el Descuento
+                double descuento=(descPromo(i->second)*precio)/100;
+                std::cout<<descPromo(i->second);
+                precio=precio-(descuento);//Realiza el Descuento
             }
         }
-        monto+=precioConvertido*it->second;
+        monto+=(precio*it->second);
         }
 
     }

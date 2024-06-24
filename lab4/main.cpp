@@ -421,10 +421,12 @@ int main() {
                 std::cin >> i;
             }
 
-            int monto=0;
+            double monto=0;
 
 
-            ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaactual);
+            DTCompra amostrar=ControladorUsuario->confirmarCompra(productoCompra,monto,cliente,fechaactual);
+            
+            std::cout<<"\n\n"<<amostrar;
 
         }
             break;
@@ -903,7 +905,7 @@ int main() {
         ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
         DTFecha fecha38 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
-        /*DTFecha fecha39 = DTFecha(2,6,2024,0,0);
+        DTFecha fecha39 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
         DTFecha fecha15 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom("¿Como es el ajuste? ¿Es ajustada o holgada?",fecha15,1,"natalia");
@@ -915,7 +917,7 @@ int main() {
         ControladorUsuario->escribirCom("¿Tiene soporte para HDR10?",fecha18,2,"pablo10");
         DTFecha fecha19 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom(7,"Si, soporta HDR10.",fecha19,2,"ana23");
-        /*DTFecha fecha20 = DTFecha(3,6,2024,0,0);
+        DTFecha fecha20 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom("¿La chaqueta de cuero es resistente al agua?",fecha20,3,"natalia");
         DTFecha fecha21 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom(9,"No, la chaqueta de cuero no es resistente al agua.",fecha21,3,"carlos78");
@@ -946,7 +948,9 @@ int main() {
         DTFecha fecha34 = DTFecha(6,6,2024,0,0);
         ControladorUsuario->escribirCom(19,"¿Cuanto dura la bateria?",fecha34,5,"natalia");
         DTFecha fecha35 = DTFecha(7,6,2024,0,0);
-        ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");*/
+        ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");
+        
+        //PROMOCIONES
 
         std::cout <<"PreCarga de Datos realizada correctamente\n\n";
         ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
