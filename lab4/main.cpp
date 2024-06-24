@@ -876,13 +876,13 @@ int main() {
 
         ControladorUsuario->confirmarCompra(productosCompra1, monto1, "juan87", fechaC1);  
         ControladorUsuario->confirmarCompra(productosCompra2, monto2, "juan87", fechaC2);
-        ControladorUsuario->confirmarCompra(productosCompra3, monto3, "laura", fechaC3);
-        ControladorUsuario->confirmarCompra(productosCompra4, monto4, "natalia", fechaC4);
-        ControladorUsuario->confirmarCompra(productosCompra5, monto5, "juan87", fechaC5);
-        ControladorUsuario->confirmarCompra(productosCompra6, monto6, "laura", fechaC6);
-        ControladorUsuario->confirmarCompra(productosCompra7, monto7, "natalia", fechaC7);
-        ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
-        ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
+        // ControladorUsuario->confirmarCompra(productosCompra3, monto3, "laura", fechaC3);
+        // ControladorUsuario->confirmarCompra(productosCompra4, monto4, "natalia", fechaC4);
+        // ControladorUsuario->confirmarCompra(productosCompra5, monto5, "juan87", fechaC5);
+        // ControladorUsuario->confirmarCompra(productosCompra6, monto6, "laura", fechaC6);
+        // ControladorUsuario->confirmarCompra(productosCompra7, monto7, "natalia", fechaC7);
+        // ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
+        // ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
 
          ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);

@@ -253,6 +253,7 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
                 DT2Producto productoAinsertar = prodAux->getData2();
                 resu.insert({num, productoAinsertar});
                 num++;
+                std::cout<< "codigo a insertar en lista" << prodAux->getCodigo();
             }
         }
     }
@@ -310,26 +311,19 @@ void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();
-    
     while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
         ++it;
     }
     if((it) != compras.end() && f.esIgualFecha((*it)->getFecha())) {
-        
         std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
-        
         std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
-
-        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
-            
+        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {   
             ++compraProducto;
 
         }
-        
+        ((*compraProducto)->getEnviado());
         if(compraProducto != compraProductos.end() && !((*compraProducto)->getEnviado())) {
-            
             ((*compraProducto))->setEnviado(true);
-            // std::cout << "El producto fue enviado con exito \n";
         }
     }
 }

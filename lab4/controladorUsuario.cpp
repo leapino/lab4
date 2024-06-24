@@ -43,12 +43,10 @@ DTCompra ControladorUsuario::confirmarCompra(std::map<int,int > productos,double
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
-
     Cliente* pCliente=dynamic_cast<Cliente*>(mUsuario->getUsuario(cliente));
     std::list<CompraProducto*> prodEnCompra=mP->confirmarCompra(productos,monto);
-    // std::cout << "tamanio lista" << prodEnCompra.size();
+    std::cout << "tamanio listaprodencompra" << prodEnCompra.size();
     Compra *compra = new Compra(fechaActual, monto, pCliente ,prodEnCompra);
-
     for(std::list<CompraProducto*>::iterator it = prodEnCompra.begin(); it != prodEnCompra.end(); ++it) {
         (*it)->setCompra(compra);
     }
