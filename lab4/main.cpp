@@ -889,7 +889,7 @@ int main() {
             std::cin >>cliente;
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
-                std::cout<<*i;
+                std::cout<<*i<<"\n";
             }
 
             if (notis.size()==0){
