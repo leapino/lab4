@@ -39,19 +39,29 @@ void ControladorUsuario::selectCliente(){}
 
 void ControladorUsuario::agregarProductoCompra(int codigo, int cantidad){}
 
-void ControladorUsuario::confirmarCompra(std::map<int,int > productos,double monto,std::string cliente,DTFecha fechaActual){
+DTCompra ControladorUsuario::confirmarCompra(std::map<int,int > productos,double &monto,std::string cliente,DTFecha fechaActual){
     ManejadorUsuario* mUsuario;
     mUsuario=ManejadorUsuario::getInstancia();
     ManejadorProducto * mP=ManejadorProducto::getInstancia();
 
     Cliente* pCliente=dynamic_cast<Cliente*>(mUsuario->getUsuario(cliente));
     std::list<CompraProducto*> prodEnCompra=mP->confirmarCompra(productos,monto);
+    // std::cout << "tamanio lista" << prodEnCompra.size();
     Compra *compra = new Compra(fechaActual, monto, pCliente ,prodEnCompra);
+
     for(std::list<CompraProducto*>::iterator it = prodEnCompra.begin(); it != prodEnCompra.end(); ++it) {
         (*it)->setCompra(compra);
     }
     
     mUsuario->agregarCompraCliente(pCliente,compra);
+
+    std::list<DTCompraProducto> DTProds;
+    for (std::list<CompraProducto*>::iterator it2=prodEnCompra.begin(); it2!=prodEnCompra.end(); it2++)
+    {   
+        DTProds.push_back((*it2)->getData());               
+    }
+    
+    return DTCompra (fechaActual,monto,DTProds);
 }
 
 DTUsuario ControladorUsuario::getInfoUsuario(std::string usuario){
