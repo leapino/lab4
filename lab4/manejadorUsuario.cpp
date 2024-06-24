@@ -172,13 +172,14 @@ void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fec
         i++;
     if (i !=this->getComentarios().end())
         (*i)->agregarRespuesta(agregar);
-    this->Comentarios.push_back(agregar);    
+    this->Comentarios.push_back(agregar); 
+    codProd->agregarComentario(idCom,agregar,codProd->getComentarios());   
 }
 
 void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
     Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
-    codProd->agregarComentario(agregar);
+    codProd->agregarComentario(agregar);    
     user->agregarComentario(agregar);
     this->Comentarios.push_back(agregar);    
 }

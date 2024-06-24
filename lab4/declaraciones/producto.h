@@ -67,5 +67,6 @@ class Producto {
         void borrarComment(int id);
         void borrarRespCometario(Comentario* comm);
         void agregarComentario(Comentario* comment);
+        void agregarComentario(int id,Comentario* comm,std::list<Comentario*> buscar);
 };      
 #endif

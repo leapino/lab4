@@ -472,8 +472,6 @@ int main() {
 
                 ImprimirComentarios(comentarios);
 
-                //funcion recursiva para imprimir sus comentarios y sus respuestas
-
                 std::cout <<"Ingrese el  id del comentario a responder\n";
                 int idPrincipal;
                 std::cin >>idPrincipal;
