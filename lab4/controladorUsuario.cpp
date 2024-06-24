@@ -46,7 +46,9 @@ DTCompra ControladorUsuario::confirmarCompra(std::map<int,int > productos,double
 
     Cliente* pCliente=dynamic_cast<Cliente*>(mUsuario->getUsuario(cliente));
     std::list<CompraProducto*> prodEnCompra=mP->confirmarCompra(productos,monto);
+    // std::cout << "tamanio lista" << prodEnCompra.size();
     Compra *compra = new Compra(fechaActual, monto, pCliente ,prodEnCompra);
+
     for(std::list<CompraProducto*>::iterator it = prodEnCompra.begin(); it != prodEnCompra.end(); ++it) {
         (*it)->setCompra(compra);
     }

@@ -84,7 +84,7 @@ void DTFecha::setMinuto(int minuto){
 
 bool DTFecha::esIgualFecha(DTFecha f) {
     bool resu = false;
-    return resu = (this->anio == f.anio && this->mes == f.mes && this->dia == f.dia && this->hora == f.hora && this->minuto == f.minuto);
+    return resu = (this->anio == f.anio && this->mes == f.mes && this->dia == f.dia);
 }
 
 bool DTFecha::esVigente(DTFecha fechaActual){
