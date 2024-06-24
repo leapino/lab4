@@ -33,7 +33,6 @@ class ControladorProducto {
         //std::list<CompraProducto*> confirmarCompra(std::map<int, int> datos, int &monto); se paso esta funcion al controlador Usuario
         bool checkPromo(int);
         std::map<std::string, DTPromocion> getPromos();
-        std::set<DTProducto> getProductoPromo(std::string);
         DTVendedor vendedorPromo(DTProducto);
         void escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom);
         std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);

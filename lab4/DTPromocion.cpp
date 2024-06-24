@@ -20,6 +20,13 @@ DTPromocion::DTPromocion(std::string nombre, std::string desc, DTFecha fecha){
     this->fecha=fecha;
 }
 
+void DTPromocion::addProducto(DTProducto p){
+    this->productos.insert(p);
+}
+
+std::set<DTProducto> DTPromocion::getProductos(){
+    return this->productos;
+}
 
 std::string DTPromocion::getNombre(){
     return this->nombre;

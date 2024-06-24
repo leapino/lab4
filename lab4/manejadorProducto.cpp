@@ -133,18 +133,6 @@ std::map<std::string, Promocion*> ManejadorProducto::getPromos(){
     return this->Promociones;
 }
 
-std::set<DTProducto> ManejadorProducto::getProductoPromo(std::string nombrePromo){
-    std::set<DTProducto> productos;
-    std::set<ProductoPromocion*>::iterator it;
-    Promocion* promocion = this->Promociones.find(nombrePromo)->second;
-    std::set<ProductoPromocion*> prodProm = promocion->getProdProm();
-    for (it = prodProm.begin(); it != prodProm.end(); it++){
-        DTProducto dtproducto = DTProducto((*it)->getProducto()->getCodigo(), (*it)->getProducto()->getStock(), (*it)->getProducto()->getPrecio(), (*it)->getProducto()->getNombre(), (*it)->getProducto()->getDescripcion(), (*it)->getProducto()->getCategoria());
-        productos.insert(dtproducto);
-    }
-    return productos;
-}
-
 DTVendedor ManejadorProducto::vendedorPromo(DTProducto producto){
     Vendedor* vendedor = this->Productos.find(producto.getCodigo())->second->getVendedor();
     DTVendedor dtv = DTVendedor(vendedor->getNickname(), vendedor->getFecha(), vendedor->getRUT());

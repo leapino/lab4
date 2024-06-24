@@ -49,7 +49,6 @@ class ManejadorProducto {
         int cantMinPromo(Producto* prod);//pre: estar en una promo
         float descPromo(Producto* prod);//Pre estar en una promo
         std::map<std::string, Promocion*> getPromos();
-        std::set<DTProducto> getProductoPromo(std::string);
         DTVendedor vendedorPromo(DTProducto);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         std::list<CompraProducto*> confirmarCompra(std::map<int,int> datos, double monto);

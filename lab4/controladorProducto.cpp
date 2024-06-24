@@ -106,16 +106,15 @@ std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
     for (it = promos.begin(); it != promos.end(); ++it){
         if (it->second->getFecha().esVigente(cf->getFecha())){
             DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
+            std::set<ProductoPromocion *> prodProm = it->second->getProdProm();
+            std::set<ProductoPromocion *>::iterator it2;
+            for (it2 = prodProm.begin(); it2 != prodProm.end(); ++it2){
+                dtpromo.addProducto((*it2)->getProducto()->getData());
+            }
             dtpromociones.insert(std::make_pair(it->second->getNombre(), dtpromo));
         }
     }
     return dtpromociones;
-}
-
-std::set<DTProducto> ControladorProducto::getProductoPromo(std::string nombrePromo){
-    ManejadorProducto* mp;
-    mp = ManejadorProducto::getInstancia();
-    return mp->getProductoPromo(nombrePromo);
 }
 
 DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){

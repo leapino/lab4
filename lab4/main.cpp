@@ -496,7 +496,6 @@ int main() {
 
             std::string descriP;
             std::cout<<"Ingresar la descripción de la promoción\n";
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline (std::cin,descriP);
 
             float descuento;
@@ -548,7 +547,7 @@ int main() {
                             std::cout<< "Cantidad mínima:\n";
                             std::cin>> cantMin;
                             std::cout <<"\n";
-                            infoProd.insert(std::make_pair(numProd, cantMin));
+                            infoProd.insert(std::make_pair(prod.getCodigo(), cantMin));
                         }
                         else{
                             std::cout<< "Este producto ya se encuentra en una promoción\n";
@@ -594,7 +593,7 @@ int main() {
                     std::string nombrePromo;
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::getline (std::cin,nombrePromo);
-                    std::set<DTProducto> productos = ControladorProducto->getProductoPromo(nombrePromo);
+                    std::set<DTProducto> productos = promociones.find(nombrePromo)->second.getProductos();
                     DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
                     std::set<DTProducto>::iterator it2;
                     std::cout << "Vendedor que ofrece la promoción:\n";
