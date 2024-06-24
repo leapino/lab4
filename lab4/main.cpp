@@ -491,10 +491,12 @@ int main() {
 
             std::string nombreP;
             std::cout<<"Ingresar el nombre de la promoción\n";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline (std::cin,nombreP);
 
             std::string descriP;
             std::cout<<"Ingresar la descripción de la promoción\n";
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline (std::cin,descriP);
 
             float descuento;
@@ -590,6 +592,7 @@ int main() {
                 if (confirm == 1){
                     std::cout <<"Ingresar nombre de la promocion que desea consultar:\n";
                     std::string nombrePromo;
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                     std::getline (std::cin,nombrePromo);
                     std::set<DTProducto> productos = ControladorProducto->getProductoPromo(nombrePromo);
                     DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
