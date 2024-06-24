@@ -215,8 +215,8 @@ std::list<DTCliente> ManejadorUsuario::ListarUsuariosC(){
 void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
     Cliente* pCliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
     Vendedor* pVendedor=dynamic_cast<Vendedor*> (this->getUsuario(vendedor));
-    pCliente->crearLinkV(pVendedor);
-    pVendedor->crearLinkC(pCliente);
+    pCliente->eliminarLinkV(vendedor);
+    pVendedor->eliminarLinkC(cliente);
 }
 
 std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DTFecha fechaActual){

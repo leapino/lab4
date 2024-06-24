@@ -774,26 +774,37 @@ int main() {
         }
         break;
         case 12:{//Suscribirse a notis
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente que va a suscribirse\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
             std::list<std::string> vendnosus=ControladorUsuario->getVendedoresNoSuscrito(cliente);
-            for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
-                std::cout << *i;
-            }
 
+            std:: cout<<"\nVendedores: \n";
+            for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
+                std::cout << *i<<"\n";
+            }
+            std::cout<<"\n";
             std::list<std::string> asuscribirse;
-            
-            std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir";
 
             int i=1;
             while (i){
+
+                std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir\n\n";
                 std::string agregar;
                 std::cin >> agregar;
                 asuscribirse.push_front(agregar);
 
-                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No"<<"1-Sí";
+                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No    "<<"1-Sí\n";
                 std::cin >>i;
             }
             ControladorUsuario->suscribirVendedores(asuscribirse,cliente);
@@ -801,40 +812,70 @@ int main() {
         }
         break; 
         case 13:{//Consulta de Notificaciones
+
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente para ver sus notificaciones\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
                 std::cout<<*i;
             }
+            ControladorUsuario->limpiarNotificaciones(cliente);
         }
         break;
         case 14:{ //eliminar Suscripciones
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente que va a desuscribirse\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+            
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
             std::list <std::string> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
-
-            for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
-                std::cout<<*i;
+            std::cout <<"\n";
+            std::cout <<"Vendedores Suscritos:\n\n";
+            for (std::list<std::string>::iterator i  =vendsus.begin(); i !=vendsus.end(); i++){
+                std::cout<<*i<<"\n";
             }
 
             std::list<std::string> aeliminar;
             int i;
-            std::cout << "Desea Desuscribirse de algun \n"<<"0-No\n"<<"1-Sí";
+            std::cout << "Desea Desuscribirse de algun Vendedor \n"<<"0-No     "<<"1-Sí\n\n";
             std::cin >>i;
+
             while(i){
                 std::string vendedor;
-                std::cout <<"Ingrese el nickname del vendedor";
+                std::cout <<"Ingrese el nickname del vendedor\n\n";
                 std::cin >> vendedor;
 
                 ControladorUsuario->eliminarSusVendedores(cliente,vendedor);
 
-                std::cout << "Desea Desuscribirse de algun otro? \n"<<"0-No\n"<<"1-Sí";
-            }            
-
+                std::cout << "Desea Desuscribirse de algun otro? \n"<<"0-No      "<<"1-Sí\n\n";
+                std::cin >>i;
+            } 
+            
+            
+            std::list <std::string> vendsusnuevo=ControladorUsuario->getVendedoresSuscrito(cliente);
+            std::cout <<"\n";
+            std::cout <<"Vendedores Suscritos:\n\n";
+            for (std::list<std::string>::iterator i  =vendsusnuevo.begin(); i !=vendsusnuevo.end(); i++){
+                std::cout<<*i<<"\n\n";
+            }
         } 
         break;
         case 15:{ //Cambiar fecha del sistema

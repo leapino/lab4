@@ -10,6 +10,7 @@
 
 #include "usuario.h"
 #include "promocion.h"
+#include "cliente.h"
 
 class Producto;
 class Promocion;
@@ -41,7 +42,7 @@ class Vendedor: public Usuario {
         void addPromo(Promocion*);
         //Funciones
         void crearLinkC(Cliente * cliente);
-        void desuscribirse(Cliente); 
+        void eliminarLinkC(std::string client); 
         void setProductos(int, Producto*);
         //bool esVendedor() override { return true; }
        // bool esCliente() override { return false; }

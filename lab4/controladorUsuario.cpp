@@ -252,4 +252,10 @@ void ControladorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
     return mU->setProductoEnviado(c, f, id);
 }
 
+void ControladorUsuario::limpiarNotificaciones(std::string cliente)
+{
+    ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
+    Cliente* client=dynamic_cast<Cliente*> (mU->getUsuario(cliente));
+    client->limpiarNotificaciones();
+}
 #endif

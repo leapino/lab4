@@ -11,6 +11,7 @@
 #include "compra.h"
 #include "usuario.h"
 #include "DTCompra.h"
+#include "vendedor.h"
 
 class Compra;
 class Usuario;
@@ -40,6 +41,7 @@ class Cliente: public Usuario {
         void setDTNoti(std::list<DTNotificacion> noti);
         //funciones
         void crearLinkV(Vendedor * Vendedor);
+        void eliminarLinkV(std::string vend);
         void eliminarVendedores();
         void limpiarNotificaciones();
         void notificar();

@@ -20,6 +20,16 @@ void Cliente::crearLinkV(Vendedor * vend) {
     this->Vendedores.push_front(vend);
 }
 
+void Cliente::eliminarLinkV(std::string vend)
+{
+    std::list<Vendedor*>::iterator Pvend=this->Vendedores.begin();
+    while ((Pvend!=this->Vendedores.end())&&((*Pvend)->getNickname()!=vend)){
+        Pvend++;
+    }
+    if ((Pvend!=this->Vendedores.end())&&((*Pvend)->getNickname()==vend)){
+        Pvend=this->Vendedores.erase(Pvend);
+    }
+}
 std::list<DTNotificacion > Cliente::getDTNotificaciones() {
     return this->Notificaciones;
 }
