@@ -65,7 +65,6 @@ class ManejadorUsuario {
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         void eraseRespuestas(int id);
-        void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
         void setComentarios(std::list<Comentario*> comm);

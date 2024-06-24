@@ -163,7 +163,7 @@ std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
         return mu->listarNickUsuarios();
     }
 
-std::list< std::string> ControladorUsuario::listarComentario(std::string nombreU){
+std::list<DTComentario> ControladorUsuario::listarComentario(std::string nombreU){
        ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
        Usuario* usuario = mU->getUsuario(nombreU);
        return usuario->listarComentarios();
@@ -190,7 +190,6 @@ void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         mU->eraseRespuestas(id);
         Usuario* usuario = mU->getUsuario(nombreU);
         usuario->borrarComentario(id);
-        mU->eraseCom(id);
 }
 
 std::list<DTVendedor> ControladorUsuario::ListaUsuariosV(){

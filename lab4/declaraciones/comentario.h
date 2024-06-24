@@ -13,6 +13,7 @@
 #include "DTUsuario.h"
 #include "DTProducto.h"
 #include "producto.h"
+#include "DTComentario.h"
 
 class Producto;
 class Usuario;
@@ -33,6 +34,7 @@ class Comentario {
         DTFecha getFecha();
         Producto *getProdCom();
         Usuario *getUsuario();
+        std::list<DTComentario> getDTRespuestas();
         int getIdcom();
         void setRespuestas(std::list<Comentario*> respuesta);
         void setTexto(std::string text);

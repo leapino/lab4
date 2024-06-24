@@ -20,7 +20,6 @@ public:
     DTFecha getFecha() ;
     int getIdCom() ;
     std::list< DTComentario> getRespuestas() ;
-
     void setComentario( std::string com);
     void setFecha( DTFecha fec);
     void setIdCom( int id);
