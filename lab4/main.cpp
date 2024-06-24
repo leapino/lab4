@@ -233,7 +233,7 @@ int main() {
 
     std::cout<< "despues de confirmar compra y antes de setproductoenviado\n";
 
-    ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+    //ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
     // ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
     // ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
     // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
@@ -506,6 +506,8 @@ int main() {
                 int confirm = 2;
                 while (confirm != 1 && confirm!= 0)
                 {
+                    std::cout<< "Ingrese 1 si desea confirmar la creación de la promoción o 0 si no:\n";
+                    std::cin>> confirm;
                     switch (confirm)
                     {
                     case 1:
@@ -514,6 +516,7 @@ int main() {
                         break;
                     case 0:
                         std::cout<< "\nNo se agregó la promoción\n";
+                        break;
                     default:
                         std::cout<<"\nSe ingresó mal el número, intente denuevo\n";
                         break;
