@@ -248,11 +248,11 @@ int main() {
     //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
     //COMENTARIOS
-    DTFecha fecha36 = DTFecha(1,6,2024,0,0);
+   /* DTFecha fecha36 = DTFecha(1,6,2024,0,0);
     ControladorUsuario->escribirCom("¿La camiseta azul esta disponible en talla M?",fecha36,1,"juan87");
     DTFecha fecha37 = DTFecha(1,6,2024,0,0);
     ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
-    /*DTFecha fecha38 = DTFecha(2,6,2024,0,0);
+    DTFecha fecha38 = DTFecha(2,6,2024,0,0);
     ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
     DTFecha fecha39 = DTFecha(2,6,2024,0,0);
     ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
@@ -726,12 +726,12 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-            std::list<std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
-            std::list<std::string>::iterator it2;
+            std::list<DTComentario> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::list<DTComentario>::iterator it2;
             int i=0;
             std::cout<<"Selecciona un comentario por su identificador:\n";
             for (it2 = comentarios.begin(); it2 != comentarios.end(); it2++){
-                std::cout<< i <<")" << " " << (*it2)<< "\n";
+                std::cout << (*it2)<< "\n";
                 i++;
             }
             int id;

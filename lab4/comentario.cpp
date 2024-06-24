@@ -25,7 +25,6 @@ std::string Comentario::getTexto() {
     return this->texto;
 }
 
-
 DTFecha Comentario::getFecha() {
     return this->fecha;
 }

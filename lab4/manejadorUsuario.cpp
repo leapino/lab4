@@ -258,10 +258,18 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     return dynamic_cast<Vendedor *>(it->second);
 }
 
-void ManejadorUsuario::eraseRespuestas(int id){    
-}
-
-void ManejadorUsuario::eraseCom(int id){
+void ManejadorUsuario::eraseRespuestas(int id){  
+    std::list<Comentario*>::iterator it;
+    for (it = this->Comentarios.begin(); it != this->Comentarios.end(); it++ ){
+       if ((*it)->getIdcom() == id){
+         std::list<Comentario*>::iterator it2;
+         for (it2 = (*it)->getRespuestas().begin(); it2 != (*it)->getRespuestas().end(); it2++){
+            eraseRespuestas((*it2)->getIdcom());
+         }
+         it = this->Comentarios.erase(it);
+       }     
+    }  
+          
 }
 
 std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {

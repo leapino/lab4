@@ -9,6 +9,7 @@
 
 #include "DTFecha.h"
 #include "comentario.h"
+#include "DTComentario.h"
 
 
 class Comentario;
@@ -37,7 +38,7 @@ class Usuario {
         //Funciones
         //virtual bool esVendedor()=0;
         //virtual bool esCliente()=0;
-        std::list<std::string> listarComentarios();
+        std::list<DTComentario> listarComentarios();
         void borrarComentario(int id);
         void agregarComentario(Comentario* comm);
         virtual ~Usuario();
