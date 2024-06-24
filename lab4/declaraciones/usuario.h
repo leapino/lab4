@@ -19,25 +19,25 @@ class Usuario {
         std::string nickname;
         std::string password;
         DTFecha fechaNacimiento;
-        std::map<int,Comentario*> comentarios;
+        std::list<Comentario*> comentarios;
     public:
         //Creadores
         Usuario();
         Usuario(std::string nick, std::string pass, DTFecha fechnaci);
         //Getters
-        std::map<int,Comentario*> getComentarios();
+        std::list<Comentario*> getComentarios();
         std::string getNickname();
         std::string getPassword();
         DTFecha getFecha();
         //Setters
-        void setComentarios(int,Comentario*);
+        void setComentarios(Comentario*);
         void setNickname(std::string);
         void setPassword(std::string);
         void setFecha(DTFecha);
         //Funciones
         //virtual bool esVendedor()=0;
         //virtual bool esCliente()=0;
-        std::map<int, std::string> listarComentarios();
+        std::list<std::string> listarComentarios();
         void borrarComentario(int id);
         void agregarComentario(Comentario* comm);
         virtual ~Usuario();

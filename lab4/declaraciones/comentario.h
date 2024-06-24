@@ -24,17 +24,17 @@ class Comentario {
         Producto *prodComentado;
         Usuario *miUsuario;
         int idcom;
-        std::map<int,Comentario*> respuestas;
+        std::list<Comentario*> respuestas;
     public:
         Comentario();
         Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom , std::string comment,int idcom);
-        std::map<int,Comentario*> getRespuestas();
+        std::list<Comentario*> getRespuestas();
         std::string getTexto();
         DTFecha getFecha();
         Producto *getProdCom();
         Usuario *getUsuario();
         int getIdcom();
-        void setRespuestas(std::map<int,Comentario*> respuesta);
+        void setRespuestas(std::list<Comentario*> respuesta);
         void setTexto(std::string text);
         void setFecha(DTFecha fecha);
         void setProdComentado(Producto *prod);

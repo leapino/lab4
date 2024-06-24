@@ -36,7 +36,7 @@ class ManejadorUsuario {
         static ManejadorUsuario* instancia;
         ManejadorUsuario();
         std::map<std::string, Usuario*> Usuarios;
-        std::map<int, Comentario*> Comentarios;
+        std::list< Comentario*> Comentarios;
     public:
         static ManejadorUsuario* getInstancia();
         void addUsuario(Usuario*);
@@ -50,7 +50,7 @@ class ManejadorUsuario {
         void escribirCom(int idCom,std::string comentario,DTFecha fecha,Producto* codProd,int id,std::string usuario);
         Vendedor* getVendedor(std::string v);
         Usuario * getUsuario(std::string usuario);
-        std::map<int,Comentario*> getComentarios();
+        std::list<Comentario*> getComentarios();
         DTUsuario getInfoUsuario(Usuario* usuario);
         DTCliente getInfoCliente(Cliente* usuario);
         DTVendedor getInfoVendedor(Vendedor* usuario);
@@ -68,7 +68,7 @@ class ManejadorUsuario {
         void eraseCom(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
-        void setComentarios(std::map<int,Comentario*> comm);
+        void setComentarios(std::list<Comentario*> comm);
         std::list< std::string > getVendedores();
         void setProductoEnviado(std::string c, DTFecha f, int id);
         void mandarNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto> productos);
