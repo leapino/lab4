@@ -74,10 +74,13 @@ void Comentario::setIdCom(int id) {
 
 
 Comentario::~Comentario() {
-     this->prodComentado = nullptr;
-     this->miUsuario = nullptr;
-     this->respuestas.clear();
+    for (auto respuesta:this->respuestas)
+    {
+        delete respuesta;
+    }
+    
 }
+
 
 void Comentario::borrarRespuestas(){
 }

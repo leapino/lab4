@@ -165,8 +165,7 @@ std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
 
 std::list<DTComentario> ControladorUsuario::listarComentario(std::string nombreU){
        ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
-       Usuario* usuario = mU->getUsuario(nombreU);
-       return usuario->listarComentarios();
+       return mU->listarComentsUser(nombreU);
 }
 
 void ControladorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fecha,int codProd, std::string usuario){
@@ -187,10 +186,28 @@ void ControladorUsuario::escribirCom(std::string comentario, DTFecha fecha,int c
 
 void ControladorUsuario::eliminarComentario(int id,std::string nombreU){
         ManejadorUsuario * mU=ManejadorUsuario::getInstancia();
-        mU->eraseRespuestas(id);
-        Usuario* usuario = mU->getUsuario(nombreU);
-        usuario->borrarComentario(id);
-}
+        ManejadorProducto* mP=ManejadorProducto::getInstancia();
+        std::list<Comentario*> comentarios=mU->getComentarios();
+        auto it = std::find_if(comentarios.begin(), comentarios.end(), [id](Comentario* comentario) {
+            return comentario->getIdcom() == id;
+        });
+
+        if (it != comentarios.end()) {
+            Comentario* coment = *it;
+
+            // Obtener el usuario y el producto asociados
+            Usuario* usuario = coment->getUsuario();
+            Producto* producto = (*it)->getProdCom();
+
+            if(usuario)
+                usuario->borrarComentario(id);
+            if (producto)
+                producto->borrarComment(id);
+            // Eliminar de la lista global
+            delete coment;
+            comentarios.erase(it);
+        }
+    }
 
 std::list<DTVendedor> ControladorUsuario::ListaUsuariosV(){
         ManejadorUsuario* mu;

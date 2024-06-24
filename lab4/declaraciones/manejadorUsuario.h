@@ -64,12 +64,13 @@ class ManejadorUsuario {
         std::list<DTCliente> ListarUsuariosC();
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         std::list<DTPromocion> getPromoVigente(std::string vendedor,DTFecha fechaActual);
-        void eraseRespuestas(int id);
+        int eraseComent(int id);
         std::map<int, DT2Producto> getProductosNoEnv(std::string nomVend);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
         void setComentarios(std::list<Comentario*> comm);
         std::list< std::string > getVendedores();
         void setProductoEnviado(std::string c, DTFecha f, int id);
         void mandarNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto> productos);
+        std::list<DTComentario> listarComentsUser(std::string nombreU);
 };
 #endif
