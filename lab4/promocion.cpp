@@ -64,6 +64,6 @@ std::set<ProductoPromocion *> Promocion::getProdProm(){
 
 DTPromocion Promocion::getData()
 {
-    return DTPromocion(this->nombre,this->descripcion,this->fecha);
+    return DTPromocion(this->nombre,this->descripcion,this->fecha, (*this->prodProm.begin())->getDescuento());
 }
 #endif

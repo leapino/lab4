@@ -14,10 +14,11 @@ std::ostream &operator<<(std::ostream &salida, const DTPromocion&prom){
 DTPromocion::DTPromocion(){
 }
 
-DTPromocion::DTPromocion(std::string nombre, std::string desc, DTFecha fecha){
+DTPromocion::DTPromocion(std::string nombre, std::string desc, DTFecha fecha, int descuento){
     this->nombre=nombre;
     this->descripcion=desc;
     this->fecha=fecha;
+    this->descuento = descuento;
 }
 
 void DTPromocion::addProducto(DTProducto p){
@@ -36,6 +37,10 @@ std::string DTPromocion::getDesc(){
 }
 DTFecha DTPromocion::getFecha(){
     return this->fecha;
+}
+
+int DTPromocion::getDescuento(){
+    return this->descuento;
 }
 
 DTPromocion::~DTPromocion(){

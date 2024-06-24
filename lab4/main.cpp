@@ -366,6 +366,8 @@ int main() {
                     std::set<DTProducto>::iterator it2;
                     std::cout << "Vendedor que ofrece la promoción:\n";
                     std::cout << vendedor.getDTNickname();
+                    std::cout << "\nDescuento de la promoción:\n";
+                    std::cout << promociones.find(nombrePromo)->second.getDescuento() <<"%";
                     std::cout << "\nProductos de la promoción:\n";
                     for (it2 = productos.begin(); it2 != productos.end(); it2++){
                         std::cout << *it2;

@@ -12,12 +12,14 @@ class DTPromocion {
        std::string descripcion;
        DTFecha fecha;
        std::set<DTProducto> productos;
+       int descuento;
     public:
        DTPromocion();
-       DTPromocion(std::string nombre,std::string desc,DTFecha fecha);
+       DTPromocion(std::string nombre,std::string desc,DTFecha fecha, int descuento);
        std::string getNombre();
        std::string getDesc();
        DTFecha getFecha();
+       int getDescuento();
        ~DTPromocion();
        void addProducto(DTProducto);
        std::set<DTProducto> getProductos();

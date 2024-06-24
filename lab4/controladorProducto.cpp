@@ -105,7 +105,7 @@ std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
     std::map<std::string, DTPromocion> dtpromociones;
     for (it = promos.begin(); it != promos.end(); ++it){
         if (it->second->getFecha().esVigente(cf->getFecha())){
-            DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha());
+            DTPromocion dtpromo = DTPromocion(it->second->getNombre(), it->second->getDescripcion(), it->second->getFecha(),(*it->second->getProdProm().begin())->getDescuento());
             std::set<ProductoPromocion *> prodProm = it->second->getProdProm();
             std::set<ProductoPromocion *>::iterator it2;
             for (it2 = prodProm.begin(); it2 != prodProm.end(); ++it2){
