@@ -214,8 +214,8 @@ std::list<DTCliente> ManejadorUsuario::ListarUsuariosC(){
 void ManejadorUsuario::eliminarSusVendedores(std::string cliente, std::string vendedor){
     Cliente* pCliente=dynamic_cast<Cliente*> (this->getUsuario(cliente));
     Vendedor* pVendedor=dynamic_cast<Vendedor*> (this->getUsuario(vendedor));
-    pCliente->crearLinkV(pVendedor);
-    pVendedor->crearLinkC(pCliente);
+    pCliente->eliminarLinkV(vendedor);
+    pVendedor->eliminarLinkC(cliente);
 }
 
 std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DTFecha fechaActual){
@@ -276,37 +276,57 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
     std::map<int, std::pair<std::string, DTFecha>> resu;
     Vendedor *vendedor = getVendedor(v);
     int num = 0;
+    std::cout << "puntoNYF1";
+    Producto *productoNoEnviado = (*vendedor).getProductos().find(codigoProd)->second;
+    std::set<CompraProducto*> compraProductos = productoNoEnviado->getCompraProductos();
+    std::set<CompraProducto*>::iterator compraProducto = compraProductos.begin();
+    std::cout << "puntoNYF2";
+    for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
+        std::cout << "puntoNYF3";
+        if( !((*compraProducto)->getEnviado()) ) {
 
-    std::list<Cliente *> clientes = (*vendedor).getClientes();
-    std::list<Cliente*>::iterator cliente;
-    for(cliente = clientes.begin(); cliente != clientes.end(); ++cliente) {
-
-        std::list<Compra *> compras = (*cliente)->getCompras();
-        std::list<Compra *>::iterator compra;
-
-        for(compra = compras.begin(); compra != compras.end(); ++compra) {
-
-            std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
-            std::list<CompraProducto *>::iterator compraProducto;
-
-            for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
-
-                bool enviado = (*compraProducto)->getEnviado();
-                int code = (*compraProducto)->getProd()->getCodigo();
-                if(!enviado && code == codigoProd) {
-
-                    num++;
-                    DTFecha fecha = (*compra)->getFecha();
-                    std::string nick = (*compra)->getCliente()->getNickname();
-                    std::pair<std::string, DTFecha> nickFecha(nick, fecha);
-
-                    resu.insert({num, nickFecha});
-
-                }
-
-            }
+            num++;
+            std::pair<std::string, DTFecha> nickYFecha( (*compraProducto)->getCompra()->getCliente()->getNickname(), (*compraProducto)->getCompra()->getFecha() );
+            resu.insert(std::make_pair(num, nickYFecha));
         }
     }
+    std::cout << "puntoNYF4";
+
+    //insert(std::make_pair(2, 1))
+
+    // for(producto = productos.begin(); producto != productos.end(); ++producto) {
+
+    // }
+
+
+    // for(cliente = clientes.begin(); cliente != clientes.end(); ++cliente) {
+
+    //     std::list<Compra *> compras = (*cliente)->getCompras();
+    //     std::list<Compra *>::iterator compra;
+
+    //     for(compra = compras.begin(); compra != compras.end(); ++compra) {
+
+    //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
+    //         std::list<CompraProducto *>::iterator compraProducto;
+
+    //         for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
+
+    //             bool enviado = (*compraProducto)->getEnviado();
+    //             int code = (*compraProducto)->getProd()->getCodigo();
+    //             if(!enviado && code == codigoProd) {
+
+    //                 num++;
+    //                 DTFecha fecha = (*compra)->getFecha();
+    //                 std::string nick = (*compra)->getCliente()->getNickname();
+    //                 std::pair<std::string, DTFecha> nickFecha(nick, fecha);
+
+    //                 resu.insert({num, nickFecha});
+
+    //             }
+
+    //         }
+    //     }
+    // }
 
     return resu;
 }
@@ -324,24 +344,27 @@ std::list<std::string> ManejadorUsuario::getVendedores() {
 
 
 void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
+    std::cout<< "apenas entra xd";
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();
-
-    while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
+    std::cout<< "antes del primer while";
+    while((*it) != nullptr && it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
         ++it;
     }
+    std::cout<< "despues del primer while";
     if(f.esIgualFecha((*it)->getFecha())) {
 
         std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
         std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
-
-        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
+        std::cout<< "antes del segundo while";
+        while((*compraProducto) != nullptr && compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
             
             ++compraProducto;
 
         }
-        if(!((*compraProducto)->getEnviado())) {
+        std::cout<< "despues del segundo while";
+        if((*compraProducto) != nullptr && !((*compraProducto)->getEnviado())) {
 
             ((*compraProducto))->setEnviado(true);
         }

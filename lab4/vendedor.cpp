@@ -79,6 +79,17 @@ void Vendedor::crearLinkC(Cliente *cliente)
     this->Clientes.push_front(cliente);
 }
 
+void Vendedor::eliminarLinkC(std::string client)
+{
+    std::list<Cliente*>::iterator Pclient=this->Clientes.begin();
+    while ((Pclient!=this->Clientes.end())&&((*Pclient)->getNickname()!=client)){
+        Pclient++;
+    }
+    if((Pclient!=this->Clientes.end())&& ((*Pclient)->getNickname()==client)){
+        Pclient=this->Clientes.erase(Pclient);
+    }
+}
+
 void Vendedor::addPromo(Promocion * promo){
     std::string nomPromo=promo->getNombre();
     this->promociones.insert(std::make_pair(nomPromo,promo));

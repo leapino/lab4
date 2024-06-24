@@ -3,6 +3,7 @@
 
 #include "declaraciones/compraProducto.h"
 
+
 CompraProducto::CompraProducto() {
     this->enviado = false;
     this->cantidad = 0;
@@ -13,6 +14,7 @@ CompraProducto::CompraProducto(Producto *prod, int cantidad) {
     this->enviado = false;
     this->cantidad = cantidad;
     this->producto = prod;
+    this->compra = nullptr;
 }
 
 
@@ -23,6 +25,10 @@ int CompraProducto::getCantidad() {
 
 Producto *CompraProducto::getProd() {
     return this->producto;
+}
+
+Compra *CompraProducto::getCompra() {
+    return this->compra;
 }
 
 
@@ -42,6 +48,10 @@ void CompraProducto::setCantidad(int cant) {
 
 void CompraProducto::setProd(Producto *prod) {
     this->producto = prod;
+}
+
+void CompraProducto::setCompra(Compra * compra) {
+    this->compra = compra;
 }
 
 DTCompraProducto CompraProducto::getData()

@@ -219,6 +219,7 @@ int main() {
     productosCompra8.insert(std::make_pair(1, 5));
     DTFecha fechaC9 = DTFecha(15, 5, 2024, 0, 0);
 
+    std::cout<< "antes de confirmar compra\n";
 
     ControladorUsuario->confirmarCompra(productosCompra1, monto1, "juan87", fechaC1);  
     ControladorUsuario->confirmarCompra(productosCompra2, monto2, "juan87", fechaC2);
@@ -230,15 +231,19 @@ int main() {
     ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
     ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
-    /*ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
-    ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
-    ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
-    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
-    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
-    ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
-    ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
-    ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);*/
+    std::cout<< "despues de confirmar compra y antes de setproductoenviado\n";
+
+    ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+    // ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
+    // ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
+    // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
+    // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
+    // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
+    // ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
+    // ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
     
+    std::cout<< "despues de setproductoenviado\n";
+
     //FALTA LO DE LAS PROMOS DE LA PARTE 5.1
     //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
@@ -695,6 +700,8 @@ int main() {
                 std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
             }
             
+            std::cout << "desp de ";
+
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
 
@@ -703,13 +710,19 @@ int main() {
             std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
             std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
         
-            std::cout << "Seleccione una compra por su número. \n";
+            
 
-            for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
+            if((*iterator).first > 0) {
 
-                std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
+                std::cout << "Seleccione una compra por su número. \n";
+                for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
+
+                    std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
+                }
             }
-
+            else 
+                (std::cout << "El vendedor seleccionado no tiene envios pendientes.");
+            
             int numCompra;
             std::cin >> numCompra;
 
@@ -767,26 +780,37 @@ int main() {
         }
         break;
         case 12:{//Suscribirse a notis
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente que va a suscribirse\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
             std::list<std::string> vendnosus=ControladorUsuario->getVendedoresNoSuscrito(cliente);
-            for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
-                std::cout << *i;
-            }
 
+            std:: cout<<"\nVendedores: \n";
+            for (auto i = vendnosus.begin(); i !=vendnosus.end(); ++i){
+                std::cout << *i<<"\n";
+            }
+            std::cout<<"\n";
             std::list<std::string> asuscribirse;
-            
-            std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir";
 
             int i=1;
             while (i){
+
+                std::cout<<"Ingrese el nickname del vendedor que se quiere suscribir\n\n";
                 std::string agregar;
                 std::cin >> agregar;
                 asuscribirse.push_front(agregar);
 
-                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No"<<"1-Sí";
+                std::cout <<"Desea Suscribirse a otro vendedor?"<<"\n 0-No    "<<"1-Sí\n";
                 std::cin >>i;
             }
             ControladorUsuario->suscribirVendedores(asuscribirse,cliente);
@@ -794,40 +818,70 @@ int main() {
         }
         break; 
         case 13:{//Consulta de Notificaciones
+
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente para ver sus notificaciones\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
                 std::cout<<*i;
             }
+            ControladorUsuario->limpiarNotificaciones(cliente);
         }
         break;
         case 14:{ //eliminar Suscripciones
+            std::set <std::string> clientes=ControladorUsuario->listarClientes();
+
+            std::cout <<"Ingresar Nickname del Cliente que va a desuscribirse\n"<<"\n";
+
+            for (auto i = clientes.begin(); i !=clientes.end(); i++)
+            {
+                std::cout<<*i<<"\n";
+            }
+            std::cout <<"\n";
+            
             std::string cliente;
-            std::cout<<"Ingrese el nickname del cliente";
             std::cin >>cliente;
 
             std::list <std::string> vendsus=ControladorUsuario->getVendedoresSuscrito(cliente);
-
-            for (auto i =vendsus.begin(); i !=vendsus.end(); i++){
-                std::cout<<*i;
+            std::cout <<"\n";
+            std::cout <<"Vendedores Suscritos:\n\n";
+            for (std::list<std::string>::iterator i  =vendsus.begin(); i !=vendsus.end(); i++){
+                std::cout<<*i<<"\n";
             }
 
             std::list<std::string> aeliminar;
             int i;
-            std::cout << "Desea Desuscribirse de algun \n"<<"0-No\n"<<"1-Sí";
+            std::cout << "Desea Desuscribirse de algun Vendedor \n"<<"0-No     "<<"1-Sí\n\n";
             std::cin >>i;
+
             while(i){
                 std::string vendedor;
-                std::cout <<"Ingrese el nickname del vendedor";
+                std::cout <<"Ingrese el nickname del vendedor\n\n";
                 std::cin >> vendedor;
 
                 ControladorUsuario->eliminarSusVendedores(cliente,vendedor);
 
-                std::cout << "Desea Desuscribirse de algun otro? \n"<<"0-No\n"<<"1-Sí";
-            }            
-
+                std::cout << "Desea Desuscribirse de algun otro? \n"<<"0-No      "<<"1-Sí\n\n";
+                std::cin >>i;
+            } 
+            
+            
+            std::list <std::string> vendsusnuevo=ControladorUsuario->getVendedoresSuscrito(cliente);
+            std::cout <<"\n";
+            std::cout <<"Vendedores Suscritos:\n\n";
+            for (std::list<std::string>::iterator i  =vendsusnuevo.begin(); i !=vendsusnuevo.end(); i++){
+                std::cout<<*i<<"\n\n";
+            }
         } 
         break;
         case 15:{ //Cambiar fecha del sistema
