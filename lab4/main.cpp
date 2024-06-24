@@ -472,8 +472,6 @@ int main() {
 
                 ImprimirComentarios(comentarios);
 
-                //funcion recursiva para imprimir sus comentarios y sus respuestas
-
                 std::cout <<"Ingrese el  id del comentario a responder\n";
                 int idPrincipal;
                 std::cin >>idPrincipal;
@@ -493,17 +491,19 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-            std::list<DTComentario> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::string user=nicknames.find(usu)->second;
+            std::list<DTComentario> comentarios = ControladorUsuario->listarComentario(user);
             std::list<DTComentario>::iterator it2;
-            int i=0;
             std::cout<<"Selecciona un comentario por su identificador:\n";
+
             for (it2 = comentarios.begin(); it2 != comentarios.end(); it2++){
                 std::cout << (*it2)<< "\n";
-                i++;
+                std::cout<<"\n";
             }
+
             int id;
             std::cin >>id;
-            ControladorUsuario->eliminarComentario(id,nicknames.find(usu)->second);
+            ControladorUsuario->eliminarComentario(id,user);
         } 
         break;  
         case 10:{//Enviar Producto
@@ -903,7 +903,7 @@ int main() {
         ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
         DTFecha fecha38 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
-        DTFecha fecha39 = DTFecha(2,6,2024,0,0);
+        /*DTFecha fecha39 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
         DTFecha fecha15 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom("¿Como es el ajuste? ¿Es ajustada o holgada?",fecha15,1,"natalia");

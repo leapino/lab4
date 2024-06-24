@@ -12,14 +12,46 @@ Producto::Producto(){
 //     this->nombre = "";
 //     this->descripcion = "";
 // //  this->categoria = ???;
-};   
+};
+
+void Producto::borrarComment(int id)
+{
+    auto it = std::find_if(this->comentarios.begin(), this->comentarios.end(), [id](Comentario* comentario) {
+        return comentario->getIdcom() == id;
+    });
+
+    if (it != this->comentarios.end()) {
+        this->comentarios.erase(it);
+    }
+}
 
 
+void Producto::borrarRespCometario(Comentario *comm) {   
+    if(comm!=nullptr)
+        for (std::list<Comentario*>::iterator i = comm->getRespuestas().begin(); i !=comm->getRespuestas().end(); i++){
+            
+            borrarRespCometario((*i));
+            delete comm;
+            comm->getRespuestas().erase(i);
+        }
+}
 
 void Producto::agregarComentario(Comentario * comment){
     this->comentarios.push_back(comment);
 }
 
+void Producto::agregarComentario(int id, Comentario *comm,std::list<Comentario*> buscar)
+{
+    bool flag=true;
+        for(std::list<Comentario*>::iterator it2=buscar.begin();it2!=buscar.end()&&flag;it2++){
+            if((*it2)->getIdcom()==id){
+                flag=!flag;
+                (*it2)->agregarRespuesta(comm);
+            }else{
+                agregarComentario(id,comm,(*it2)->getRespuestas());
+            }
+        }
+}
 Producto::Producto(int stock,double precio,std::string nombre,std::string desc,Categoria categoria){
     this->stock = stock;
     this->precio = precio;

@@ -75,18 +75,14 @@ std::list<DTComentario> Usuario::listarComentarios(){
 }    
 
 void Usuario::borrarComentario(int id){
-    std::list<Comentario*>::iterator it;
-    for (it = this->comentarios.begin(); it != this->comentarios.end(); it++ ){
-       if ((*it)->getIdcom() == id){
-         std::list<Comentario*>::iterator it2;
-         for (it2 = (*it)->getRespuestas().begin(); it2 != (*it)->getRespuestas().end(); it2++){
-            borrarComentario((*it2)->getIdcom());
-         }
-         delete *it;
-         it = this->comentarios.erase(it);
-       }     
-    }  
-}
+        auto it = std::find_if(this->comentarios.begin(), this->comentarios.end(), [id](Comentario* comentario) {
+            return comentario->getIdcom() == id;
+        });
+
+        if (it != this->comentarios.end()) {
+            this->comentarios.erase(it);
+        }
+    };
 
 
 void Usuario::agregarComentario(Comentario *comm)

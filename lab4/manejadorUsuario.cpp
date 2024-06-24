@@ -4,6 +4,7 @@
 #include "declaraciones/manejadorUsuario.h"
 
 
+
 ManejadorUsuario* ManejadorUsuario::instancia = NULL;
 
 ManejadorUsuario::ManejadorUsuario() {};
@@ -82,6 +83,7 @@ void ManejadorUsuario::suscribirVendedores(std::list<std::string> Vendedores, st
     }
     
 }
+
 
 std::list<DTNotificacion> ManejadorUsuario::consultarNotificaciones(std::string cliente){
     Cliente * pCliente=dynamic_cast<Cliente*>(this->getUsuario(cliente));
@@ -170,13 +172,14 @@ void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fec
         i++;
     if (i !=this->getComentarios().end())
         (*i)->agregarRespuesta(agregar);
-    this->Comentarios.push_back(agregar);    
+    this->Comentarios.push_back(agregar); 
+    codProd->agregarComentario(idCom,agregar,codProd->getComentarios());   
 }
 
 void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
     Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
-    codProd->agregarComentario(agregar);
+    codProd->agregarComentario(agregar);    
     user->agregarComentario(agregar);
     this->Comentarios.push_back(agregar);    
 }
@@ -223,6 +226,19 @@ std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DT
     return vend->getDTPromocion();
 }
 
+int ManejadorUsuario::eraseComent(int id)
+{   
+    int aux=0;
+        auto it = std::find_if(this->Comentarios.begin(), this->Comentarios.end(), [id](Comentario* comentario) {
+        return comentario->getIdcom() == id;
+    });
+
+    if (it != this->Comentarios.end()) {
+        this->Comentarios.erase(it);
+        aux=(*it)->getProdCom()->getCodigo();
+    }
+    return aux;
+}
 
 std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomVend) {
     std::map<int, DT2Producto > resu;
@@ -258,19 +274,6 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     return dynamic_cast<Vendedor *>(it->second);
 }
 
-void ManejadorUsuario::eraseRespuestas(int id){  
-    std::list<Comentario*>::iterator it;
-    for (it = this->Comentarios.begin(); it != this->Comentarios.end(); it++ ){
-       if ((*it)->getIdcom() == id){
-         std::list<Comentario*>::iterator it2;
-         for (it2 = (*it)->getRespuestas().begin(); it2 != (*it)->getRespuestas().end(); it2++){
-            eraseRespuestas((*it2)->getIdcom());
-         }
-         it = this->Comentarios.erase(it);
-       }     
-    }  
-          
-}
 
 std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {
     std::map<int, std::pair<std::string, DTFecha>> resu;
@@ -381,4 +384,16 @@ void ManejadorUsuario::mandarNotificacion(std::string nombreP, std::string nombr
     }
 }
 
+std::list<DTComentario> ManejadorUsuario::listarComentsUser(std::string nombreU)
+{
+    std::list<DTComentario> res;
+    std::list <DTComentario> aux;
+    for(std::list<Comentario*>::iterator it =this->Comentarios.begin();it!=this->Comentarios.end();it++){
+        if ((*it)->getUsuario()->getNickname()==nombreU){
+            DTComentario apushear=DTComentario((*it)->getTexto(),(*it)->getFecha(),(*it)->getIdcom(),aux);
+            res.push_back(apushear);
+        }
+    }
+    return res;
+}
 #endif

@@ -6,7 +6,7 @@
 #include <string>
 #include <math.h>
 #include <map>
-
+#include <algorithm>
 #include "DTFecha.h"
 #include "comentario.h"
 #include "DTComentario.h"

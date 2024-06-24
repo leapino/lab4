@@ -7,6 +7,7 @@
 #include <math.h>
 #include <map>
 #include <set>
+#include <algorithm>
 
 #include "categoria.h"
 #include "productoPromocion.h"
@@ -16,8 +17,8 @@
 
 class Vendedor;
 class ProductoPromocion;
-class Comentario;
 class CompraProducto;
+class Comentario;
 
 class Producto {
     private:
@@ -63,6 +64,9 @@ class Producto {
         //Destructor
         ~Producto();
         //funcion
+        void borrarComment(int id);
+        void borrarRespCometario(Comentario* comm);
         void agregarComentario(Comentario* comment);
-};
+        void agregarComentario(int id,Comentario* comm,std::list<Comentario*> buscar);
+};      
 #endif
