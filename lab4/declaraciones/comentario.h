@@ -7,6 +7,7 @@
 #include <math.h>
 #include <list>
 #include <map>
+#include <vector>
 
 #include "DTFecha.h"
 #include "DTUsuario.h"

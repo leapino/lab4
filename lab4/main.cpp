@@ -248,7 +248,57 @@ int main() {
     //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
     //COMENTARIOS
-
+    /*DTFecha fecha36 = DTFecha(1,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿La camiseta azul esta disponible en talla M?",fecha36,1,"juan87");
+    DTFecha fecha37 = DTFecha(1,6,2024,0,0);
+    ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
+    DTFecha fecha38 = DTFecha(2,6,2024,0,0);
+    ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
+    DTFecha fecha39 = DTFecha(2,6,2024,0,0);
+    ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
+    DTFecha fecha15 = DTFecha(2,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿Como es el ajuste? ¿Es ajustada o holgada?",fecha15,1,"natalia");
+    DTFecha fecha16 = DTFecha(2,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿Cual es la resolucion del Televisor LED?",fecha16,2,"laura");
+    DTFecha fecha17 = DTFecha(2,6,2024,0,0);
+    ControladorUsuario->escribirCom(5,"El televisor LED tiene una resolucion de 4K UHD.",fecha17,2,"ana23");
+    DTFecha fecha18 = DTFecha(3,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿Tiene soporte para HDR10?",fecha18,2,"pablo10");
+    DTFecha fecha19 = DTFecha(3,6,2024,0,0);
+    ControladorUsuario->escribirCom(7,"Si, soporta HDR10.",fecha19,2,"ana23");
+    DTFecha fecha20 = DTFecha(3,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿La chaqueta de cuero es resistente al agua?",fecha20,3,"natalia");
+    DTFecha fecha21 = DTFecha(3,6,2024,0,0);
+    ControladorUsuario->escribirCom(9,"No, la chaqueta de cuero no es resistente al agua.",fecha21,3,"carlos78");
+    DTFecha fecha22 = DTFecha(4,6,2024,0,0);
+    ControladorUsuario->escribirCom(9,"¿Viene en otros colores?",fecha22,3,"laura");
+    DTFecha fecha23 = DTFecha(4,6,2024,0,0);
+    ControladorUsuario->escribirCom(11,"Si, tambien esta disponible en marron.",fecha23,3,"carlos78");
+    DTFecha fecha24 = DTFecha(4,6,2024,0,0);
+    ControladorUsuario->escribirCom(9,"¿Es adecuada para climas frios?",fecha24,3,"roberto");
+    DTFecha fecha25 = DTFecha(4,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿El microondas digital tiene funcion de descongelacion rapida?",fecha25,4,"pablo10");
+    DTFecha fecha26 = DTFecha(4,6,2024,0,0);
+    ControladorUsuario->escribirCom(14,"Si, el microondas digital incluye una funcion de descongelacion rapida.",fecha26,4,"ana23");
+    DTFecha fecha27 = DTFecha(5,6,2024,0,0);
+    ControladorUsuario->escribirCom(14,"¿Cuantos niveles de potencia tiene?",fecha27,4,"natalia");
+    DTFecha fecha28 = DTFecha(5,6,2024,0,0);
+    ControladorUsuario->escribirCom(16,"Tiene 10 niveles de potencia.",fecha28,4,"ana23");
+    DTFecha fecha29 = DTFecha(5,6,2024,0,0);
+    ControladorUsuario->escribirCom(14,"¿Es facil de limpiar?",fecha29,4,"roberto");
+    DTFecha fecha30 = DTFecha(5,6,2024,0,0);
+    ControladorUsuario->escribirCom("¿La luz LED se puede controlar con una aplicacion movil?",fecha30,5,"roberto");
+    DTFecha fecha31 = DTFecha(5,6,2024,0,0);
+    ControladorUsuario->escribirCom(19,"Si, la luz LED se puede controlar a traves de una aplicacion movil.",fecha31,5,"diegom");
+    DTFecha fecha32 = DTFecha(6,6,2024,0,0);
+    ControladorUsuario->escribirCom(19,"¿Es compatible con Alexa o Google Home?",fecha32,5,"pablo10");
+    DTFecha fecha33 = DTFecha(6,6,2024,0,0);
+    ControladorUsuario->escribirCom(21,"Si, es compatible con ambos.",fecha33,5,"diegom");
+    DTFecha fecha34 = DTFecha(6,6,2024,0,0);
+    ControladorUsuario->escribirCom(19,"¿Cuanto dura la bateria?",fecha34,5,"natalia");
+    DTFecha fecha35 = DTFecha(7,6,2024,0,0);
+    ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");
+    */
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
 
     std::cout << "\n";
@@ -837,6 +887,10 @@ int main() {
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
                 std::cout<<*i;
+            }
+
+            if (notis.size()==0){
+                std::cout <<"\n\n El cliente no tiene notificaciones de los vendedores que esta suscrito\n\n";
             }
             ControladorUsuario->limpiarNotificaciones(cliente);
         }
