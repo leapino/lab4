@@ -87,14 +87,14 @@ std::map<int, DT2Producto> ManejadorProducto::listarProductos(std::map<int, Prod
     return dataProductos;
 }
 
-std::list<DTComentario> ManejadorProducto::listarComProd(std::map<int,Comentario*> comm)
+std::list<DTComentario> ManejadorProducto::listarComProd(std::list<Comentario*> comm)
 {
     std::list<DTComentario> res;
     for (auto i = comm.begin(); i !=comm.end(); i++)
     {   
-        int id=i->first;
-        std::map <int,Comentario*> pararecur=i->second->getRespuestas();
-        DTComentario recur=DTComentario(i->second->getTexto(),i->second->getFecha(),id,listarComProd(pararecur));
+        int id=(*i)->getIdcom();
+        std::list <Comentario*> pararecur=(*i)->getRespuestas();
+        DTComentario recur=DTComentario((*i)->getTexto(),(*i)->getFecha(),id,listarComProd(pararecur));
         res.push_front(recur);        
     }
     

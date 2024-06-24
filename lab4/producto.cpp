@@ -17,7 +17,7 @@ Producto::Producto(){
 
 
 void Producto::agregarComentario(Comentario * comment){
-    this->comentarios.insert(std::make_pair(comment->getIdcom(),comment));
+    this->comentarios.push_back(comment);
 }
 
 Producto::Producto(int stock,double precio,std::string nombre,std::string desc,Categoria categoria){
@@ -64,7 +64,7 @@ DT2Producto Producto::getData2()
     return nosequequerianhaceraca;
 }
 
-std::map<int, Comentario*> Producto::getComentarios()
+std::list< Comentario*> Producto::getComentarios()
 {
     return this->comentarios;
 }
@@ -103,7 +103,7 @@ void Producto::setCategoria(Categoria categoria){
         this->vendedor=vendedor;
     }
 
-    void Producto::setComentarios(std::map<int, Comentario *> comments)
+    void Producto::setComentarios(std::list< Comentario *> comments)
     {
         this->comentarios=comments;
     }
@@ -121,8 +121,8 @@ void Producto::bajarStock(int cantidad){
 }
 
 Producto::~Producto(){
-    for (std::map<int,Comentario*>::iterator it = this->comentarios.begin();it != this->comentarios.end(); ++it){
-        delete it->second;
+    for (std::list<Comentario*>::iterator it = this->comentarios.begin();it != this->comentarios.end(); ++it){
+        delete (*it);
         this->comentarios.erase(it);
     }
     delete this->promo;

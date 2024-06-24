@@ -42,7 +42,7 @@ class ManejadorProducto {
         Producto* getProducto(int);
         std::map<std::string, DTProducto > getInfoProd(std::string producto);
         std::map<int, DT2Producto> listarProductos(std::map<int, Producto*>);
-        std::list <DTComentario> listarComProd(std::map<int,Comentario*> comm);
+        std::list <DTComentario> listarComProd(std::list<Comentario*> comm);
         //Promociones
         void confirmarAltaPromocion(std::string,std::string,float,DTFecha,std::map<int, int>);
         bool checkPromo(int);
