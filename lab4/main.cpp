@@ -521,13 +521,13 @@ int main() {
             std::cin >> nombreVendedor;
 
             std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
-            std::cout << "Seleccione un producto por su número. \n";
-
-            for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
-                std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
-            }
-            
-            std::cout << "desp de ";
+            if(productosNoEnviados.size() != 0){
+                std::cout << "Seleccione un producto por su número. \n";
+                
+                for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
+                    std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
+                }
+                std::cout << "\n";
 
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
@@ -536,26 +536,26 @@ int main() {
 
             std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
             std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
-        
-            
 
-            if((*iterator).first > 0) {
-
+            if(!(nickYFecha).empty()) {
+                
                 std::cout << "Seleccione una compra por su número. \n";
                 for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
                     std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
                 }
-            }
-            else 
-                (std::cout << "El vendedor seleccionado no tiene envios pendientes.");
-            
+                std::cout << "\n";
+
             int numCompra;
             std::cin >> numCompra;
+            
+            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);        
 
-            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, iterator->second.second, idProdNoEnv);
+            }
+            else (std::cout << "El vendedor seleccionado no tiene envios pendientes. \n");
+            std::cout << "\n";
             
-            
+           
         }
         break; 
         case 11:{//Expediente de usuario
