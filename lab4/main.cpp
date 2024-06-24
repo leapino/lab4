@@ -704,13 +704,19 @@ int main() {
             std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
             std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
         
-            std::cout << "Seleccione una compra por su número. \n";
+            
 
-            for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
+            if((*iterator).first > 0) {
 
-                std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
+                std::cout << "Seleccione una compra por su número. \n";
+                for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
+
+                    std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
+                }
             }
-
+            else 
+                (std::cout << "El vendedor seleccionado no tiene envios pendientes.");
+            
             int numCompra;
             std::cin >> numCompra;
 

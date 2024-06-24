@@ -294,36 +294,54 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
     Vendedor *vendedor = getVendedor(v);
     int num = 0;
 
-    std::list<Cliente *> clientes = (*vendedor).getClientes();
-    std::list<Cliente*>::iterator cliente;
-    for(cliente = clientes.begin(); cliente != clientes.end(); ++cliente) {
+    Producto *productoNoEnviado = (*vendedor).getProductos().find(codigoProd)->second;
+    std::set<CompraProducto*> compraProductos = productoNoEnviado->getCompraProductos();
+    std::set<CompraProducto*>::iterator compraProducto = compraProductos.begin();
 
-        std::list<Compra *> compras = (*cliente)->getCompras();
-        std::list<Compra *>::iterator compra;
+    for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
+        if( !((*compraProducto)->getEnviado()) ) {
 
-        for(compra = compras.begin(); compra != compras.end(); ++compra) {
-
-            std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
-            std::list<CompraProducto *>::iterator compraProducto;
-
-            for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
-
-                bool enviado = (*compraProducto)->getEnviado();
-                int code = (*compraProducto)->getProd()->getCodigo();
-                if(!enviado && code == codigoProd) {
-
-                    num++;
-                    DTFecha fecha = (*compra)->getFecha();
-                    std::string nick = (*compra)->getCliente()->getNickname();
-                    std::pair<std::string, DTFecha> nickFecha(nick, fecha);
-
-                    resu.insert({num, nickFecha});
-
-                }
-
-            }
+            num++;
+            std::pair<std::string, DTFecha> nickYFecha( (*compraProducto)->getCompra()->getCliente()->getNickname(), (*compraProducto)->getCompra()->getFecha() );
+            resu.insert(std::make_pair(num, nickYFecha));
         }
     }
+
+    //insert(std::make_pair(2, 1))
+
+    // for(producto = productos.begin(); producto != productos.end(); ++producto) {
+
+    // }
+
+
+    // for(cliente = clientes.begin(); cliente != clientes.end(); ++cliente) {
+
+    //     std::list<Compra *> compras = (*cliente)->getCompras();
+    //     std::list<Compra *>::iterator compra;
+
+    //     for(compra = compras.begin(); compra != compras.end(); ++compra) {
+
+    //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
+    //         std::list<CompraProducto *>::iterator compraProducto;
+
+    //         for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
+
+    //             bool enviado = (*compraProducto)->getEnviado();
+    //             int code = (*compraProducto)->getProd()->getCodigo();
+    //             if(!enviado && code == codigoProd) {
+
+    //                 num++;
+    //                 DTFecha fecha = (*compra)->getFecha();
+    //                 std::string nick = (*compra)->getCliente()->getNickname();
+    //                 std::pair<std::string, DTFecha> nickFecha(nick, fecha);
+
+    //                 resu.insert({num, nickFecha});
+
+    //             }
+
+    //         }
+    //     }
+    // }
 
     return resu;
 }
