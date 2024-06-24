@@ -512,6 +512,12 @@ int main() {
         break;  
         case 10:{//Enviar Producto
 
+            // std::map<int, Producto*> productos = ControladorUsuario->getVendedor("ana23")->getProductos();
+
+            // std::cout<< "tamanio mapa productos ana23 " << productos.size();
+
+            
+
             std::list<std::string> vendedores = ControladorUsuario->getVendedores();
             std::cout << "Seleccione un vendedor por su nombre \n";
 
@@ -887,18 +893,17 @@ int main() {
         ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
 
-        //ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
-        // ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
-        // ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
-        // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
-        // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
-        // ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
-        // ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
-        // ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
+        ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+        ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
+        ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
+        ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
+        ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
+        ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
+        ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
+        ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
         
 
         //FALTA LO DE LAS PROMOS DE LA PARTE 5.1
-        //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
         //COMENTARIOS
         DTFecha fecha36 = DTFecha(1,6,2024,0,0);

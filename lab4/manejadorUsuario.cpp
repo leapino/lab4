@@ -274,7 +274,7 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
 
 
 std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {
-    int num = 0;
+    int num = 1;
     std::map<int, std::pair<std::string, DTFecha>> resu;
     Vendedor *vendedor = getVendedor(v);
     
@@ -286,9 +286,9 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
 
         if( !((*compraProducto)->getEnviado()) ) {
 
-            num++;
             std::pair<std::string, DTFecha> nickYFecha( (*compraProducto)->getCompra()->getCliente()->getNickname(), (*compraProducto)->getCompra()->getFecha() );
             resu.insert(std::make_pair(num, nickYFecha));
+            num++;
         }
     }
     return resu;
@@ -329,6 +329,7 @@ void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
         if(compraProducto != compraProductos.end() && !((*compraProducto)->getEnviado())) {
             
             ((*compraProducto))->setEnviado(true);
+            // std::cout << "El producto fue enviado con exito \n";
         }
     }
 }
