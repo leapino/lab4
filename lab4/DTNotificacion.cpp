@@ -8,9 +8,9 @@ DTNotificacion::DTNotificacion()
 }
 
 std::ostream &operator<<(std::ostream &salida, const DTNotificacion  &   noti){
-    salida << "Nombre Promocion"<<noti.nombreprom<<"\n Nombre Vendedor"<<noti.nombrevendedor<<"\n Productos";
+    salida << "Nombre Promocion: "<<noti.nombreprom<<"\nNombre Vendedor: "<<noti.nombrevendedor<<"\nProductos:------";
     for (const auto& i : noti.productos) {
-        salida << "- " << i << "\n";
+        salida << i << "\n";
     }
     return salida;
 }

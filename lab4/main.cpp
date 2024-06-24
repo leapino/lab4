@@ -248,11 +248,11 @@ int main() {
     //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
     //COMENTARIOS
-    /*DTFecha fecha36 = DTFecha(1,6,2024,0,0);
+    DTFecha fecha36 = DTFecha(1,6,2024,0,0);
     ControladorUsuario->escribirCom("¿La camiseta azul esta disponible en talla M?",fecha36,1,"juan87");
     DTFecha fecha37 = DTFecha(1,6,2024,0,0);
     ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
-    DTFecha fecha38 = DTFecha(2,6,2024,0,0);
+    /*DTFecha fecha38 = DTFecha(2,6,2024,0,0);
     ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
     DTFecha fecha39 = DTFecha(2,6,2024,0,0);
     ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
@@ -264,7 +264,7 @@ int main() {
     ControladorUsuario->escribirCom(5,"El televisor LED tiene una resolucion de 4K UHD.",fecha17,2,"ana23");
     DTFecha fecha18 = DTFecha(3,6,2024,0,0);
     ControladorUsuario->escribirCom("¿Tiene soporte para HDR10?",fecha18,2,"pablo10");
-    DTFecha fecha19 = DTFecha(3,6,2024,0,0);
+    /*DTFecha fecha19 = DTFecha(3,6,2024,0,0);
     ControladorUsuario->escribirCom(7,"Si, soporta HDR10.",fecha19,2,"ana23");
     DTFecha fecha20 = DTFecha(3,6,2024,0,0);
     ControladorUsuario->escribirCom("¿La chaqueta de cuero es resistente al agua?",fecha20,3,"natalia");
@@ -297,8 +297,7 @@ int main() {
     DTFecha fecha34 = DTFecha(6,6,2024,0,0);
     ControladorUsuario->escribirCom(19,"¿Cuanto dura la bateria?",fecha34,5,"natalia");
     DTFecha fecha35 = DTFecha(7,6,2024,0,0);
-    ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");
-    */
+    ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");*/
     ///////////////////////////////FIN DE CARGA DE DATOS///////////////////////////////
 
     std::cout << "\n";
@@ -489,13 +488,15 @@ int main() {
 
         case 5:{//Crear Promocion
 
-            std::string nombreP;
+            
             std::cout<<"Ingresar el nombre de la promoción\n";
+            std::string nombreP;
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             std::getline (std::cin,nombreP);
 
-            std::string descriP;
+            
             std::cout<<"Ingresar la descripción de la promoción\n";
+            std::string descriP;
             std::getline (std::cin,descriP);
 
             float descuento;
@@ -725,11 +726,13 @@ int main() {
             }
             int usu;
             std::cin >>usu;
-            std::map<int ,std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
-            std::map<int ,std::string>::iterator it2;
+            std::list<std::string> comentarios = ControladorUsuario->listarComentario(nicknames.find(usu)->second);
+            std::list<std::string>::iterator it2;
+            int i=0;
             std::cout<<"Selecciona un comentario por su identificador:\n";
             for (it2 = comentarios.begin(); it2 != comentarios.end(); it2++){
-                std::cout<< it2->first <<")" << " " << it2->second << "\n";
+                std::cout<< i <<")" << " " << (*it2)<< "\n";
+                i++;
             }
             int id;
             std::cin >>id;
@@ -888,7 +891,7 @@ int main() {
             std::cin >>cliente;
             std::list<DTNotificacion> notis=ControladorUsuario->consultarNotificaciones(cliente);
             for (auto i = notis.begin(); i !=notis.end(); ++i){
-                std::cout<<*i;
+                std::cout<<*i<<"\n";
             }
 
             if (notis.size()==0){

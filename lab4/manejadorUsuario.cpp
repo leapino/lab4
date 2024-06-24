@@ -29,7 +29,7 @@ Usuario* ManejadorUsuario::getUsuario(std::string usuario){
       return nullptr;
 }
 
-std::map<int, Comentario *> ManejadorUsuario::getComentarios()
+std::list< Comentario *> ManejadorUsuario::getComentarios()
 {
     return this->Comentarios;
 }
@@ -166,11 +166,11 @@ void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fec
     Usuario* user=this->getUsuario(usuario);
     Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
     auto i = this->getComentarios().begin(); 
-    while ((i !=this->getComentarios().end())&&(i->first!=idCom))
+    while ((i !=this->getComentarios().end())&&((*i)->getIdcom()!=idCom))
         i++;
     if (i !=this->getComentarios().end())
-        i->second->agregarRespuesta(agregar);
-    this->Comentarios.insert(std::make_pair(id,agregar));    
+        (*i)->agregarRespuesta(agregar);
+    this->Comentarios.push_back(agregar);    
 }
 
 void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
@@ -178,7 +178,7 @@ void ManejadorUsuario::escribirCom(std::string comentario, DTFecha fecha, Produc
     Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
     codProd->agregarComentario(agregar);
     user->agregarComentario(agregar);
-    this->Comentarios.insert(std::make_pair(id,agregar));    
+    this->Comentarios.push_back(agregar);    
 }
 
 std::list<DTVendedor> ManejadorUsuario::ListarUsuariosV(){
@@ -246,7 +246,7 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
 
 }
 
-void ManejadorUsuario::setComentarios(std::map<int, Comentario *> comm)
+void ManejadorUsuario::setComentarios(std::list< Comentario *> comm)
 {
     this->Comentarios=comm;
 }
@@ -258,22 +258,10 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
     return dynamic_cast<Vendedor *>(it->second);
 }
 
-void ManejadorUsuario::eraseRespuestas(int id){ 
-     Comentario* com = this->Comentarios.find(id)->second;
-     if (com->getRespuestas().empty() == false){
-     std::vector<int> respuestaIds;
-     for (const auto& pair : com->getRespuestas()) {
-        respuestaIds.push_back(pair.first);
-    }        
-     for (int respuestaId : respuestaIds) {
-        eraseRespuestas(respuestaId);  
-        this->Comentarios.erase(respuestaId);
-    }
-     }     
+void ManejadorUsuario::eraseRespuestas(int id){    
 }
 
 void ManejadorUsuario::eraseCom(int id){
-     this->Comentarios.erase(id);
 }
 
 std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {

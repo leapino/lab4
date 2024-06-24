@@ -34,8 +34,6 @@ class ControladorProducto {
         bool checkPromo(int);
         std::map<std::string, DTPromocion> getPromos();
         DTVendedor vendedorPromo(DTProducto);
-        void escribirCom(std::string comment,DTFecha fecha,int codProd,std::string usuario,int idCom);
-        std::list<DTPromocion*> getPromoVigente(std::string vendedor,DTFecha fechaActual);
         void altaDeProducto(std::string nombre,double precio,int stock,std::string desc,Categoria categoria);
         void linkVendProd(std::string nombV);
 };

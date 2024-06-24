@@ -18,7 +18,7 @@ Comentario::Comentario(Usuario *miUsuario, DTFecha fecha, Producto *prodCom, std
     this->idcom=idcom;
 }
 
-std::map<int, Comentario *> Comentario::getRespuestas(){
+std::list< Comentario *> Comentario::getRespuestas(){
     return this->respuestas;
 }
 std::string Comentario::getTexto() {
@@ -45,7 +45,7 @@ int Comentario::getIdcom() {
     return this->idcom;
 }
 
-void Comentario::setRespuestas(std::map<int,Comentario*> respuesta){
+void Comentario::setRespuestas(std::list<Comentario*> respuesta){
     this->respuestas= respuesta;
 }
 
@@ -81,26 +81,10 @@ Comentario::~Comentario() {
 }
 
 void Comentario::borrarRespuestas(){
-     std::map<int, Comentario*>::iterator it;
-     if (this->respuestas.empty() == false){
-     std::vector<int> respuestaIds;
-     for (const auto& pair : this->respuestas) {
-        respuestaIds.push_back(pair.first);
-    }
-    for (int respuestaId : respuestaIds) {
-        Comentario* aborrar = this->respuestas[respuestaId];
-        if (aborrar) {
-            aborrar->borrarRespuestas();  
-            aborrar->~Comentario();               
-        }
-        this->respuestas.erase(respuestaId);
-    }
-     }
 }
 
 void Comentario::agregarRespuesta(Comentario* com)
 {   
-    int id=com->getIdcom();
-    this->respuestas.insert(std::make_pair(id,com));
+    this->respuestas.push_back(com);
 }
 #endif

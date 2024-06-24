@@ -8,7 +8,7 @@
 
 
 std::ostream &operator<<(std::ostream &salida, DTProducto const &prod){
-    salida << "Código: " << prod.codigo << "\nStock: " << prod.stock<<"\nPrecio: "<<prod.precio<<"\nNombre: "<<prod.nombre<<"\nDescripción: "<<prod.descripcion<<"\nCategoria: "<<prod.categoria<<"\n";
+    salida << "Código: " << prod.codigo <<"\nNombre: "<<prod.nombre<<"\nStock: " << prod.stock<<"\nDescripción: "<<prod.descripcion<< "\nPrecio: "<<prod.precio<<"\nCategoria: "<<prod.categoria<<"\n";
     return salida;
 }
 

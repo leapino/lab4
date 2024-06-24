@@ -163,7 +163,7 @@ std::map<int, std::string> ControladorUsuario::listarNickUsuarios()
         return mu->listarNickUsuarios();
     }
 
-std::map<int, std::string> ControladorUsuario::listarComentario(std::string nombreU){
+std::list< std::string> ControladorUsuario::listarComentario(std::string nombreU){
        ManejadorUsuario* mU=ManejadorUsuario::getInstancia();
        Usuario* usuario = mU->getUsuario(nombreU);
        return usuario->listarComentarios();

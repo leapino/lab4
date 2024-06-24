@@ -26,7 +26,7 @@ class ControladorUsuario {
         bool estaVacio();
         bool estaUsuario(std::string nombre);
         std::map<int, std::string> listarNickUsuarios();
-        std::map<int, std::string> listarComentario(std::string nombreU);
+        std::list< std::string> listarComentario(std::string nombreU);
         void escribirCom(int idCom,std::string comentario,DTFecha fecha,int codProd,std::string usuario);
         void escribirCom(std::string comentario,DTFecha fecha,int codProd,std::string usuario);
         //void escribirCom(std::string comentario,DTFecha fecha,Producto* codProd,std::string idCom,std::string usuario);

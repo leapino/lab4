@@ -28,7 +28,7 @@ class Producto {
         std::string descripcion;
         Categoria categoria;
         Vendedor *vendedor;
-        std::map<int,Comentario*> comentarios;
+        std::list<Comentario*> comentarios;
         ProductoPromocion* promo;
         std::set<CompraProducto*> compraProductos;
     public:
@@ -45,7 +45,7 @@ class Producto {
         Vendedor *getVendedor();
         DTProducto getData();
         DT2Producto getData2();
-        std::map<int,Comentario*> getComentarios();
+        std::list<Comentario*> getComentarios();
         ProductoPromocion* getPromo();
         std::set<CompraProducto*> getCompraProductos();
         //Setters
@@ -56,7 +56,7 @@ class Producto {
         void setDescripcion(std::string);
         void setCategoria(Categoria);
         void setVendedor(Vendedor *);
-        void setComentarios(std::map<int,Comentario*>);
+        void setComentarios(std::list<Comentario*>);
         void setPromo(ProductoPromocion*);
         void bajarStock(int cantidad);
         void addCompraProducto(CompraProducto*);
@@ -64,6 +64,5 @@ class Producto {
         ~Producto();
         //funcion
         void agregarComentario(Comentario* comment);
-        Producto(int,int,std::string,std::string,Categoria);
 };
 #endif
