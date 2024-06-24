@@ -6,4 +6,5 @@
 #include <string>
 
 enum Categoria {ropa, electrodomestico, otro};
+
 #endif

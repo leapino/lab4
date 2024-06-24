@@ -5,7 +5,21 @@
 
 #include "declaraciones/DTProducto.h"
 
-
+std::ostream &operator<<(std::ostream &salida, Categoria c){
+    switch (c)
+    {
+    case Categoria::electrodomestico:
+        salida << "Electrodoméstico";
+        break;
+    case Categoria::ropa:
+        salida << "Ropa";
+        break;
+    case Categoria::otro:
+        salida << "Otro";
+        break;
+    }
+    return salida;
+}
 
 std::ostream &operator<<(std::ostream &salida, DTProducto const &prod){
     salida << "Código: " << prod.codigo <<"\nNombre: "<<prod.nombre<<"\nStock: " << prod.stock<<"\nDescripción: "<<prod.descripcion<< "\nPrecio: "<<prod.precio<<"\nCategoria: "<<prod.categoria<<"\n";
