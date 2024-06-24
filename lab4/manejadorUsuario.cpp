@@ -253,7 +253,6 @@ std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomV
                 DT2Producto productoAinsertar = prodAux->getData2();
                 resu.insert({num, productoAinsertar});
                 num++;
-                std::cout<< "codigo a insertar en lista" << prodAux->getCodigo();
             }
         }
     }
@@ -275,7 +274,7 @@ Vendedor *ManejadorUsuario::getVendedor(std::string v) {
 
 
 std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDeProdNoEnviado(std::string v, int codigoProd) {
-    int num = 1;
+    int num = 0;
     std::map<int, std::pair<std::string, DTFecha>> resu;
     Vendedor *vendedor = getVendedor(v);
     
@@ -287,9 +286,9 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
 
         if( !((*compraProducto)->getEnviado()) ) {
 
+            num++;
             std::pair<std::string, DTFecha> nickYFecha( (*compraProducto)->getCompra()->getCliente()->getNickname(), (*compraProducto)->getCompra()->getFecha() );
             resu.insert(std::make_pair(num, nickYFecha));
-            num++;
         }
     }
     return resu;
@@ -311,18 +310,24 @@ void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();
+    
     while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
         ++it;
     }
     if((it) != compras.end() && f.esIgualFecha((*it)->getFecha())) {
+        
         std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
+        
         std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
-        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {   
+
+        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
+            
             ++compraProducto;
 
         }
-        ((*compraProducto)->getEnviado());
+        
         if(compraProducto != compraProductos.end() && !((*compraProducto)->getEnviado())) {
+            
             ((*compraProducto))->setEnviado(true);
         }
     }

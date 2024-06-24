@@ -51,7 +51,7 @@ DTFecha leerFecha(){
     std::cout <<"anio\n";
     std::cin >>anio;
     std::cout <<"\n";
-    DTFecha creada=DTFecha(dia,mes,anio);
+    DTFecha creada=DTFecha(dia,mes,anio,0,0);
     std::cout <<creada<<"\n";
 
     return creada;
@@ -114,7 +114,7 @@ int main() {
             std::cout <<"\naño\n";
             std::cin >>anio;
             std::cout <<"\n";
-            DTFecha fecha=DTFecha(dia,mes,anio);
+            DTFecha fecha=DTFecha(dia,mes,anio,0,0);
             
             bool estanom = false;
             if (ControladorUsuario->estaVacio() == false)
@@ -281,7 +281,7 @@ int main() {
             std::cin >>anio;
             std::cout <<"\n";
             
-            DTFecha fecha = DTFecha(dia,mes,anio);
+            DTFecha fecha = DTFecha(dia,mes,anio,0,0);
             
             std::map<int ,std::string> nicknames = ControladorProducto->listarNicknamesV();
             std::map<int ,std::string>::iterator it;
@@ -365,7 +365,12 @@ int main() {
                     DTVendedor vendedor = ControladorProducto->vendedorPromo(*productos.begin());
                     std::set<DTProducto>::iterator it2;
                     std::cout << "Vendedor que ofrece la promoción:\n";
+                    std::cout << "\nDescuento de la promoción:\n";
+                    std::cout << promociones.find(nombrePromo)->second.getDescuento() <<"%";
+
                     std::cout << vendedor.getDTNickname();
+                    std::cout << "\nDescuento de la promoción:\n";
+                    std::cout << promociones.find(nombrePromo)->second.getDescuento() <<"%";
                     std::cout << "\nProductos de la promoción:\n";
                     for (it2 = productos.begin(); it2 != productos.end(); it2++){
                         std::cout << *it2;
@@ -545,17 +550,17 @@ int main() {
                     std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
                 }
                 std::cout << "\n";
-
+            }
+            
             int numCompra;
             std::cin >> numCompra;
             
-            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);        
+            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
 
             }
             else (std::cout << "El vendedor seleccionado no tiene envios pendientes. \n");
             std::cout << "\n";
             
-           
         }
         break; 
         case 11:{//Expediente de usuario
@@ -724,25 +729,25 @@ int main() {
                 ///////////////////////////////////CARGA DE DATOS///////////////////////////////////
         //USUARIOS
         
-        DTFecha fecha1 = DTFecha(15,5,1988);
+        DTFecha fecha1 = DTFecha(15,5,1988,0,0);
         ControladorUsuario->altaDeUsuario("ana23", "qwer1234", fecha1, "212345678001");
-        DTFecha fecha2 = DTFecha(18,6,1986);
+        DTFecha fecha2 = DTFecha(18,6,1986,0,0);
         ControladorUsuario->altaDeUsuario("carlos78", "asdfghj", fecha2, "356789012345");
-        DTFecha fecha3 = DTFecha(28,7,1993);
+        DTFecha fecha3 = DTFecha(28,7,1993,0,0);
         ControladorUsuario->altaDeUsuario("diegom", "zxcvbn", fecha3, "190123456789");
-        DTFecha fecha4 = DTFecha(20,10,1992);
+        DTFecha fecha4 = DTFecha(20,10,1992,0,0);
         ControladorUsuario->altaDeUsuario("juan87", "1qaz2wsx", fecha4, "Av. 18 de Julio 456", "Melo");
-        DTFecha fecha5 = DTFecha(22,9,1979);
+        DTFecha fecha5 = DTFecha(22,9,1979,0,0);
         ControladorUsuario->altaDeUsuario("laura", "3edc4rfv", fecha5, "Rondeau 1617", "Montevideo");
-        DTFecha fecha6 = DTFecha(25,3,1985);
+        DTFecha fecha6 = DTFecha(25,3,1985,0,0);
         ControladorUsuario->altaDeUsuario("maria01", "5tgb6yhn", fecha6, "321098765432");
-        DTFecha fecha7 = DTFecha(14,4,1982);
+        DTFecha fecha7 = DTFecha(14,4,1982,0,0);
         ControladorUsuario->altaDeUsuario("natalia", "poiuyt", fecha7, "Paysandú 2021", "Salto");
-        DTFecha fecha8 = DTFecha(30,11,1995);
+        DTFecha fecha8 = DTFecha(30,11,1995,0,0);
         ControladorUsuario->altaDeUsuario("pablo10", "lkjhgv", fecha8, "Av. Rivera 1819", "Mercedes");
-        DTFecha fecha9 = DTFecha(12,8,1990);
+        DTFecha fecha9 = DTFecha(12,8,1990,0,0);
         ControladorUsuario->altaDeUsuario("roberto", "mnbvcx", fecha9, "Av. Brasil 1011", "Montevideo");
-        DTFecha fecha10 = DTFecha(07,12,1983);
+        DTFecha fecha10 = DTFecha(07,12,1983,0,0);
         ControladorUsuario->altaDeUsuario("sofia25", "1234asdf", fecha10, "445678901234");
         
 
@@ -797,26 +802,26 @@ int main() {
         infoProd1.insert(std::make_pair(2, 1));
         infoProd1.insert(std::make_pair(4, 1));
         infoProd1.insert(std::make_pair(8, 1));
-        DTFecha fecha11 = DTFecha(25, 10, 2024);
+        DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
 
         ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd1, "ana23");
         
         std::map<int, int> infoProd2;
         infoProd2.insert(std::make_pair(3, 2));
         infoProd2.insert(std::make_pair(6, 3));
-        DTFecha fecha12 = DTFecha(26, 10, 2024);
+        DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
 
         ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd2, "carlos78");
 
         std::map<int, int> infoProd3;
         infoProd3.insert(std::make_pair(5, 2));
-        DTFecha fecha13 = DTFecha(26, 10, 2024);
+        DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
 
         ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd3,"diegom");
 
         std::map<int, int> infoProd4;
         infoProd4.insert(std::make_pair(14, 1));
-        DTFecha fecha14 = DTFecha(26, 3, 2024);
+        DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
 
         ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd4, "diegom");
 
@@ -827,65 +832,65 @@ int main() {
         productosCompra1.insert(std::make_pair(2, 2));
         productosCompra1.insert(std::make_pair(4, 1));
         productosCompra1.insert(std::make_pair(8, 1));
-        DTFecha fechaC1 = DTFecha(1, 5, 2024);
+        DTFecha fechaC1 = DTFecha(1, 5, 2024, 0, 0);
         
         std::map<int, int> productosCompra2;
         double monto2=0;
         productosCompra2.insert(std::make_pair(5, 1));
-        DTFecha fechaC2 = DTFecha(1, 5, 2024);
+        DTFecha fechaC2 = DTFecha(1, 5, 2024, 0, 0);
 
         std::map<int, int> productosCompra3;
         double monto3=0;
         productosCompra3.insert(std::make_pair(14, 10));
-        DTFecha fechaC3 = DTFecha(15, 5, 2024);
+        DTFecha fechaC3 = DTFecha(15, 5, 2024, 0, 0);
 
         std::map<int, int> productosCompra4;
         double monto4=0;
         productosCompra4.insert(std::make_pair(11, 1));
         productosCompra4.insert(std::make_pair(12, 1));
         productosCompra4.insert(std::make_pair(13, 1));
-        DTFecha fechaC4 = DTFecha(25, 4, 2024);
+        DTFecha fechaC4 = DTFecha(25, 4, 2024, 0, 0);
 
         std::map<int, int> productosCompra5;
         double monto5=0;
         productosCompra5.insert(std::make_pair(3, 2));
         productosCompra5.insert(std::make_pair(6, 3));
-        DTFecha fechaC5 = DTFecha(20, 5, 2024);
+        DTFecha fechaC5 = DTFecha(20, 5, 2024, 0, 0);
 
         std::map<int, int> productosCompra6;
         double monto6=0;
         productosCompra6.insert(std::make_pair(1, 2));
-        DTFecha fechaC6 = DTFecha(12, 5, 2024);
+        DTFecha fechaC6 = DTFecha(12, 5, 2024, 0, 0);
 
         std::map<int, int> productosCompra7;
         double monto7=0;
         productosCompra7.insert(std::make_pair(1, 3));
-        DTFecha fechaC7 = DTFecha(13, 5, 2024);
+        DTFecha fechaC7 = DTFecha(13, 5, 2024, 0, 0);
 
         std::map<int, int> productosCompra8;
-        double monto8=0 ;
+        double monto8=0;
         productosCompra8.insert(std::make_pair(1, 4));
-        DTFecha fechaC8 = DTFecha(14, 5, 2024);
+        DTFecha fechaC8 = DTFecha(14, 5, 2024, 0, 0);
 
 
         std::map<int, int> productosCompra9;
         double monto9=0;
         productosCompra8.insert(std::make_pair(1, 5));
-        DTFecha fechaC9 = DTFecha(15, 5, 2024);
+        DTFecha fechaC9 = DTFecha(15, 5, 2024, 0, 0);
 
 
         ControladorUsuario->confirmarCompra(productosCompra1, monto1, "juan87", fechaC1);  
         ControladorUsuario->confirmarCompra(productosCompra2, monto2, "juan87", fechaC2);
-        // ControladorUsuario->confirmarCompra(productosCompra3, monto3, "laura", fechaC3);
-        // ControladorUsuario->confirmarCompra(productosCompra4, monto4, "natalia", fechaC4);
-        // ControladorUsuario->confirmarCompra(productosCompra5, monto5, "juan87", fechaC5);
-        // ControladorUsuario->confirmarCompra(productosCompra6, monto6, "laura", fechaC6);
-        // ControladorUsuario->confirmarCompra(productosCompra7, monto7, "natalia", fechaC7);
-        // ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
-        // ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
+        ControladorUsuario->confirmarCompra(productosCompra3, monto3, "laura", fechaC3);
+        ControladorUsuario->confirmarCompra(productosCompra4, monto4, "natalia", fechaC4);
+        ControladorUsuario->confirmarCompra(productosCompra5, monto5, "juan87", fechaC5);
+        ControladorUsuario->confirmarCompra(productosCompra6, monto6, "laura", fechaC6);
+        ControladorUsuario->confirmarCompra(productosCompra7, monto7, "natalia", fechaC7);
+        ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
+        ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
 
-         ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
+        ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
          ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
          ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
          ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
@@ -895,59 +900,57 @@ int main() {
          ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
         
 
-        //FALTA LO DE LAS PROMOS DE LA PARTE 5.1
-        //CREO QUE LA CAGUE EN SETPRODUCTOENVIADO CON LO DE LA KEY (POSIBLEMENTE EN NICKYFECHADEPRODENVIADO TAMBIEN)
 
         //COMENTARIOS
-        DTFecha fecha36 = DTFecha(1,6,2024);
+        DTFecha fecha36 = DTFecha(1,6,2024,0,0);
         ControladorUsuario->escribirCom("¿La camiseta azul esta disponible en talla M?",fecha36,1,"juan87");
-        DTFecha fecha37 = DTFecha(1,6,2024);
+        DTFecha fecha37 = DTFecha(1,6,2024,0,0);
         ControladorUsuario->escribirCom(0,"Si,tenemos la camiseta azul en talla M.",fecha37,1,"carlos78");
-        DTFecha fecha38 = DTFecha(2,6,2024);
+        DTFecha fecha38 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(1,"¿Es de buen material? Me preocupa la durabilidad.",fecha38,1,"laura");
-        DTFecha fecha39 = DTFecha(2,6,2024);
+        DTFecha fecha39 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(2,"He comprado antes y la calidad es buena",fecha39,1,"juan87");
-        DTFecha fecha15 = DTFecha(2,6,2024);
+        DTFecha fecha15 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom("¿Como es el ajuste? ¿Es ajustada o holgada?",fecha15,1,"natalia");
-        DTFecha fecha16 = DTFecha(2,6,2024);
+        DTFecha fecha16 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom("¿Cual es la resolucion del Televisor LED?",fecha16,2,"laura");
-        DTFecha fecha17 = DTFecha(2,6,2024);
+        DTFecha fecha17 = DTFecha(2,6,2024,0,0);
         ControladorUsuario->escribirCom(5,"El televisor LED tiene una resolucion de 4K UHD.",fecha17,2,"ana23");
-        DTFecha fecha18 = DTFecha(3,6,2024);
+        DTFecha fecha18 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom("¿Tiene soporte para HDR10?",fecha18,2,"pablo10");
-        DTFecha fecha19 = DTFecha(3,6,2024);
+        DTFecha fecha19 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom(7,"Si, soporta HDR10.",fecha19,2,"ana23");
-        DTFecha fecha20 = DTFecha(3,6,2024);
+        DTFecha fecha20 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom("¿La chaqueta de cuero es resistente al agua?",fecha20,3,"natalia");
-        DTFecha fecha21 = DTFecha(3,6,2024);
+        DTFecha fecha21 = DTFecha(3,6,2024,0,0);
         ControladorUsuario->escribirCom(9,"No, la chaqueta de cuero no es resistente al agua.",fecha21,3,"carlos78");
-        DTFecha fecha22 = DTFecha(4,6,2024);
+        DTFecha fecha22 = DTFecha(4,6,2024,0,0);
         ControladorUsuario->escribirCom(9,"¿Viene en otros colores?",fecha22,3,"laura");
-        DTFecha fecha23 = DTFecha(4,6,2024);
+        DTFecha fecha23 = DTFecha(4,6,2024,0,0);
         ControladorUsuario->escribirCom(11,"Si, tambien esta disponible en marron.",fecha23,3,"carlos78");
-        DTFecha fecha24 = DTFecha(4,6,2024);
+        DTFecha fecha24 = DTFecha(4,6,2024,0,0);
         ControladorUsuario->escribirCom(9,"¿Es adecuada para climas frios?",fecha24,3,"roberto");
-        DTFecha fecha25 = DTFecha(4,6,2024);
+        DTFecha fecha25 = DTFecha(4,6,2024,0,0);
         ControladorUsuario->escribirCom("¿El microondas digital tiene funcion de descongelacion rapida?",fecha25,4,"pablo10");
-        DTFecha fecha26 = DTFecha(4,6,2024);
+        DTFecha fecha26 = DTFecha(4,6,2024,0,0);
         ControladorUsuario->escribirCom(14,"Si, el microondas digital incluye una funcion de descongelacion rapida.",fecha26,4,"ana23");
-        DTFecha fecha27 = DTFecha(5,6,2024);
+        DTFecha fecha27 = DTFecha(5,6,2024,0,0);
         ControladorUsuario->escribirCom(14,"¿Cuantos niveles de potencia tiene?",fecha27,4,"natalia");
-        DTFecha fecha28 = DTFecha(5,6,2024);
+        DTFecha fecha28 = DTFecha(5,6,2024,0,0);
         ControladorUsuario->escribirCom(16,"Tiene 10 niveles de potencia.",fecha28,4,"ana23");
-        DTFecha fecha29 = DTFecha(5,6,2024);
+        DTFecha fecha29 = DTFecha(5,6,2024,0,0);
         ControladorUsuario->escribirCom(14,"¿Es facil de limpiar?",fecha29,4,"roberto");
-        DTFecha fecha30 = DTFecha(5,6,2024);
+        DTFecha fecha30 = DTFecha(5,6,2024,0,0);
         ControladorUsuario->escribirCom("¿La luz LED se puede controlar con una aplicacion movil?",fecha30,5,"roberto");
-        DTFecha fecha31 = DTFecha(5,6,2024);
+        DTFecha fecha31 = DTFecha(5,6,2024,0,0);
         ControladorUsuario->escribirCom(19,"Si, la luz LED se puede controlar a traves de una aplicacion movil.",fecha31,5,"diegom");
-        DTFecha fecha32 = DTFecha(6,6,2024);
+        DTFecha fecha32 = DTFecha(6,6,2024,0,0);
         ControladorUsuario->escribirCom(19,"¿Es compatible con Alexa o Google Home?",fecha32,5,"pablo10");
-        DTFecha fecha33 = DTFecha(6,6,2024);
+        DTFecha fecha33 = DTFecha(6,6,2024,0,0);
         ControladorUsuario->escribirCom(21,"Si, es compatible con ambos.",fecha33,5,"diegom");
-        DTFecha fecha34 = DTFecha(6,6,2024);
+        DTFecha fecha34 = DTFecha(6,6,2024,0,0);
         ControladorUsuario->escribirCom(19,"¿Cuanto dura la bateria?",fecha34,5,"natalia");
-        DTFecha fecha35 = DTFecha(7,6,2024);
+        DTFecha fecha35 = DTFecha(7,6,2024,0,0);
         ControladorUsuario->escribirCom(19,"¿La aplicacion movil es facil de usar?",fecha35,5,"pablo10");
         
         //PROMOCIONES

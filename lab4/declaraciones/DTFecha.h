@@ -9,23 +9,29 @@
 
 class DTFecha{
     private:
+        int hora;
+        int minuto;
         int dia;
         int mes;
         int anio;
     public:
         //Creadores
         DTFecha();
-        DTFecha(int dia,int mes,int anio);
+        DTFecha(int dia,int mes,int anio,int hora,int minuto);
         //Destructor
         ~DTFecha();
         //Getters
         int getDia();
         int getMes();
         int getAnio();
+        int getHora();
+        int getMinuto();
         //Setters
         void setDia(int);
         void setMes(int);
         void setAnio(int);  
+        void setHora(int);
+        void setMinuto(int);
         //Funciones
         bool esIgualFecha(DTFecha f);
         friend std::ostream &operator<<(std::ostream& salida, const DTFecha& fecha);
