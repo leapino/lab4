@@ -293,12 +293,13 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
     std::map<int, std::pair<std::string, DTFecha>> resu;
     Vendedor *vendedor = getVendedor(v);
     int num = 0;
-
+    std::cout << "puntoNYF1";
     Producto *productoNoEnviado = (*vendedor).getProductos().find(codigoProd)->second;
     std::set<CompraProducto*> compraProductos = productoNoEnviado->getCompraProductos();
     std::set<CompraProducto*>::iterator compraProducto = compraProductos.begin();
-
+    std::cout << "puntoNYF2";
     for(compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto) {
+        std::cout << "puntoNYF3";
         if( !((*compraProducto)->getEnviado()) ) {
 
             num++;
@@ -306,6 +307,7 @@ std::map<int, std::pair<std::string, DTFecha>> ManejadorUsuario::nickYFechaDePro
             resu.insert(std::make_pair(num, nickYFecha));
         }
     }
+    std::cout << "puntoNYF4";
 
     //insert(std::make_pair(2, 1))
 
@@ -359,24 +361,27 @@ std::list<std::string> ManejadorUsuario::getVendedores() {
 
 
 void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
+    std::cout<< "apenas entra xd";
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();
-
-    while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
+    std::cout<< "antes del primer while";
+    while((*it) != nullptr && it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
         ++it;
     }
+    std::cout<< "despues del primer while";
     if(f.esIgualFecha((*it)->getFecha())) {
 
         std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
         std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
-
-        while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
+        std::cout<< "antes del segundo while";
+        while((*compraProducto) != nullptr && compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
             
             ++compraProducto;
 
         }
-        if(!((*compraProducto)->getEnviado())) {
+        std::cout<< "despues del segundo while";
+        if((*compraProducto) != nullptr && !((*compraProducto)->getEnviado())) {
 
             ((*compraProducto))->setEnviado(true);
         }
