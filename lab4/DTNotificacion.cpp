@@ -15,7 +15,7 @@ std::ostream &operator<<(std::ostream &salida, const DTNotificacion  &   noti){
     return salida;
 }
 
-DTNotificacion::DTNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto*> prods){
+DTNotificacion::DTNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto> prods){
     this->nombreprom=nombreP;
     this->nombrevendedor=nombreV;
     this->productos=prods;
@@ -31,7 +31,7 @@ std::string DTNotificacion::getNombreVendedor()
     return this->nombrevendedor;
 }
 
-std::list<DTProducto*> DTNotificacion::getProductos()
+std::list<DTProducto> DTNotificacion::getProductos()
 {
     return this->productos;
 }
@@ -46,7 +46,7 @@ void DTNotificacion::setNombreVendedor(std::string nombre)
     this->nombrevendedor=nombre;
 }
 
-void DTNotificacion::setProductos(std::list<DTProducto *> productos)
+void DTNotificacion::setProductos(std::list<DTProducto> productos)
 {
     this->productos=productos;
 }

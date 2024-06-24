@@ -78,10 +78,21 @@ bool ControladorProducto::checkPromo(int codigo){
     return mp->checkPromo(codigo);
 }
 
-void ControladorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd){
+void ControladorProducto::confirmarAltaPromocion(std::string nombreP,std::string descriP,float descuento,DTFecha fecha,std::map<int, int> infoProd, std::string nombreV){
     ManejadorProducto* mp;
     mp = ManejadorProducto::getInstancia();
+    ManejadorUsuario* mu;
+    mu = ManejadorUsuario::getInstancia();
     mp->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
+    Vendedor* vend=mu->getVendedor(nombreV);
+    vend->addPromo(mp->getPromos().find(nombreP)->second);
+    std::list<DTProducto> dtProductos;
+    std::map<int, int>::iterator it;
+    for (it = infoProd.begin(); it != infoProd.end(); ++it){
+        DTProducto dtProd = mp->getProducto((*it).first)->getData();
+        dtProductos.push_back(dtProd);
+    }
+    mu->mandarNotificacion(nombreP, nombreV, dtProductos);
 }
 
 std::map<std::string, DTPromocion> ControladorProducto::getPromos(){
@@ -113,15 +124,6 @@ DTVendedor ControladorProducto::vendedorPromo(DTProducto producto){
     return mp->vendedorPromo(producto);
 }
 
-void ControladorProducto::agregarPromoVendedor(std::string promo,std::string vendedor){
-    ManejadorProducto* mp;
-    mp = ManejadorProducto::getInstancia();
-    ManejadorUsuario* mu;
-    mu = ManejadorUsuario::getInstancia();
-    Vendedor* vend=mu->getVendedor(vendedor);
-    vend->addPromo(mp->getPromos().find(promo)->second);
-}
-
 void ControladorProducto::altaDeProducto(std::string nombre,double precio,int stock,std::string desc,Categoria categoria){
        Producto* nuevoProducto =new Producto(stock,precio,nombre,desc,categoria);       
        ManejadorProducto* mp = ManejadorProducto::getInstancia();
@@ -137,7 +139,5 @@ void ControladorProducto::linkVendProd(std::string nombV){
        int cod = prod->getCodigo();
        vendedor->setProductos(cod,prod);
 }
-
-
 
 #endif

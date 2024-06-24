@@ -145,26 +145,26 @@ int main() {
     infoProd1.insert(std::make_pair(8, 1));
     DTFecha fecha11 = DTFecha(25, 10, 2024, 0, 0);
 
-    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd1);
+    ControladorProducto->confirmarAltaPromocion("Casa nueva", "Para que puedas ahorrar en la casa nueva", 30, fecha11, infoProd1, "ana23");
     
     std::map<int, int> infoProd2;
     infoProd2.insert(std::make_pair(3, 2));
     infoProd2.insert(std::make_pair(6, 3));
     DTFecha fecha12 = DTFecha(26, 10, 2024, 0, 0);
 
-    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd2);
+    ControladorProducto->confirmarAltaPromocion("Fiesta", "Para que no te quedes sin ropa para las fiestas", 20, fecha12, infoProd2, "carlos78");
 
     std::map<int, int> infoProd3;
     infoProd3.insert(std::make_pair(5, 2));
     DTFecha fecha13 = DTFecha(26, 10, 2024, 0, 0);
 
-    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd3);
+    ControladorProducto->confirmarAltaPromocion("Domotica", "Para modernizar tu casa", 10, fecha13, infoProd3,"diegom");
 
     std::map<int, int> infoProd4;
     infoProd4.insert(std::make_pair(14, 1));
     DTFecha fecha14 = DTFecha(26, 3, 2024, 0, 0);
 
-    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd4);
+    ControladorProducto->confirmarAltaPromocion("Liquidacion", "Hasta agotar stock", 10, fecha14, infoProd4, "diegom");
 
 
     //COMPRAS
@@ -504,8 +504,7 @@ int main() {
                     switch (confirm)
                     {
                     case 1:
-                        ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd);
-                        ControladorProducto->agregarPromoVendedor(nombreP, nicknames.find(numVend)->second);
+                        ControladorProducto->confirmarAltaPromocion(nombreP, descriP, descuento, fecha, infoProd, nicknames.find(numVend)->second);
                         std::cout<< "\nSe agregó la promoción\n";
                         break;
                     case 0:

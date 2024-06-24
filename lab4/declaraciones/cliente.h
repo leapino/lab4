@@ -38,11 +38,11 @@ class Cliente: public Usuario {
         void setUnVendedor(Vendedor *ven);
         void setCompra(Compra *comp);
         void setDTNoti(std::list<DTNotificacion> noti);
+        void addNotificacion(DTNotificacion noti);
         //funciones
         void crearLinkV(Vendedor * Vendedor);
         void eliminarVendedores();
         void limpiarNotificaciones();
-        void notificar();
         void agregarCompra(Compra* Compra);
         std::list <DTCompra> getDTCompras();
         //destructor

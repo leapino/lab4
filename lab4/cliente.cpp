@@ -79,9 +79,6 @@ void Cliente::eliminarVendedores() {
 void Cliente::limpiarNotificaciones(){
     this->Notificaciones.clear();
 }
-void Cliente::notificar() {
-
-}
 
 void Cliente::agregarCompra(Compra* Compra){
     this->Compras.push_front(Compra);
@@ -109,6 +106,10 @@ Cliente::~Cliente() {
     //     this->Compras.erase(it);
     // }
     this->Notificaciones.clear();
+}
+
+void Cliente::addNotificacion(DTNotificacion noti){
+    this->Notificaciones.push_back(noti);
 }
 
 #endif

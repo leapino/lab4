@@ -162,7 +162,6 @@ void ManejadorUsuario::agregarCompraCliente(Cliente *cliente,Compra* compra){
     cliente->agregarCompra(compra);
 }
 
-
 void ManejadorUsuario::escribirCom(int idCom,std::string comentario, DTFecha fecha, Producto *codProd, int id, std::string usuario){
     Usuario* user=this->getUsuario(usuario);
     Comentario* agregar=new Comentario(user,fecha,codProd,comentario,id);
@@ -228,22 +227,6 @@ std::list<DTPromocion> ManejadorUsuario::getPromoVigente(std::string vendedor,DT
 std::map<int, DT2Producto > ManejadorUsuario::getProductosNoEnv(std::string nomVend) {
     std::map<int, DT2Producto > resu;
     int num = 1;
-
-    // std::list<Cliente *> clientes = getVendedor(nomVend)->getClientes();
-    // for(std::list<Cliente *>::iterator cliente = clientes.begin(); cliente!= clientes.end(); ++cliente) {        
-        //         std::list<CompraProducto *> compraProductos = (*compra)->getcompraProductos();
-    //         for(std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin(); compraProducto != compraProductos.end(); ++compraProducto){
-
-    //             if(!(*compraProducto)->getEnviado()) {
-    //                 Producto *prodAux = (*compraProducto)->getProd();
-    //                 DT2Producto productoAinsertar = prodAux->getData2();
-    //                 resu.insert({num, productoAinsertar});
-    //                 num++;
-    //             }
-    //         }
-    //     }
-    // }
-
     Vendedor* vendedor = this->getVendedor(nomVend);
     std::map<int, Producto*> productos = vendedor->getProductos();
     std::map<int, Producto*>::iterator it;
@@ -364,4 +347,15 @@ void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
         }
     }
 }
+
+void ManejadorUsuario::mandarNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto> productos){
+    Vendedor* vendedor = dynamic_cast<Vendedor*>(this->Usuarios.find(nombreV)->second);
+    std::list<Cliente*> clientes = vendedor->getClientes();
+    std::list<Cliente*>::iterator it;
+    DTNotificacion noti = DTNotificacion(nombreP, nombreV, productos);
+    for (it = clientes.begin(); it != clientes.end(); ++it){
+        (*it)->addNotificacion(noti);
+    }
+}
+
 #endif

@@ -71,5 +71,6 @@ class ManejadorUsuario {
         void setComentarios(std::map<int,Comentario*> comm);
         std::list< std::string > getVendedores();
         void setProductoEnviado(std::string c, DTFecha f, int id);
+        void mandarNotificacion(std::string nombreP, std::string nombreV, std::list<DTProducto> productos);
 };
 #endif
