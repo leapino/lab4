@@ -529,6 +529,7 @@ int main() {
             std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
             
             if(productosNoEnviados.size() != 0){
+                
                 std::cout << "Seleccione un producto por su número. \n";
                 
                 for(std::map<int, DT2Producto >::iterator it = productosNoEnviados.begin(); it != productosNoEnviados.end(); ++it) {
@@ -557,11 +558,15 @@ int main() {
                 int numCompra;
                 std::cin >> numCompra;
 
-                ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
+                int idCompra;
+
+                //aca hacer algo que devuelve el idCompra.
+                ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, idCompra, idProdNoEnv);
                 
                 }
 
             }
+
             else (std::cout << "El vendedor seleccionado no tiene envios pendientes. \n");
             std::cout << "\n";
         
@@ -893,15 +898,17 @@ int main() {
         ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
         ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
+        //ids de compra luego agregar.
+        int C1, C2, C3, C4, C5, C6, C7, C8;
 
-        ControladorUsuario->setProductoEnviado("juan87", fechaC1, 2);
-         ControladorUsuario->setProductoEnviado("juan87", fechaC2, 5);
-         ControladorUsuario->setProductoEnviado("laura", fechaC3, 14);
-         ControladorUsuario->setProductoEnviado("natalia", fechaC4, 11);
-         ControladorUsuario->setProductoEnviado("natalia", fechaC4, 12);
-         ControladorUsuario->setProductoEnviado("natalia", fechaC4, 13);
-         ControladorUsuario->setProductoEnviado("juan87", fechaC5, 6);
-         ControladorUsuario->setProductoEnviado("natalia", fechaC7, 1);
+        ControladorUsuario->setProductoEnviado("juan87", C1, 2);
+        ControladorUsuario->setProductoEnviado("juan87", C2, 5);
+        ControladorUsuario->setProductoEnviado("laura", C3, 14);
+        ControladorUsuario->setProductoEnviado("natalia", C4, 11);
+        ControladorUsuario->setProductoEnviado("natalia", C5, 12);
+        ControladorUsuario->setProductoEnviado("natalia", C6, 13);
+        ControladorUsuario->setProductoEnviado("juan87", C7, 6);
+        ControladorUsuario->setProductoEnviado("natalia", C8, 1);
         
 
 

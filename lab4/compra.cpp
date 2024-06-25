@@ -62,7 +62,7 @@ void Compra::subirMonto(double precio) {
 
 void Compra::setIdcompra(int idC)
 {
-    this->IdCompra=idC;
+    this->IdCompra = idC;
 }
 
 DTCompra Compra::getData()

@@ -269,9 +269,9 @@ std::map<int, std::pair<std::string, DTFecha>> ControladorUsuario:: nickYFechaDe
     return mu->nickYFechaDeProdNoEnviado(v, codigoProd);
 }
 
-void ControladorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
+void ControladorUsuario::setProductoEnviado(std::string c, int idCompra,int id) {
     ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
-    return mU->setProductoEnviado(c, f, id);
+    return mU->setProductoEnviado(c, idCompra, id);
 }
 
 void ControladorUsuario::limpiarNotificaciones(std::string cliente)

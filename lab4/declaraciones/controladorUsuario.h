@@ -55,7 +55,7 @@ class ControladorUsuario {
         void eliminarSusVendedores(std::string cliente, std::string vendedor);
         Vendedor* getVendedor(std::string v);
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
-        void setProductoEnviado(std::string c, DTFecha f, int id);
+        void setProductoEnviado(std::string c, int idCompra, int id);
         void limpiarNotificaciones(std::string cliente);
 };
 

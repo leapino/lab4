@@ -306,15 +306,15 @@ std::list<std::string> ManejadorUsuario::getVendedores() {
 }
 
 
-void ManejadorUsuario::setProductoEnviado(std::string c, DTFecha f, int id) {
+void ManejadorUsuario::setProductoEnviado(std::string c, int idCompra, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
     std::list<Compra *> compras = cliente->getCompras();
     std::list<Compra *>::iterator it = compras.begin();
     
-    while(it != compras.end() && !(f.esIgualFecha((*it)->getFecha()))) {
+    while(it != compras.end() && !((*it)->getIdCompra() == idCompra)) {
         ++it;
     }
-    if((it) != compras.end() && f.esIgualFecha((*it)->getFecha())) {
+    if((it) != compras.end()) {
         
         std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
         
