@@ -61,7 +61,7 @@ DTCompra ControladorUsuario::confirmarCompra(std::map<int,int > productos,double
         DTProds.push_back((*it2)->getData());               
     }
     
-    return DTCompra (fechaActual,monto,DTProds);
+    return DTCompra (fechaActual,monto,DTProds,compra->getIdCompra());
 }
 
 DTUsuario ControladorUsuario::getInfoUsuario(std::string usuario){

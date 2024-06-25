@@ -52,7 +52,6 @@ DTFecha leerFecha(){
     std::cin >>anio;
     std::cout <<"\n";
     DTFecha creada=DTFecha(dia,mes,anio,0,0);
-    std::cout <<creada<<"\n";
 
     return creada;
 }
@@ -132,6 +131,7 @@ int main() {
             
                 std::string direccion;
                 std::cout <<"Ingrese la dirección del Cliente\n";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 std::getline (std::cin,direccion);
                 std::cout <<"\n";
 

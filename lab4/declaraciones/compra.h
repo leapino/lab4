@@ -14,28 +14,32 @@
 #include "compraProducto.h"
 #include "DTCompraProducto.h"
 #include "DTCompra.h"
+#include "cliente.h"
 
-class Cliente;
 class CompraProducto;
+class Cliente;
 
 class Compra {
     private:
         DTFecha fecha;
-        int monto;
+        double monto;
         Cliente *cliente;
         std::list<CompraProducto *> compraProductos;
+        int IdCompra;
     public:
         Compra();
-        Compra(DTFecha fecha, int monto, Cliente *cliente, std::list<CompraProducto*> compraPr);
+        Compra(DTFecha fecha, double monto, Cliente *cliente, std::list<CompraProducto*> compraPr);
         DTFecha getFecha();
-        int getMonto();
+        double getMonto();
         Cliente *getCliente();
         std::list<CompraProducto *> getcompraProductos();
+        int getIdCompra();
         void setFecha(DTFecha fecha);
-        void setMonto(int mont);
+        void setMonto(double mont);
         void setCliente(Cliente *client);
         void agregarProdCompra(CompraProducto *comPro);
-        void subirMonto(int precio);
+        void subirMonto(double precio);
+        void setIdcompra(int idC);
         DTCompra getData();
         ~Compra();
 };

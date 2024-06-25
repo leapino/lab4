@@ -4,10 +4,11 @@
 
 DTCompra::DTCompra(){}
 
-DTCompra::DTCompra(DTFecha fecha, int monto, std::list<DTCompraProducto> prods){
+DTCompra::DTCompra(DTFecha fecha, double monto, std::list<DTCompraProducto> prods,int id){
     this->fecha=fecha;
     this->monto=monto;
     this->Prods=prods;
+    this->IDcompra=id;
 }
 
 
@@ -15,7 +16,7 @@ DTFecha DTCompra::getFecha() {
     return this->fecha;
 }
 
-int DTCompra::getMonto() {
+double DTCompra::getMonto() {
     return this->monto;
 }
 
@@ -28,7 +29,7 @@ void DTCompra::setFecha(DTFecha fecha) {
     this->fecha = fecha;
 }
 
-void DTCompra::setMonto(int monto) {
+void DTCompra::setMonto(double monto) {
     this->monto = monto;
 }
 
@@ -37,8 +38,9 @@ void DTCompra::setProds(std::list<DTCompraProducto>prods){
 }
 
 std::ostream& operator<<(std::ostream& salida, const DTCompra& compra) {
-    salida << "Fecha de compra: " << compra.fecha << "\n"; 
-    salida << "Monto: $" << compra.monto << "\n";
+    salida <<"\nIdCompra: " <<compra.IDcompra;
+    salida << "\nFecha de compra: " << compra.fecha ; 
+    salida << "\nMonto: $" << compra.monto<<"\n" ;
     salida << "Productos:" << "\n";
     for (const auto& prod : compra.Prods) {
         salida << "- " << prod << "\n";

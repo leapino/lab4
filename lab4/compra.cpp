@@ -9,11 +9,12 @@ Compra::Compra() {
     this->cliente = NULL;
 }
 
-Compra::Compra(DTFecha fecha, int monto, Cliente *cliente,std::list<CompraProducto *> compraPr) {
+Compra::Compra(DTFecha fecha, double monto, Cliente *cliente,std::list<CompraProducto *> compraPr) {
     this->fecha = fecha;
     this->monto = monto;
     this->cliente = cliente;
     this->compraProductos=compraPr;
+    this->IdCompra=cliente->getCompras().size();
 }
 
 
@@ -22,7 +23,7 @@ Compra::Compra(DTFecha fecha, int monto, Cliente *cliente,std::list<CompraProduc
  }
 
 
-int Compra::getMonto() {
+double Compra::getMonto() {
     return this->monto;
 }
 
@@ -36,13 +37,16 @@ std::list<CompraProducto *> Compra::getcompraProductos() {
     return this->compraProductos;
 }
 
-
+int Compra::getIdCompra()
+{
+    return this->IdCompra;
+}
 void Compra::setFecha(DTFecha fecha) {
     this->fecha = fecha;
 }
 
 
-void Compra::setMonto(int mont) {
+void Compra::setMonto(double mont) {
     this->monto = mont;
 }
 
@@ -52,8 +56,13 @@ void Compra::setCliente(Cliente *client) {
 }
 
 
-void Compra::subirMonto(int precio) {
+void Compra::subirMonto(double precio) {
     this->monto += precio;
+}
+
+void Compra::setIdcompra(int idC)
+{
+    this->IdCompra=idC;
 }
 
 DTCompra Compra::getData()
@@ -63,7 +72,7 @@ DTCompra Compra::getData()
         DTCompraProducto prods=(*it)->getData();
         compraprods.push_front(prods);
     }
-    return DTCompra(this->fecha,this->monto,compraprods);
+    return DTCompra(this->fecha,this->monto,compraprods,this->IdCompra);
 }
 void Compra::agregarProdCompra(CompraProducto *comPro) {
     this->compraProductos.push_front(comPro);
