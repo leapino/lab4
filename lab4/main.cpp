@@ -522,10 +522,12 @@ int main() {
             for(it = vendedores.begin(); it != vendedores.end(); it++) {
                 std::cout << (*it) << "\n";
             }
+
             std::string nombreVendedor;
             std::cin >> nombreVendedor;
 
             std::map<int, DT2Producto > productosNoEnviados = ControladorUsuario->getProductosNoEnv(nombreVendedor);
+            
             if(productosNoEnviados.size() != 0){
                 std::cout << "Seleccione un producto por su número. \n";
                 
@@ -533,27 +535,32 @@ int main() {
                     std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
                 }
                 std::cout << "\n";
-            }
-            int numProdNoEnviado;
-            std::cin >> numProdNoEnviado;
 
-            int idProdNoEnv = productosNoEnviados.find(numProdNoEnviado)->second.getCodigo();
+                int numProdNoEnviado;
+                std::cin >> numProdNoEnviado;
 
-            std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
-            std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
+                int idProdNoEnv = productosNoEnviados.find(numProdNoEnviado)->second.getCodigo();
+
+                std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
+                std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
     
-            if(!(nickYFecha).empty()) {
+                if(!(nickYFecha).empty()) {
 
                 std::cout << "Seleccione una compra por su número. \n";
                 for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
                     std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
-                }
-                 std::cout << "\n";
+                    }
+
+                std::cout << "\n";
             
-            int numCompra;
-            std::cin >> numCompra;
-            ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
+                int numCompra;
+                std::cin >> numCompra;
+
+                ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
+                
+                }
+
             }
             else (std::cout << "El vendedor seleccionado no tiene envios pendientes. \n");
             std::cout << "\n";
