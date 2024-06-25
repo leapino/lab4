@@ -533,7 +533,7 @@ int main() {
                     std::cout<< it->first <<")" << " " << it->second.getNombre() << "\n";
                 }
                 std::cout << "\n";
-
+            }
             int numProdNoEnviado;
             std::cin >> numProdNoEnviado;
 
@@ -541,26 +541,23 @@ int main() {
 
             std::map<int, std::pair<std::string, DTFecha>> nickYFecha = ControladorUsuario->nickYFechaDeProdNoEnviado(nombreVendedor, idProdNoEnv);
             std::map<int, std::pair<std::string, DTFecha>>::iterator iterator;
-
+    
             if(!(nickYFecha).empty()) {
-                
+
                 std::cout << "Seleccione una compra por su número. \n";
                 for(iterator = (nickYFecha).begin(); iterator != nickYFecha.end(); ++iterator) {
 
                     std::cout<< iterator->first <<")" << " " << iterator->second.first << ", " << iterator->second.second << "\n";
                 }
-                std::cout << "\n";
-            }
+                 std::cout << "\n";
             
             int numCompra;
             std::cin >> numCompra;
-            
             ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
-
             }
             else (std::cout << "El vendedor seleccionado no tiene envios pendientes. \n");
             std::cout << "\n";
-            
+        
         }
         break; 
         case 11:{//Expediente de usuario
