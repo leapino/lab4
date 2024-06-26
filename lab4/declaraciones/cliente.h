@@ -21,7 +21,7 @@ class Cliente: public Usuario {
         std::string direccion;
         std::string ciudad;
         std::list <Vendedor *> Vendedores;
-        std::list <Compra *> Compras;
+        std::map <int, Compra *> Compras;
         std::list <DTNotificacion > Notificaciones;
     public:
         //Creadores
@@ -31,7 +31,7 @@ class Cliente: public Usuario {
         std::string getDireccion();
         std::string getCiudad();
         std::list <Vendedor *> getVendedores();
-        std::list <Compra *> getCompras();
+        std::map <int, Compra *> getCompras();
         std::list <DTNotificacion > getDTNotificaciones();
         //setters
         void setDireccion(std::string dir);

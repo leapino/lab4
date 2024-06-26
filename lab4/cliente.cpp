@@ -7,7 +7,7 @@ Cliente::Cliente() {
     this->direccion = "";
     this->ciudad = "";
     this->Vendedores = {nullptr};
-    this->Compras = {nullptr};
+    this->Compras;
     this->Notificaciones;
 }
 
@@ -50,7 +50,7 @@ std::list <Vendedor *> Cliente::getVendedores() {
 }
 
 
-std::list <Compra *> Cliente::getCompras() {
+std::map <int, Compra *> Cliente::getCompras() {
     return this->Compras;
 }
 
@@ -69,10 +69,10 @@ void Cliente::setUnVendedor(Vendedor *ven) {
     this->Vendedores.push_front(ven);
 }
 
-
-void Cliente::setCompra(Compra *comp) {
-    this->Compras.push_front(comp);
-}
+//lo mismo que agregar compra no?
+// void Cliente::setCompra(Compra *comp) {
+//     this->Compras.insert({comp});
+// }
 
 
 void Cliente::setDTNoti(std::list<DTNotificacion> noti) {
@@ -91,15 +91,16 @@ void Cliente::limpiarNotificaciones(){
 }
 
 void Cliente::agregarCompra(Compra* Compra){
-    this->Compras.push_front(Compra);
+    int idCompra = getCompras().size();
+    this->Compras.insert({idCompra + 1,Compra});
 }
 
 std::list<DTCompra> Cliente::getDTCompras()
 {
     std::list<DTCompra> res;
-    for (std::list<Compra *>::iterator i = this->Compras.begin(); i !=this->Compras.end(); i++)
+    for (std::map<int, Compra *>::iterator i = this->Compras.begin(); i !=this->Compras.end(); i++)
     {
-        DTCompra esta=(*i)->getData();
+        DTCompra esta = (*i->second).getData();
         res.push_back(esta);
     }
     

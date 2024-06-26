@@ -57,6 +57,7 @@ class ControladorUsuario {
         std::map<int, std::pair<std::string, DTFecha>> nickYFechaDeProdNoEnviado(std::string v, int codigoProd);
         void setProductoEnviado(std::string c, int idCompra, int id);
         void limpiarNotificaciones(std::string cliente);
+        int getIdCompra(std::string cliente, DTFecha fecha, int idProducto);
 };
 
 #endif

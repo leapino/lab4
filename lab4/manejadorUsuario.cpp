@@ -308,18 +308,16 @@ std::list<std::string> ManejadorUsuario::getVendedores() {
 
 void ManejadorUsuario::setProductoEnviado(std::string c, int idCompra, int id) {
     Cliente *cliente = (dynamic_cast<Cliente *> (getUsuario(c)));
-    std::list<Compra *> compras = cliente->getCompras();
-    std::list<Compra *>::iterator it = compras.begin();
+    std::map<int, Compra *> compras = cliente->getCompras();
+    std::map<int, Compra *>::iterator it = compras.begin();
     
-    while(it != compras.end() && !((*it)->getIdCompra() == idCompra)) {
+    while(it != compras.end() && (it->second->getIdCompra() != idCompra)) {
         ++it;
     }
     if((it) != compras.end()) {
         
-        std::list<CompraProducto *> compraProductos = (*it)->getcompraProductos();
-        
+        std::list<CompraProducto *> compraProductos = it->second->getcompraProductos();
         std::list<CompraProducto *>::iterator compraProducto = compraProductos.begin();
-
         while(compraProducto != compraProductos.end() && (*compraProducto)->getProd()->getCodigo() != id) {
             
             ++compraProducto;
@@ -355,4 +353,25 @@ std::list<DTComentario> ManejadorUsuario::listarComentsUser(std::string nombreU)
     }
     return res;
 }
+
+int ManejadorUsuario::getIdCompra(std::string cliente, DTFecha fecha, int idProducto) {
+    Cliente *client = dynamic_cast<Cliente *>(getUsuario(cliente));
+    std::map<int, Compra *> compras = client->getCompras();
+    std::map<int, Compra *>::iterator it = compras.begin();
+    int resu = 0;
+    
+    while(it != compras.end() && !(fecha.esIgualFecha((*it).second->getFecha()))) {
+        ++it;
+    }
+    std::list<CompraProducto*> compraProductos = it->second->getcompraProductos();
+    std::list<CompraProducto*>::iterator it2 = compraProductos.begin();
+    while(it2 != compraProductos.end() && idProducto != (*it2)->getProd()->getCodigo()) {
+        if(it2 != compraProductos.end()) {
+            resu = it->first;
+        }
+        ++it2;
+    }
+    return resu;
+}
+
 #endif

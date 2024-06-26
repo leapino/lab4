@@ -558,9 +558,8 @@ int main() {
                 int numCompra;
                 std::cin >> numCompra;
 
-                int idCompra;
+                int idCompra = ControladorUsuario->getIdCompra(nickYFecha.find(numCompra)->second.first, nickYFecha.find(numCompra)->second.second, idProdNoEnv);
 
-                //aca hacer algo que devuelve el idCompra.
                 ControladorUsuario->setProductoEnviado(nickYFecha.find(numCompra)->second.first, idCompra, idProdNoEnv);
                 
                 }
@@ -898,8 +897,16 @@ int main() {
         ControladorUsuario->confirmarCompra(productosCompra8, monto8, "pablo10", fechaC8);
         ControladorUsuario->confirmarCompra(productosCompra9, monto9, "roberto", fechaC9);
 
-        //ids de compra luego agregar.
-        int C1, C2, C3, C4, C5, C6, C7, C8;
+        //ids de compra 
+        int C1 = ControladorUsuario->getIdCompra("juan87", fechaC1, 2);
+        int C2 = ControladorUsuario->getIdCompra("juan87", fechaC2, 5);
+        int C3 = ControladorUsuario->getIdCompra("laura", fechaC3, 14);
+        int C4 = ControladorUsuario->getIdCompra("natalia", fechaC4, 11);
+        int C5 = ControladorUsuario->getIdCompra("natalia", fechaC4, 12);
+        int C6 = ControladorUsuario->getIdCompra("natalia", fechaC4, 13);
+        int C7 = ControladorUsuario->getIdCompra("juan87", fechaC5, 6);
+        int C8 = ControladorUsuario->getIdCompra("natalia", fechaC7, 1);
+
 
         ControladorUsuario->setProductoEnviado("juan87", C1, 2);
         ControladorUsuario->setProductoEnviado("juan87", C2, 5);

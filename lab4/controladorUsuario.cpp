@@ -280,4 +280,10 @@ void ControladorUsuario::limpiarNotificaciones(std::string cliente)
     Cliente* client=dynamic_cast<Cliente*> (mU->getUsuario(cliente));
     client->limpiarNotificaciones();
 }
+
+int ControladorUsuario::getIdCompra(std::string cliente, DTFecha fecha, int idProducto) {
+    ManejadorUsuario *mU = ManejadorUsuario::getInstancia();
+    return mU->getIdCompra(cliente, fecha, idProducto);
+}
+
 #endif
